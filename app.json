@@ -1,0 +1,50 @@
+{
+  "name":"tag-awards",
+  "logo": "https://cl.ly/fSlp/ocs-labs.png",
+  "scripts":{
+    "postdeploy": "bundle exec rake db:migrate"
+  },
+  "env":{
+    "APPLICATION_HOST":{
+      "required":true
+    },
+    "EMAIL_RECIPIENTS":{
+      "value":"developer@example.com",
+      "required":true
+    },
+    "HEROKU_APP_NAME": {
+      "required":true
+    },
+    "HEROKU_PARENT_APP_NAME": {
+      "required":true
+    },
+    "RACK_ENV":{
+      "required":true
+    },
+    "SECRET_KEY_BASE":{
+      "generator":"secret"
+    },
+    "SMTP_ADDRESS":{
+      "value":"smtp.sendgrid.com",
+      "required":true
+    },
+    "SMTP_DOMAIN":{
+      "value":"heroku.com",
+      "required":true
+    },
+    "SMTP_PASSWORD":{
+      "required":true
+    },
+    "SMTP_USERNAME":{
+      "required":true
+    },
+    "WEB_CONCURRENCY":{
+      "value":1,
+      "required":true
+    }
+  },
+  "addons":[
+    "heroku-postgresql",
+    "sendgrid"
+  ]
+}
