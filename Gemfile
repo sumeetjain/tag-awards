@@ -4,6 +4,7 @@ ruby "2.3.0"
 
 gem "autoprefixer-rails"
 gem "delayed_job_active_record"
+gem 'devise'
 gem "flutie"
 gem "high_voltage"
 gem "honeybadger"
