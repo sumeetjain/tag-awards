@@ -13,8 +13,15 @@
 
 ActiveRecord::Schema.define(version: 20160322220148) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "awards", force: :cascade do |t|
+    t.string   "award_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -31,6 +38,13 @@ ActiveRecord::Schema.define(version: 20160322220148) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "plays", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "theater_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
