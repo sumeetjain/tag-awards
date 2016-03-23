@@ -8,7 +8,6 @@ class TheaterDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    plays: Field::HasMany,
     id: Field::Number,
     name: Field::String,
     created_at: Field::DateTime,
@@ -21,7 +20,6 @@ class TheaterDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :plays,
     :id,
     :name,
     :created_at,
@@ -30,7 +28,6 @@ class TheaterDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :plays,
     :id,
     :name,
     :created_at,
@@ -41,14 +38,13 @@ class TheaterDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :plays,
     :name,
   ]
 
   # Overwrite this method to customize how theaters are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(theater)
-  #   "Theater ##{theater.id}"
-  # end
+  def display_resource(theater)
+    "#{theater.name}"
+  end
 end
