@@ -10,7 +10,7 @@ class PlayDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     title: Field::String,
-    theater_id: Field::String,
+    theater_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }
