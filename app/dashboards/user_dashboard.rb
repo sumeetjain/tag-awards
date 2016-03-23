@@ -21,6 +21,11 @@ class UserDashboard < Administrate::BaseDashboard
     last_sign_in_ip: Field::String.with_options(searchable: false),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    voter_token: Field::String,
+    first_name: Field::String,
+    last_name: Field::String,
+    weight: Field::Number,
+    admin: Field::Boolean,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -51,6 +56,11 @@ class UserDashboard < Administrate::BaseDashboard
     :last_sign_in_ip,
     :created_at,
     :updated_at,
+    :voter_token,
+    :first_name,
+    :last_name,
+    :weight,
+    :admin,
   ]
 
   # FORM_ATTRIBUTES
@@ -67,6 +77,11 @@ class UserDashboard < Administrate::BaseDashboard
     :last_sign_in_at,
     :current_sign_in_ip,
     :last_sign_in_ip,
+    :voter_token,
+    :first_name,
+    :last_name,
+    :weight,
+    :admin,
   ]
 
   # Overwrite this method to customize how users are displayed
