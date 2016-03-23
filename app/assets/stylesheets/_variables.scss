@@ -1,0 +1,26 @@
+// ==========================================================================
+// Base – Variables
+// ==========================================================================
+
+// Grid Containers
+$container-mobile:                              100% !default;
+$container-tablet:                              720px !default;
+$container-desktop:                             960px !default;
+$container-hd:                                  1120px !default;
+
+// Grid Gutters
+$grid-gutter:                                   15px !default;
+$grid-gutter-tablet:                            15px !default;
+$grid-gutter-desktop:                           15px !default;
+$grid-gutter-hd:                                15px !default;
+
+// Responsive Breakpoints
+$breakpoint-tablet:                             ($container-tablet + 20) !default;
+$breakpoint-desktop:                            ($container-desktop + 20) !default;
+$breakpoint-hd:                                 ($container-hd + 20) !default;
+
+// ==========================================================================
+// Our Project – Variables
+// ==========================================================================
+
+// Your variables go here...
