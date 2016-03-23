@@ -23,7 +23,6 @@ class TheaterDashboard < Administrate::BaseDashboard
     :id,
     :name,
     :created_at,
-    :updated_at,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -45,7 +44,7 @@ class TheaterDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how theaters are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(theater)
-  #   "Theater ##{theater.id}"
-  # end
+  def display_resource(theater)
+    "#{theater.name}"
+  end
 end
