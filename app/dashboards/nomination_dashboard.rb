@@ -62,7 +62,7 @@ class NominationDashboard < Administrate::BaseDashboard
 
   # Overwrite this method to customize how nominations are displayed
   # across all pages of the admin dashboard.
-  #
+  # #
   # def display_resource(nomination)
   #   "Nomination ##{nomination.id}"
   # end
