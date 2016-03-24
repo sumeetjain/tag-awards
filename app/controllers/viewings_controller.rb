@@ -1,7 +1,7 @@
 class ViewingsController < ApplicationController
 
   def list
-    @viewings = Viewing.where({"user_id" => params[:id]})
+    @viewings = Viewing.where({"user_id" => current_user.id})
     render "index"
   end
 

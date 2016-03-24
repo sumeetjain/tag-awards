@@ -11,3 +11,10 @@ Data that we may want on this page:
 5) ALl plays a user has seen (viewings)
 6) All plays a user can select form
 7) Area to add more possible plays/theaters for viewings
+
+
+  <% @viewings.each do |view| %>
+    <h1> Production: <%= view.play.title%> </h1>
+    <p> Theater: <%= view.play.theater.name %> </p>
+    <p> Date: <%= view.date %> </p>
+  <% end %>
