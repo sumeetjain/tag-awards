@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   'users#index'
 
+  get "nominations" =>'static_pages#noms'
+
   root to: 'static_pages#home'
 
   get "nomination_ballot" => 'nominations#nomination_ballot'
