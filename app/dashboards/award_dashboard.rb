@@ -44,8 +44,8 @@ class AwardDashboard < Administrate::BaseDashboard
 
   # Overwrite this method to customize how awards are displayed
   # across all pages of the admin dashboard.
-  #
-  # def display_resource(award)
-  #   "Award ##{award.id}"
-  # end
+  
+  def display_resource(award)
+    "#{award.award_name}"
+  end
 end
