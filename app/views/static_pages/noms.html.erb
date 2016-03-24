@@ -1,0 +1,86 @@
+<div class="clear">
+  <div class="col-4">
+    Top navigation - award category names and links to pages where you make your nominations. Remember how to make links here and make an attractive link. Concerned about having daunting number of links, vs possibility of fewer links that might take too many layers of digging to get to the form you want. 
+
+    <!-- How can I shorten this list? Can I use Ruby? -->
+
+    <div> class=Category
+    <a href="http://whatever the url is">Musical"</a>
+    </div>
+
+    <div> class=Category
+    <a href="http://whatever the url is">Comedy/Drama"</a>
+    </div>
+
+    <div> class=Category
+    <a href="http://whatever the url is">Ensemble"</a>
+    </div>
+
+    <div> class=Category
+    <a href="http://whatever the url is">Youth"</a>
+    </div>
+
+    <div> class=Category
+    <a href="http://whatever the url is">Technical"</a>
+    </div>
+
+    <div> class=Category
+    <a href="http://whatever the url is">Special Event"</a>
+    </div>
+
+     <div> class=Category
+    <a href="http://whatever the url is">"Special Awards"</a>
+    </div>
+
+    
+
+  </div>
+
+  <div class="col-8">
+    Just the section where the member makes nominations. Remember forms and form actions.
+
+    <div class="clear">
+      <div class="col-7">
+        <!-- The form entry. Drop downs for dammit I need to decide.  -->
+
+        <h1>Nominations for <%= can I get the category name doing this? %>/h1>
+          <p></p>
+
+          <form action = "/noms/category_definition" method="get"> 
+
+            <h3>Production</h3>
+              <input type ="text" name="" placeholder="Production">
+            <h3>Theater</h3>
+              <input type ="text" name="" placeholder="Theater">
+            <h3>Name</h3>
+              <input type ="text" name="" placeholder="Name">
+            <h3>Role</h3>
+              <input type ="text" name="" placeholder="Role">
+  
+          </form>
+      </div>
+
+      <div class="col-1">
+        <!-- Buttons for next, save, submit, quit(without saving) -->
+      </div>
+
+      <div class="col-1">
+        <input type ="button" name="Save">
+      </div>
+
+      <div class="col-1">
+        <input type ="button" name="Submit">
+      </div>
+
+       <div class="col-1">
+        <input type ="button" name="Next">
+      </div>
+
+       <div class="col-1">
+        <input type ="button" name="Quit">
+      </div>
+      
+    </div>
+  </div>
+</div>
+
