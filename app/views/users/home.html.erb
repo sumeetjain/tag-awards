@@ -13,8 +13,8 @@ Data that we may want on this page:
 7) Area to add more possible plays/theaters for viewings
 
 
-  <% @viewings.each do |view| %>
-    <h1> Production: <%= view.play.title%> </h1>
-    <p> Theater: <%= view.play.theater.name %> </p>
-    <p> Date: <%= view.date %> </p>
+  <% @viewings.each do |viewing| %>
+    <h1> Production: <%= viewing.play.title%> </h1>
+    <p> Theater: <%= viewing.play.theater.name %> </p>
+    <p> Date: <%= viewing.date %> </p>
   <% end %>

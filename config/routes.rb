@@ -20,6 +20,10 @@ Rails.application.routes.draw do
 
   post "viewings/create" => 'viewings#create'
 
+  get "viewings/:id/edit" => 'viewings#edit'
+
+  post "viewings/:id/update" =>'viewings#update'
+
   'users#index'
 
   root to: 'static_pages#home'
