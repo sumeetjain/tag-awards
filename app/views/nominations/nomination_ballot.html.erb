@@ -2,11 +2,36 @@
 
 <!-- need to enter data for user's viewings here -->
 
-<% @awards.each do |a| %>
-  <%= a.award_name %><br>
-    Theater: <br>
-    Show: <br>
-    Performer: <br>
-    Role: <br>
-    <br>
+<%= form_tag('/nomination_ballot') do %>
+  <% @awards.each do |a| %>
+    <%= a.award_name %><br>
+      Theater: <input type="text" name="theater"><br>
+      Show: <input type="text" name="show"><br>
+      Performer: <input type="text" name="performer"><br>
+      Role: <input type="text" name="role"><br>
+      <br>
+      Theater: <input type="text" name="theater"><br>
+      Show: <input type="text" name="show"><br>
+      Performer: <input type="text" name="performer"><br>
+      Role: <input type="text" name="role"><br>
+      <br>
+      Theater: <input type="text" name="theater"><br>
+      Show: <input type="text" name="show"><br>
+      Performer: <input type="text" name="performer"><br>
+      Role: <input type="text" name="role"><br>
+      <br>
+      Theater: <input type="text" name="theater"><br>
+      Show: <input type="text" name="show"><br>
+      Performer: <input type="text" name="performer"><br>
+      Role: <input type="text" name="role"><br>
+      <br>
+      Theater: <input type="text" name="theater"><br>
+      Show: <input type="text" name="show"><br>
+      Performer: <input type="text" name="performer"><br>
+      Role: <input type="text" name="role"><br>
+      <br>
+      <input type="submit" value="Save Work"><br>
+      <br>
+  <% end %>
+      <input type="submit" value="Submit Nominations">
 <% end %>
