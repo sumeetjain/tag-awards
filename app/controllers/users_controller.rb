@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     # @viewings = Viewing.where({"user_id" => current_user.id})
     @plays = Play.all
     @award_categories = Award.all
-    render "home"
+    # render "home"
   end
 
 
