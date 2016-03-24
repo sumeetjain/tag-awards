@@ -2,35 +2,31 @@
 
 <!-- need to enter data for user's viewings here -->
 
-<%= form_tag('/nomination_ballot') do %>
+<%= form_tag('/save_nominee') do |f| %>
   <% @awards.each do |a| %>
     <%= a.award_name %><br>
-      Theater: <input type="text" name="theater"><br>
-      Show: <input type="text" name="show"><br>
-      Performer: <input type="text" name="performer"><br>
-      Role: <input type="text" name="role"><br>
+      <% @award_id = a.id %>
+      <% binding.pry %>
+
+      Theater: <%= f.label :theater %>
+      <%= f.text_field :theater %>
       <br>
-      Theater: <input type="text" name="theater"><br>
-      Show: <input type="text" name="show"><br>
-      Performer: <input type="text" name="performer"><br>
-      Role: <input type="text" name="role"><br>
+
+      Show: <%= f.label :show %>
+      <%= f.text_field :show %>
       <br>
-      Theater: <input type="text" name="theater"><br>
-      Show: <input type="text" name="show"><br>
-      Performer: <input type="text" name="performer"><br>
-      Role: <input type="text" name="role"><br>
+
+      Performer: <%= f.label :performer %>
+      <%= f.text_field :performer %>
       <br>
-      Theater: <input type="text" name="theater"><br>
-      Show: <input type="text" name="show"><br>
-      Performer: <input type="text" name="performer"><br>
-      Role: <input type="text" name="role"><br>
+
+      Role: <%= f.label :role %>
+      <%= f.text_field :role %>
       <br>
-      Theater: <input type="text" name="theater"><br>
-      Show: <input type="text" name="show"><br>
-      Performer: <input type="text" name="performer"><br>
-      Role: <input type="text" name="role"><br>
       <br>
-      <input type="submit" value="Save Work"><br>
+
+      <!-- <input type="" value="This doesn't do anything yet."><br>  -->
+      <!-- ^ hopefully to save works in progress w/o going to database? -->
       <br>
   <% end %>
       <input type="submit" value="Submit Nominations">

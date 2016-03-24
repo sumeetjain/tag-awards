@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   root to: 'static_pages#home'
 
   get "nomination_ballot" => 'nominations#nomination_ballot'
+  post "save_nominee" => 'nominations#save_nominee'
 end
