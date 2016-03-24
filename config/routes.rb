@@ -1,5 +1,7 @@
 Rails.application.routes.draw do 
 
+  get "users/home" => 'users#home'
+
   namespace :admin do
     resources :users
     resources :awards
