@@ -1,0 +1,11 @@
+# # This file contains settings for Travis. Specifically, we're telling Travis:
+
+#   1. Our application is a Ruby one. It's using Ruby 2.3.0. This way, Travis knows how to run our code. Things would break if Travis thought we were writing--for example--a Java application, because Ruby files won't run in a Java environment.
+
+#   2. The script to run. Remember: Travis lets us run a script whenever we push. We're telling it to run the below script:
+
+script:
+- 'PULL_REQUEST_ID=${TRAVIS_PULL_REQUEST} bundle exec pronto run -f github_pr -c origin/master'
+language: ruby
+rvm:
+  - 2.3.0

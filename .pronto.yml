@@ -1,0 +1,13 @@
+# You get the picture, right? This is the configuration for Pronto.
+
+# The only thing we need to change is the name of the repo. Otherwise, it won't be able to tell which repo the PRs it needs to view are in.
+
+all:
+  exclude:
+    - 'spec/**/*'
+github:
+  slug: omahacodeschool/tag-awards
+  api_endpoint: https://api.github.com/
+  web_endpoint: https://github.com/
+max_warnings: 150
+verbose: false
