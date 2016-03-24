@@ -1,7 +1,7 @@
-class PlaysController < ApplicationController
+class ViewingsController < ApplicationController
 
   def list
-    @plays = Play.where({"user_id" => })
+    @viewings = Viewing.where({"user_id" => params[:id]})
   end
 
 end
