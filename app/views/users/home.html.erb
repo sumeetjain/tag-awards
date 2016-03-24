@@ -1,8 +1,14 @@
-This is the dashboard for a user!
+This is the dashboard for a user!<br><br>
 
-Let's get some data on here!
+<% current_user.nominations.each do |n| %>
+  <%= n.award.award_name%>
+  <%= n.nominee %>
+  <%= n.play.title %>
+  <%= n.play.theater.name %>
+<% end %>
 
-Data that we may want on this page:
+
+<br><br>Data that we may want on this page:
 
 1) All Plays
 2) Nomiation form
