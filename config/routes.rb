@@ -12,5 +12,9 @@ Rails.application.routes.draw do
 
   devise_for :users
   "home#index"
+
+  get "viewings/new" => 'viewings#new'
+
+  post "viewings/create" => 'viewings#create'
 end
 
