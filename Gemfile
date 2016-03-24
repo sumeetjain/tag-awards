@@ -59,3 +59,18 @@ group :staging, :production do
   gem "rails_stdout_logging"
   gem "rack-timeout"
 end
+
+gem 'pronto'
+gem 'pronto-rubocop'
+gem 'pronto-reek'
+gem 'pronto-rails_best_practices'
+
+# These are the gems that include the Pronto tool in our application. Adding them to the Gemfile adds them to my application's list of dependencies. But I'll now need to run `bundle install` to actually install them.
+
+
+
+
+
+
+
+
