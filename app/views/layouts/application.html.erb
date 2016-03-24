@@ -15,11 +15,17 @@
 </head>
 <body class="<%= body_class %>">
   <%= render "flashes" -%>
-<!--   AMY ADDED STUFF BELOW
- -->  
-  <%= render 'devise/shared/links' -%>
-<!--   END OF AMY STUFF
- -->  
+
+  <%- if user_signed_in? %>
+    <li>
+    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+    </li>
+  <% else %>
+    <li>
+    <%= link_to('Login', new_user_session_path)  %>  
+    </li>
+  <% end -%>
+
   <%= yield %>
   <%= render "javascript" %>
   <%= render "css_overrides" %>
