@@ -22,4 +22,20 @@
   <%- resource_class.omniauth_providers.each do |provider| %>
     <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
   <% end -%>
+
+<!-- AMY STARTED ADDING STUFF HERE TO GET A LOGOUT BUTTON TO WORK
+ -->
+
+ <%- if user_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path)  %>  
+  </li>
+<% end -%>
+
+<!-- AMY STOPPED ADDING STUFF
+ -->
 <% end -%>

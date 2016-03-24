@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
 
   devise_for :users
-  "home#index"
+  'users#index'
 
   root to: 'static_pages#home'
 end

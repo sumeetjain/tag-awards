@@ -15,6 +15,11 @@
 </head>
 <body class="<%= body_class %>">
   <%= render "flashes" -%>
+<!--   AMY ADDED STUFF BELOW
+ -->  
+  <%= render 'devise/shared/links' -%>
+<!--   END OF AMY STUFF
+ -->  
   <%= yield %>
   <%= render "javascript" %>
   <%= render "css_overrides" %>
