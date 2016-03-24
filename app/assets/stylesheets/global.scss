@@ -1,0 +1,26 @@
+/* This comment is
+ * several lines long.
+ * since it uses the CSS comment syntax,
+ * it will appear in the CSS output. */
+body { color: black; }
+
+// These comments are only one line long each.
+// They won't appear in the CSS output,
+// since they use the single-line comment syntax.
+a { color: green; }
+
+
+#nav1_menu{
+  font-family: "Raleway",sans-serif;
+  text-align: center;
+  background-color: #33334d;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.nav1_button{
+  padding: 7px;
+  color:white;
+  background-color: #1f1f2e;
+  font-size: large;
+}
