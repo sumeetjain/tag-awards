@@ -26,9 +26,9 @@ Rails.application.routes.draw do
 
   post "viewings/:id/update" => 'viewings#update'
 
-  get "viewings/delete" => 'viewings#index '
+  get "viewings/index" => 'viewings#index'
 
-  delete "viewings/delete" => 'viewings#process_delete'
+  delete "viewings/delete" => 'viewings#delete'
 
   'users#index'
 
