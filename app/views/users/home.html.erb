@@ -1,10 +1,13 @@
 This is the dashboard for a user!<br><br>
-
+<% if current_user.nominations != nil %>
 <% current_user.nominations.each do |n| %>
   <%= n.award.award_name%>
   <%= n.nominee %>
   <%= n.play.title %>
   <%= n.play.theater.name %>
+<% end %>
+<% else %>
+No Nominations Yet.
 <% end %>
 
 
@@ -12,18 +15,20 @@ This is the dashboard for a user!<br><br>
 
 1) All Plays
 2) Nomiation form
-3) All nominations that a particular user has submitted
+3) All nominations that a particular user has submitted - DONE 3/24/16 Amy
 4) All votes that a particular user has submitted
-5) ALl plays a user has seen (viewings)
+5) ALl plays a user has seen (viewings) - DONE 3/24/16 Thanks, Ryan!
 6) All plays a user can select form
 7) Area to add more possible plays/theaters for viewings
 
+<% if current_user.viewings != nil %>
+<% current_user.viewings.each do |view|%>
 
-  <% @viewings.each do |view| %>
     <h1> Production: <%= view.play.title%> </h1>
     <p> Theater: <%= view.play.theater.name %> </p>
     <p> Date: <%= view.date %> </p>
   <% end %>
+  <% else %>
+  No Viewings Recorded Yet.
+  <% end %>
 
-
- 
