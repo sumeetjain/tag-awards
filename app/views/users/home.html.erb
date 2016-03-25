@@ -20,19 +20,7 @@ No Nominations Yet.
 5) ALl plays a user has seen (viewings) - DONE 3/24/16 Thanks, Ryan!
 6) All plays a user can select form
 7) Area to add more possible plays/theaters for viewings
-
-<% if current_user.viewings != nil %>
-<% current_user.viewings.each do |view|%>
-
-  <% @viewings.each do |viewing| %>
-    <h1> Production: <%= viewing.play.title%> </h1>
-    <p> Theater: <%= viewing.play.theater.name %> </p>
-    <p> Date: <%= viewing.date %> </p>
-
-  <% end %>
-  <% else %>
-  No Viewings Recorded Yet.
-  <% end %> -->
+-->
 
 <html>
 <head>
