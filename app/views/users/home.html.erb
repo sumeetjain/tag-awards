@@ -68,7 +68,7 @@ No Nominations Yet.
   <div class="clear content">
     <div class="col-12 content-box">
       <div class="clear">
-        <div class="col-6">
+        <div class="col-4">
           <% if current_user.viewings != nil %>
           <% current_user.viewings.each do |view|%>
               <p><%= view.play.title%> </p>
@@ -78,7 +78,7 @@ No Nominations Yet.
             <% end %>
         </div>
 
-        <div class="col-6">
+        <div class="col-4">
           <% if current_user.viewings != nil %>
           <% current_user.viewings.each do |view|%>
               <p> <%= view.play.theater.name %> </p>
@@ -87,6 +87,17 @@ No Nominations Yet.
             No Viewings Recorded Yet.
             <% end %>
         </div>
+
+        <div class="col-4">
+          <% if current_user.viewings != nil %>
+          <% current_user.viewings.each do |view|%>
+              <p> <%= view.date %> </p>
+            <% end %>
+            <% else %>
+            No Viewings Recorded Yet.
+            <% end %>
+        </div>
+
       </div>
     </div>
   </div>
