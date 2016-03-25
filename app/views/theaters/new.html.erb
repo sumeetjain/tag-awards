@@ -5,4 +5,16 @@
 <br>
 <%= form_tag('/theaters/create') do %>
     <input type="text" name="name" placeholder="Enter Theater Name">
+    <input type="submit">
+<% end %>
+
+<h1>New Play</h1>
+<h2>If you don't see your play on the list below, add it to the list.</h2>
+<%= select_tag "plays", options_from_collection_for_select(@plays, "id", "title") %>
+<br>
+<br>
+<%= form_tag('/plays/create') do %>
+    <input type="text" name="title" placeholder="Enter Play Title">
+    <%= select_tag "theaters", options_from_collection_for_select(@theaters, "id", "name") %>
+    <input type="submit">
 <% end %>

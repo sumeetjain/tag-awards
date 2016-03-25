@@ -1,8 +1,8 @@
-class TheatersController < ApplicationController
+class PlaysController < ApplicationController
 
 def new
-  @plays = Play.all
-  @theaters = Theater.all
+  # @plays = Play.all
+  redirect_to "/theaters/new"
 end
 
 def create

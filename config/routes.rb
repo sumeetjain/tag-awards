@@ -32,5 +32,7 @@ Rails.application.routes.draw do
 
   post "theaters/create" => 'theaters#create'
 
+  get "plays/new" => 'plays#new'
+
 end
 
