@@ -24,9 +24,11 @@ No Nominations Yet.
 <% if current_user.viewings != nil %>
 <% current_user.viewings.each do |view|%>
 
-    <h1> Production: <%= view.play.title%> </h1>
-    <p> Theater: <%= view.play.theater.name %> </p>
-    <p> Date: <%= view.date %> </p>
+  <% @viewings.each do |viewing| %>
+    <h1> Production: <%= viewing.play.title%> </h1>
+    <p> Theater: <%= viewing.play.theater.name %> </p>
+    <p> Date: <%= viewing.date %> </p>
+
   <% end %>
   <% else %>
   No Viewings Recorded Yet.

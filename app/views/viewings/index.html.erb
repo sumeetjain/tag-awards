@@ -1,8 +1,8 @@
- <!-- <% @viewings.each #do |viewing| %>
-  <%= viewing.theater_name %>
-  <%= viewing.play_title %>
-  <%= viewing.date %>
-<% #end %>  -->
+  <% @viewings.each do |view| %>
+    <h1> Production: <%= view.play.title%> </h1>
+    <p> Theater: <%= view.play.theater.name %> </p>
+    <p> Date: <%= view.date %> </p>
+  <% end %>
 
 
 
