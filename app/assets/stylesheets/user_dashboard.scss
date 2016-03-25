@@ -1,10 +1,49 @@
 //Styling for Intro Text
-.intro{
+body{
   text-align: center;
+  font-family: "Raleway",sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  color: #000000;
 }
 
-//Styling for shows user has seen and its theater
-.shows{
+//Styling for shows area
+.box{
   text-align: center;
-  
+  margin-top: 50px;
+}
+
+.shows-box{
+  border: solid 1px #C0C0C0;
+  background-color: #888888;
+}
+
+.title-box{
+  padding:20px;
+  background-color: #F5F5F5;
+}
+
+
+
+
+
+
+
+
+
+//Styling for add shows button
+.button{
+    display: inline-block;
+    padding: 0px 9px;
+    margin-right: 4px;
+    border-radius: 3px;
+    border: solid 1px #c0c0c0;
+    background: #e9e9e9;
+    box-shadow: inset 0px 1px 0px rgba(255,255,255, .8), 0px 1px 3px rgba(0,0,0, .1);
+    font-size: .875em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #717171;
+    text-shadow: 0px 1px 0px rgba(255,255,255, 1);
 }
