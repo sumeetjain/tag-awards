@@ -16,9 +16,31 @@
 <body class="<%= body_class %>">
   <%= render "flashes" -%>
 <%- if user_signed_in? %>
-    <li>
-    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
-    </li>
+    <div class="clear nav-bar">
+      <div class="col-3">
+        <img src="//theatreartsguild.com/wp-content/uploads/2014/05/TAG-Website-Elements-logo2.png" alt="Celebrating Live Theatre for Over 35 Years!">
+      </div>
+
+      <div class="col-2 nav-link">
+        <a href="/users/home">Dashboard</a>
+      </div>
+
+      <div class="col-2 nav-link">
+        <a href="/nominations/nomination_ballot">Nominations</a>
+      </div>
+
+      <div class="col-2 nav-link">
+        <a href="ballots_page">Ballots</a>
+      </div>
+
+      <div class="col-2 nav-link">
+        <a href="settings_page">Settings</a>
+      </div>
+
+      <div class="col-1 nav-link">
+        <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+      </div>
+    </div>
   <% else %>
     <li>
     <%= link_to('Login', new_user_session_path)  %>  
