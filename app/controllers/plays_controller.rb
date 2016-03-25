@@ -7,8 +7,8 @@ end
 def create
   binding.pry
   #@theater = Theater.find_by_id(params[:id])
-  @play = Play.new(title: params[:title], params[:play])
-  binding.pry
+  #@play = Play.new(title: params[:title], params[:play])
+  #binding.pry
   #@theater = Theater.find_by_id(params[:id])
   #@play = Play.new(title: params[:title])
   #@play.save
