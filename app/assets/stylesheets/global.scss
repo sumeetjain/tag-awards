@@ -9,18 +9,17 @@ body { color: black; }
 // since they use the single-line comment syntax.
 a { color: green; }
 
-
-#nav1_menu{
+//Styling for navigation bar
+.nav-bar{
   font-family: "Raleway",sans-serif;
-  text-align: center;
-  background-color: #33334d;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  color: #525252;
 }
 
-.nav1_button{
-  padding: 7px;
-  color:white;
-  background-color: #1f1f2e;
-  font-size: large;
+//Styling for navigation links in nav bar
+.nav-link{
+  text-align: center;
+  padding-top: 68px;
 }
