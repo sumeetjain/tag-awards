@@ -1,7 +1,13 @@
 class TheatersController < ApplicationController
 
 def new
-  render "new"
+  @theaters = Theater.all
+end
+
+def create
+  @theater = Theater.new(name: params[:name])
+  @theater.save
+  render "users/home"
 end
 
 
