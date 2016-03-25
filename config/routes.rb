@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   get "viewings/delete" => 'viewings#delete'
 
-  post "viewings/delete/:id" => 'viewings#delete
+  delete "viewings/:id/process_delete" => 'viewings#process_delete'
 
   'users#index'
 

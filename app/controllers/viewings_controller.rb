@@ -33,7 +33,12 @@ class ViewingsController < ApplicationController
   end
 
   def delete
+    @viewings = Viewing.where({"user_id" => current_user.id})
+  end
+
+  def process_delete
     @viewing = Viewing.find_by_id(params[:id])
+    @viewing.delete    
   end
 
 end
