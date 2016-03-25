@@ -26,7 +26,7 @@ class ViewingsController < ApplicationController
   end
 
   def update
-    @viewing = @viewing = Viewing.find_by_id(params[:id])
+    @viewing = Viewing.find_by_id(params[:id])
     @viewing.play_id = params["play_id"]
     @viewing.date = params["date"]
     @viewing.save    
