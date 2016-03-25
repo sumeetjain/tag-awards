@@ -14,7 +14,9 @@
 <br>
 <br>
 <%= form_tag('/plays/create') do %>
+    <%= text_field_tag "play", nil, placeholder: 'Enter search term...' %>
     <input type="text" name="title" placeholder="Enter Play Title">
-    <%= select_tag "theaters", options_from_collection_for_select(@theaters, "id", "name") %>
+    <%= select("play", "theater_id", Theater.all.collect {|t| [ t.name, t.id ] }, {prompt: 'Select Theater'}) %>
     <input type="submit">
-<% end %>
+  <% end %>
+

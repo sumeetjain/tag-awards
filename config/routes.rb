@@ -34,5 +34,7 @@ Rails.application.routes.draw do
 
   get "plays/new" => 'plays#new'
 
+  post "plays/create" => 'plays#create'
+
 end
 
