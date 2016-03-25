@@ -1,4 +1,4 @@
-//Styling for Intro Text
+//Styling for Text
 body{
   text-align: center;
   font-family: "Raleway",sans-serif;
@@ -14,26 +14,40 @@ body{
   margin-top: 50px;
 }
 
-.shows-box{
-  border: solid 1px #C0C0C0;
-  background-color: #888888;
+.title{
+  margin-top:20px;
+  margin-left:100px;
+  margin-right:100px;
 }
 
 .title-box{
   padding:20px;
   background-color: #F5F5F5;
+  color: #444444;
+  border-top: #DDDDDD solid 1px;
+  border-left: #DDDDDD solid 1px;
+  border-right: #DDDDDD solid 1px;
+  border-radius: 3px;
 }
 
+.content{
+  margin-left:100px;
+  margin-right:100px;
+}
 
-
-
-
-
-
-
+.content-box{
+  padding: 20px;
+  background-color: #FFFFFF;
+  color: #888888;
+  border-bottom: #DDDDDD solid 1px;
+  border-left: #DDDDDD solid 1px;
+  border-right: #DDDDDD solid 1px;
+  border-radius: 3px;
+}
 
 //Styling for add shows button
 .button{
+    margin:20px;
     display: inline-block;
     padding: 0px 9px;
     margin-right: 4px;
