@@ -32,8 +32,8 @@ class ViewingsController < ApplicationController
     @viewing.save    
   end
 
-  # def delete
-  #   @viewing = Viewing.find_by_id(params[:id])    
-  # end
+  def delete
+    @viewing = Viewing.find_by_id(params[:id])
+  end
 
 end

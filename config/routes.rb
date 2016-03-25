@@ -26,6 +26,10 @@ Rails.application.routes.draw do
 
   post "viewings/:id/update" => 'viewings#update'
 
+  get "viewings/delete" => 'viewings#delete'
+
+  post "viewings/delete/:id" => 'viewings#delete
+
   'users#index'
 
   root to: 'static_pages#home'
