@@ -2,32 +2,28 @@
 
 <!-- need to enter data for user's viewings here -->
 
-<%= form_tag('/save_nominee') do |f| %>
+<%= form_tag('/save_nominee') do %>
   <% @awards.each do |a| %>
     <%= a.award_name %><br>
       <% @award_id = a.id %>
-      <% binding.pry %>
 
-      Theater: <%= f.label :theater %>
-      <%= f.text_field :theater %>
+      Theater: <input type="text" name="theater<%=a.id%>_1">
       <br>
 
-      Show: <%= f.label :show %>
-      <%= f.text_field :show %>
+      Show: <input type="text" name="show<%=a.id%>_1">
       <br>
 
-      Performer: <%= f.label :performer %>
-      <%= f.text_field :performer %>
+      Performer: <input type="text" name="performer<%=a.id%>_1">
       <br>
 
-      Role: <%= f.label :role %>
-      <%= f.text_field :role %>
+      Role: <input type="text" name="role<%=a.id%>_1">
       <br>
       <br>
 
-      <!-- <input type="" value="This doesn't do anything yet."><br>  -->
-      <!-- ^ hopefully to save works in progress w/o going to database? -->
+      <!-- <button type='button'>Save (doesn't work yet)</button><br> -->
+      <!-- ^ hopefully to save works in progress -->
       <br>
   <% end %>
-      <input type="submit" value="Submit Nominations">
+  <input type="submit" value="Submit Nominations">
+  <!-- ^ to replace wips in db and save current fields as final noms -->
 <% end %>
