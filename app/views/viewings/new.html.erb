@@ -1,0 +1,11 @@
+<!-- When creating/adding a new show, @plays will need to be provided in order to auto-complete shows if they're already in the database -->
+<% @plays.each do |play| %>
+  <%= play.title %>
+<% end %>
+
+<h1>New Viewing Form</h1>
+  <%= form_tag('/viewings/create') do %>
+  <input type="text" name="play_id">
+  <input type="date" name="date">
+  <input type="submit">  
+<% end %>  
