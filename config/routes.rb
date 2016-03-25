@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   get "viewings/:id/edit" => 'viewings#edit'
 
-  post "viewings/:id/update" =>'viewings#update'
+  post "viewings/:id/update" => 'viewings#update'
 
   'users#index'
 

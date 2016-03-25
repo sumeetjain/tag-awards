@@ -1,6 +1,6 @@
 <h1>Edit Viewing</h1>
 
-<%= form_tag('/viewings/@viewing.id/update') do %>
+<%= form_tag('/viewings/' + @viewing.id.to_s + '/update') do %>
   <input type="text" name="play_id" value ="<%= @viewing.play.title%>" >
   <input type="date" name="date" value="<%= @viewing.date %>">
   <input type="submit">  
