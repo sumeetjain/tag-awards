@@ -9,6 +9,20 @@ class ViewingsController < ApplicationController
     @plays = Play.all
   end
 
+  def create_multiple
+    binding.pry
+    @viewing = Viewing.new
+    params[:play_ids].each do |p|
+      @viewing = Viewing.new
+      @viewing.play_id = p.to_i
+      @viewing.date = params[:date][p]
+      @viewing.user_id = current_user.id
+      binding.pry
+      @viewing.save
+    end
+    redirect_to "/users/home"
+  end
+
   def create
     @viewing = Viewing.new
     @viewing.play_id = params["play_id"]

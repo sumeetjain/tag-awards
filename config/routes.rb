@@ -37,5 +37,7 @@ Rails.application.routes.draw do
 
   post "plays/create" => 'plays#create_play'
 
+  post "viewings/create/multiple" => 'viewings#create_multiple'
+
 end
 

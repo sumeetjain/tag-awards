@@ -3,6 +3,18 @@
   <%= play.title %>
 <% end %>
 
+<h1>New Viewing</h1>
+<%= form_tag('/viewings/create/multiple') do %>
+<% @plays.each do |play| %>
+  <%= check_box_tag "play_ids[]", play.id %>
+  <i><%= play.title %></i> <%= play.theater.name %> 
+  <%= date_field("date", "#{play.id}") %>
+  <br>
+  <% end %>
+  <input type="submit">  
+<% end %>
+
+
 <h1>New Viewing Form</h1>
   <%= form_tag('/viewings/create') do %>
   <%= select_tag "play_id", options_from_collection_for_select(@plays, "id", "title") %>
