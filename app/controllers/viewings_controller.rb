@@ -14,8 +14,8 @@ class ViewingsController < ApplicationController
     @viewing.play_id = params["play_id"]
     @viewing.date = params["date"]
     @viewing.user_id = current_user.id
-    binding.pry    
     @viewing.save
+    redirect_to "/users/home"
   end
   # def edit
   #   @plays = Play.all    

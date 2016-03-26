@@ -1,10 +1,17 @@
 class PlaysController < ApplicationController
 
 def new
-  redirect_to "/theaters/new"
+  @plays = Play.all
+  @theaters = Theater.all
 end
 
-def create
+def create_theater
+  @theater = Theater.new(name: params[:name])
+  @theater.save
+  redirect_to "/users/home"
+end
+
+def create_play
   #@theater.play.create(title: params["play_title"])
   #binding.pry
   #@theater = Theater.find_by_id(params[:id])
@@ -17,6 +24,7 @@ def create
   #@play = Play.new(title: params[:title])
   #@play.save
   redirect_to "/users/home"
+
 end
 
 

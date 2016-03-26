@@ -5,7 +5,10 @@
 
 <h1>New Viewing Form</h1>
   <%= form_tag('/viewings/create') do %>
-  <input type="text" name="play_id">
+  <%= select_tag "play_id", options_from_collection_for_select(@plays, "id", "title") %>
   <input type="date" name="date">
   <input type="submit">  
 <% end %>  
+
+
+<%= link_to "Add New Play", add_play_path %>
