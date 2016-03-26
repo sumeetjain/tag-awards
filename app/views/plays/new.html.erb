@@ -1,3 +1,16 @@
+
+<h1>New Play</h1>
+<h2>If you don't see your play on the list below, add it to the list.</h2>
+<%= select_tag "plays", options_from_collection_for_select(@plays, "id", "title") %>
+<br>
+<br>
+<%= form_tag('/plays/create') do %>
+    <%= text_field("play", "title", placeholder: "Enter play title...") %>
+    <%= select("play", "theater_id", Theater.all.collect {|t| [ t.name, t.id ] }, {prompt: 'Select Theater'}) %>
+      
+    <input type="submit">
+  <% end %>
+
 <h1>New Theater</h1>
 <h2>If you don't see your theater on the list below, add it to the list.</h2>
 <%= select_tag "theaters", options_from_collection_for_select(@theaters, "id", "name") %>
@@ -7,15 +20,3 @@
     <input type="text" name="name" placeholder="Enter Theater Name">
     <input type="submit">
 <% end %>
-
-<h1>New Play</h1>
-<h2>If you don't see your play on the list below, add it to the list.</h2>
-<%= select_tag "plays", options_from_collection_for_select(@plays, "id", "title") %>
-<br>
-<br>
-<%= form_tag('/plays/create') do %>
-    <%= text_field_tag "play_title", "", placeholder: 'Enter play title...' %>
-    <%= select("play", "theater_id", Theater.all.collect {|t| [ t.name, t.id ] }, {prompt: 'Select Theater'}) %>
-    <input type="submit">
-  <% end %>
-
