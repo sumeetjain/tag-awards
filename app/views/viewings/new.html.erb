@@ -13,14 +13,12 @@
   <% end %>
   <input type="submit">  
 <% end %>
-
+<h2>Don't see the play listed above?</h2>
+<%= link_to "Enter New Play!", add_play_path %>
 
 <h1>New Viewing Form</h1>
   <%= form_tag('/viewings/create') do %>
-  <%= select_tag "play_id", options_from_collection_for_select(@plays, "id", "title") %>
+  <input type="text" name="play_id">
   <input type="date" name="date">
   <input type="submit">  
 <% end %>  
-
-
-<%= link_to "Add New Play", add_play_path %>

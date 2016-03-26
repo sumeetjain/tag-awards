@@ -9,15 +9,13 @@ class ViewingsController < ApplicationController
     @plays = Play.all
   end
 
+#Titled this action 'create_multiple' and left the 'create' that Ryan made so we have both options for adding new viewings and can decide which is preferred. 
   def create_multiple
-    binding.pry
-    @viewing = Viewing.new
     params[:play_ids].each do |p|
       @viewing = Viewing.new
       @viewing.play_id = p.to_i
       @viewing.date = params[:date][p]
       @viewing.user_id = current_user.id
-      binding.pry
       @viewing.save
     end
     redirect_to "/users/home"
@@ -29,7 +27,6 @@ class ViewingsController < ApplicationController
     @viewing.date = params["date"]
     @viewing.user_id = current_user.id
     @viewing.save
-    redirect_to "/users/home"
   end
   # def edit
   #   @plays = Play.all    
