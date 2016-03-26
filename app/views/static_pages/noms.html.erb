@@ -1,49 +1,84 @@
-<div class="clear">
-  <div class="col-4">
-    Top navigation - award category names and links to pages where you make your nominations. Remember how to make links here and make an attractive link. Concerned about having daunting number of links, vs possibility of fewer links that might take too many layers of digging to get to the form you want. 
 
-    <!-- How can I shorten this list? Can I use Ruby? -->
 
-    <div> class=Category
-    <a href="http://whatever the url is">Musical"</a>
+
+
+
+
+<!-- <div class="clear">
+  <div class="col-3" id="logo">
+  <img src="TAG-Website-Elements-logo2.png" alt="TAG logo"
+style="width:64px;height:64px;"> -->
+
+<header> 
+  <div class="clear">
+    <div class="col-12" id="heading">
+      <h1>TAG Award Nominations 2016</h1>
     </div>
-
-    <div> class=Category
-    <a href="http://whatever the url is">Comedy/Drama"</a>
-    </div>
-
-    <div> class=Category
-    <a href="http://whatever the url is">Ensemble"</a>
-    </div>
-
-    <div> class=Category
-    <a href="http://whatever the url is">Youth"</a>
-    </div>
-
-    <div> class=Category
-    <a href="http://whatever the url is">Technical"</a>
-    </div>
-
-    <div> class=Category
-    <a href="http://whatever the url is">Special Event"</a>
-    </div>
-
-     <div> class=Category
-    <a href="http://whatever the url is">"Special Awards"</a>
-    </div>
-
-    
-
   </div>
+</header>
+<div class="clear">
 
-  <div class="col-8">
-    Just the section where the member makes nominations. Remember forms and form actions.
+  <ul>
+    <div class="col-2" id="categories">
+      <li class="dropdown">
+        <a href="http://whatever the url is" class="droptrigger">Musicals</a>
+        <div class="dropdown-content">
+        <a href="###">Best Actor - Musical</a>
+        <a href="###">Best Actress - Musical</a>
+        </div>
+      </li>
+    </div>
 
+    <div class="col-2" id="categories">
+      <li>
+        <a href="http://whatever the url is">Comedy/Drama</a>
+      </li>
+    </div>
+
+    <div class="col-2" id="categories">
+      <li>
+        <a href="http://whatever the url is">Other Performers</a>
+      </li>
+    </div>
+
+    <div class="col-2" id="categories">
+      <li>
+        <a href="http://whatever the url is">Directors</a>
+      </li>
+    </div>
+
+    <div class="col-2" id="categories">
+      <li>
+        <a href="http://whatever the url is">Technical</a>
+      </li>
+    </div>
+
+    <div class="col-2" id="categories">
+      <li>
+        <a href="http://whatever the url is">Special Award</a>
+      </li>
+    </div>
+  </div>
+    
+</div>
+
+
+
+
+
+</ul>
     <div class="clear">
-      <div class="col-7">
+      <div class="col-9">
         <!-- The form entry. Drop downs for dammit I need to decide.  -->
+        <h2>Your Current Nominations</h2>
+        <p>Can we get this with a for loop?</p> 
+        
 
-        <h1>Nominations for <%= can I get the category name doing this? %>/h1>
+
+
+
+
+        <h1>Nominations for TAG Awards</h1>
           <p></p>
 
           <form action = "/noms/category_definition" method="get"> 
@@ -60,19 +95,19 @@
           </form>
       </div>
 
-      <div class="col-1">
+      <div class="col-3">
         <!-- Buttons for next, save, submit, quit(without saving) -->
       </div>
 
-      <div class="col-1">
+      <div class="col-3">
         <input type ="button" name="Save">
       </div>
 
-      <div class="col-1">
+      <div class="col-3">
         <input type ="button" name="Submit">
       </div>
 
-       <div class="col-1">
+       <div class="col-3">
         <input type ="button" name="Next">
       </div>
 
