@@ -4,10 +4,11 @@
 <%= select_tag "plays", options_from_collection_for_select(@plays, "id", "title") %>
 <br>
 <br>
-<%= form_tag('/plays/create') do %>
+<%= form_tag('/plays/create/:id') do %>
     <%= text_field("play", "title", placeholder: "Enter play title...") %>
     <%= select("play", "theater_id", Theater.all.collect {|t| [ t.name, t.id ] }, {prompt: 'Select Theater'}) %>
-      
+    <%= text_field("new_theater_name", placeholder: "Add new theater...") %>
+
     <input type="submit">
   <% end %>
 
