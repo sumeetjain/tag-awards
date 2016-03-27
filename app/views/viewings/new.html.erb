@@ -1,12 +1,42 @@
 <!-- When creating/adding a new show, @plays will need to be provided in order to auto-complete shows if they're already in the database. For now, a Play's ID must be manually entered. -->
 
-<% @plays.each do |play| %>
+<!-- <% @plays.each do |play| %>
   <%= play.title %>
-<% end %>
+<% end %> -->
 
-<h1>New Viewing Form</h1>
-  <%= form_tag('/viewings/create') do %>
-  <input type="text" name="play_id">
-  <input type="date" name="date">
-  <input type="submit">  
-<% end %>  
+<html>
+<head>
+    <title>New Viewing Form</title>
+</head>
+<body>
+  <h1>New Viewing Form</h1>
+
+  <div>
+    <%= form_tag('/viewings/create') do %>
+      <p>
+        <input type="text" class="form-textbox" name="play_id" size="20" value="" placeholder="Performance Name">
+      </p>
+      <p>
+        <input type="date" class="form-datebox" name="date">
+      </p>
+      <p>
+        <button id="input_2" type="submit" class="form-submit-button">
+          SUBMIT
+        </button>
+      </p>
+    <% end %>  
+  </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
