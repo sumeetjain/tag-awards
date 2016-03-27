@@ -12,6 +12,25 @@
     <input type="submit">
   <% end %>
 
+<%= form_for @theater, url: {action: "create"}  do |t| %>
+  <p>
+      <%= t.select_tag "theater", options_from_collection_for_select(@theaters, "id", "name") %>
+      <%= t.text_field :theater, placeholder: "Enter new theater name..." %>
+        </p>
+
+          <%= t.fields_for :plays do |play_field| %>
+    <p>
+      <%= play_field.text_field :title, placeholder: "Enter play title..." %>
+      <% end %>
+    </p>
+
+  <% end %>
+
+
+
+
+
+
 <h1>New Theater</h1>
 <h2>If you don't see your theater on the list below, add it to the list.</h2>
 <%= select_tag "theaters", options_from_collection_for_select(@theaters, "id", "name") %>
