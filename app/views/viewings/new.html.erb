@@ -18,19 +18,22 @@
   <div class="clear content">
     <div class="col-12 content-box">
       <div class="clear form">
-        <div class="col-12">
+        <div class="col-6">
           <%= form_tag('/viewings/create') do %>
             <p>
               <input type="text" class="form-textbox" name="play_id" size="20" value="" placeholder="Performance Name">
             </p>
-            <p>
-              <input type="date" class="form-textbox" name="date">
-            </p>
-            <p>
-              <button id="input_2" type="submit" class="form-submit-button">
-                SUBMIT
-              </button>
-            </p>
+        </div>
+        <div class="col-6">
+          <p>
+            <input type="date" class="form-textbox" name="date">
+          </p>
+        </div>
+          <p>
+            <button id="input_2" type="submit" class="form-submit-button">
+              SUBMIT
+            </button>
+          </p>
           <% end %>
         </div>
       </div>
