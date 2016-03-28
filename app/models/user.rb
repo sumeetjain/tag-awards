@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  def record_nominations(nominations_hash)
+  def record_nominations(user_id, nominations_hash)
     nominations_hash.each do |key, value|
       value.each do |key2, value2|
         value2.each do |key3, value3|
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
             next
           elsif
             @new_nom = Nomination.new
-            @new_nom.user_id = current_user.id
+            @new_nom.user_id = user_id
             #@new_nom.award_id =
             @new_nom.nominee = value3["nominee"]
             @new_nom.role = value3["role"]
