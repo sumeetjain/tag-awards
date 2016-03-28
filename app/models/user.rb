@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
 
   def record_nominations(user_id, nominations_hash)
+    binding.pry
     nominations_hash.each do |key, value|
+      @current_award = key
       value.each do |key2, value2|
         value2.each do |key3, value3|
           if value3["theater"].empty?
@@ -19,7 +21,7 @@ class User < ActiveRecord::Base
           elsif
             @new_nom = Nomination.new
             @new_nom.user_id = user_id
-            #@new_nom.award_id =
+            @new_nom.award_id = @current_award
             @new_nom.nominee = value3["nominee"]
             @new_nom.role = value3["role"]
             @new_nom.save
@@ -27,8 +29,10 @@ class User < ActiveRecord::Base
         end
       end
     end
-
-    # 1. recording new nominations
-    # 2. overwriting old ones (because if a person submits the form a few times, they shouldn't end up having given 10 nominations. 5 is the max per person.)
   end
 end
+
+#delete open/approved columns from table?
+#add theater column to table
+# 1. recording new nominations
+# 2. overwriting old ones (because if a person submits the form a few times, they shouldn't end up having given 10 nominations. 5 is the max per person.)
