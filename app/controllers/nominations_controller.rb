@@ -2,6 +2,7 @@ class NominationsController < ActionController::Base
 
   def nomination_ballot
     @awards = Award.all
+    @users_prev_noms = Nomination.where("user_id" => user_id)
   end
 
   def save_nominee

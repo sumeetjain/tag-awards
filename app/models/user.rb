@@ -42,3 +42,4 @@ class User < ActiveRecord::Base
 end
 
 # figure out exactly what open/approved columns functionality is
+# find way to only display fields relevant to nomination
