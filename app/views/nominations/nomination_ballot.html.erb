@@ -54,7 +54,7 @@
   <% @awards.each do |a| %>
     <%= a.award_name %><br>
     <% nomination_count = 0 %>
-      <% while nomination_count >= 4 %>
+      <% while nomination_count <= 4 %>
 
         <input type="hidden" name="award_id" value="<%=a.id%>">
         <input type="hidden" name="nom_count" value="<%=nomination_count%>">
@@ -69,6 +69,7 @@
         <br>
         <br>
         <% nomination_count += 1 %>
+
       <% end %>
 
       <br>
