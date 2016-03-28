@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
             next
           elsif
             @new_nom = Nomination.new
-            @new_nom.user_id = @current_user_id
+            @new_nom.user_id = current_user.id
             #@new_nom.award_id =
             @new_nom.nominee = value3["nominee"]
             @new_nom.role = value3["role"]

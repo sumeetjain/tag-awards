@@ -5,7 +5,6 @@ class NominationsController < ActionController::Base
   end
 
   def save_nominee
-    @current_user_id = current_user.id
     current_user.record_nominations(params[:awards])
     redirect_to "/users/home"
   end
