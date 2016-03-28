@@ -50,22 +50,22 @@
   nomination_hash[3]["nominations"][indexofguess0-4][:show]
       ] -->
 
-<%= form_tag('/save_nominee') do %>
+<%= form_for :nomination, url: {controller: "nominations", action: "save_nominee"} do |n| %>
   <% @awards.each do |a| %>
     <%= a.award_name %><br>
     <% nomination_count = 0 %>
       <% while nomination_count <= 4 %>
 
-        <input type="hidden" name="award_id" value="<%=a.id%>">
-        <input type="hidden" name="nom_count" value="<%=nomination_count%>">
+        <input type="hidden" name="award_id" value=a.id>
+        <input type="hidden" name="nom_count" value="nomination_count">
         <br> Theater:<br>
-        <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][theater]]" value="">
+        <%=nomination_form.text_field :nomination_hash[a.id][nominations[nomination_count][theater]]%>
         <br> Show:<br>
-        <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][show]]" value="">
+        <%=nomination_form.text_field :nomination_hash[a.id][nominations[nomination_count][show]]%>
         <br> Nominee:<br>
-        <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][nominee]]" value="">
+        <%=nomination_form.text_field :nomination_hash[a.id][nominations[nomination_count][nominee]]%>
         <br> Role: <br>
-        <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][role]]" value="">
+        <%=nomination_form.text_field :nomination_hash[a.id][nominations[nomination_count][role]]%>
         <br>
         <br>
         <% nomination_count += 1 %>
