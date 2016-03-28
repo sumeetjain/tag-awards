@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
    has_many :nominations
    has_many :viewings
    has_many :plays, through: :viewings
