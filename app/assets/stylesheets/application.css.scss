@@ -1,13 +1,9 @@
 @charset "utf-8";
-
 @import "variables";
 @import "resets";
 @import "grid";
 
 @import "global";
 @import "ballots";
-
-
-a{
-  color: pink;
-}
+@import "user_dashboard";
+@import "new_viewing";

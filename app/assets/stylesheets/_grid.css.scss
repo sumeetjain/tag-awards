@@ -1,7 +1,4 @@
-// ==========================================================================
 // Base – Mobile-First Grid
-// ==========================================================================
-
 // Micro Clearfix - http://nicolasgallagher.com/micro-clearfix-hack/
 .clear:before, .clear:after { content: " "; display: table; } .clear:after { clear: both; }
 .row:before, .row:after { content: ""; display: table; } .row:after { clear: both; }

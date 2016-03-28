@@ -87,7 +87,8 @@ class UserDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how users are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(user)
-  #   "User ##{user.id}"
-  # end
+  def display_resource(user)
+    #THIS WILL ULTIMATELY NEED TO DISPLAY voter_token, BUT I'M DOING NAME RIGHT NOW TO MAKE MY LIFE EASIER - AMY
+    "#{user.first_name} #{user.last_name}"
+  end
 end
