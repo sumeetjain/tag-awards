@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
 
   def record_nominations(user_id, nominations_hash)
-    binding.pry
     nominations_hash.each do |key, value|
       @current_award = key
       value.each do |key2, value2|
