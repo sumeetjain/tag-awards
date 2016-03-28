@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   #{}"home#index"
 
-  devise_for :users                                          
+  devise_for :users, skip: [:registrations]                                          
 
   get "viewings/new" => 'viewings#new'
 
