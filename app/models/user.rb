@@ -10,7 +10,15 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
 
+  def delete_previous_noms(user_id)
+    @users_prev_noms = Nomination.where("user_id" => user_id)
+    if @users_prev_noms != nil
+      @users_prev_noms.delete_all
+    end
+  end
+
   def record_nominations(user_id, nominations_hash)
+    delete_previous_noms(user_id)
     nominations_hash.each do |key, value|
       @current_award = key
       value.each do |key2, value2|
