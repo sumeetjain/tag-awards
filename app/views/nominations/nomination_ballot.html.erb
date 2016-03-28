@@ -45,25 +45,28 @@
         {theater: "", show: ""},
         {theater: "", show: ""},
         {theater: "", show: ""}
+
+
+  nomination_hash[3]["nominations"][indexofguess0-4][:show]
       ] -->
 
-<!-- need to enter data for user's viewings here -->
-
 <%= form_tag('/save_nominee') do %>
+  <% nomination_hash = {} %>
   <% @awards.each do |a| %>
     <%= a.award_name %><br>
       <% nomination_count = 0 %>
+      <!-- add loop until nomination_count = 4 -->
 
       <input type="hidden" name="award_id" value="<%=a.id%>">
       <input type="hidden" name="nom_count" value="<%=nomination_count%>">
       <br> Theater:<br>
-      <input type="text" name="awards[<%=a.id%>][nominations[<%=nomination_count%>][theater]]" value="">
+      <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][theater]]" value="">
       <br> Show:<br>
-      <input type="text" name="awards[<%=a.id%>][nominations[<%=nomination_count%>][show]]" value="">
+      <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][show]]" value="">
       <br> Nominee:<br>
-      <input type="text" name="awards[<%=a.id%>][nominations[<%=nomination_count%>][nominee]]" value="">
+      <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][nominee]]" value="">
       <br> Role: <br>
-      <input type="text" name="awards[<%=a.id%>][nominations[<%=nomination_count%>][role]]" value="">
+      <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][role]]" value="">
       <br>
       <br>
 

@@ -6,6 +6,7 @@ class NominationsController < ActionController::Base
 
   def save_nominee
     @new_nom = Nomination.new
+    binding.pry
     @new_nom.award_id = params[:award_id]
     @award_id = params[:award_id]
     @nom_count = params[:nom_count]
