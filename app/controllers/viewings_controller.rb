@@ -7,6 +7,15 @@ class ViewingsController < ApplicationController
 
   def new
     @plays = Play.all
+    @seen_plays = current_user.plays
+    seen_plays_ids = []
+      @seen_plays.each do |p|
+        seen_plays_ids << p.id
+      end
+    @unseen_plays = Play.where.not(id: seen_plays_ids)
+    binding.pry
+    @theater = Theater.new
+    @theaters = Theater.all
   end
 
 #Titled this action 'create_multiple' and left the 'create' that Ryan made so we have both options for adding new viewings and can decide which is preferred. 

@@ -5,7 +5,7 @@
 
 <h1>New Viewing</h1>
 <%= form_tag('/viewings/create/multiple') do %>
-<% @plays.each do |play| %>
+<% @unseen_plays.each do |play| %>
   <%= check_box_tag "play_ids[]", play.id %>
   <i><%= play.title %></i> <%= play.theater.name %> 
   <%= date_field("date", "#{play.id}") %>
@@ -15,6 +15,7 @@
 <% end %>
 <h2>Don't see the play listed above?</h2>
 <%= link_to "Enter New Play!", add_play_path %>
+<%= render 'new_theater_play_form', theater: @theater, theaters: @theaters %>
 
 <h1>New Viewing Form</h1>
   <%= form_tag('/viewings/create') do %>

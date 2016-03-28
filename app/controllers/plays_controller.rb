@@ -14,7 +14,7 @@ def create_play
     @theater.save
   end
   @theater.plays.create(title: params[:theater][:play][:title])
-  redirect_to "/users/home"
+  redirect_to "/viewings/new"
 end
 
 
