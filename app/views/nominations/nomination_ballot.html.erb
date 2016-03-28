@@ -51,31 +51,28 @@
       ] -->
 
 <%= form_tag('/save_nominee') do %>
-  <% nomination_hash = {} %>
   <% @awards.each do |a| %>
     <%= a.award_name %><br>
-      <% nomination_count = 0 %>
-      <!-- add loop until nomination_count = 4 -->
+    <% nomination_count = 0 %>
+      <% while nomination_count >= 4 %>
 
-      <input type="hidden" name="award_id" value="<%=a.id%>">
-      <input type="hidden" name="nom_count" value="<%=nomination_count%>">
-      <br> Theater:<br>
-      <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][theater]]" value="">
-      <br> Show:<br>
-      <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][show]]" value="">
-      <br> Nominee:<br>
-      <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][nominee]]" value="">
-      <br> Role: <br>
-      <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][role]]" value="">
-      <br>
-      <br>
+        <input type="hidden" name="award_id" value="<%=a.id%>">
+        <input type="hidden" name="nom_count" value="<%=nomination_count%>">
+        <br> Theater:<br>
+        <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][theater]]" value="">
+        <br> Show:<br>
+        <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][show]]" value="">
+        <br> Nominee:<br>
+        <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][nominee]]" value="">
+        <br> Role: <br>
+        <input type="text" name="nomination_hash[<%=a.id%>][nominations[<%=nomination_count%>][role]]" value="">
+        <br>
+        <br>
+        <% nomination_count += 1 %>
+      <% end %>
 
-      <% nomination_count += 1 %>
-
-      <!-- <button type='button'>Save (doesn't work yet)</button><br> -->
-      <!-- ^ hopefully to save works in progress -->
       <br>
   <% end %>
-  <input type="submit" value="Submit Nominations">
+  <input type="submit" value="Save">
   <!-- ^ to replace wips in db and save current fields as final noms -->
 <% end %>
