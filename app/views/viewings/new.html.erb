@@ -1,9 +1,3 @@
-<!-- When creating/adding a new show, @plays will need to be provided in order to auto-complete shows if they're already in the database. For now, a Play's ID must be manually entered. -->
-
-<!-- <% @plays.each do |play| %>
-  <%= play.title %>
-<% end %> -->
-
 <html>
 <head>
     <title>New Viewing Form</title>
@@ -17,54 +11,23 @@
 
   <div class="clear content">
     <div class="col-12 content-box">
-<!-- Checkbox div child of content div -->
-      <h2>Select plays to add to your viewings</h2>
-
-
-      <div class="select-play">
-        <%= form_tag('/viewings/create/multiple') do %>
-        <% @unseen_plays.each do |play| %>
-          <p>
-            <%= check_box_tag "play_ids[]", play.id %>
-            <i class="play-title">
-              <%= play.title %>
-            </i> 
-            <span class="theater">
-              <%= play.theater.name %>
-            </span>
-            <%= date_field("date", "#{play.id}") %>
-          </p>
-          <% end %>
-          <p>
-            <button id="input_2" type="submit" class="form-submit-button">
-              SUBMIT
-            </button> 
-          </p> 
-        <% end %>
-      </div>
-
-      <div class="select-add-theater">
-        <h2>Don't see the play listed above? Add it!</h2>
-        <%= render 'new_theater_play_form', theater: @theater, theaters: @theaters %>
-      </div>
-<!--Form div child of content div-->
+      <!--Form div child of content div-->
       <div class="clear form">
-        <!-- Column 1 child of Form div -->
+        <!-- Performance Input Field -->
         <div class="col-6">
           <%= form_tag('/viewings/create') do %>
             <p>
               <input type="text" class="form-textbox" name="play_id" size="20" value="" placeholder="Performance Name">
             </p>
         </div>
-        <!-- Column 2 child of Form div -->
+        <!-- Date Input Field -->
         <div class="col-6">
           <p>
             <input type="date" class="form-textbox" name="date">
           </p>
         </div>
       </div>
-
-<!-- Button child of content div-->
+      <!-- Button child of content div-->
       <div class="submit-button"> 
         <p>
           <button id="input_2" type="submit" class="form-submit-button">
