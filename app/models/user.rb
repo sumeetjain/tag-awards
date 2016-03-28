@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
             @new_nom.theater = value3["theater"]
             @new_nom.nominee = value3["nominee"]
             @new_nom.role = value3["role"]
+            @new_nom.show = value3["show"]
             @new_nom.save
           end
         end
@@ -32,7 +33,5 @@ class User < ActiveRecord::Base
   end
 end
 
-#delete open/approved columns from table?
-#add theater column to table
-# 1. recording new nominations
+# figure out exactly what open/approved columns functionality is
 # 2. overwriting old ones (because if a person submits the form a few times, they shouldn't end up having given 10 nominations. 5 is the max per person.)
