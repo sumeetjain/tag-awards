@@ -24,25 +24,17 @@
       <div class="select-play">
         <%= form_tag('/viewings/create/multiple') do %>
         <% @unseen_plays.each do |play| %>
-        
-          <!-- checkbox -->
-          <%= check_box_tag "play_ids[]", play.id %>
-
-          <!-- play title -->
-          <i class="play-title">
-            <%= play.title %>
-          </i> 
-          <!-- theater dropdown -->
-          <select class="play-theater">
-            <%= play.theater.name %> 
-          </select>
-
-          <!-- date field -->
-          <%= date_field("date", "#{play.id}") %>
-          <br>
+          <p>
+            <%= check_box_tag "play_ids[]", play.id %>
+            <i class="play-title">
+              <%= play.title %>
+            </i> 
+            <span class="theater">
+              <%= play.theater.name %>
+            </span>
+            <%= date_field("date", "#{play.id}") %>
+          </p>
           <% end %>
-
-          <!-- submit button -->
           <p>
             <button id="input_2" type="submit" class="form-submit-button">
               SUBMIT
@@ -51,11 +43,11 @@
         <% end %>
       </div>
 
-<!--       <div class="select-add-theater">
+      <div class="select-add-theater">
         <h2>Don't see the play listed above? Add it!</h2>
         <%= render 'new_theater_play_form', theater: @theater, theaters: @theaters %>
       </div>
-<!--Form div child of content div -->
+<!--Form div child of content div-->
       <div class="clear form">
         <!-- Column 1 child of Form div -->
         <div class="col-6">
@@ -70,7 +62,7 @@
             <input type="date" class="form-textbox" name="date">
           </p>
         </div>
-      </div> -->
+      </div>
 
 <!-- Button child of content div-->
       <div class="submit-button"> 
