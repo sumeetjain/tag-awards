@@ -10,8 +10,7 @@
       <% end %>
   <%= t.label :id, "Theater" %>
   <%= t.select :id, options_from_collection_for_select(@theaters, "id", "name"), {prompt: "Select Theater..."} %>
-  <%= t.submit "Add Play"%>
-  <p>Or add a new theater...<br>
-  <%= t.text_field :name, placeholder: "Add new theater..." %>
-  <%= t.submit "Add New Play and Theater" %></p>
+  <%= t.label :name, "Or Add New Theater:" %>
+  <%= t.text_field :name, placeholder: "Enter Theater Name..." %>
+  <%= t.submit "Add" %>
   <% end %>
