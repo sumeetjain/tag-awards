@@ -13,7 +13,6 @@ Rails.application.routes.draw do
 
   get "users/home" => 'users#home'
 
-
   devise_for :users
 
   "home#index"
@@ -38,6 +37,7 @@ Rails.application.routes.draw do
   root to: 'static_pages#home'
 
   get "nomination_ballot" => 'nominations#nomination_ballot'
+  post "save_nominee" => 'nominations#save_nominee'
 
   #Consolidated both theater creation form and play creation form onto one vie w page in plays, and put both in the plays controller.
   #get "theaters/new" => 'theaters#new'
