@@ -1,86 +1,134 @@
-<div class="clear">
-  <div class="col-4">
-    Top navigation - award category names and links to pages where you make your nominations. Remember how to make links here and make an attractive link. Concerned about having daunting number of links, vs possibility of fewer links that might take too many layers of digging to get to the form you want. 
 
-    <!-- How can I shorten this list? Can I use Ruby? -->
 
-    <div> class=Category
-    <a href="http://whatever the url is">Musical"</a>
+<header> 
+  <div class="clear">
+    <div class="col-12" id="heading">
+      <h1>TAG Award Nominations 2016</h1>
     </div>
-
-    <div> class=Category
-    <a href="http://whatever the url is">Comedy/Drama"</a>
+  </div>
+</header>
+  <div class="clear">
+  <ul>
+    <div class="col-2" id="categories">
+      <li class="dropdown">
+        <a href="http://whatever the url is" 
+          class="droptrigger">Musicals</a>
+          <div class="dropdown-content">
+            <a href="###">Outstanding Musical</a>
+            <a href="###">Lead Actor - Musical</a>
+            <a href="###">Lead Actress - Musical</a>
+            <a href="###">Supporting Actor - Musical</a>
+            <a href="###">Supporting Actress - Musical</a>
+            <a href="###">Featured Actor - Musical</a>
+            <a href="###">Featured Actress - Musical</a>
+          </div>
+      </li>
     </div>
-
-    <div> class=Category
-    <a href="http://whatever the url is">Ensemble"</a>
+    <div class="col-2" id="categories">
+      <li>
+        <a href="http://whatever the url is" 
+          class="droptrigger">Comedy/Drama</a>
+          <div class="dropdown-content">
+            <a href="###">Outstanding Comedy</a>
+            <a href="###">Outstanding Drama</a>
+            <a href="###">Lead Actor - Comedy or Drama</a>
+            <a href="###">Lead Actress - Comedy or Drama</a>
+            <a href="###">Supporting Actor - Comedy or Drama</a>
+            <a href="###">Supporting Actress - Comedy or Drama</a>
+            <a href="###">Featured Actor - Comedy or Drama</a>
+            <a href="###">Featured Actress - Comedy or Drama</a>
+          </div>
+      </li>
     </div>
-
-    <div> class=Category
-    <a href="http://whatever the url is">Youth"</a>
+    <div class="col-2" id="categories">
+      <li>
+        <a href="http://whatever the url is"
+          class="droptrigger">Other Performances</a>
+            <div class="dropdown-content">
+              <a href="###">Outstanding Special Event</a>
+              <a href="###">Ensemble</a>
+              <a href="###">Youth Actor</a>
+              <a href="###">Youth Actress</a>
+            </div>
+      </li>
     </div>
-
-    <div> class=Category
-    <a href="http://whatever the url is">Technical"</a>
+    <div class="col-2" id="categories">
+      <li>
+        <a href="http://whatever the url is"
+          class="droptrigger">Directors/Artistic Team</a>
+            <div class="dropdown-content">
+              <a href="###">Director - Musical</a>
+              <a href="###">Director - Comedy or Drama</a>
+              <a href="###">Music Director</a>
+              <a href="###">Choreographer</a>
+              <a href="###">New Script</a>
+            </div>
+      </li>
+    </div>  
+    <div class="col-2" id="categories">
+      <li>
+        <a href="http://whatever the url is"
+          class="droptrigger">Technical</a>
+            <div class="dropdown-content">
+              <a href="###">Set Design</a>
+              <a href="###">Lighting</a>
+              <a href="###">Sound</a>
+              <a href="###">Costumes</a>
+              <a href="###">Properties</a>
+              <a href="###">Youth Tech</a>
+            </div>
+      </li>
     </div>
-
-    <div> class=Category
-    <a href="http://whatever the url is">Special Event"</a>
+    <div class="col-2" id="categories">
+      <li>
+        <a href="http://whatever the url is">Special Award</a>
+      </li>
     </div>
-
-     <div> class=Category
-    <a href="http://whatever the url is">"Special Awards"</a>
+  </ul>   
+  </div>
+    <div class="clear">
+      <div class="col-9">
+        <h2>Your Current Nominations</h2>
+        <p>Can we get this with a loop?</p> 
+      </div> 
+      <div class ="col-3">
+        <div class="col-3">
+            <button type ="button" name="Save">Save</button>
+            <button type ="button" name="Submit">Submit</button>
+            <button type ="button" name="Next">Next</button>
+            <button type ="button" name="Quit">Quit</button>
+        </div>
+      </div>
     </div>
-
     
 
-  </div>
 
-  <div class="col-8">
-    Just the section where the member makes nominations. Remember forms and form actions.
 
-    <div class="clear">
-      <div class="col-7">
-        <!-- The form entry. Drop downs for dammit I need to decide.  -->
-
-        <h1>Nominations for <%= can I get the category name doing this? %>/h1>
-          <p></p>
-
-          <form action = "/noms/category_definition" method="get"> 
-
-            <h3>Production</h3>
-              <input type ="text" name="" placeholder="Production">
-            <h3>Theater</h3>
-              <input type ="text" name="" placeholder="Theater">
-            <h3>Name</h3>
-              <input type ="text" name="" placeholder="Name">
-            <h3>Role</h3>
-              <input type ="text" name="" placeholder="Role">
   
-          </form>
-      </div>
 
-      <div class="col-1">
-        <!-- Buttons for next, save, submit, quit(without saving) -->
-      </div>
 
-      <div class="col-1">
-        <input type ="button" name="Save">
-      </div>
+  
+      <div class ="clear">
+        <div class = "col-12">
+-------- do I need this or is it on Melinda's page?
 
-      <div class="col-1">
-        <input type ="button" name="Submit">
-      </div>
 
-       <div class="col-1">
-        <input type ="button" name="Next">
-      </div>
 
-       <div class="col-1">
-        <input type ="button" name="Quit">
+          <h1>Nominations for TAG Awards</h1>
+            <p></p>
+
+            <form action = "/noms/category_definition" method="get"> 
+
+              <h3>Production</h3>
+                <input type ="text" name="" placeholder="Production">
+              <h3>Theater</h3>
+                <input type ="text" name="" placeholder="Theater">
+              <h3>Name</h3>
+                <input type ="text" name="" placeholder="Name">
+              <h3>Role</h3>
+                <input type ="text" name="" placeholder="Role">
+    
+            </form>
+        </div>
       </div>
-      
-    </div>
-  </div>
-</div>
 

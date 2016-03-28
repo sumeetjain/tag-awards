@@ -1,3 +1,9 @@
-<%= viewing.theatername %>
-<%= viewing.playtitle %>
-<%= viewing.date %>
+<% @viewings.each do |viewing| %>
+  <h1> Production: <%= viewing.play.title%> </h1>
+  <p> Theater: <%= viewing.play.theater.name %> </p>
+  <p> Date: <%= viewing.date %> </p>
+  <%= button_to "Delete Viewing", { action: "delete", id: viewing.id }, 
+    method: :delete, data: { confirm: "Are you sure?" } %>  
+<% end %>
+
+
