@@ -8,17 +8,18 @@ class ViewingsController < ApplicationController
   def new
     @plays = Play.all
     @seen_plays = current_user.plays
+    # This is to get a collection of play objects that the current user has not seen. TODO: refactor or clean up with Association methods.
     seen_plays_ids = []
       @seen_plays.each do |p|
         seen_plays_ids << p.id
       end
     @unseen_plays = Play.where.not(id: seen_plays_ids)
-    binding.pry
+    # The below is required because a new theater object must be passed to the view in order to make the form_for that gets rendered if a user wants to create a new play and/or theater.
     @theater = Theater.new
     @theaters = Theater.all
   end
 
-#Titled this action 'create_multiple' and left the 'create' that Ryan made so we have both options for adding new viewings and can decide which is preferred. 
+# Titled this action 'create_multiple' and left the 'create' that Ryan made so we have both options for adding new viewings and can decide which is preferred. 
   def create_multiple
     params[:play_ids].each do |p|
       @viewing = Viewing.new

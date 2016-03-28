@@ -1,9 +1,5 @@
 
-<h1>New Play</h1>
-<h2>If you don't see your play on the list below, add it to the list.</h2>
-<%= select_tag "plays", options_from_collection_for_select(@plays, "id", "title") %>
-<br>
-<br>
+<h3>New Play</h3>
 <%= form_for @theater, url: {controller: "plays", action: "create_play"} do |t| %>
     <%= t.fields_for :play do |play_field| %>
       <%= play_field.text_field :title , placeholder: "Enter play title..." %>
