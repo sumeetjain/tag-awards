@@ -21,6 +21,7 @@ ul {
     overflow: hidden;
     background-color: blue;
     text-decoration: none;
+    margin-top: 0px;
 }
 
 
@@ -38,7 +39,7 @@ li a, .droptrigger {
 }
 
 li a:hover, .dropdown:hover .droptrigger {
-    background-color: green;
+    background-color: black;
 }
 
 li.dropdown {
