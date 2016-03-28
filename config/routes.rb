@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get "viewings/index" => 'viewings#index'
 
   delete "viewings/delete" => 'viewings#delete'
+  
 
   'users#index'
 

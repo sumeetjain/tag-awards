@@ -35,6 +35,7 @@ class ViewingsController < ApplicationController
   def delete
     @viewing = Viewing.find_by_id(params[:id])
     @viewing.delete
+    redirect_to "/viewings/index"
   end
 
 end
