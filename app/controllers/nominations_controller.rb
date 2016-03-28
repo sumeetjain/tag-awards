@@ -9,6 +9,4 @@ class NominationsController < ActionController::Base
     redirect_to "/users/home"
   end
 
-
-
 end
