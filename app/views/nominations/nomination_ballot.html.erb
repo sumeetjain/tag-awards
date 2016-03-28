@@ -55,25 +55,17 @@
     <%= a.award_name %><br>
     <% nomination_count = 0 %>
       <% while nomination_count <= 4 %>
+        <div class="award_nomination_row">
+          <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][theater]]" value="">
+          <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][show]]" value="">
+          <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][nominee]]" value="">
+          <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][role]]" value="">
+        </div>
 
-        <input type="hidden" name="award_id" value=a.id>
-        <input type="hidden" name="nom_count" value="nomination_count">
-        <br> Theater:<br>
-        <%=nomination_form.text_field :nomination_hash[a.id][nominations[nomination_count][theater]]%>
-        <br> Show:<br>
-        <%=nomination_form.text_field :nomination_hash[a.id][nominations[nomination_count][show]]%>
-        <br> Nominee:<br>
-        <%=nomination_form.text_field :nomination_hash[a.id][nominations[nomination_count][nominee]]%>
-        <br> Role: <br>
-        <%=nomination_form.text_field :nomination_hash[a.id][nominations[nomination_count][role]]%>
-        <br>
-        <br>
         <% nomination_count += 1 %>
-
       <% end %>
-
-      <br>
   <% end %>
+
   <input type="submit" value="Save">
   <!-- ^ to replace wips in db and save current fields as final noms -->
 <% end %>

@@ -5,8 +5,9 @@ class NominationsController < ActionController::Base
   end
 
   def save_nominee
+    current_user.record_nominations(params["awards"])
 
-    params[:award_id][:nom_count].each do |p|
+    # params[:award_id][:nom_count].each do |p|
     # 4 =>
     #   nominations =>
     #     [
