@@ -37,9 +37,15 @@ Rails.application.routes.draw do
 
   get "nomination_ballot" => 'nominations#nomination_ballot'
 
-  get "theaters/new" => 'theaters#new'
+  #Consolidated both theater creation form and play creation form onto one vie w page in plays, and put both in the plays controller.
+  #get "theaters/new" => 'theaters#new'
 
-  post "theaters/create" => 'theaters#create'
+  # Made the below route into a form that gets rendered on the new viewing page.
+  #get "plays/new", to: 'plays#new', as: 'add_play'
+
+  post "plays/create" => 'plays#create_play'
+
+  post "viewings/create/multiple" => 'viewings#create_multiple'
 
 end
 

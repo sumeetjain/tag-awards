@@ -1,0 +1,12 @@
+
+<h3>New Play</h3>
+<%= form_for @theater, url: {controller: "plays", action: "create_play"} do |t| %>
+    <%= t.fields_for :play do |play_field| %>
+      <%= play_field.text_field :title , placeholder: "Enter play title..." %>
+      <% end %>
+  <%= t.label :id, "Theater" %>
+  <%= t.select :id, options_from_collection_for_select(@theaters, "id", "name"), {prompt: "Select Theater..."} %>
+  <%= t.label :name, "Or Add New Theater:" %>
+  <%= t.text_field :name, placeholder: "Enter Theater Name..." %>
+  <%= t.submit "Add" %>
+  <% end %>
