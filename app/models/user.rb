@@ -42,4 +42,3 @@ class User < ActiveRecord::Base
 end
 
 # figure out exactly what open/approved columns functionality is
-# 2. overwriting old ones (because if a person submits the form a few times, they shouldn't end up having given 10 nominations. 5 is the max per person.)
