@@ -18,17 +18,31 @@
   <div class="clear content">
     <div class="col-12 content-box">
 <!-- Checkbox div child of content div -->
-      <div class="checkbox">
-        <h2>Select a play to add to your viewings</h2>
+      <h2>Select plays to add to your viewings</h2>
+
+
+      <div class="select-play">
         <%= form_tag('/viewings/create/multiple') do %>
         <% @unseen_plays.each do |play| %>
+        
+          <!-- checkbox -->
           <%= check_box_tag "play_ids[]", play.id %>
-          <i class="play-title"><%= play.title %></i> 
+
+          <!-- play title -->
+          <i class="play-title">
+            <%= play.title %>
+          </i> 
+          <!-- theater dropdown -->
           <select class="play-theater">
             <%= play.theater.name %> 
+          </select>
+
+          <!-- date field -->
           <%= date_field("date", "#{play.id}") %>
           <br>
           <% end %>
+
+          <!-- submit button -->
           <p>
             <button id="input_2" type="submit" class="form-submit-button">
               SUBMIT
