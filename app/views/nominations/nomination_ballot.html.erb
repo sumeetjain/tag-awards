@@ -5,50 +5,7 @@
 <input type="text" name="awards[3][nominations[0][theater]]" value="">
 <input type="text" name="awards[3][nominations[0][show]]" value="">
 <input type="text" name="awards[3][nominations[0][nominee]]" value="">
-<input type="text" name="awards[3][nominations[0][role]]" value="">
-
-<input type="text" name="awards[3][nominations[1][theater]]" value="">
-<input type="text" name="awards[3][nominations[1][show]]" value="">
-<input type="text" name="awards[3][nominations[1][nominee]]" value="">
-<input type="text" name="awards[3][nominations[1][role]]" value="">
-
-<input type="text" name="awards[3][nominations[2][theater]]" value="">
-<input type="text" name="awards[3][nominations[2][show]]" value="">
-<input type="text" name="awards[3][nominations[2][nominee]]" value="">
-<input type="text" name="awards[3][nominations[2][role]]" value="">
-
-<input type="text" name="awards[3][nominations[3][theater]]" value="">
-<input type="text" name="awards[3][nominations[3][show]]" value="">
-<input type="text" name="awards[3][nominations[3][nominee]]" value="">
-<input type="text" name="awards[3][nominations[3][role]]" value="">
-
-<input type="text" name="awards[3][nominations[4][theater]]" value="">
-<input type="text" name="awards[3][nominations[4][show]]" value="">
-<input type="text" name="awards[3][nominations[4][nominee]]" value="">
-<input type="text" name="awards[3][nominations[4][role]]" value=""> -->
-
-<!-- params
-  3 =>
-    nominations =>
-      [
-        {theater: "", nominee: "", show: "", role: ""},
-        {theater: "", nominee: "", show: "", role: ""},
-        {theater: "", nominee: "", show: "", role: ""},
-        {theater: "", nominee: "", show: "", role: ""},
-        {theater: "", nominee: "", show: "", role: ""}
-      ]
-  4 =>
-    nominations =>
-      [
-        {theater: "", show: ""},
-        {theater: "", show: ""},
-        {theater: "", show: ""},
-        {theater: "", show: ""},
-        {theater: "", show: ""}
-
-
-  nomination_hash[3]["nominations"][indexofguess0-4][:show]
-      ] -->
+<input type="text" name="awards[3][nominations[0][role]]" value=""> -->
 
 <%= form_for :nomination, url: {controller: "nominations", action: "save_nominee"} do |n| %>
   <% @awards.each do |a| %>
@@ -56,10 +13,10 @@
     <% nomination_count = 0 %>
       <% while nomination_count <= 4 %>
         <div class="award_nomination_row">
-          <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][theater]]" value="">
-          <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][show]]" value="">
-          <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][nominee]]" value="">
-          <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][role]]" value="">
+        Theater:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][theater]]" value="">
+        Show:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][show]]" value="">
+        Nominee:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][nominee]]" value="">
+        Role:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][role]]" value="">
         </div>
 
         <% nomination_count += 1 %>

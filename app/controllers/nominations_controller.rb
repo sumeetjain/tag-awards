@@ -5,28 +5,9 @@ class NominationsController < ActionController::Base
   end
 
   def save_nominee
-    current_user.record_nominations(params["awards"])
-
-    # params[:award_id][:nom_count].each do |p|
-    # 4 =>
-    #   nominations =>
-    #     [
-    #       {theater: "", show: ""},
-    #       {theater: "", show: ""},
-    #       {theater: "", show: ""},
-    #       {theater: "", show: ""},
-    #       {theater: "", show: ""}
-
-    # @new_nom = Nomination.new
-    # @new_nom.user_id = current_user.id
-    # @new_nom.award_id = params[:]
-    # @award_id = params[:]
-    # @nom_count = params[:]
-    # @new_nom.nominee = params[:]
-    # @new_nom.role = params[:]
-    # @new_nom.save
-
-    redirect_to "users/home"
+    @current_user_id = current_user.id
+    current_user.record_nominations(params[:awards])
+    redirect_to "/users/home"
   end
 
 
