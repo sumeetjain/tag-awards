@@ -4,6 +4,21 @@
 <%= select_tag "plays", options_from_collection_for_select(@plays, "id", "title") %>
 <br>
 <br>
+FORM WORKING ON BELOW:
+<%= form_for @theater, url: {controller: "plays", action: "create_theater"} do |t| %>
+    <%= t.fields_for :play do |play_field| %>
+      <%= play_field.text_field :title , placeholder: "Enter play title..." %>
+      <% end %>
+  <%= t.label :id, "Theater" %>
+  <%= t.select :id, options_from_collection_for_select(@theaters, "id", "name"), {prompt: "Select Theater..."} %>
+  <%= t.submit "Add Play"%>
+  <p>Or add a new theater...<br>
+  <%= t.text_field :name, placeholder: "Add new theater..." %>
+  <%= t.submit "Add New Play and Theater" %></p>
+  <% end %>
+  END
+<br>
+<br>
 <%= form_tag('/theaters/create') do %>
     <%= text_field("play", "title", placeholder: "Enter play title...") %>
     <%= select("play", "theater_id", Theater.all.collect {|t| [ t.name, t.id ] }, {prompt: 'Select Theater'}) %>

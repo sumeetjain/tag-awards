@@ -3,6 +3,7 @@ class TheatersController < ApplicationController
 def new
   @plays = Play.all
   @theaters = Theater.all
+  @theater = Theater.new
 end
 
 def create
