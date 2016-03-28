@@ -45,12 +45,12 @@ li.dropdown {
     display: inline-block; 
 }
 
-//.dropdown-content {
-//    display: none;
-//    position: absolute;
-//    background-color: silver;
-//    min-width: 160 px;
-//}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: silver;
+    min-width: 160 px;
+}
 
 .dropdown-content a {
     color: black;
