@@ -9,13 +9,9 @@
   border: none;
   margin-left: 15px;
   margin-right: 15px; 
-
-
-
 }
 
-a {
-  
+a { 
   text-decoration: none;
   color: silver;
 }
@@ -23,8 +19,6 @@ a {
 ul {
   
   list-style-type: none;
-  margin: 0;
-  padding: 0;
   overflow: hidden;
   background-color: blue;
   text-decoration: none;
@@ -52,7 +46,13 @@ li a:hover, .dropdown:hover .droptrigger {
 
 li.dropdown {
  display: inline-block; 
+}
 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: silver;
+  min-width: 160 px;
 
 }
 
