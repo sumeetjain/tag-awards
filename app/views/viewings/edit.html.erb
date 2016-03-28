@@ -1,3 +1,10 @@
-<%= viewing.theatername %>
-<%= viewing.playtitle %>
-<%= viewing.date %>
+<h1>Edit Viewing</h1>
+<!-- For now, a Play's ID must be manually entered, this will 
+change once JavaScript is in play and play info will autofill 
+and user will select autofilled play, if available -->
+
+<%= form_tag('/viewings/' + @viewing.id.to_s + '/update') do %>
+  <p>Play</p><input type="text" name="play_id" value ="<%= @viewing.play.title%>" >
+  <p>Date</p><input type="date" name="date" value="<%= @viewing.date %>">
+  <input type="submit">  
+<% end %>  

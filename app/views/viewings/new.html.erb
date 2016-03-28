@@ -1,7 +1,21 @@
-<!-- When creating/adding a new show, @plays will need to be provided in order to auto-complete shows if they're already in the database -->
+<!-- When creating/adding a new show, @plays will need to be provided in order to auto-complete shows if they're already in the database. For now, a Play's ID must be manually entered. -->
+
 <% @plays.each do |play| %>
   <%= play.title %>
 <% end %>
+
+<h1>New Viewing</h1>
+<%= form_tag('/viewings/create/multiple') do %>
+<% @unseen_plays.each do |play| %>
+  <%= check_box_tag "play_ids[]", play.id %>
+  <i><%= play.title %></i> <%= play.theater.name %> 
+  <%= date_field("date", "#{play.id}") %>
+  <br>
+  <% end %>
+  <input type="submit">  
+<% end %>
+<h2>Don't see the play listed above? Add it!</h2>
+<%= render 'new_theater_play_form', theater: @theater, theaters: @theaters %>
 
 <h1>New Viewing Form</h1>
   <%= form_tag('/viewings/create') do %>
