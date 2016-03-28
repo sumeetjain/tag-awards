@@ -1,0 +1,92 @@
+<!-- ********************* For Amy *************************************  
+This page is to check that a user's entry for a new play has no duplicates in the database amy will entere her code on this page-->
+
+<html>
+<head>
+    <title>Document title</title>
+</head>
+<body>
+  <div class="clear title">
+    <div class="col-12 title-box">
+      <h2>Are You Sure?</h2>
+    </div>
+  </div>
+
+  <div class="clear content">
+    <div class="col-12 content-box">
+      <div class="select-play">
+          <p>
+            Please make sure this play is not already saved in our database before you add it...
+          </p>
+        <!-- loop code -->
+          <p>
+            <%= check_box_tag "play_ids[]"%>
+            <i class="play-title">
+              Play Title
+            </i> 
+            <span class="theater">
+              Theater Name
+            </span>
+          </p>
+          <!-- end loop code -->
+          <!-- Submit button -->
+          <p>
+            <button id="input_2" type="submit" class="form-submit-button">
+              SUBMIT
+            </button> 
+          </p> 
+      </div>
+    </div>
+  </div>
+
+  <div class="clear title">
+    <div class="col-12 title-box">
+      <h2>Use My Entry</h2>
+    </div>
+  </div>
+
+  <div class="clear content">
+    <div class="col-12 content-box">
+      <!--Form div child of content div-->
+      <div class="clear form">
+
+        <!-- Performance Input Field -->
+        <div class="col-4">
+          <%= form_tag('/viewings/create') do %>
+            <p>
+              <input type="text" class="form-textbox" name="play_id" size="20" value="" placeholder="Performance Name from previous page">
+            </p>
+        </div>
+
+        <!-- Theater Input Field -->
+        <div class="col-4 dropdown">
+            <select class="form-dropbtn" name="theaters">
+              <option value="1">Select a theater...</option>
+              <option value="2">Theater 2</option>
+              <option value="3">Theater 3</option>
+              <option value="4">Theater 4</option>
+            </select>
+        </div>
+
+        <!-- Date Input Field -->
+        <div class="col-4">
+          <p>
+            <input type="date" class="form-textbox" name="date">
+          </p>
+        </div>
+      </div>
+
+
+      <!-- Button child of content div-->
+      <div class="submit-button"> 
+        <p>
+          <button id="input_2" type="submit" class="form-submit-button">
+            SUBMIT
+          </button> 
+        </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
