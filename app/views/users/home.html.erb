@@ -1,4 +1,4 @@
-This is the dashboard for a user!<br><br>
+<!-- This is the dashboard for a user!<br><br>
 <% if current_user.nominations != nil %>
 <% current_user.nominations.each do |n| %>
   <%= n.award.award_name%>
@@ -20,14 +20,61 @@ No Nominations Yet.
 5) ALl plays a user has seen (viewings) - DONE 3/24/16 Thanks, Ryan!
 6) All plays a user can select form
 7) Area to add more possible plays/theaters for viewings
+-->
 
-<% if current_user.viewings != nil %>
-<% current_user.viewings.each do |view|%>
+<html>
+<head>
+    <title>Document title</title>
+</head>
+<body>
+  <div class="clear title">
+    <div class="col-12 title-box">
+      <h2>Show Attendance 2016</h2>
+    </div>
+  </div>
 
-    <h1> Production: <%= view.play.title%> </h1>
-    <p> Theater: <%= view.play.theater.name %> </p>
-    <p> Date: <%= view.date %> </p>
-  <% end %>
-  <% else %>
-  No Viewings Recorded Yet.
-  <% end %>
+  <div class="clear content">
+    <div class="col-12 content-box">
+      <div class="clear">
+        <div class="col-4">
+          <% if current_user.viewings != nil %>
+          <% current_user.viewings.each do |view|%>
+              <p><%= view.play.title%> </p>
+            <% end %>
+            <% else %>
+            No Viewings Recorded Yet.
+            <% end %>
+        </div>
+
+        <div class="col-4">
+          <% if current_user.viewings != nil %>
+          <% current_user.viewings.each do |view|%>
+              <p> <%= view.play.theater.name %> </p>
+            <% end %>
+            <% else %>
+            No Viewings Recorded Yet.
+            <% end %>
+        </div>
+
+        <div class="col-4">
+          <% if current_user.viewings != nil %>
+          <% current_user.viewings.each do |view|%>
+              <p> <%= view.date %> </p>
+            <% end %>
+            <% else %>
+            No Viewings Recorded Yet.
+            <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div>
+    <a class="button" href="/viewings/new" target="_self">add show</a>
+    <a class="button" href="/viewings/delete" target="_self">delete show</a>
+  </div>
+
+</body>
+</html>

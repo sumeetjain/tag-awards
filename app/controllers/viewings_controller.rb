@@ -6,6 +6,8 @@ class ViewingsController < ApplicationController
   end
 
   def new
+    #@plays will eventually be needed for auto-fill feature to help prevent User from being able to type in misspelled plays/theathers
+    #@plays = Play.all        
     @plays = Play.all
     @seen_plays = current_user.plays
     # This is to get a collection of play objects that the current user has not seen. TODO: refactor or clean up with Association methods.
@@ -38,10 +40,19 @@ class ViewingsController < ApplicationController
     @viewing.user_id = current_user.id
     @viewing.save
   end
-  # def edit
-  #   @plays = Play.all    
-  #   @viewing = Viewing.find_by_id(params[:id])
-  # end
+
+  def edit
+    #@plays will eventually be needed for auto-fill feature to help prevent User from being able to type in misspelled plays/theathers
+    #@plays = Play.all    
+    @viewing = Viewing.find_by_id(params[:id])
+  end
+
+  def update
+    @viewing = Viewing.find_by_id(params[:id])
+    @viewing.play_id = params["play_id"]
+    @viewing.date = params["date"]
+    @viewing.save    
+  end
 
   # def delete
   #   @viewing = Viewing.find_by_id(params[:id])    

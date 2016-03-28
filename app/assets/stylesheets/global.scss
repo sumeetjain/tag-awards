@@ -1,0 +1,25 @@
+//Styling for navigation bar
+.nav-bar{
+  font-family: "Raleway",sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+  border-bottom: #DDDDDD solid 1px;
+}
+
+//Styling for navigation links in nav bar
+.nav-link{
+  padding-top: 20px;
+}
+.nav-link > a{
+  text-align: center;
+  color: #4C4C4C;
+  text-decoration: none;
+  position: relative;
+  top: 50px;
+}
+
+.nav-link:hover > a{
+  color: #39A0BE;
+}
