@@ -16,13 +16,13 @@
       <% while nomination_count <= 4 %>
       
         <div class="award_nomination_row">
-        Theater:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(a.id, nomination_count, theater)%>">
+        Theater:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(a.id, nomination_count, "theater")%>">
         Show:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][show]]" 
-          value="<%= current_user.nomination_value(a.id, nomination_count, show) %>">
+          value="<%= current_user.nomination_value(a.id, nomination_count, "show") %>">
         Nominee:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][nominee]]" 
-          value="<%= current_user.nomination_value(a.id, nomination_count, nominee) %>">
+          value="<%= current_user.nomination_value(a.id, nomination_count, "nominee") %>">
         Role:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][role]]" 
-          value="<%= current_user.nomination_value(a.id, nomination_count, role) %>">
+          value="<%= current_user.nomination_value(a.id, nomination_count, "role") %>">
         </div>
 
         <% nomination_count += 1 %>

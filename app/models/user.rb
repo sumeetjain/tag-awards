@@ -19,9 +19,24 @@ class User < ActiveRecord::Base
 
   def nomination_value(award_id, nom_count, value_needed)
     nominations = Nomination.where("award_id" => award_id, 
-      "user_id" => self.id) 
-    @nomination = nominations[nom_count]
-    @nomination.value_needed
+      "user_id" => self.id)
+    if nominations[nom_count]
+      @nomination = nominations[nom_count]
+      if value_needed == "theater"
+        return @nomination.theater
+      end
+      if value_needed == "show"
+        return @nomination.show
+      end
+      if value_needed == "nominee"
+        return @nomination.nominee
+      end    
+      if value_needed == "role"
+        return @nomination.role
+      end
+    else
+      return ""
+    end     
   end  
 
   def record_nominations(user_id, nominations_hash)
