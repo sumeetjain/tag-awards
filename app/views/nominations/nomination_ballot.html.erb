@@ -30,15 +30,19 @@
         <% end %>
     <% end %>
 
-    <input type="submit" value="Save">
+    <%= submit_tag("Save") %>
     <!-- ^ to replace wips in db and save current fields as final noms -->
   <% end %>
 <% else %>
   <% @users_prev_noms.each do |nomination| %>
     <%= form_for nomination, url: {controller: "nominations", action: "save_nominee"} do |nom_form| %>
       <%= nom_form.text_field :theater %>
+      <%= nom_form.text_field :show %>
+      <%= nom_form.text_field :nominee %>
+      <%= nom_form.text_field :role %>
     <% end %>
   <% end %>
+  <%= submit_tag("Save") %>
 <% end %>
 
 
