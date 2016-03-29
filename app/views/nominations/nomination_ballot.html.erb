@@ -1,37 +1,43 @@
 <h1>Nomination Ballot</h1>
 
-<!-- need to enter data for user's viewings here -->
+<!-- Award #3 - Best Actress
 
-<%= form_tag('/nomination_ballot') do %>
+<input type="text" name="awards[3][nominations[0][theater]]" value="">
+<input type="text" name="awards[3][nominations[0][show]]" value="">
+<input type="text" name="awards[3][nominations[0][nominee]]" value="">
+<input type="text" name="awards[3][nominations[0][role]]" value=""> -->
+
+
+
+<%= form_for :nomination, url: {controller: "nominations", action: "save_nominee"} do |n| %>
   <% @awards.each do |a| %>
     <%= a.award_name %><br>
-      Theater: <input type="text" name="theater"><br>
-      Show: <input type="text" name="show"><br>
-      Performer: <input type="text" name="performer"><br>
-      Role: <input type="text" name="role"><br>
-      <br>
-      Theater: <input type="text" name="theater"><br>
-      Show: <input type="text" name="show"><br>
-      Performer: <input type="text" name="performer"><br>
-      Role: <input type="text" name="role"><br>
-      <br>
-      Theater: <input type="text" name="theater"><br>
-      Show: <input type="text" name="show"><br>
-      Performer: <input type="text" name="performer"><br>
-      Role: <input type="text" name="role"><br>
-      <br>
-      Theater: <input type="text" name="theater"><br>
-      Show: <input type="text" name="show"><br>
-      Performer: <input type="text" name="performer"><br>
-      Role: <input type="text" name="role"><br>
-      <br>
-      Theater: <input type="text" name="theater"><br>
-      Show: <input type="text" name="show"><br>
-      Performer: <input type="text" name="performer"><br>
-      Role: <input type="text" name="role"><br>
-      <br>
-      <input type="submit" value="Save Work"><br>
-      <br>
+    <% nomination_count = 0 %>  
+      <% while nomination_count <= 4 %>
+        <div class="award_nomination_row">
+
+        Theater:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(a.id, nomination_count, "theater")%>">
+
+        Show:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][show]]" 
+          value="<%= current_user.nomination_value(a.id, nomination_count, "show") %>">
+
+        <% if a.relevant_fields >= 3 %>
+          Nominee:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][nominee]]" 
+            value="<%= current_user.nomination_value(a.id, nomination_count, "nominee") %>">
+        <% end %>
+
+        <% if a.relevant_fields >= 4 %>
+          Role:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][role]]" 
+            value="<%= current_user.nomination_value(a.id, nomination_count, "role") %>">
+        <% end %>
+
+        </div>
+        <% nomination_count += 1 %>
+      <% end %>
   <% end %>
-      <input type="submit" value="Submit Nominations">
+
+  <%= submit_tag("Save") %>
+  <!-- ^ to replace wips in db and save current fields as final noms -->
 <% end %>
+
+

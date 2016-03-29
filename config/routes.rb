@@ -15,6 +15,10 @@ Rails.application.routes.draw do
 
   get "users/register"
 
+  get "" => redirect("/users/home")
+  get "users/settings_page" => 'users#settings_page'
+
+
   get "users/register/:voter_token" => 'users#register'
 
   post "users/set_password" => 'users#set_password'
@@ -30,25 +34,20 @@ Rails.application.routes.draw do
   resources :passwords
 
   get "viewings/new" => 'viewings#new'
-
   post "viewings/create" => 'viewings#create'
-
   get "viewings/:id/edit" => 'viewings#edit'
-
   post "viewings/:id/update" => 'viewings#update'
-
   get "viewings/index" => 'viewings#index'
-
   delete "viewings/delete" => 'viewings#delete'
+  post "viewings/create/multiple" => 'viewings#create_multiple'
   
-
   'users#index'
-
-  get "nominations" =>'static_pages#noms'
 
   root to: 'static_pages#home'
 
-  get "nomination_ballot" => 'nominations#nomination_ballot'
+  get "nominations" =>'static_pages#noms'
+  get "nominations/nomination_ballot" => 'nominations#nomination_ballot'
+  post "save_nominee" => 'nominations#save_nominee'
 
   #Consolidated both theater creation form and play creation form onto one vie w page in plays, and put both in the plays controller.
   #get "theaters/new" => 'theaters#new'
@@ -58,7 +57,6 @@ Rails.application.routes.draw do
 
   post "plays/create" => 'plays#create_play'
 
-  post "viewings/create/multiple" => 'viewings#create_multiple'
-
+  get "votes/ballots_page" => 'votes#ballots_page'
 end
 

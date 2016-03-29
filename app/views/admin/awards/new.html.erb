@@ -1,0 +1,29 @@
+<%#
+# New
+
+This view is the template for the "new resource" page.
+It displays a header, and then renders the `_form` partial
+to do the heavy lifting.
+
+## Local variables:
+
+- `page`:
+  An instance of [Administrate::Page::Form][1].
+  Contains helper methods to help display a form,
+  and knows which attributes should be displayed in the resource's form.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Form
+%>
+
+<% content_for(:title) { "New #{page.resource_name.titleize}" } %>
+
+<header class="header">
+  <h1 class="header__heading"><%= content_for(:title) %></h1>
+  <div class="header__actions">
+    <%= link_to 'Back', :back, class: "button" %>
+  </div>
+</header>
+
+<div>For awards that will include only a theater and a show, enter '2' in 'relevant fields'. If an award will additionally include a nominee field but not a role, enter '3'. If the award will include both a nominee and a role field, enter '4'.</div>
+
+<%= render 'form', page: page %>

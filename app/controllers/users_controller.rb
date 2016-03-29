@@ -8,7 +8,6 @@ class UsersController < ApplicationController
     @plays = Play.all
     @award_categories = Award.all
   end
-
   
 
   #def set_password
@@ -35,6 +34,9 @@ class UsersController < ApplicationController
     else 
       render :set_password,:locals => { :resource => @user, :resource_name => "user" }
     end
+
+  def settings_page
+
   end
 
 
