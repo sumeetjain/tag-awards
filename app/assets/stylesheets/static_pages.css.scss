@@ -45,6 +45,7 @@ li.dropdown {
     display: inline-block; 
 }
 
+//Dropdown content hidden by default
 .dropdown-content {
     display: none;
     position: absolute;
@@ -52,6 +53,7 @@ li.dropdown {
     min-width: 160 px;
 }
 
+//Links inside the dropdown
 .dropdown-content a {
     color: black;
     padding: 12px 16px;
