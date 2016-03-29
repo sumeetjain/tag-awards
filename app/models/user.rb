@@ -17,11 +17,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  def nomination_value(award_id, nom_count, attribute)
+  def nomination_value(award_id, nom_count, value_needed)
     nominations = Nomination.where("award_id" => award_id, 
       "user_id" => self.id) 
-    nomination = nominations[nom_count]
-    nomination.attribute
+    @nomination = nominations[nom_count]
+    @nomination.value_needed
   end  
 
   def record_nominations(user_id, nominations_hash)
