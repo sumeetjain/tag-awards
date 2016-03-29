@@ -19,10 +19,16 @@
         Theater:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(a.id, nomination_count, "theater")%>">
         Show:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][show]]" 
           value="<%= current_user.nomination_value(a.id, nomination_count, "show") %>">
-        Nominee:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][nominee]]" 
-          value="<%= current_user.nomination_value(a.id, nomination_count, "nominee") %>">
-        Role:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][role]]" 
-          value="<%= current_user.nomination_value(a.id, nomination_count, "role") %>">
+
+        <% if a.relevant_fields >= 3 %>
+          Nominee:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][nominee]]" 
+            value="<%= current_user.nomination_value(a.id, nomination_count, "nominee") %>">
+        <% end %>
+
+        <% if a.relevant_fields >= 4 %>
+          Role:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][role]]" 
+            value="<%= current_user.nomination_value(a.id, nomination_count, "role") %>">
+        <% end %>
         </div>
 
         <% nomination_count += 1 %>
