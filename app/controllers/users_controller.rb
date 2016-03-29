@@ -34,6 +34,7 @@ class UsersController < ApplicationController
     else 
       render :set_password,:locals => { :resource => @user, :resource_name => "user" }
     end
+  end
 
   def settings_page
 
