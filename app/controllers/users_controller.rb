@@ -9,5 +9,9 @@ class UsersController < ApplicationController
     @award_categories = Award.all
   end
 
+  def settings_page
+    
+  end
+
 
 end

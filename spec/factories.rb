@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :vote do
+    title "MyString"
+    voter_id 1
+    nomination_item_id 1
+  end
   factory :viewing do
     date "2016-03-24"
   end

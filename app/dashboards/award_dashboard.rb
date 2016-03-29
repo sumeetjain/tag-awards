@@ -10,6 +10,7 @@ class AwardDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     award_name: Field::String,
+    relevant_fields: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }
@@ -22,6 +23,7 @@ class AwardDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :id,
     :award_name,
+    :relevant_fields,
     :created_at,
     :updated_at,
   ]
@@ -31,6 +33,7 @@ class AwardDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :id,
     :award_name,
+    :relevant_fields,
     :created_at,
     :updated_at,
   ]
@@ -40,6 +43,7 @@ class AwardDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :award_name,
+    :relevant_fields,
   ]
 
   # Overwrite this method to customize how awards are displayed
