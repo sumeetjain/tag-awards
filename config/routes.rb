@@ -17,12 +17,16 @@ Rails.application.routes.draw do
 
   get "users/register/:voter_token" => 'users#register'
 
-  put "users/set_password" => 'users#set_password'
+  post "users/set_password" => 'users#set_password'
   #devise_for :users
 
   #{}"home#index"
 
-  devise_for :users, skip: [:registrations]                                          
+  devise_for :users, skip: [:registrations]
+  as :user do
+    get 'users/edit' => 'devise/passwords#edit', :as => 'edit_user_registration'    
+    put 'users' => 'devise/passwords#update', :as => 'user_registration'
+  end                                          
 
   get "viewings/new" => 'viewings#new'
 

@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   def set_password
     @user = User.find_by_voter_token(params[:voter_token])
+    redirect_to "users/edit"
   end
 
   def activate_set_user
