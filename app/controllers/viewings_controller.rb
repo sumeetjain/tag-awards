@@ -39,6 +39,7 @@ class ViewingsController < ApplicationController
     @viewing.date = params["date"]
     @viewing.user_id = current_user.id
     @viewing.save
+    redirect_to "/users/home"
   end
 
   def edit
