@@ -8,9 +8,35 @@ class UsersController < ApplicationController
     @plays = Play.all
     @award_categories = Award.all
   end
+  
+
+  #def set_password
+   # @user = User.find_by_voter_token(params[:voter_token])
+  #end
+
+  before_filter :authenticate_user!
+  skip_before_filter :authenticate_user!, only: [:register, :set_password]
+
+  def register
+    @user = User.find_by_voter_token(params[:voter_token])
+    sign_in(@user)
+  end
+
+  def set_password
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    if params[:password] == params[:confirm_password]
+      @user.password = params[:password]
+      redirect_to "home", :notice => "Your Password has been updated!"
+    else 
+      render :set_password,:locals => { :resource => @user, :resource_name => "user" }
+    end
 
   def settings_page
-    
+
   end
 
 

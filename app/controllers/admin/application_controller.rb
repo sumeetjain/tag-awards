@@ -9,7 +9,9 @@ module Admin
     before_filter :authenticate_admin
 
     def authenticate_admin
-      # TODO Add authentication logic here.
+      if current_user.nil? || !current_user.admin?
+        redirect_to :root, {alert: "You are not authorized."}
+      end
     end
 
     # Override this value to specify the number of elements to display at a time
