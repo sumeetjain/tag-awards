@@ -9,5 +9,13 @@ class UsersController < ApplicationController
     @award_categories = Award.all
   end
 
+  def set_password
+     render 'devise/passwords/edit'
+  end
+
+  def activate_set_user
+
+  end
+
 
 end
