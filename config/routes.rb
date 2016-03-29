@@ -22,7 +22,10 @@ Rails.application.routes.draw do
 
   #{}"home#index"
 
-  devise_for :users, skip: [:registrations]
+  devise_for :users, skip: [:registrations], :controllers => {:passwords => "users"} do
+  end
+
+  resources :passwords
 
   get "viewings/new" => 'viewings#new'
 

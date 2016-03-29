@@ -9,16 +9,27 @@ class UsersController < ApplicationController
     @award_categories = Award.all
   end
 
+  
+
+  #def set_password
+   # @user = User.find_by_voter_token(params[:voter_token])
+  #end
+
+  before_filter :authenticate_user!
+
   def register
     @user = User.find_by_voter_token(params[:voter_token])
   end
 
   def set_password
     @user = User.find_by_voter_token(params[:voter_token])
-  end
-
-  def activate_set_user
-
+    # raise params.inspect
+    if @user.update(params[:user])
+      sign_in(@user, :bypass => true)
+      redirect_to root_path, :notice => "Your Password has been updated!"
+    else
+      render :set_password,:locals => { :resource => @user, :resource_name => "user" }
+    end
   end
 
 
