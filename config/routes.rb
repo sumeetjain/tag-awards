@@ -12,24 +12,19 @@ Rails.application.routes.draw do
   end
 
   get "users/home" => 'users#home'
+  get "" => redirect("/users/home")
 
   devise_for :users
 
   "home#index"
 
   get "viewings/new" => 'viewings#new'
-
   post "viewings/create" => 'viewings#create'
-
   get "viewings/:id/edit" => 'viewings#edit'
-
   post "viewings/:id/update" => 'viewings#update'
-
   get "viewings/index" => 'viewings#index'
-
   delete "viewings/delete" => 'viewings#delete'
   
-
   'users#index'
 
   get "nominations" =>'static_pages#noms'
