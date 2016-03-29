@@ -15,22 +15,6 @@ class User < ActiveRecord::Base
 
   before_create :set_voter_token
 
-  private
-
-  def set_voter_token
-    self.voter_token = generate_token
-  end
-
-  def generate_token
-    loop do
-      token = SecureRandom.hex(3)
-      break token unless User.where(voter_token: token).exists?
-    end
-  end
-
-
-
-
   def delete_previous_noms(user_id)
     @users_prev_noms = Nomination.where("user_id" => user_id)
     if @users_prev_noms != nil
@@ -83,4 +67,20 @@ class User < ActiveRecord::Base
       end
     end
   end
+  
+  private
+
+  def set_voter_token
+    self.voter_token = generate_token
+  end
+
+  def generate_token
+    loop do
+      token = SecureRandom.hex(3)
+      break token unless User.where(voter_token: token).exists?
+    end
+  end
+
+
+
 end
