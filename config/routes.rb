@@ -23,10 +23,6 @@ Rails.application.routes.draw do
   #{}"home#index"
 
   devise_for :users, skip: [:registrations]
-  as :user do
-    get 'users/edit' => 'devise/passwords#edit', :as => 'edit_user_registration'    
-    put 'users' => 'devise/passwords#update', :as => 'user_registration'
-  end                                          
 
   get "viewings/new" => 'viewings#new'
 
