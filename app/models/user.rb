@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
             @new_nom = Nomination.new
             @new_nom.user_id = user_id
             @new_nom.award_id = @current_award
+            @new_nom.open = true
             @new_nom.theater = value3["theater"]
             @new_nom.nominee = value3["nominee"]
             @new_nom.role = value3["role"]
