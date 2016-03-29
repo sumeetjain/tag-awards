@@ -41,5 +41,3 @@ class User < ActiveRecord::Base
     end
   end
 end
-
-# only display fields relevant to nomination
