@@ -15,7 +15,6 @@ class UsersController < ApplicationController
 
   def set_password
     @user = User.find_by_voter_token(params[:voter_token])
-    render 'devise/passwords/edit', resource: @user
   end
 
   def activate_set_user
