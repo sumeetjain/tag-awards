@@ -13,7 +13,11 @@ Rails.application.routes.draw do
 
   get "users/home" => 'users#home'
 
+  get "users/register"
 
+  get "users/register/:voter_token" => 'users#register'
+
+  post "users/set_password" => 'users#set_password'
   #devise_for :users
 
   #{}"home#index"

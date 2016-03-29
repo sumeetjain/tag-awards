@@ -9,8 +9,13 @@ class UsersController < ApplicationController
     @award_categories = Award.all
   end
 
+  def register
+    @user = User.find_by_voter_token(params[:voter_token])
+  end
+
   def set_password
-     render 'devise/passwords/edit'
+    @user = User.find_by_voter_token(params[:voter_token])
+    render 'devise/passwords/edit', resource: @user
   end
 
   def activate_set_user
