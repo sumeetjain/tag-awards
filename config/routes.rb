@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   #{}"home#index"
 
-  devise_for :users, skip: [:registrations], :controllers => {:users => "users"} do
+  devise_for :users, skip: [:registrations], controllers: {:users => "users"} do
   end
 
   resources :passwords
