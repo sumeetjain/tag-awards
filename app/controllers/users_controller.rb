@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   #end
 
   before_filter :authenticate_user!
+  skip_before_filter :authenticate_user!, only: [:register, :set_password]
 
   def register
     @user = User.find_by_voter_token(params[:voter_token])
