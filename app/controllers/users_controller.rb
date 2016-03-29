@@ -28,13 +28,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    binding.pry
     @user = current_user
-    # raise params.inspect
-    if @user.update(params[:user])
-      sign_in(@user, :bypass => true)
-      redirect_to root_path, :notice => "Your Password has been updated!"
-    else
+    if params[:password] == params[:confirm_password]
+      @user.password = params[:password]
+      redirect_to "home", :notice => "Your Password has been updated!"
+    else 
       render :set_password,:locals => { :resource => @user, :resource_name => "user" }
     end
   end
