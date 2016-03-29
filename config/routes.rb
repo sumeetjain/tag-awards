@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get "users/home" => 'users#home'
   get "" => redirect("/users/home")
+  get "users/settings_page" => 'users#settings_page'
 
   devise_for :users
 
@@ -24,14 +25,14 @@ Rails.application.routes.draw do
   post "viewings/:id/update" => 'viewings#update'
   get "viewings/index" => 'viewings#index'
   delete "viewings/delete" => 'viewings#delete'
+  post "viewings/create/multiple" => 'viewings#create_multiple'
   
   'users#index'
 
-  get "nominations" =>'static_pages#noms'
-
   root to: 'static_pages#home'
 
-  get "nomination_ballot" => 'nominations#nomination_ballot'
+  get "nominations" =>'static_pages#noms'
+  get "nominations/nomination_ballot" => 'nominations#nomination_ballot'
   post "save_nominee" => 'nominations#save_nominee'
 
   #Consolidated both theater creation form and play creation form onto one vie w page in plays, and put both in the plays controller.
@@ -42,8 +43,6 @@ Rails.application.routes.draw do
 
   post "plays/create" => 'plays#create_play'
 
-  post "viewings/create/multiple" => 'viewings#create_multiple'
-  post "viewings/create" => 'viewings#create'
-
+  get "votes/ballots_page" => 'votes#ballots_page'
 end
 
