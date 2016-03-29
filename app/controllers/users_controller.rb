@@ -23,6 +23,10 @@ class UsersController < ApplicationController
 
   def set_password
     @user = User.find_by_voter_token(params[:voter_token])
+  end
+
+  def update
+    @user = User.find_by_voter_token(params[:voter_token])
     # raise params.inspect
     if @user.update(params[:user])
       sign_in(@user, :bypass => true)
