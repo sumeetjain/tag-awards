@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   root to: 'static_pages#home'
 
   get "nominations" =>'static_pages#noms'
-  get "nominations/nomination_ballot" => 'nominations#nomination_ballot'
+  get "nomination_ballot" => 'nominations#nomination_ballot'
   post "save_nominee" => 'nominations#save_nominee'
 
   #Consolidated both theater creation form and play creation form onto one vie w page in plays, and put both in the plays controller.
