@@ -8,42 +8,29 @@
 <input type="text" name="awards[3][nominations[0][role]]" value=""> -->
 
 
-<% if @users_prev_noms.count == 0 %>
-  <%= form_for :nomination, url: {controller: "nominations", action: "save_nominee"} do |n| %>
-    <% @awards.each do |a| %>
-      <%= a.award_name %><br>
-      <% nomination_count = 0 %>
-        <% while nomination_count <= 4 %>
-        
-          <div class="award_nomination_row">
-          Theater:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][theater]]" 
-            value="">
-          Show:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][show]]" 
-            value="">
-          Nominee:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][nominee]]" 
-            value="">
-          Role:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][role]]" 
-            value="">
-          </div>
 
-          <% nomination_count += 1 %>
-        <% end %>
-    <% end %>
+<%= form_for :nomination, url: {controller: "nominations", action: "save_nominee"} do |n| %>
+  <% @awards.each do |a| %>
+    <%= a.award_name %><br>
+    <% nomination_count = 0 %>  
+      <% while nomination_count <= 4 %>
+      
+        <div class="award_nomination_row">
+        Theater:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(a.id, nomination_count, theater) %>">
+        Show:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][show]]" 
+          value="<%= current_user.nomination_value(a.id, nomination_count, theater) %>">
+        Nominee:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][nominee]]" 
+          value="<%= current_user.nomination_value(a.id, nomination_count, theater) %>">
+        Role:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][role]]" 
+          value="<%= current_user.nomination_value(a.id, nomination_count, theater) %>">
+        </div>
 
-    <%= submit_tag("Save") %>
-    <!-- ^ to replace wips in db and save current fields as final noms -->
+        <% nomination_count += 1 %>
+      <% end %>
   <% end %>
-<% else %>
-  <% @users_prev_noms.each do |nomination| %>
-    <%= form_for nomination, url: {controller: "nominations", action: "save_nominee"} do |nom_form| %>
-      <%= nom_form.text_field :theater %>
-      <%= nom_form.text_field :show %>
-      <%= nom_form.text_field :nominee %>
-      <%= nom_form.text_field :role %>
-    <% end %>
-  <% end %>
+
   <%= submit_tag("Save") %>
+  <!-- ^ to replace wips in db and save current fields as final noms -->
 <% end %>
-
 
 
