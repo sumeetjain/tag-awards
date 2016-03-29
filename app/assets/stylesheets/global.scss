@@ -23,3 +23,46 @@
 .nav-link:hover > a{
   color: #39A0BE;
 }
+
+.form-submit-button{
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  border: none;
+  border-radius: 3px;
+  background: #008ED6;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.form-textbox{
+  font-family: 'Source Sans Pro', sans-serif;
+  height: 50px;
+  width: 100%;
+  padding: 6px 12px;
+  border: 1px solid #e3e3e3;
+  color: #727272;
+  font-size: 16px;
+  line-height: 1.42857143;
+  box-sizing: border-box;
+}
+
+.dropdown{
+  text-align: center;
+  padding-top: 14px;
+
+}
+
+.form-dropbtn{
+  font-family: 'Source Sans Pro', sans-serif;
+  height: 50px;
+  width: 100%;
+  padding: 6px 12px;
+  border: 1px solid #e3e3e3;
+  color: #727272;
+  font-size: 16px;
+  line-height: 1.42857143;
+  box-sizing: border-box;
+}
