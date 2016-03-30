@@ -1,14 +1,5 @@
 <h1>Nomination Ballot</h1>
 
-<!-- Award #3 - Best Actress
-
-<input type="text" name="awards[3][nominations[0][theater]]" value="">
-<input type="text" name="awards[3][nominations[0][show]]" value="">
-<input type="text" name="awards[3][nominations[0][nominee]]" value="">
-<input type="text" name="awards[3][nominations[0][role]]" value=""> -->
-
-
-
 <%= form_for :nomination, url: {controller: "nominations", action: "save_nominee"} do |n| %>
   <% @awards.each do |a| %>
     <%= a.award_name %><br>
@@ -37,7 +28,6 @@
   <% end %>
 
   <%= submit_tag("Save") %>
-  <!-- ^ to replace wips in db and save current fields as final noms -->
 <% end %>
 
 
