@@ -12,7 +12,8 @@ BALLOT CREATION HELPER
   <% @awards.each do |a| %>
   <%= a.award_name %>
   <ul>
-  <% a.nominations.sort_by {|nom| nom.weight }.each do |nom| %> 
+  <% sorted_award_noms = a.nominations.order(:nominee) %>
+  <% sorted_award_noms.sort_by {|nom| nom.weight }.each do |nom| %> 
    <li><%= nom.nominee %>, <%= nom.weight %> </li>
   <% end %>
   </ul>
