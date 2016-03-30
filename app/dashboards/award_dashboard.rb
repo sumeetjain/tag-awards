@@ -47,7 +47,7 @@ class AwardDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :award_name,
     :relevant_fields,
-    :active,
+    :active
   ]
 
   # Overwrite this method to customize how awards are displayed
