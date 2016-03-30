@@ -1,0 +1,20 @@
+.nomination_ballot_container{
+  position: relative;
+}
+
+.award_links{
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 100%;
+  width: 280px;
+}
+
+.award_links.award_links--sticky{
+  position: fixed;
+}
+
+.nominations_form{
+  margin-left: 280px;
+}
