@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get "users/settings_page" => 'users#settings_page'
 
 
-  get "users/register/:voter_token" => 'users#register'
+  get "users/register/:voter_token" => 'users#set_password'
 
   post "users/set_password" => 'users#set_password'
 
