@@ -1,5 +1,16 @@
-<%= @weight %>
+BALLOT CREATION HELPER
+
+
+
 <% @sorted_nominations.each do |nom| %>
   <%= nom.award.award_name %>
   <%= nom.weight %>
   <% end %>
+
+  <br>
+
+  <% @awards.each do |a| %>
+  <%= a.award_name %>
+  <%= a.nominations.collect {|nom| [nom.nominee, nom.weight]} %>
+  <% end %>
+
