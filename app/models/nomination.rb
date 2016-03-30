@@ -18,5 +18,11 @@ class Nomination < ActiveRecord::Base
     end
   end
 
+  def self.rank_by_voter_weight
+    all_noms = self.all
+    sorted_noms = all_noms.sort_by {|nom| nom.weight}
+    return sorted_noms
+  end
+
 
 end

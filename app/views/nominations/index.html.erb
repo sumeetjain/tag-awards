@@ -1,1 +1,5 @@
 <%= @weight %>
+<% @sorted_nominations.each do |nom| %>
+  <%= nom.award.award_name %>
+  <%= nom.weight %>
+  <% end %>
