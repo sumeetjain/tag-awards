@@ -9,10 +9,22 @@
 
   height: 100%;
   width: 280px;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .award_links.award_links--sticky{
   position: fixed;
+}
+
+.award_link{
+  display: block;
+  padding: 3px 0;
+}
+.award_link:hover{
+  color: #666;
 }
 
 .nominations_form{
