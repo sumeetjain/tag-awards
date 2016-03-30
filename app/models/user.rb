@@ -27,18 +27,7 @@ class User < ActiveRecord::Base
       "user_id" => self.id)
     if nominations[nom_count]
       @nomination = nominations[nom_count]
-      if value_needed == "theater"
-        return @nomination.theater
-      end
-      if value_needed == "show"
-        return @nomination.show
-      end
-      if value_needed == "nominee"
-        return @nomination.nominee
-      end    
-      if value_needed == "role"
-        return @nomination.role
-      end
+        return @nomination.send(value_needed)
     else
       return ""
     end     
