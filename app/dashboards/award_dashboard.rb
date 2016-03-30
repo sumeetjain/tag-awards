@@ -13,6 +13,7 @@ class AwardDashboard < Administrate::BaseDashboard
     relevant_fields: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    active: Field::Boolean,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -26,6 +27,7 @@ class AwardDashboard < Administrate::BaseDashboard
     :relevant_fields,
     :created_at,
     :updated_at,
+    :active,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -36,6 +38,7 @@ class AwardDashboard < Administrate::BaseDashboard
     :relevant_fields,
     :created_at,
     :updated_at,
+    :active,    
   ]
 
   # FORM_ATTRIBUTES
@@ -44,6 +47,7 @@ class AwardDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :award_name,
     :relevant_fields,
+    :active,
   ]
 
   # Overwrite this method to customize how awards are displayed
