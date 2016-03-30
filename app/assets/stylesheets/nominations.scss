@@ -12,8 +12,10 @@
 
   margin: 0;
   padding: 0;
-  list-style: none;
+  text-decoration: none;
+
 }
+
 
 .award_links.award_links--sticky{
   position: fixed;
@@ -21,12 +23,26 @@
 
 .award_link{
   display: block;
-  padding: 3px 0;
+  padding: 5px 0;
+  background-color: #F5F5F5;
+  text-decoration: none;
+  text-align: left;
+  padding-left: 20px;
+
 }
 .award_link:hover{
   color: #666;
+  background-color: white;
+  text-decoration: underline;
+}
+
+.award_link:active {
+    text-decoration: underline;
+    background-color: #666;
+    color: white;
 }
 
 .nominations_form{
   margin-left: 280px;
 }
+
