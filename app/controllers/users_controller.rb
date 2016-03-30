@@ -18,21 +18,24 @@ class UsersController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:register, :set_password]
 
   def register
-    @user = User.find_by_voter_token(params[:voter_token])
-    sign_in(@user)
+    #@user = User.find_by_voter_token(params[:voter_token])
+    #sign_in(@user)
   end
 
   def set_password
+    @user = User.find_by_voter_token(params[:voter_token])
+    sign_in(@user)
     @user = current_user
   end
 
   def update
     @user = current_user
-    if params[:password] == params[:confirm_password]
+    if params[:password] == params[:password_confirmation]
       @user.password = params[:password]
-      redirect_to "home", :notice => "Your Password has been updated!"
+      binding.pry
+      redirect_to "/users/home", :notice => "Your Password has been updated!"
     else 
-      render :set_password,:locals => { :resource => @user, :resource_name => "user" }
+      render :set_password, :notice => "Invalid Password Entry"
     end
   end
 
