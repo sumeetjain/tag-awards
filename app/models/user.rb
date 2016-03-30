@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
       "user_id" => self.id)
     if nominations[nom_count]
       @nomination = nominations[nom_count]
-        return @nomination.send(value_needed)
+      return @nomination.send(value_needed)
     else
       return ""
     end     

@@ -1,0 +1,79 @@
+.nomination_ballot_container{
+  position: relative;
+}
+
+.award_links{
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 100%;
+  width: 280px;
+
+  margin: 0;
+  padding: 0;
+
+  text-decoration: none;
+
+}
+
+
+.award_links.award_links--sticky{
+  position: fixed;
+}
+
+.award_link{
+  display: block;
+  padding: 5px 0;
+  background-color: #F5F5F5;
+  text-decoration: none;
+  text-align: left;
+  padding-left: 20px;
+
+}
+.award_link:hover{
+  color: #666;
+  background-color: white;
+  text-decoration: underline;
+}
+
+.award_link:active {
+    text-decoration: underline;
+    background-color: #666;
+    color: white;
+}
+
+.nominations_form{
+  margin-left: 280px;
+  padding-bottom: 20px;
+}
+
+.award_nomination_category {
+
+background-color: #F5F5F5;
+border-radius: 20px;
+padding-bottom: 20px;
+padding-top: 5px;
+margin-bottom: 20px;
+
+
+}
+
+.nomination_ballot_container {
+
+background-color: #B1BEE6;
+}
+
+.headline {
+
+  margin-left: 280px;
+}
+
+.theater_input {
+  float: left;
+  padding: 3px;
+}
+
+.show_input {
+  padding: 3px;
+}
