@@ -11,23 +11,16 @@ Rails.application.routes.draw do
     root to: "users#index"
   end
 
+  get "" => redirect("/users/home")
   get "users/home" => 'users#home'
-
   get "users/register"
 
-  get "" => redirect("/users/home")
+
   get "users/settings_page" => 'users#settings_page'
-
-
+  post "users/change_settings" => 'users#settings_changed'
   get "users/register/:voter_token" => 'users#set_password'
-
   post "users/set_password" => 'users#set_password'
-
   put "users/set_password_via_token" => 'users#update'
-
-  #devise_for :users
-
-  #{}"home#index"
 
   devise_for :users, skip: [:registrations]
 
@@ -48,12 +41,6 @@ Rails.application.routes.draw do
   get "nominations" =>'static_pages#noms'
   get "nomination_ballot" => 'nominations#nomination_ballot'
   post "save_nominee" => 'nominations#save_nominee'
-
-  #Consolidated both theater creation form and play creation form onto one vie w page in plays, and put both in the plays controller.
-  #get "theaters/new" => 'theaters#new'
-
-  # Made the below route into a form that gets rendered on the new viewing page.
-  #get "plays/new", to: 'plays#new', as: 'add_play'
 
   post "plays/create" => 'plays#create_play'
 
