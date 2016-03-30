@@ -32,7 +32,6 @@ class UsersController < ApplicationController
     @user = current_user
     if params[:password] == params[:password_confirmation]
       @user.password = params[:password]
-      binding.pry
       redirect_to "/users/home", :notice => "Your Password has been updated!"
     else 
       render :set_password, :notice => "Invalid Password Entry"
