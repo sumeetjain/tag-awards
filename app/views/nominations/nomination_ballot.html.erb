@@ -1,3 +1,25 @@
+<header> 
+  <div class="clear">
+    <div class="col-12"  id="heading">
+    <h1>TAG Award Nominations 2016</h1>
+    </div>
+  </div>
+</header>
+
+<% @awards.each do |a| %>      
+  <div class="clear">
+    <div class="col-2">
+      <div class="dropdown-content">
+
+        <a href="#<%= a.id %>"> 
+          <%= a.award_name %>
+        </a>
+
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <h1>Nomination Ballot</h1>
 
 <!-- Award #3 - Best Actress
@@ -8,36 +30,40 @@
 <input type="text" name="awards[3][nominations[0][role]]" value=""> -->
 
 
+<div class="col-10">
+  <%= form_for :nomination, url: {controller: "nominations", action: "save_nominee"} do |n| %>
+    <% @awards.each do |a| %>
+    <div class="awardName">
+      <a id="<%=a.id %>">
+        <%= a.award_name %><br>
+      </a>
+    </div>
+      <% nomination_count = 0 %>  
+        <% while nomination_count <= 4 %>
+          <div class="award_nomination_row">
 
-<%= form_for :nomination, url: {controller: "nominations", action: "save_nominee"} do |n| %>
-  <% @awards.each do |a| %>
-    <%= a.award_name %><br>
-    <% nomination_count = 0 %>  
-      <% while nomination_count <= 4 %>
-        <div class="award_nomination_row">
+          Theater:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(a.id, nomination_count, "theater")%>">
 
-        Theater:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(a.id, nomination_count, "theater")%>">
+          Show:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][show]]" 
+            value="<%= current_user.nomination_value(a.id, nomination_count, "show") %>">
 
-        Show:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][show]]" 
-          value="<%= current_user.nomination_value(a.id, nomination_count, "show") %>">
+          <% if a.relevant_fields >= 3 %>
+            Nominee:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][nominee]]" 
+              value="<%= current_user.nomination_value(a.id, nomination_count, "nominee") %>">
+          <% end %>
 
-        <% if a.relevant_fields >= 3 %>
-          Nominee:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][nominee]]" 
-            value="<%= current_user.nomination_value(a.id, nomination_count, "nominee") %>">
+          <% if a.relevant_fields >= 4 %>
+            Role:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][role]]" 
+              value="<%= current_user.nomination_value(a.id, nomination_count, "role") %>">
+          <% end %>
+
+          </div>
+          <% nomination_count += 1 %>
         <% end %>
+    <% end %>
 
-        <% if a.relevant_fields >= 4 %>
-          Role:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][role]]" 
-            value="<%= current_user.nomination_value(a.id, nomination_count, "role") %>">
-        <% end %>
-
-        </div>
-        <% nomination_count += 1 %>
-      <% end %>
+    <%= submit_tag("Save") %>
+    <!-- ^ to replace wips in db and save current fields as final noms -->
   <% end %>
-
-  <%= submit_tag("Save") %>
-  <!-- ^ to replace wips in db and save current fields as final noms -->
-<% end %>
-
+</div>
 
