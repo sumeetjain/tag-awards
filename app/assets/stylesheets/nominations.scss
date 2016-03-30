@@ -12,6 +12,7 @@
 
   margin: 0;
   padding: 0;
+
   text-decoration: none;
 
 }
@@ -44,5 +45,35 @@
 
 .nominations_form{
   margin-left: 280px;
+  padding-bottom: 20px;
 }
 
+.award_nomination_category {
+
+background-color: #F5F5F5;
+border-radius: 20px;
+padding-bottom: 20px;
+padding-top: 5px;
+margin-bottom: 20px;
+
+
+}
+
+.nomination_ballot_container {
+
+background-color: #B1BEE6;
+}
+
+.headline {
+
+  margin-left: 280px;
+}
+
+.theater_input {
+  float: left;
+  padding: 3px;
+}
+
+.show_input {
+  padding: 3px;
+}
