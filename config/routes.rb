@@ -49,6 +49,8 @@ Rails.application.routes.draw do
   get "nomination_ballot" => 'nominations#nomination_ballot'
   post "save_nominee" => 'nominations#save_nominee'
 
+  get "nominations/index"
+
   #Consolidated both theater creation form and play creation form onto one vie w page in plays, and put both in the plays controller.
   #get "theaters/new" => 'theaters#new'
 

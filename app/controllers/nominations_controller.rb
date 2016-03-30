@@ -10,4 +10,12 @@ class NominationsController < ActionController::Base
     redirect_to "/users/home"
   end
 
+# Ultimately put this in the admin controller
+# 
+  def index
+    @nominations = Nomination.all
+    @weight = @nominations[1].user.viewings.count
+  end 
+
+
 end

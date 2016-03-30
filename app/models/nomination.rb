@@ -1,6 +1,22 @@
 class Nomination < ActiveRecord::Base
   belongs_to :user
   belongs_to :award
-  belongs_to :play
+
+
+  def weight
+     weight = self.user.viewings.count
+     if weight <= 10
+      return 1
+    elsif weight >= 11 && weight <= 20
+      return 2
+    elsif weight >= 21 && weight <= 30
+      return 3
+    elsif weight >= 31 && weight <= 40
+      return 4
+    elsif weight >= 41
+      return 5
+    end
+  end
+
 
 end
