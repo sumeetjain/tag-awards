@@ -14,7 +14,7 @@ class NominationsController < ActionController::Base
 # 
   def index
     @nominations = Nomination.all
-    @sorted_nominations = Nomination.rank_by_voter_weight
+    #@sorted_nominations = Nomination.rank_by_voter_weight
     @awards = Award.all
   end 
 
