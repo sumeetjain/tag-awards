@@ -11,18 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331175826) do
+ActiveRecord::Schema.define(version: 20160331193137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "awards", force: :cascade do |t|
     t.string   "award_name"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "relevant_fields"
     t.boolean  "inactive"
   end
+
+  create_table "ballot_items", force: :cascade do |t|
+    t.string   "nominee"
+    t.string   "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "award_id"
+    t.integer  "play_id"
+  end
+
+  add_index "ballot_items", ["award_id"], name: "index_ballot_items_on_award_id", using: :btree
+  add_index "ballot_items", ["play_id"], name: "index_ballot_items_on_play_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -112,4 +124,8 @@ ActiveRecord::Schema.define(version: 20160331175826) do
     t.datetime "updated_at",         null: false
   end
 
+  add_foreign_key "ballot_items", "awards"
+  add_foreign_key "ballot_items", "plays"
+  add_foreign_key "viewings", "plays"
+  add_foreign_key "viewings", "users"
 end
