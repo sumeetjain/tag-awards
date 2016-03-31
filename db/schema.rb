@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20160331175826) do
 
   create_table "awards", force: :cascade do |t|
     t.string   "award_name"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "relevant_fields"
     t.boolean  "inactive"
   end
