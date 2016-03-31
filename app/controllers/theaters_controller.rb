@@ -12,5 +12,4 @@ def create
   redirect_to "/users/home"
 end
 
-
 end
