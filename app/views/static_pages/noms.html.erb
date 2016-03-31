@@ -18,17 +18,22 @@
       <li><a class="award_link" href="#support-actress-musical">Supporting Actress - Musical</a></li>
     </ul>
 
-    <div class="nominations_form">
+    <div class="nominations_form" id="nominations_form" data-theaters="<%= Theater.pluck(:name) %>">
       <form action = "/noms/category_definition" method="post"> 
         <div class="award_nomination_category">
           <h3 id="outstanding-musical">Best Musical</h3>
         
           <div class="award_nomination_row">
-            Theater:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum">
-            Nominee:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum">
-            Role:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum">
+            Theater:
+            <div class="autocomplete_container">
+              <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="" id="autocomplete_field" autocomplete="off">
+              <div id="suggestions" class="autocomplete_suggestions">
+              </div>
+            </div>
+            Nominee:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="">
+            Role:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="">
             Show:  <input type="text" name="awards[1][nominations[0][show]]" 
-                  value="Fiddler on the Roof">     
+                  value="">     
           </div>
 
           <div class="award_nomination_row">

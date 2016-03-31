@@ -1,0 +1,14 @@
+.autocomplete_container{
+  position: relative;
+  display: inline-block;
+}
+
+.autocomplete_suggestions{
+  position: absolute;
+  width: 300px;
+  background: #fff;
+  border: 1px solid #ccc;
+  top: 18px;
+  left: 50%;
+  margin-left: -150px;
+}
