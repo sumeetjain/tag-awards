@@ -10,4 +10,13 @@ class NominationsController < ActionController::Base
     redirect_to "/users/home"
   end
 
+# Ultimately put this in the admin controller
+# 
+  def index
+    @nominations = Nomination.all
+    #@sorted_nominations = Nomination.rank_by_voter_weight
+    @awards = Award.all
+  end 
+
+
 end
