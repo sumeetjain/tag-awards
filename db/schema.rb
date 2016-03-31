@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 20160330200611) do
 
   create_table "awards", force: :cascade do |t|
     t.string   "award_name"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "relevant_fields"
-    t.boolean  "active"
+    t.boolean  "active",          default: true
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -112,5 +112,6 @@ ActiveRecord::Schema.define(version: 20160330200611) do
     t.datetime "updated_at",         null: false
   end
 
-  
+  add_foreign_key "viewings", "plays"
+  add_foreign_key "viewings", "users"
 end
