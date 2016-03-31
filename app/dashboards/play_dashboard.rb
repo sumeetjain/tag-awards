@@ -49,6 +49,6 @@ class PlayDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(play)
-    "#{play.title}"
+    "#{play.title} -- #{play.theater.name}"
   end
 end
