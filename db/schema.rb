@@ -112,6 +112,4 @@ ActiveRecord::Schema.define(version: 20160331175826) do
     t.datetime "updated_at",         null: false
   end
 
-  add_foreign_key "viewings", "plays"
-  add_foreign_key "viewings", "users"
 end
