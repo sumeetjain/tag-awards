@@ -35,11 +35,12 @@ class User < ActiveRecord::Base
 
   def record_nominations(user_id, nominations_hash)
     delete_previous_noms(user_id)
+    binding.pry
     nominations_hash.each do |key, value|
       @current_award = key
       value.each do |key2, value2|
         value2.each do |key3, value3|
-          if value3["theater"].empty?
+          if value3["theater"] == "" || value3["nominee"] == ""
             next
           elsif
             @new_nom = Nomination.new
