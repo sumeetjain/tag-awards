@@ -10,12 +10,11 @@ class NominationDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     user: Field::BelongsTo,
     award: Field::BelongsTo,
-    play: Field::BelongsTo,
+    show: Field::String,
     id: Field::Number,
     nominee: Field::String,
     role: Field::String,
     open: Field::Boolean,
-    approved: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }
@@ -29,7 +28,7 @@ class NominationDashboard < Administrate::BaseDashboard
     :id,
     :user,
     :award,
-    :play,
+    :show,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -38,11 +37,10 @@ class NominationDashboard < Administrate::BaseDashboard
     :id,
     :user,
     :award,
-    :play,
+    :show,
     :nominee,
     :role,
     :open,
-    :approved,
     :created_at,
     :updated_at,
   ]
@@ -53,11 +51,10 @@ class NominationDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :user,
     :award,
-    :play,
+    :show,
     :nominee,
     :role,
     :open,
-    :approved,
   ]
 
   # Overwrite this method to customize how nominations are displayed
