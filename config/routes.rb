@@ -46,7 +46,7 @@ Rails.application.routes.draw do
 
   get "nominations/index"
 
-
+  get "final_ballot" => 'static_pages#final_ballot'
   post "plays/create" => 'plays#create_play'
 
   get "votes/ballots_page" => 'votes#ballots_page'

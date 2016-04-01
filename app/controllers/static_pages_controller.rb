@@ -4,4 +4,7 @@ class StaticPagesController < ApplicationController
 
   def noms
   end
+
+  def final_ballot
+  end
 end

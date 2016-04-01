@@ -17,6 +17,40 @@
 
 }
 
+.award_links_heading {
+  display: block;
+  font-size: 18px;
+  font-family: Arial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-color: #666;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: white;
+  background-color: #999;
+  text-transform: uppercase;
+  border-radius: 5px;
+
+}
+
+.award_links_instructions {
+  display: block;
+  font-size: 12px;
+  font-family: Arial;
+  color: #666;
+  text-align: left;
+  padding: 10px 20px;
+  background-color: white;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-color: #666;
+  border-radius: 5px;
+
+
+}
+
 
 .award_links.award_links--sticky{
   position: fixed;
@@ -24,11 +58,17 @@
 
 .award_link{
   display: block;
-  padding: 5px 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: #666;
   background-color: #F5F5F5;
   text-decoration: none;
   text-align: left;
   padding-left: 20px;
+  border-radius: 5px;
+
 
 }
 .award_link:hover{

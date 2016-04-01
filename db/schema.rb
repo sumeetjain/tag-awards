@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20160331193137) do
 
   add_foreign_key "ballot_items", "awards"
   add_foreign_key "ballot_items", "plays"
+
   add_foreign_key "viewings", "plays"
   add_foreign_key "viewings", "users"
 end
