@@ -66,6 +66,7 @@
   border-bottom-width: 1px;
   border-color: #666;
   background-color: #F5F5F5;
+  color: #666;
   text-decoration: none;
   text-align: left;
   padding-left: 20px;
@@ -97,8 +98,6 @@ border-radius: 20px;
 padding-bottom: 20px;
 padding-top: 5px;
 margin-bottom: 20px;
-
-
 }
 
 .nomination_ballot_container {
@@ -111,10 +110,35 @@ background-color: #9BC1AC;
   margin-left: 280px;
 }
 
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+.voting_instructions {
+  display: block;
+  font-size: 12px;
+  font-family: Arial;
+  color: #666;
+  text-align: center;
+  margin: 10px;
+  padding: 10px 10px;
+  background-color: white;
+}
+
 .award_nomination_row {
   padding: 3px;
   text-align: left;
   padding-left: 50px;
+}
+
+.award_nomination_row:hover {
+  color: #666;
+  background-color: white;
+} 
+
+.award_nomination_row:active {
+  background-color: #666;
+  color: white;
 }
 
 .theater_input {
