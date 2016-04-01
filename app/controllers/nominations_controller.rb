@@ -1,4 +1,4 @@
-class NominationsController < ActionController::Base
+class NominationsController < ApplicationController
 
   def nomination_ballot
     @awards = Award.all

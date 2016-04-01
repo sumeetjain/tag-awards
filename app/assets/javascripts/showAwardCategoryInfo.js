@@ -1,10 +1,15 @@
-var showAwardCatExplanation = document.getElementById("show_award_category_explanation");
+debugger;  
+alert("hello");
+window.addEventListener("load", function(){
 
-// if (showAwardCatExplanation != null || showAwardCatExplanation != undefined){     
+  var showAwardCatExplanation = document.getElementById("show_award_category_explanation");
+     
+  // if (showAwardCatExplanation != null || showAwardCatExplanation != undefined){     
 
-showAwardCatExplanation.addEventListener("click", function() {
-  var showAwardCategoryInfo = document.getElementById("showAwardCategoryInfo");         
-  showAwardCategoryInfo.style.display = "block";    
+  showAwardCatExplanation.addEventListener("click", function() {
+    var showAwardCategoryInfo = document.getElementById("showAwardCategoryInfo");
+
+    showAwardCategoryInfo.style.display = "block";    
+  });
+// }  
 });
-
-// }
