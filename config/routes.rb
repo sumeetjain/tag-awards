@@ -14,8 +14,6 @@ Rails.application.routes.draw do
   get "" => redirect("/users/home")
   get "users/home" => 'users#home'
   get "users/register"
-
-
   get "users/settings_page" => 'users#settings_page'
   post "users/change_settings" => 'users#settings_changed'
   get "users/register/:voter_token" => 'users#set_password'
@@ -23,8 +21,7 @@ Rails.application.routes.draw do
   put "users/set_password_via_token" => 'users#update'
 
   devise_for :users, skip: [:registrations]
-
-  resources :passwords
+  #resources :passwords
 
   get "viewings/new" => 'viewings#new'
   post "viewings/create" => 'viewings#create'
@@ -41,9 +38,7 @@ Rails.application.routes.draw do
   get "nominations" =>'static_pages#noms'
   get "nomination_ballot" => 'nominations#nomination_ballot'
   post "save_nominee" => 'nominations#save_nominee'
-
   get "nominations/index"
-
 
   post "plays/create" => 'plays#create_play'
 
