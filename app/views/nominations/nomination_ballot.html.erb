@@ -55,12 +55,14 @@
         <% while nomination_count <= 4 %>
           <div class="award_nomination_row">
 
-          Theater:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(a.id, nomination_count, "theater")%>">
+          <% if a.relevant_fields != 1 %>
+            Theater:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(a.id, nomination_count, "theater")%>">
 
-          Show:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][show]]" 
-            value="<%= current_user.nomination_value(a.id, nomination_count, "show") %>">
+            Show:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][show]]" 
+              value="<%= current_user.nomination_value(a.id, nomination_count, "show") %>">
+          <% end %>
 
-          <% if a.relevant_fields >= 3 %>
+          <% if a.relevant_fields >= 3 || a.relevant_fields == 1 %>
             Nominee:  <input type="text" name="awards[<%= a.id %>][nominations[<%= nomination_count %>][nominee]]" 
               value="<%= current_user.nomination_value(a.id, nomination_count, "nominee") %>">
           <% end %>
