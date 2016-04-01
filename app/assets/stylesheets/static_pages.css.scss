@@ -1,0 +1,172 @@
+
+
+.submit_button_text {
+
+  display: block;
+  font-size: 12px;
+  font-family: Arial;
+  color: #666;
+  text-align: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+.form_submit_button{
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  border: none;
+  border-radius: 3px;
+  // background: #008ED6;
+  background: #4C5F9C;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.nomination_ballot_container{
+  position: relative;
+}
+
+.award_links{
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 100%;
+  width: 280px;
+
+  margin: 0;
+  padding: 0;
+
+  text-decoration: none;
+
+}
+
+.award_links_heading {
+  display: block;
+  font-size: 18px;
+  font-family: Arial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-color: #666;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: white;
+  background-color: #999;
+  text-transform: uppercase;
+  border-radius: 5px;
+
+}
+
+.award_links_instructions {
+  display: block;
+  font-size: 12px;
+  font-family: Arial;
+  color: #666;
+  text-align: left;
+  padding: 10px 20px;
+  background-color: white;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-color: #666;
+  border-radius: 5px;
+
+
+}
+
+
+.award_links.award_links--sticky{
+  position: fixed;
+}
+
+.award_link{
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: #666;
+  background-color: #F5F5F5;
+  color: #666;
+  text-decoration: none;
+  text-align: left;
+  padding-left: 20px;
+  border-radius: 5px;
+
+
+}
+.award_link:hover{
+  color: #666;
+  background-color: white;
+  text-decoration: underline;
+}
+
+.award_link:active {
+    text-decoration: underline;
+    background-color: #666;
+    color: white;
+}
+
+.nominations_form{
+  margin-left: 280px;
+  padding-bottom: 20px;
+}
+
+.award_nomination_category {
+
+background-color: #F5F5F5;
+border-radius: 20px;
+padding-bottom: 20px;
+padding-top: 5px;
+margin-bottom: 20px;
+}
+
+.nomination_ballot_container {
+
+background-color: #9BC1AC;
+}
+
+.headline {
+
+  margin-left: 280px;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+.voting_instructions {
+  display: block;
+  font-size: 12px;
+  font-family: Arial;
+  color: #666;
+  text-align: center;
+  margin: 10px;
+  padding: 10px 10px;
+  background-color: white;
+}
+
+.award_nomination_row {
+  padding: 3px;
+  text-align: left;
+  padding-left: 50px;
+}
+
+.award_nomination_row:hover {
+  color: #666;
+  background-color: white;
+} 
+
+.award_nomination_row:active {
+  background-color: #666;
+  color: white;
+}
+
+.theater_input {
+  margin-right: 15px;
+}

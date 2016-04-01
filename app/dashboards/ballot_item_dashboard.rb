@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class PlayDashboard < Administrate::BaseDashboard
+class BallotItemDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,9 +8,11 @@ class PlayDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    theater: Field::BelongsTo,
+    award: Field::BelongsTo,
+    play: Field::BelongsTo,
     id: Field::Number,
-    title: Field::String,
+    nominee: Field::String,
+    role: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }
@@ -21,18 +23,20 @@ class PlayDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :theater,
+    :award,
+    :play,
     :id,
-    :title,
-    :created_at,
+    :nominee,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :theater,
+    :award,
+    :play,
     :id,
-    :title,
+    :nominee,
+    :role,
     :created_at,
     :updated_at,
   ]
@@ -41,14 +45,16 @@ class PlayDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :theater,
-    :title,
+    :award,
+    :play,
+    :nominee,
+    :role,
   ]
 
-  # Overwrite this method to customize how plays are displayed
+  # Overwrite this method to customize how ballot items are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(play)
-    "#{play.title} -- #{play.theater.name}"
-  end
+  # def display_resource(ballot_item)
+  #   "BallotItem ##{ballot_item.id}"
+  # end
 end

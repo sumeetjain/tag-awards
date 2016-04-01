@@ -1,0 +1,21 @@
+
+<!--   create_table "ballot_items", force: :cascade do |t|
+    t.string   "nominee"
+    t.string   "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "award_id"
+    t.integer  "play_id"
+  end
+ -->
+
+
+    <% @awards.each do |award| %>
+     <h2> <%= award.award_name %> </h2>
+          <% award.ballot_items.each do |item| %>
+            Nominee: <%= item.nominee %> <br>
+            Role: <%= item.role %> <br> 
+            Play: <%= item.play.title %> <br> 
+            Theater: <%= item.play.theater.name %> <br>
+            <% end %>
+          <% end %>

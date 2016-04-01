@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :awards
+    resources :ballot_items
     resources :nominations
     resources :plays
     resources :theaters
     resources :viewings
+    resources :votes
 
     root to: "users#index"
   end
@@ -39,6 +41,8 @@ Rails.application.routes.draw do
   get "nomination_ballot" => 'nominations#nomination_ballot'
   post "save_nominee" => 'nominations#save_nominee'
   get "nominations/index"
+
+  get "final_ballot" => 'static_pages#final_ballot'
 
   post "plays/create" => 'plays#create_play'
 
