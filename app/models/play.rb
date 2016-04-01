@@ -3,4 +3,5 @@ class Play < ActiveRecord::Base
 
   #has_many :nominations
   has_many :viewings
+  has_many :ballot_items
 end

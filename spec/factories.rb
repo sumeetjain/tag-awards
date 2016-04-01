@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :ballot_item do
+    nominee "MyString"
+    role "MyString"
+  end
   factory :vote do
     title "MyString"
     voter_id 1

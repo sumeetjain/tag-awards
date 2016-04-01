@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :awards
+    resources :ballot_items
     resources :nominations
     resources :plays
     resources :theaters
     resources :viewings
+    resources :votes
 
     root to: "users#index"
   end
