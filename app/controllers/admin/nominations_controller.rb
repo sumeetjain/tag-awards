@@ -17,6 +17,7 @@ module Admin
     # See https://administrate-docs.herokuapp.com/customizing_controller_actions
     # for more information
 
+
     def index
       search_term = params[:search].to_s.strip
       #resources = Administrate::Search.new(resource_resolver, search_term).run
@@ -27,7 +28,7 @@ module Admin
       end
       #order = Administrate::Order.new()
       #resources = order.apply(resources)
-      resources = resources.page(params[:page]).per(records_per_page)
+      resources = resources.page(params[:page]).per(2)
       page = Administrate::Page::Collection.new(dashboard, order: order)
 
       render locals: {
@@ -37,6 +38,11 @@ module Admin
       }
     end
 
+    # def ballot_helper
+    #     @resources = Nomination.order(:nominee)
+    #     @resources.page(params[:page]).per(10)
+    #     page = Administrate::Page::Collection.new(dashboard, )
+    # end
 
 
   end
