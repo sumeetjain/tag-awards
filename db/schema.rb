@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331193137) do
+ActiveRecord::Schema.define(version: 20160401175435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20160331193137) do
     t.integer  "award_id"
     t.string   "theater"
     t.string   "show"
+    t.boolean  "approved"
   end
 
   add_index "nominations", ["award_id"], name: "index_nominations_on_award_id", using: :btree
@@ -126,7 +127,6 @@ ActiveRecord::Schema.define(version: 20160331193137) do
 
   add_foreign_key "ballot_items", "awards"
   add_foreign_key "ballot_items", "plays"
-
   add_foreign_key "viewings", "plays"
   add_foreign_key "viewings", "users"
 end

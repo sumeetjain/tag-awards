@@ -13,7 +13,31 @@ module Admin
     #   Nomination.find_by!(slug: param)
     # end
 
+
     # See https://administrate-docs.herokuapp.com/customizing_controller_actions
     # for more information
+
+    def index
+      search_term = params[:search].to_s.strip
+      #resources = Administrate::Search.new(resource_resolver, search_term).run
+      if params[:order]
+        resources = order.apply(resources)
+      else
+        resources = Nomination.order(nominee: :desc)
+      end
+      #order = Administrate::Order.new()
+      #resources = order.apply(resources)
+      resources = resources.page(params[:page]).per(records_per_page)
+      page = Administrate::Page::Collection.new(dashboard, order: order)
+
+      render locals: {
+        resources: resources,
+        search_term: search_term,
+        page: page,
+      }
+    end
+
+
+
   end
 end

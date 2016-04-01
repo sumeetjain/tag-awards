@@ -15,6 +15,8 @@ class NominationDashboard < Administrate::BaseDashboard
     nominee: Field::String,
     role: Field::String,
     open: Field::Boolean,
+    approved: Field::Boolean,
+    weight: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }
@@ -26,9 +28,10 @@ class NominationDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :id,
-    :user,
+    :nominee,
     :award,
     :show,
+    :weight,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -40,7 +43,7 @@ class NominationDashboard < Administrate::BaseDashboard
     :show,
     :nominee,
     :role,
-    :open,
+    :approved,
     :created_at,
     :updated_at,
   ]
@@ -54,7 +57,7 @@ class NominationDashboard < Administrate::BaseDashboard
     :show,
     :nominee,
     :role,
-    :open,
+    :approved,
   ]
 
   # Overwrite this method to customize how nominations are displayed
