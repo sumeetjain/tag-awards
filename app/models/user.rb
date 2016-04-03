@@ -22,6 +22,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  #determines whether a specific nomination object has been saved previously
+  #
+  #takes in Integer of award_id, Integer of nom_count, and String of value_needed
+  #
+  #returns String of existing nomination or empty String if no previous nomination
   def nomination_value(award_id, nom_count, value_needed)
     nominations = Nomination.where("award_id" => award_id, 
       "user_id" => self.id)
@@ -33,6 +38,11 @@ class User < ActiveRecord::Base
     end     
   end  
 
+  #saves nominations entered by user
+  #
+  #takes in Integer of user_id and Hash of awards params from nominations ballot
+  #
+  #returns nil
   def record_nominations(user_id, nominations_hash)
     delete_previous_noms(user_id)
     binding.pry
@@ -60,10 +70,16 @@ class User < ActiveRecord::Base
   
   private
 
+  #assigns random key to a user
+  #
+  #uses SecureRandom gem
   def set_voter_token
     self.voter_token = generate_token
   end
 
+  #generates a random 6-digit alphanumeric key
+  #
+  #uses SecureRandom gem
   def generate_token
     loop do
       token = SecureRandom.hex(3)
