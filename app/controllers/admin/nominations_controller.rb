@@ -18,6 +18,8 @@ module Admin
     # for more information
 
 
+# TODO (Amy) delete the index method below and instead consolidate into one ballot helper action that goes to a page of nominations sorted by nominee and voter_weight.
+
     def index
       search_term = params[:search].to_s.strip
       #resources = Administrate::Search.new(resource_resolver, search_term).run
