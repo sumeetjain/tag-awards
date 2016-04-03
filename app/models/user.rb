@@ -45,7 +45,6 @@ class User < ActiveRecord::Base
   #returns nil
   def record_nominations(user_id, nominations_hash)
     delete_previous_noms(user_id)
-    binding.pry
     nominations_hash.each do |key, value|
       @current_award = key
       value.each do |key2, value2|
