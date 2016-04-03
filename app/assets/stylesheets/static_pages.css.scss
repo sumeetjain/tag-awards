@@ -1,5 +1,31 @@
 
 
+.submit_button_text {
+
+  display: block;
+  font-size: 12px;
+  font-family: Arial;
+  color: #666;
+  text-align: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+.form_submit_button{
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  border: none;
+  border-radius: 3px;
+  // background: #008ED6;
+  background: #4C5F9C;
+  box-shadow: none;
+  text-shadow: none;
+}
+
 .nomination_ballot_container{
   position: relative;
 }
