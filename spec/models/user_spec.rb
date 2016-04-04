@@ -39,7 +39,20 @@ RSpec.describe User, type: :model do
   end
 
   describe "#record_nominations" do
-    context "" do
-      it "" do
+    it "saves user's new nomination to database" do
+      @user1 = User.new
+      @user1.id = 1
+      @user1.save
+
+      nominations_hash =
+      {"1"=>
+        {"nominations"=>
+          {"0"=>{"theater"=>"Shelterbelt", "show"=>"Next to Normal", "nominee"=>"Grace Bydalek", "role"=>"Natalie"},
+           "1"=>{"theater"=>"", "show"=>"", "nominee"=>"", "role"=>""}}}}
+
+      assert_equal({"1"=>{"nominations"=>{"0"=>{"theater"=>"Shelterbelt", "show"=>"Next to Normal", "nominee"=>"Grace Bydalek", "role"=>"Natalie"}, "1"=>{"theater"=>"", "show"=>"", "nominee"=>"", "role"=>""}}}}, @user1.record_nominations(1, nominations_hash))
+      binding.pry
+    end
+  end
 
 end
