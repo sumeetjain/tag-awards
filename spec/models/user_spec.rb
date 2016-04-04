@@ -14,15 +14,5 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "#weight" do
-    before { @user = User.create(first_name: "Tom", last_name: "Hanks", password: "Password123", email: "tom@gmail.com") }
-    before { @nomination = Nomination.create(user_id: @user.id)}
-    before { FactoryGirl.create_list(:viewing, 11, user_id: @user.id) }
-      it "returns the correct voter weight for user based on viewings" do
-        expect(@nomination.weight).to eq(2)
-      end
-  end
-
-
   
 end
