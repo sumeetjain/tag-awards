@@ -10,12 +10,12 @@
  -->
 
 
-    <% @awards.each do |award| %>
-     <h2> <%= award.award_name %> </h2>
-          <% award.ballot_items.each do |item| %>
-            Nominee: <%= item.nominee %> <br>
-            Role: <%= item.role %> <br> 
-            Play: <%= item.play.title %> <br> 
-            Theater: <%= item.play.theater.name %> <br>
-            <% end %>
-          <% end %>
+<% @awards.each do |award| %>
+ <h2> <%= award.award_name %> </h2>
+      <% award.ballot_items.each do |item| %>
+        Nominee: <%= item.nominee %> <br>
+        Role: <%= item.role %> <br> 
+        Play: <%= item.play.title %> <br> 
+        Theater: <%= item.play.theater.name %> <br>
+      <% end %>
+<% end %>

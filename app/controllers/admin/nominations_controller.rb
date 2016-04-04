@@ -30,7 +30,7 @@ module Admin
       end
       #order = Administrate::Order.new()
       #resources = order.apply(resources)
-      resources = resources.page(params[:page]).per(2)
+      resources = resources.page(params[:page]).per(50)
       page = Administrate::Page::Collection.new(dashboard, order: order)
 
       render locals: {
