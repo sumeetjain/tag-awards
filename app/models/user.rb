@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
   #
   #takes in Integer of user_id, Integer of award id, and Collection of Hashes from nested nominations_hash
   #
-  #returns nil
+  #returns True (because objects are automatically set to True: open)
   def save_nomination_object(user_id, current_award, value3)
     @new_nom = Nomination.new
     @new_nom.user_id = user_id

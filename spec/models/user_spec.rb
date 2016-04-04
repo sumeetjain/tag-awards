@@ -16,6 +16,7 @@ RSpec.describe User, type: :model do
         @nom1.user_id = @user1.id
         @nom1.award_id = 1
         @nom1.save
+
         assert_equal("Grace Bydalek", @user1.nomination_value(1, 0, "nominee"))
         assert_equal("Shelterbelt", @user1.nomination_value(1, 0, "theater"))
       end
@@ -33,6 +34,7 @@ RSpec.describe User, type: :model do
         @nom1.user_id = @user1.id
         @nom1.award_id = 1
         @nom1.save
+
         assert_equal("", @user1.nomination_value(1,1, "nominee"))
       end
     end
@@ -43,15 +45,26 @@ RSpec.describe User, type: :model do
       @user1 = User.new
       @user1.id = 1
       @user1.save
-
       nominations_hash =
       {"1"=>
         {"nominations"=>
           {"0"=>{"theater"=>"Shelterbelt", "show"=>"Next to Normal", "nominee"=>"Grace Bydalek", "role"=>"Natalie"},
            "1"=>{"theater"=>"", "show"=>"", "nominee"=>"", "role"=>""}}}}
 
-      assert_equal({"1"=>{"nominations"=>{"0"=>{"theater"=>"Shelterbelt", "show"=>"Next to Normal", "nominee"=>"Grace Bydalek", "role"=>"Natalie"}, "1"=>{"theater"=>"", "show"=>"", "nominee"=>"", "role"=>""}}}}, @user1.record_nominations(1, nominations_hash))
-      binding.pry
+      assert_equal({"1"=>{"nominations"=>{"0"=>{"theater"=>"Shelterbelt", "show"=>"Next to Normal", "nominee"=>"Grace Bydalek", "role"=>"Natalie"}, "1"=>{"theater"=>"", "show"=>"", "nominee"=>"", "role"=>""}}}},
+        @user1.record_nominations(1, nominations_hash))
+    end
+  end
+
+  describe "#save_nomination_object" do
+    it "saves nomination to database" do
+      @user1 = User.new
+      @user1.id = 1
+      @user1.save
+
+      value3 = {"theater"=>"Shelterbelt", "show"=>"Next to Normal", "nominee"=>"Grace Bydalek", "role"=>"Natalie"}
+
+      assert_equal(true, @user1.save_nomination_object(1, 1, value3))
     end
   end
 
