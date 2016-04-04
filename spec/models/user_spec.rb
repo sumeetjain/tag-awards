@@ -10,6 +10,9 @@ RSpec.describe User, type: :model do
         user = User.create!(first_name: "Tom", last_name: "Hanks", password: "Password123", email: "tom@gmail.com")
         other_user = User.create!(first_name: "Fred", last_name: "Fred", password: "Password123", email: "fred@gmail.com")
         expect(user.voter_token).to_not eq(other_user.voter_token)
+      end
+    end
+  end
 
   describe "#nomination_value" do
     context "when this nomination was previously saved" do
