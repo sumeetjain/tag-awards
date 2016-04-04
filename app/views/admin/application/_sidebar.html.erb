@@ -17,4 +17,8 @@ as defined by the routes in the `admin/` namespace
       ) %>
     </li>
   <% end %>
+    <br>
+    <!-- this line should link to buttons that allow them to email users but right now will just log them out -->
+  <li><%= link_to "Email Users", destroy_user_session_path, method: :delete %></li>
+</ul>
 </ul>
