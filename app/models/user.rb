@@ -22,6 +22,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  #determines whether a specific nomination object has been saved previously
+  #
+  #takes in Integer of award_id, Integer of nom_count, and String of value_needed
+  #
+  #returns String of existing nomination or empty String if no previous nomination
   def nomination_value(award_id, nom_count, value_needed)
     nominations = Nomination.where("award_id" => award_id, 
       "user_id" => self.id)
@@ -33,9 +38,13 @@ class User < ActiveRecord::Base
     end     
   end  
 
+  #saves nominations entered by user
+  #
+  #takes in Integer of user_id and Hash of awards params from nominations ballot
+  #
+  #returns nil
   def record_nominations(user_id, nominations_hash)
     delete_previous_noms(user_id)
-    binding.pry
     nominations_hash.each do |key, value|
       @current_award = key
       value.each do |key2, value2|
@@ -43,27 +52,42 @@ class User < ActiveRecord::Base
           if value3["theater"] == "" || value3["nominee"] == ""
             next
           elsif
-            @new_nom = Nomination.new
-            @new_nom.user_id = user_id
-            @new_nom.award_id = @current_award
-            @new_nom.open = true
-            @new_nom.theater = value3["theater"]
-            @new_nom.nominee = value3["nominee"]
-            @new_nom.role = value3["role"]
-            @new_nom.show = value3["show"]
-            @new_nom.save
+            save_nomination_object(user_id, @current_award, value3)
           end
         end
       end
     end
   end
+
+  #saves object of nomination entered by user
+  #
+  #takes in Integer of user_id, Integer of award id, and Collection of Hashes from nested nominations_hash
+  #
+  #returns True (because objects are automatically set to True: open)
+  def save_nomination_object(user_id, current_award, value3)
+    @new_nom = Nomination.new
+    @new_nom.user_id = user_id
+    @new_nom.award_id = current_award
+    @new_nom.open = true
+    @new_nom.theater = value3["theater"]
+    @new_nom.nominee = value3["nominee"]
+    @new_nom.role = value3["role"]
+    @new_nom.show = value3["show"]
+    @new_nom.save
+  end
   
   private
 
+  #assigns random key to a user
+  #
+  #uses SecureRandom gem
   def set_voter_token
     self.voter_token = generate_token
   end
 
+  #generates a random 6-digit alphanumeric key
+  #
+  #uses SecureRandom gem
   def generate_token
     loop do
       token = SecureRandom.hex(3)
