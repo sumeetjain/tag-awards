@@ -72,15 +72,24 @@ RSpec.describe User, type: :model do
       @user1 = User.new
       @user1.id = 1
       @user1.save
-      @test_token = @user1.send(:generate_token)
-      @user1.voter_token = @test_token
+      @test_token = @user1.send(:set_voter_token)
+      @user1.save
 
       assert_equal(@test_token, @user1.voter_token)
     end
   end
 
   describe "#generate_token" do
-    it "" do
+    it "randomly picks a 6-digit alphanumeric key" do
+      @user1 = User.new
+      @user1.id = 1
+      @user1.save
+      @test_token = @user1.send(:generate_token)
+      @user1.voter_token = @test_token
+      @user1.save
+      @token_length = @user1.voter_token.split('').length
+
+      assert_equal(@token_length, 6)
     end
   end
 
