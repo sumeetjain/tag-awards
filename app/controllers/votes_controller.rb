@@ -7,7 +7,7 @@ class VotesController < ApplicationController
     # Really you'll want something like BallotItem.all.awards in case of rogue award categories.  
     @awards = Award.all # This probably won't work in case there is a rogue ballot item that does not have an award_id.....TODO: Fix that.
 
-    # I think you'll want to use the nominations model for this and reference awards via ActiveRecord relations
+    # I think you'll want to use the nomination model for this and reference awards via ActiveRecord relations
     @nominations = Nomination.all
   end
 

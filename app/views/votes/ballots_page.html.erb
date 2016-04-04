@@ -10,8 +10,8 @@
  -->
 
 <% @nominations.each do |nom| %>
-  <% if nom.approved == true %>
-   <h2> <%= nom.award_id %> </h2>
+  <% if nom.approved %>
+   <h2> <%= nom.award.award_name %> </h2>
           Nominee: <%= nom.nominee %> <br>
           Role: <%= nom.role %> <br> 
           Play: <%= nom.show %> <br> 
