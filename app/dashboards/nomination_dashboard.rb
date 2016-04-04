@@ -32,6 +32,7 @@ class NominationDashboard < Administrate::BaseDashboard
     :award,
     :show,
     :weight,
+    :approved,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
