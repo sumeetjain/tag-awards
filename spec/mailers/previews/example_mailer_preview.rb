@@ -3,4 +3,7 @@ class ExampleMailerPreview < ActionMailer::Preview
   def nom_period_email_preview
     ExampleMailer.nomination_period_email(User.first)
   end
+  def sample_mail_preview
+    ExampleMailer.sample_email(User.first)
+  end
 end
