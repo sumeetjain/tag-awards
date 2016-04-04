@@ -13,7 +13,6 @@ class UserDashboard < Administrate::BaseDashboard
     last_name: Field::String,
     email: Field::String,
     password: Field::String,
-    banana: Field::String,
     admin: Field::Boolean,
   }
 
