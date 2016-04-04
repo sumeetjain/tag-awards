@@ -61,10 +61,26 @@ RSpec.describe User, type: :model do
       @user1 = User.new
       @user1.id = 1
       @user1.save
-
       value3 = {"theater"=>"Shelterbelt", "show"=>"Next to Normal", "nominee"=>"Grace Bydalek", "role"=>"Natalie"}
 
       assert_equal(true, @user1.save_nomination_object(1, 1, value3))
+    end
+  end
+
+  describe "#set_voter_token" do
+    it "assigns token to the current user" do
+      @user1 = User.new
+      @user1.id = 1
+      @user1.save
+      @test_token = @user1.send(:generate_token)
+      @user1.voter_token = @test_token
+
+      assert_equal(@test_token, @user1.voter_token)
+    end
+  end
+
+  describe "#generate_token" do
+    it "" do
     end
   end
 
