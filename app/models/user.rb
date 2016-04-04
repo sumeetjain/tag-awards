@@ -52,19 +52,28 @@ class User < ActiveRecord::Base
           if value3["theater"] == "" || value3["nominee"] == ""
             next
           elsif
-            @new_nom = Nomination.new
-            @new_nom.user_id = user_id
-            @new_nom.award_id = @current_award
-            @new_nom.open = true
-            @new_nom.theater = value3["theater"]
-            @new_nom.nominee = value3["nominee"]
-            @new_nom.role = value3["role"]
-            @new_nom.show = value3["show"]
-            @new_nom.save
+            save_nomination_object(user_id, @current_award, value3)
           end
         end
       end
     end
+  end
+
+  #saves object of nomination entered by user
+  #
+  #takes in Integer of user_id, Integer of award id, and Collection of Hashes from nested nominations_hash
+  #
+  #returns nil
+  def save_nomination_object(user_id, current_award, value3)
+    @new_nom = Nomination.new
+    @new_nom.user_id = user_id
+    @new_nom.award_id = current_award
+    @new_nom.open = true
+    @new_nom.theater = value3["theater"]
+    @new_nom.nominee = value3["nominee"]
+    @new_nom.role = value3["role"]
+    @new_nom.show = value3["show"]
+    @new_nom.save
   end
   
   private

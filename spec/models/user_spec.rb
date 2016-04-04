@@ -38,5 +38,8 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#record_nominations" do
+    context "" do
+      it "" do
 
 end
