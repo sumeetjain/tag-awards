@@ -25,13 +25,13 @@ It renders the `_table` partial to display details about the resources.
   <%= display_resource_name(page.resource_name) %>
 <% end %>
 <br>
-<form action="/send/email/nominations" method="post">
-    <input type="submit" value="Send 'Nominations Open' Emails">
-</form>
+<%= form_tag('/send/email/nominations') do %>
+  <input type="submit" value="Send 'Nominations Open' Emails">
+<% end %>
 <br>
-<form action="/send/email/ballots" method="post">
-    <input type="submit" value="Send 'Ballots Available' Emails">
-</form>
+<%= form_tag('/send/email/ballots') do %>
+  <input type="submit" value="Send 'Ballots Available' Emails">
+<% end %>
 
 <% content_for(:search) do %>
   <form class="search">
