@@ -24,9 +24,14 @@ It renders the `_table` partial to display details about the resources.
 <% content_for(:title) do %>
   <%= display_resource_name(page.resource_name) %>
 <% end %>
-
-<a href="/">Click here to send "Nominations Open" email to all users</a><br>
-<a href="/">Click here to send "Ballots Available" email to all users</a><br>
+<br>
+<form action="/" method="post">
+    <input type="submit" value="Send 'Nominations Open' Emails">
+</form>
+<br>
+<form action="/" method="post">
+    <input type="submit" value="Send 'Ballots Available' Emails">
+</form>
 
 <% content_for(:search) do %>
   <form class="search">
