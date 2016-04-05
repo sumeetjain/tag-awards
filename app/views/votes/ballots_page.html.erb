@@ -9,13 +9,10 @@
   end
  -->
 
-<% @approved_nominations.each do |nom| %>
-  <% if nom.approved %>
-   <h2> <%= nom.award.award_name %> </h2>
-          Nominee: <%= nom.nominee %> <br>
-          Role: <%= nom.role %> <br> 
-          Play: <%= nom.show %> <br> 
-          Theater: <%= nom.theater %> <br>
-  <% else %>
-  <% end %>
+<% @approved_ballots.each do |ballot| %>
+ <h2> <%= nom.award.award_name %> </h2>
+    Nominee: <%= ballot.nominee %> <br>
+    Role: <%= ballot.role %> <br> 
+    Play: <%= ballot.find_by_play_id(self.play_id).title %> <br>
+    Theater: <%= ballot.find_by_play_id(self.play_id).theater %> <br>
 <% end %>
