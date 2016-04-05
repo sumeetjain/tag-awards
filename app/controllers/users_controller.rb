@@ -59,6 +59,11 @@ class UsersController < ApplicationController
   end
 
   def ballot_email
+    users = User.all
+    users.each do |user|
+      BallotMailer.ballot_email(user).deliver_now
+    end
+    redirect_to "/admin", :notice => "Ballot emails have now been sent!"
   end
 
 end

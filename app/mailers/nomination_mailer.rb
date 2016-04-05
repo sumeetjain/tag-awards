@@ -6,5 +6,6 @@ class NominationMailer < ApplicationMailer
     @url  = 'http://theatreartsguild.com/awards'    
     mail(to: @user.email, 
       subject: 'TAG Awards 2016 Nominations Are Open!')
-    end
   end
+end
+
