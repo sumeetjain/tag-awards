@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :theaters
     resources :viewings
     resources :votes
-
+    
     root to: "users#index"
   end
 
