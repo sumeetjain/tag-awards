@@ -24,5 +24,4 @@ class Nomination < ActiveRecord::Base
     return sorted_noms
   end
 
-
 end

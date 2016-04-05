@@ -9,7 +9,7 @@
   end
  -->
 
-<% @nominations.each do |nom| %>
+<% @approved_nominations.each do |nom| %>
   <% if nom.approved %>
    <h2> <%= nom.award.award_name %> </h2>
           Nominee: <%= nom.nominee %> <br>

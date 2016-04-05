@@ -15,5 +15,8 @@ module Admin
 
     # See https://administrate-docs.herokuapp.com/customizing_controller_actions
     # for more information
+    def ballots_page
+      approved_ballots
+    end
   end
 end
