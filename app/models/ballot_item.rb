@@ -3,10 +3,11 @@ class BallotItem < ActiveRecord::Base
 belongs_to :award
 belongs_to :play
 
-# play_id == convergence of play title and theater
-  def self.approved_ballots
+
+
+  def self.top_ballots
     ballot = BallotItem.new
-    approved_nominations = Nomination.where({"approved" => true})
+    approved_nominations = 
 
     approved_nominations.each do |nom|
       ballot.nominee  = nom.nominee
@@ -16,6 +17,5 @@ belongs_to :play
 
       ballot.save
     end
-  end 
-
+  end
 end

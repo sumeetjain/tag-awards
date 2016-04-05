@@ -24,4 +24,11 @@ class Nomination < ActiveRecord::Base
     return sorted_noms
   end
 
+  def self.approved_nominations
+    self.where({"approved" => true})
+  end
+
+  def ranked_nominations
+    
+  end
 end
