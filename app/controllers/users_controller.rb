@@ -50,4 +50,10 @@ class UsersController < ApplicationController
     redirect_to "/users/home", :notice => "Your settings have been changed!"
   end
 
+  def nominations_email
+  end
+
+  def ballot_email
+  end
+
 end
