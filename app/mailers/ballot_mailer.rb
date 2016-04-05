@@ -1,0 +1,2 @@
+class BallotMailer < ApplicationMailer
+end

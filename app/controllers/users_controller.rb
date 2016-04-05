@@ -50,7 +50,12 @@ class UsersController < ApplicationController
     redirect_to "/users/home", :notice => "Your settings have been changed!"
   end
 
-  def nominations_email
+  def nomination_email
+    users = User.all
+    users.each do |user|
+      NominationMailer.nomination_email(user).deliver_now
+    end
+    redirect_to "/admin", :notice => "Nomination emails have now been sent!"
   end
 
   def ballot_email
