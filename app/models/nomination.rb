@@ -23,4 +23,23 @@ class Nomination < ActiveRecord::Base
     sorted_noms = all_noms.sort_by {|nom| nom.weight}
     return sorted_noms
   end
+
+  # def self.approved_nominations
+  #   self.where({"approved" => true})
+  # end
+
+  def self.ranked_nominations
+    approved_noms = self.where({"approved" => true})
+    identical_noms = []
+    final_noms = []
+
+    approved_noms.each do |nom|
+      identical_noms << approved_noms.where("nominee == ? AND role == ? AND award_id == ? AND theater == ? AND show == ?", nom.nominee, nom.role, nom.award_id, nom.theater, nom.show)
+    end
+    identical_noms
+  end
+
+  def self.duplicate_noms
+    self.where({"approved" => true}).select(:nominee,:role,:award_id,:theater,:show).group(:nominee,:role,:award_id,:theater,:show).having("count(*) > 1")
+  end
 end
