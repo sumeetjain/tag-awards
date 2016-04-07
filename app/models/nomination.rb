@@ -24,9 +24,9 @@ class Nomination < ActiveRecord::Base
     return sorted_noms
   end
 
-  # def self.approved_nominations
-  #   self.where({"approved" => true})
-  # end
+  def self.approved_nominations
+    self.where({"approved" => true})
+  end
 
   def self.ranked_nominations
     approved_noms = self.where({"approved" => true})
@@ -40,6 +40,7 @@ class Nomination < ActiveRecord::Base
   end
 
   def self.duplicate_noms
-    self.where({"approved" => true}).select(:nominee,:role,:award_id,:theater,:show).group(:nominee,:role,:award_id,:theater,:show).having("count(*) > 1")
+    self.approved_nominations.select(:nominee,:role,:award_id,:theater,:show).group(:nominee,:role,:award_id,:theater,:show).select("count(*) AS count").having("count(*) > 1")
   end
+
 end
