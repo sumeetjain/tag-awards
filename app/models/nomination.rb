@@ -52,7 +52,8 @@ class Nomination < ActiveRecord::Base
 
     self.duplicate_noms.each do |nom|
       # array of all of the weights of all users who submitted nominations for this nominee
-      user_weights = Nomination.where(nominee: nom.nominee, role: nom.role, award_id: nom.award_id, theater: nom.theater, show: nom.show).joins(:users).pluck("users.weight")
+      user_weights = Nomination.where(nominee: nom.nominee, role: nom.role, award_id: nom.award_id, theater: nom.theater, show: nom.show).joins(:user).pluck("users.weight")
+
 
       # sum the array. that's the total weight for all of these nominations.
       x[nom] = user_weights.sum * nom.count
