@@ -25,20 +25,20 @@ class Nomination < ActiveRecord::Base
   end
 
   # Defines an 'approved nomination' as one having its approved attribute set to 'true' by the Admin
-  def self.approved_nominations
+  def self.approved_by_admin
     self.where({"approved" => true})
   end
 
   # Identifies nominations sharing identical attributes (nominee, role, award_id, theater, show)
-  def self.duplicate_nominations
-    self.approved_nominations.select(:nominee,:role,:award_id,:theater,:show).group(:nominee,:role,:award_id,:theater,:show).select("count(*) AS count").having("count(*) > 1")
+  def self.duplicates
+    self.approved_by_admin.select(:nominee,:role,:award_id,:theater,:show).group(:nominee,:role,:award_id,:theater,:show).select("count(*) AS count").having("count(*) > 1")
   end
 
   # Returns a hash with keys of single iterations of duplicate nominations (as found by the above method 'duplicate_noms') and values of that nomination's weight as defined by users' weights (who made the nominations) and how many times that nomination occurs
-  def self.ranked_nominations
+  def self.ranked_by_weight
     ranks = {}
 
-    self.duplicate_nominations.each do |nom|
+    self.duplicates.each do |nom|
       # array of all of the weights of all users who submitted nominations for this nominee
       user_weights = Nomination.where(nominee: nom.nominee, role: nom.role, award_id: nom.award_id, theater: nom.theater, show: nom.show).joins(:user).pluck("users.weight")
 
