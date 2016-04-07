@@ -30,11 +30,11 @@ class Nomination < ActiveRecord::Base
 
   def self.ranked_nominations
     approved_noms = self.where({"approved" => true})
-    identical_noms = []
+    identical_noms = {}
     final_noms = []
 
     approved_noms.each do |nom|
-      identical_noms << approved_noms.where("nominee == ? AND role == ? AND award_id == ? AND theater == ? AND show == ?", nom.nominee, nom.role, nom.award_id, nom.theater, nom.show)
+      identical_noms[nom.id] = approved_noms.where("nominee == ? AND role == ? AND award_id == ? AND theater == ? AND show == ?", nom.nominee, nom.role, nom.award_id, nom.theater, nom.show)
     end
     identical_noms
   end
