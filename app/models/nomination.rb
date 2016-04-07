@@ -24,23 +24,41 @@ class Nomination < ActiveRecord::Base
     return sorted_noms
   end
 
+  # NOT BEING USED. JUST TESTING
+  # def self.ranked_nominations
+  #   approved_noms = self.where({"approved" => true})
+  #   identical_noms = {}
+  #   final_noms = []
+
+  #   approved_noms.each do |nom|
+  #     identical_noms[nom.id] = approved_noms.where("nominee == ? AND role == ? AND award_id == ? AND theater == ? AND show == ?", nom.nominee, nom.role, nom.award_id, nom.theater, nom.show)
+  #   end
+  #   identical_noms
+  # end
+
+  # Defines an 'approved nomination' as one having its approved attribute set to 'true' by the Admin
   def self.approved_nominations
     self.where({"approved" => true})
   end
 
-  def self.ranked_nominations
-    approved_noms = self.where({"approved" => true})
-    identical_noms = {}
-    final_noms = []
-
-    approved_noms.each do |nom|
-      identical_noms[nom.id] = approved_noms.where("nominee == ? AND role == ? AND award_id == ? AND theater == ? AND show == ?", nom.nominee, nom.role, nom.award_id, nom.theater, nom.show)
-    end
-    identical_noms
-  end
-
+  # Identifies nominations sharing identical attributes (nominee, role, award_id, theater, show)
   def self.duplicate_noms
     self.approved_nominations.select(:nominee,:role,:award_id,:theater,:show).group(:nominee,:role,:award_id,:theater,:show).select("count(*) AS count").having("count(*) > 1")
+  end
+
+  # Returns a hash with keys of single iterations of duplicate nominations (as found by the above method 'duplicate_noms') and values of that nomination's weight as defined by users' weights (who made the nominations) and how many times that nomination occurs
+  def self.final_hash
+    x = {}
+
+    self.duplicate_noms.each do |nom|
+      # array of all of the weights of all users who submitted nominations for this nominee
+      user_weights = Nomination.where(nominee: nom.nominee, role: nom.role, award_id: nom.award_id, theater: nom.theater, show: nom.show).joins(:users).pluck("users.weight")
+
+      # sum the array. that's the total weight for all of these nominations.
+      x[nom] = user_weights.sum * nom.count
+    end
+
+    x
   end
 
 end
