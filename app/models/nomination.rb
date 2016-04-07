@@ -45,7 +45,7 @@ class Nomination < ActiveRecord::Base
       # sum the array. that's the total weight for all of these nominations.
       ranks[nom] = user_weights.sum * nom.count
     end
-    ranks
+    ranks.sort_by{|k,v| v}.reverse.to_h
   end
 
 end
