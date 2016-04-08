@@ -17,17 +17,19 @@
       <div class="award_links_instructions">
         Click on any Award Category on this list to get the nomination ballot for that category. No searching needed. Let the right section come to you. 
       </div>
-      <% @awards.each do |award| %>
-        <li><a class="award_link" href="#<%= award.label%>"><%= award.award_name%></a></li>
-      <% end %>
+
+      <li><a class="award_link" href="#outstanding-musical">Outstanding Musical</a></li>
+      <li><a class="award_link" href="#lead-actor-musical">Lead Actor - Musical</a></li>
+      <li><a class="award_link" href="#lead-actress-musical">Lead Actress - Musical</a></li>
+      <li><a class="award_link" href="#support-actor-musical">Supporting Actor - Musical</a></li>
+      <li><a class="award_link" href="#support-actress-musical">Supporting Actress - Musical</a></li>
     </ul>
 
     <div class="nominations_form">
       <form action = "/noms/category_definition" method="post"> 
         <div class="award_nomination_category">
-          <% @awards.each do |award|%>
-            <h3 id="<%= award.label%>"><%= award.award_name %></h3>
-          <% end %>
+          <h3 id="outstanding-musical">Best Musical</h3>
+        
           <div class="award_nomination_row">
             Theater:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum">
             Nominee:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum">
