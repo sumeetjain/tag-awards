@@ -23,10 +23,8 @@ Rails.application.routes.draw do
   get "users/register/:voter_token" => 'users#set_password'
   post "users/set_password" => 'users#set_password'
   put "users/set_password_via_token" => 'users#update'
-
   devise_for :users, skip: [:registrations]
   #resources :passwords
-
   get "viewings/new" => 'viewings#new'
   post "viewings/create" => 'viewings#create'
   get "viewings/:id/edit" => 'viewings#edit'
@@ -34,20 +32,11 @@ Rails.application.routes.draw do
   get "viewings/index" => 'viewings#index'
   delete "viewings/delete" => 'viewings#delete'
   post "viewings/create/multiple" => 'viewings#create_multiple'
-  
-  'users#index'
-
-  root to: 'static_pages#home'
-
-  get "nominations" =>'static_pages#noms'
   get "nomination_ballot" => 'nominations#nomination_ballot'
   post "save_nominee" => 'nominations#save_nominee'
+  post "close_nominations" => 'nominations#close_nominations'
   get "nominations/index"
-
-  get "final_ballot" => 'static_pages#final_ballot'
-
   post "plays/create" => 'plays#create_play'
-
   get "votes/ballots_page" => 'votes#ballots_page'
 end
 

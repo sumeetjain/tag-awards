@@ -5,7 +5,7 @@ class Nomination < ActiveRecord::Base
 
   def weight
      weight = self.user.viewings.count
-     if weight <= 10
+    if weight <= 10
       return 1
     elsif weight >= 11 && weight <= 20
       return 2
@@ -23,7 +23,32 @@ class Nomination < ActiveRecord::Base
     sorted_noms = all_noms.sort_by {|nom| nom.weight}
     return sorted_noms
   end
-
+  #a class method to CLOSE nominations
+  #(triggered via the admin/users page)
+  #"open" boolean in nom table switched to false
+  def self.close_nominations
+    all_noms = self.all
+    all_noms.each do |nom|
+      nom.open = false
+      nom.save
+    end
+  end
+  #for testing purposes, to undo close_nominations
+  #(not triggered anywhere at this time)
+  #"open" boolean in nom table switched to true
+  def self.open_nominations
+    all_noms = self.all
+    all_noms.each do |nom|
+      nom.open = true
+      nom.save
+    end
+  end
+  def self.nominations_closed
+    closed_noms = Nomination.where(open: false)
+    if closed_noms.length > 0
+      return true
+    end
+  end
   # Defines an 'approved nomination' as one having its approved attribute set to 'true' by the Admin
   def self.approved_by_admin
     self.where({"approved" => true})
@@ -47,5 +72,4 @@ class Nomination < ActiveRecord::Base
     end
     ranks.sort_by{|k,v| v}.reverse.to_h
   end
-
 end

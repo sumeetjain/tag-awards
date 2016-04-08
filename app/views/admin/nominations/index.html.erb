@@ -24,6 +24,11 @@ It renders the `_table` partial to display details about the resources.
 <% content_for(:title) do %>
   <%= display_resource_name(page.resource_name) %>
 <% end %>
+<br>
+<%= form_tag('/close_nominations') do %>
+  <input type="submit" value="CLOSE ONLINE NOMINATIONS">
+<% end %>
+<br>
 
 <% content_for(:search) do %>
   <form class="search">
