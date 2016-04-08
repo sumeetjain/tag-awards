@@ -5,7 +5,7 @@ class Nomination < ActiveRecord::Base
 
   def weight
      weight = self.user.viewings.count
-     if weight <= 10
+    if weight <= 10
       return 1
     elsif weight >= 11 && weight <= 20
       return 2
@@ -24,5 +24,25 @@ class Nomination < ActiveRecord::Base
     return sorted_noms
   end
 
+  def self.close_nominations
+    all_noms = self.all
+    all_noms.each do |nom|
+      nom.open = false
+      nom.save
+    end
+  end
+  def self.open_nominations
+    all_noms = self.all
+    all_noms.each do |nom|
+      nom.open = true
+      nom.save
+    end
+  end
 
+  def self.nominations_closed
+    closed_noms = Nomination.where(open: false)
+    if closed_noms.length > 0
+      return true
+    end
+  end
 end
