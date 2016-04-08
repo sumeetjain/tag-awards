@@ -9,13 +9,11 @@
   end
  -->
 
-
-    <% @awards.each do |award| %>
-     <h2> <%= award.award_name %> </h2>
-          <% award.ballot_items.each do |item| %>
-            Nominee: <%= item.nominee %> <br>
-            Role: <%= item.role %> <br> 
-            Play: <%= item.play.title %> <br> 
-            Theater: <%= item.play.theater.name %> <br>
-            <% end %>
-          <% end %>
+<!-- NOT TO BE USED. STILL WORKING ON FROM WHERE THIS INFORMATION IS TO BE DERIVED -->
+<% @approved_ballots.each do |ballot| %>
+ <h2> <%= nom.award.award_name %> </h2>
+    Nominee: <%= ballot.nominee %> <br>
+    Role: <%= ballot.role %> <br> 
+    Play: <%= ballot.find_by_play_id(self.play_id).title %> <br>
+    Theater: <%= ballot.find_by_play_id(self.play_id).theater %> <br>
+<% end %>

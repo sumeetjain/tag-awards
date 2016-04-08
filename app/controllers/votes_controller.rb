@@ -5,7 +5,10 @@ class VotesController < ApplicationController
   def ballots_page
     @all_ballot_items = BallotItem.all 
     # Really you'll want something like BallotItem.all.awards in case of rogue award categories.  
-    @awards = Award.all # This probably won't work in case there is a rogue ballot item that does not have an award_id.....TODO: Fix that. 
+    @awards = Award.all # This probably won't work in case there is a rogue ballot item that does not have an award_id.....TODO: Fix that.
+
+    # I think you'll want to use the Nomination model for this and reference awards via ActiveRecord relations
+    @nominations = Nomination.all
   end
 
 
