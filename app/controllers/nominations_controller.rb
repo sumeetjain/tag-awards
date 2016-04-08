@@ -9,7 +9,6 @@ class NominationsController < ApplicationController
       flash[:notice] = "Nominations have been closed for the 2016 TAG Awards."
     end
   end
-
   def close_nominations
     Nomination.close_nominations
     redirect_to "/admin/nominations", :notice => "Nominations are now closed! Online nomination ballots are no longer visible to your members"

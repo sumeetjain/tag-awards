@@ -21,178 +21,20 @@
         <li><a class="award_link" href="#<%= award.label%>"><%= award.award_name%></a></li>
       <% end %>
     </ul>
-
+#########THIS IS COURTNEY'S FORM
     <div class="nominations_form">
       <form action = "/noms/category_definition" method="post"> 
         <div class="award_nomination_category">
           <% @awards.each do |award|%>
             <h3 id="<%= award.label%>"><%= award.award_name %></h3>
-          <% end %>
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum">
-            Nominee:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum">
-            Role:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum">
-            Show:  <input type="text" name="awards[1][nominations[0][show]]" 
-                  value="Fiddler on the Roof">     
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[1][theater]]" value="The Rose">
-            Show:  <input type="text" name="awards[1][nominations[1][show]]" 
-                  value="Peter Pan">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[2][theater]]" value="">
-            Show:  <input type="text" name="awards[1][nominations[2][show]]" 
-                  value="">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[3][theater]]" value="">
-            Show:  <input type="text" name="awards[1][nominations[3][show]]" 
-                  value="">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[4][theater]]" value="">
-            Show:  <input type="text" name="awards[1][nominations[4][show]]" 
-            value="">
-          </div>
-        </div>
-
-        <div class="award_nomination_category">
-          <h3 id="lead-actor-musical">Lead Actor - Musical</h3>
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[0][theater]]" value="Orpheum">
-            Show:  <input type="text" name="awards[1][nominations[0][show]]" 
-                  value="Fiddler on the Roof">
-          </div>
-        
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[1][theater]]" value="The Rose">
-            Show:  <input type="text" name="awards[1][nominations[1][show]]" 
-                  value="Peter Pan">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[2][theater]]" value="">
-            Show:  <input type="text" name="awards[1][nominations[2][show]]" 
-                  value="">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[3][theater]]" value="">
-            Show:  <input type="text" name="awards[1][nominations[3][show]]" 
-                  value="">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[4][theater]]" value="">
-            Show:  <input type="text" name="awards[1][nominations[4][show]]" 
-            value="">
-          </div>
-        </div>
-
-        <div class="award_nomination_category">
-          <h3 id="lead-actress-musical">Lead Actress - Musical</h3>
-          
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[0][theater]]" value="Orpheum">
-           Show:  <input type="text" name="awards[1][nominations[0][show]]" 
-                  value="Fiddler on the Roof">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[1][theater]]" value="The Rose">
-            Show:  <input type="text" name="awards[1][nominations[1][show]]" 
-                  value="Peter Pan">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[2][theater]]" value="">
-            Show:  <input type="text" name="awards[1][nominations[2][show]]" 
-                  value="">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[3][theater]]" value="">
-            Show:  <input type="text" name="awards[1][nominations[3][show]]" 
-                  value="">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[4][theater]]" value="">
-            Show:  <input type="text" name="awards[1][nominations[4][show]]" 
-            value="">
-          </div>
-        </div>
-
-        <div class="award_nomination_category">
-          <h3 id="support-actor-musical">Supporting Actor - Musical</h3>
-          
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[0][theater]]" value="Orpheum">
-           Show:  <input type="text" name="awards[1][nominations[0][show]]" 
-                  value="Fiddler on the Roof">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[1][theater]]" value="The Rose">
-            Show:  <input type="text" name="awards[1][nominations[1][show]]" 
-                  value="Peter Pan">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[2][theater]]" value="">
-            Show:  <input type="text" name="awards[1][nominations[2][show]]" 
-                  value="">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[3][theater]]" value="">
-            Show:  <input type="text" name="awards[1][nominations[3][show]]" 
-                  value="">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[4][theater]]" value="">
-            Show:  <input type="text" name="awards[1][nominations[4][show]]" 
-            value="">
-          </div>
-        </div>
-
-        <div class="award_nomination_category">
-          <h3 id="support-actress-musical">Supporting Actress - Musical</h3>
             <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[0][theater]]" value="Orpheum">
-            Show:  <input type="text" name="awards[1][nominations[0][show]]" 
-                  value="Fiddler on the Roof">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[1][theater]]" value="The Rose">
-            Show:  <input type="text" name="awards[1][nominations[1][show]]" 
-                  value="Peter Pan">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[2][theater]]" value="">
-            Show:  <input type="text" name="awards[1][nominations[2][show]]" 
-                  value="">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[3][theater]]" value="">
-            Show:  <input type="text" name="awards[1][nominations[3][show]]" 
-                  value="">
-          </div>
-
-          <div class="award_nomination_row">
-            Theater:  <input class="theater_input" name="awards[1][nominations[4][theater]]" value="">
-            Show:  <input type="text" name="awards[1][nominations[4][show]]" 
-            value="">
-          </div>
+              Theater:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum"><br>
+              Nominee:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum"><br>
+              Role:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum"><br>
+              Show:  <input type="text" name="awards[1][nominations[0][show]]" 
+                    value="Fiddler on the Roof">     
+            </div>
+          <% end%>
         </div>
       </form>
     </div>
