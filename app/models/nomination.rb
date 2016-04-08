@@ -43,15 +43,12 @@ class Nomination < ActiveRecord::Base
       nom.save
     end
   end
-
-<<<<<<< HEAD
   def self.nominations_closed
     closed_noms = Nomination.where(open: false)
     if closed_noms.length > 0
       return true
     end
   end
-=======
   # Defines an 'approved nomination' as one having its approved attribute set to 'true' by the Admin
   def self.approved_by_admin
     self.where({"approved" => true})
@@ -75,6 +72,4 @@ class Nomination < ActiveRecord::Base
     end
     ranks.sort_by{|k,v| v}.reverse.to_h
   end
-
->>>>>>> master
 end
