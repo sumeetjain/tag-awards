@@ -2,11 +2,18 @@ class NominationsController < ApplicationController
 
   def nomination_ballot
     if Nomination.nominations_closed == true
-      redirect_to "users/home", :notice => "Nominations have been closed for the 2016 TAG Awards."
+      redirect_to "users/home"
+      flash[:notice] = "Nominations have been closed for the 2016 TAG Awards."
+
     else
       @awards = Award.all
       @users_prev_noms = Nomination.where("user_id" => current_user.id)
     end
+  end
+
+  def close_nominations
+    Nomination.close_nominations
+    redirect_to "/admin/nominations", :notice => "Nominations are now closed! Online nomination ballots are no longer visible to your members"
   end
 
   def save_nominee

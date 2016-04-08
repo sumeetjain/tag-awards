@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   get "nominations" =>'static_pages#noms'
   get "nomination_ballot" => 'nominations#nomination_ballot'
   post "save_nominee" => 'nominations#save_nominee'
+  post "close_nominations" => 'nominations#close_nominations'
   get "nominations/index"
 
   get "final_ballot" => 'static_pages#final_ballot'

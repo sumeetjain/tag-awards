@@ -23,7 +23,9 @@ class Nomination < ActiveRecord::Base
     sorted_noms = all_noms.sort_by {|nom| nom.weight}
     return sorted_noms
   end
-
+  #a class method to CLOSE nominations
+  #(triggered via the admin/users page)
+  #"open" boolean in nom table switched to false
   def self.close_nominations
     all_noms = self.all
     all_noms.each do |nom|
@@ -31,6 +33,9 @@ class Nomination < ActiveRecord::Base
       nom.save
     end
   end
+  #for testing purposes, to undo close_nominations
+  #(not triggered anywhere at this time)
+  #"open" boolean in nom table switched to true
   def self.open_nominations
     all_noms = self.all
     all_noms.each do |nom|
