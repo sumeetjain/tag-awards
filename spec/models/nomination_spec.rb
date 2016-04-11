@@ -21,5 +21,4 @@ RSpec.describe Nomination, type: :model do
   end
 
 
-
 end
