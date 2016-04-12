@@ -63,7 +63,7 @@ class Nomination < ActiveRecord::Base
       @ballot_item.weight = weight
       @ballot_item.approved = false
       @ballot_item.play_id  = Play.find_by_title(nom.show).id
-      
+      binding.pry
       @ballot_item.save
     end
   end  
