@@ -1,3 +1,4 @@
+<%if session[:nominations_closed] == false%>
 <div class="nomination_ballot_container">
   <header> 
     <div class="clear">
@@ -91,3 +92,7 @@
     </div> <!-- closes nom_form div -->
   </div> <!-- closes 'container' div -->
 </div> <!-- closes nom ballot container -->
+<% else %>
+  <H1>We're sorry! Nominations are now closed for the 2016 TAG Awards!</H1>
+  <h2>Thank you to everyone who voted. Ballots for final voting will be available soon!</h2>
+<% end %>
