@@ -21,22 +21,26 @@
         <li><a class="award_link" href="#<%= award.label%>"><%= award.award_name%></a></li>
       <% end %>
     </ul>
-#########THIS IS COURTNEY'S FORM
     <div class="nominations_form">
-      <form action = "/noms/category_definition" method="post"> 
+      <%= form_for :nomination, url: {controller: "nominations", action: "save_nominee"} do |n| %>   
         <div class="award_nomination_category">
           <% @awards.each do |award|%>
             <h3 id="<%= award.label%>"><%= award.award_name %></h3>
             <div class="award_nomination_row">
-              Theater:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum"><br>
-              Nominee:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum"><br>
-              Role:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum"><br>
-              Show:  <input type="text" name="awards[1][nominations[0][show]]" 
-                    value="Fiddler on the Roof">     
-            </div>
-          <% end%>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+              <% nomination_count = 0 %>  
+              <% while nomination_count <= 4 %>
+                Theater:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum"><br>
+                Nominee:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum"><br>
+                Role:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum"><br>
+                Show:  <input type="text" name="awards[1][nominations[0][show]]" 
+                    value="Fiddler on the Roof"> 
+                <br><br>
+                <% nomination_count += 1 %>
+              <% end %> <!-- ends nom count loop  -->        
+            </div> <!-- closes award nom row div -->
+          <% end%> <!-- closes award each loop -->
+        </div> <!-- closes award nomination category -->
+      <% end %><!--  ends nom form loop -->
+    </div> <!-- closes nom_form div -->
+  </div> <!-- closes 'container' div -->
+</div> <!-- closes nom ballot container -->
