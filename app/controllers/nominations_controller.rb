@@ -12,6 +12,7 @@ class NominationsController < ApplicationController
   def close_nominations
     Nomination.close_nominations
     redirect_to "/admin/nominations", :notice => "Nominations are now closed! Online nomination ballots are no longer visible to your members"
+    Nomination.create_ballot_item  
   end
 
   def save_nominee

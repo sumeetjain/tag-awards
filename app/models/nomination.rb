@@ -49,6 +49,25 @@ class Nomination < ActiveRecord::Base
       return true
     end
   end
+  # This method creates ballot items based on nominations ranked by weight, so table will automatically populate with ballot items.
+
+  def self.create_ballot_item
+    nomination = self.ranked_by_weight
+
+
+    nomination.each do |nom,weight|
+      @ballot_item = BallotItem.new
+      @ballot_item.nominee  = nom.nominee
+      @ballot_item.role     = nom.role
+      @ballot_item.award_id = nom.award_id
+      # @ballot_item.weight = weight
+      # @ballot_item.approved = false
+      @ballot_item.play_id  = Play.find_by_title(nom.show).id
+      
+      @ballot_item.save
+    end
+  end  
+
   # Defines an 'approved nomination' as one having its approved attribute set to 'true' by the Admin
   def self.approved_by_admin
     self.where({"approved" => true})

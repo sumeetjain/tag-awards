@@ -16,9 +16,4 @@ module Admin
     # See https://administrate-docs.herokuapp.com/customizing_controller_actions
     # for more information
 
-    def index
-      super
-      BallotItem.create_ballot_item
-    end 
-  end
 end
