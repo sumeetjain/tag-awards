@@ -87,7 +87,7 @@ class Nomination < ActiveRecord::Base
       user_weights = Nomination.where(nominee: nom.nominee, role: nom.role, award_id: nom.award_id, theater: nom.theater, show: nom.show).joins(:user).pluck("users.weight")
 
       # sum the array. that's the total weight for all of these nominations.
-      ranks[nom] = user_weights.sum * nom.count
+      ranks[nom] = user_weights.sum
     end
     ranks.sort_by{|k,v| v}.reverse.to_h
   end
