@@ -29,11 +29,16 @@
             <div class="award_nomination_row">
               <% nomination_count = 0 %>  
               <% while nomination_count <= 4 %>
-                Theater:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum"><br>
-                Nominee:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum"><br>
-                Role:  <input class="theater_input" type="text" name="awards[1][nominations[0][theater]]" value="Orpheum"><br>
-                Show:  <input type="text" name="awards[1][nominations[0][show]]" 
-                    value="Fiddler on the Roof"> 
+                <% if award.relevant_fields != 1 %>
+                  Theater:  <input class="theater_input" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(award.id, nomination_count, "theater")%>">
+                  Show:  <input type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][show]]" value="<%= current_user.nomination_value(award.id, nomination_count, "show") %>">
+                <%end%>
+                <% if award.relevant_fields >= 3 || award.relevant_fields == 1 %>
+                  Nominee:  <input class="theater_input" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][nominee]]" value="<%= current_user.nomination_value(award.id, nomination_count, "nominee") %>">
+                <% end%>
+                <% if award.relevant_fields >= 4 %>
+                  Role:  <input class="theater_input" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][role]]" value="<%= current_user.nomination_value(award.id, nomination_count, "role") %>">
+                <% end %>
                 <br><br>
                 <% nomination_count += 1 %>
               <% end %> <!-- ends nom count loop  -->        
