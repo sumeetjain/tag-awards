@@ -20,6 +20,7 @@ class NominationsController < ApplicationController
   end
  
   def index
+    @ranked_noms = Nomination.ranked_by_weight
     @nominations = Nomination.all
     #@sorted_nominations = Nomination.rank_by_voter_weight
     @awards = Award.all

@@ -10,10 +10,10 @@
  -->
 
 <!-- NOT TO BE USED. STILL WORKING ON FROM WHERE THIS INFORMATION IS TO BE DERIVED -->
-<% @approved_ballots.each do |ballot| %>
- <h2> <%= nom.award.award_name %> </h2>
+<% @ballot_item.each do |ballot| %>
+ <h2> <%= ballot.award.award_name %> </h2>
     Nominee: <%= ballot.nominee %> <br>
     Role: <%= ballot.role %> <br> 
-    Play: <%= ballot.find_by_play_id(self.play_id).title %> <br>
-    Theater: <%= ballot.find_by_play_id(self.play_id).theater %> <br>
+    Play: <%= Play.find_by_id(ballot.play_id).title %> <br>
+    Theater: <%= Play.find_by_id(ballot.play_id).theater %> <br>
 <% end %>
