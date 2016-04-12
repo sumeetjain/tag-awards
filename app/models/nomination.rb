@@ -60,8 +60,8 @@ class Nomination < ActiveRecord::Base
       @ballot_item.nominee  = nom.nominee
       @ballot_item.role     = nom.role
       @ballot_item.award_id = nom.award_id
-      # @ballot_item.weight = weight
-      # @ballot_item.approved = false
+      @ballot_item.weight = weight
+      @ballot_item.approved = false
       @ballot_item.play_id  = Play.find_by_title(nom.show).id
       
       @ballot_item.save
