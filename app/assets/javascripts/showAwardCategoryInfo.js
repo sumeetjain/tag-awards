@@ -26,7 +26,7 @@ window.addEventListener("load", function(){
   var showAwardInfo = document.getElementById("show_award_category_explanation");
 
   // Get the <span> element that closes the modal
-  var closeX = document.getElementsByClassName("close")[0];
+  var closeAwardInfo = document.getElementById("closeAwardInfo");
 
   // When the user clicks the button, open the modal 
   showAwardInfo.addEventListener("click", function() {
@@ -34,35 +34,40 @@ window.addEventListener("load", function(){
   });
 
   // When the user clicks on <span> (x), close the modal
-  closeX.addEventListener("click", function() {
+  closeAwardInfo.addEventListener("click", function() {
       awardInfoModal.style.display = "none";
   });
 
   // When the user clicks anywhere outside of the modal, close it
-  window.addEventListener("clicl", function(event) {
-      if (event.target == modal) {
+  window.addEventListener("click", function(event) {
+      if (event.target == awardInfoModal) {
           awardInfoModal.style.display = "none";
       }
   });
 
-  // var showSpecialAwards = document.getElementById("show_special_awards_text");
-     
-  // if (showSpecialAwards != null || showSpecialAwards != undefined){
-  //   showSpecialAwards.addEventListener("click", function() {
-  //     var showSpecialAwardsInfo = document.getElementById("showSpecialAwardsInfo");
+  var specialAwardModal = document.getElementById("showSpecialAwardsInfo");
 
-  //     showSpecialAwardsInfo.style.display = "block";
-  //     showSpecialAwards.style.display = "none";
+  // Get the button that opens the modal
+  var showSpecialInfo = document.getElementById("show_special_awards_text");
 
-  //     var hideSpecialText = document.getElementById("hide_special_awards_text");
-  //     hideSpecialText.style.display = "block";
+  // Get the <span> element that closes the modal
+  var closeSpecialInfo = document.getElementById("closeSpecialInfo");
 
-  //     hideSpecialText.addEventListener("click", function() {
-  //       showSpecialAwardsInfo.style.display = "none";
-  //       hideSpecialText.style.display = "none"; 
-  //       showSpecialAwards.style.display = "block";     
-  //     });      
-  //   });
-  // }
+  // When the user clicks the button, open the modal 
+  showSpecialInfo.addEventListener("click", function() {
+      specialAwardModal.style.display = "block";
+  });
+
+  // When the user clicks on <span> (x), close the modal
+  closeSpecialInfo.addEventListener("click", function() {
+      specialAwardModal.style.display = "none";
+  });
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.addEventListener("click", function(event) {
+      if (event.target == specialAwardModal) {
+          awardInfoModal.style.display = "none";
+      }
+  });
   
 });

@@ -27,7 +27,7 @@ x`<%if session[:nominations_closed] == false%>
       <a href="#" id="show_award_category_explanation" style="display: block">    Click Here for an Explanation of Award Categories</a>
       <div id="showAwardCategoryInfo" class="modal">
         <div class="modal-content">
-          <span class="close">×</span>
+          <span id="closeAwardInfo" class="close">×</span>
           <h2>Explanation of Award Categories</h2>
           <h3>Outstanding Musical/Drama/Comedy Productions</h3>
             For this award, judge the overall production quality, not the quality of the script, but rather the manner in which the production was presented (acting, costumes, makeup, props, sets, direction, lights, staging, etc.). Budget, facilities, theater size or professional staff, if any, should not   be a consideration.
@@ -46,26 +46,27 @@ x`<%if session[:nominations_closed] == false%>
         </div>
       </div>
     <a href="#" id="show_special_awards_text" style="display: block">Click Here for Info about TAG Special Awards</a>
-    <div id="showSpecialAwardsInfo" class="special_awards_text" style="display: none">
-    <h2>TAG SPECIAL AWARDS</h2>
-      The following are special TAG award categories. These award recipients are nominated by members of the theatre community. Special Awards Nominations may be submitted via email to <u>info@theatreartsguild.com</u> (Type <b>TAG AWARDS Special Award​s in</b> the subject line), <u>OR</u> by mail to: TAG Awards - Special Awards, c/o
-      Katie Cameron, 8134 S. 69th Street, La Vista, NE 68128 <u>OR</u> you may include it when you submit your TAG Nomination ballot (it will be separated out before your ballot is tabulated, so that you stay anonymous).
-      Please include in the nomination:<br>
-      ● Your name<br>
-      ● Your contact information - phone number and email address<br>
-      ● Which theatre organization you are affiliated with (if relevant)<br>
-      ● The name of the person you are nominating<br>
-      ● At least two paragraphs, typed in essay form, explaining why you are nominating the individual for the specific award and what their special qualities are.
-    <h3>THEATRE EDUCATOR AWARD</h2>
-      This award honors one individual who has shown outstanding achievement educating others about theatre, thereby enhancing their theatre knowledge, skills or understanding and enjoyment of the art. Please describe the achievements and attributes of the nominee with as much specificity as possible. A college trained teaching background is not a necessary requirement. The TAG Board of Directors will select a recipient from the nominations received, but reserves the right to not select a recipient during any given year. Only the award recipient(s) will be announced at the TAG Awards.
-    <h3>BACKSTAGE AWARD</h2>
-      This award honors outstanding achievement, by one or more individuals, in work backstage. The nomination should be based on evidence of perseverance and professionalism behind the scenes. All areas in the backstage work are eligible, including but not limited to: properties handling, set dressing, stage management, light operation, sound operation, dressing/makeup/hair assistance, construction work, etc.
-    <h3>YOUTH TECH AWARD</h2>
-      This award honors outstanding achievement, by one or more individuals, in work backstage ​<b><u>under 18​ years of age OR in high school​</u></b> at the time of the production. The nomination should be based on evidence of perseverance and professionalism behind the scenes. All areas in the backstage work are eligible, including but not limited to: properties handling, set dressing, stage management, light operation, sound operation, dressing/makeup/hair assistance, construction work, etc. The recipients of the Backstage​and Youth Tech Awards​will be selected by the Awards Committee, who reserves the right to not select a recipient during any given year. Only the award recipient(s) will be announced at the TAG Awards.<br>
+    <div id="showSpecialAwardsInfo" class="modal">
+      <div class="modal-content">
+        <span id="closeSpecialInfo" class="close">×</span>
+        <h2>TAG SPECIAL AWARDS</h2>
+          The following are special TAG award categories. These award recipients are nominated by members of the theatre community. Special Awards Nominations may be submitted via email to <u>info@theatreartsguild.com</u> (Type <b>TAG AWARDS Special Award​s in</b> the subject line), <u>OR</u> by mail to: TAG Awards - Special Awards, c/o
+          Katie Cameron, 8134 S. 69th Street, La Vista, NE 68128 <u>OR</u> you may include it when you submit your TAG Nomination ballot (it will be separated out before your ballot is tabulated, so that you stay anonymous).
+          Please include in the nomination:<br>
+          ● Your name<br>
+          ● Your contact information - phone number and email address<br>
+          ● Which theatre organization you are affiliated with (if relevant)<br>
+          ● The name of the person you are nominating<br>
+          ● At least two paragraphs, typed in essay form, explaining why you are nominating the individual for the specific award and what their special qualities are.
+        <h3>THEATRE EDUCATOR AWARD</h2>
+          This award honors one individual who has shown outstanding achievement educating others about theatre, thereby enhancing their theatre knowledge, skills or understanding and enjoyment of the art. Please describe the achievements and attributes of the nominee with as much specificity as possible. A college trained teaching background is not a necessary requirement. The TAG Board of Directors will select a recipient from the nominations received, but reserves the right to not select a recipient during any given year. Only the award recipient(s) will be announced at the TAG Awards.
+        <h3>BACKSTAGE AWARD</h2>
+          This award honors outstanding achievement, by one or more individuals, in work backstage. The nomination should be based on evidence of perseverance and professionalism behind the scenes. All areas in the backstage work are eligible, including but not limited to: properties handling, set dressing, stage management, light operation, sound operation, dressing/makeup/hair assistance, construction work, etc.
+        <h3>YOUTH TECH AWARD</h3>
+          This award honors outstanding achievement, by one or more individuals, in work backstage ​<b><u>under 18​ years of age OR in high school​</u></b> at the time of the production. The nomination should be based on evidence of perseverance and professionalism behind the scenes. All areas in the backstage work are eligible, including but not limited to: properties handling, set dressing, stage management, light operation, sound operation, dressing/makeup/hair assistance, construction work, etc. The recipients of the Backstage​and Youth Tech Awards​will be selected by the Awards Committee, who reserves the right to not select a recipient during any given year. Only the award recipient(s) will be announced at the TAG Awards.<br>
+        </div>
       </div>
 
-      <a href="#" id="hide_special_awards_text" style="display: none">Hide Special Awards Info</a>
-      <br>
       <%= form_for :nomination, url: {controller: "nominations", action: "save_nominee"} do |n| %>   
         <div class="award_nomination_category">
           <% @awards.each do |award|%>
