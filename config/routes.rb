@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   delete "viewings/delete" => 'viewings#delete'
   post "viewings/create/multiple" => 'viewings#create_multiple'
   get "nomination_ballot" => 'nominations#nomination_ballot'
+  get "ballot_helper" => 'nominations#index'
   post "save_nominee" => 'nominations#save_nominee'
   post "close_nominations" => 'nominations#close_nominations'
   get "nominations/index"

@@ -1,4 +1,6 @@
 
+
+<p>Final Ballots are not yet available. Please check back after you've received notification that nominations have been tallied.</p>
 <!--   create_table "ballot_items", force: :cascade do |t|
     t.string   "nominee"
     t.string   "role"
@@ -10,7 +12,7 @@
  -->
 
 <!-- NOT TO BE USED. STILL WORKING ON FROM WHERE THIS INFORMATION IS TO BE DERIVED -->
-<% @ballot_item.each do |ballot| %>
+<% @all_ballot_items.each do |ballot| %>
  <h2> <%= ballot.award.award_name %> </h2>
     Nominee: <%= ballot.nominee %> <br>
     Role: <%= ballot.role %> <br> 
