@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 # write methods named for each action here!
 
   def home
-    #@viewings = Viewing.where(params[:voter_token] => self.user.voter_token) #or something...ActiveRecord methods are currently escaping me.
+    #@viewings = Viewing.where(params[:secret_number] => self.user.secret_number) #or something...ActiveRecord methods are currently escaping me.
     # WE WON'T NEED LINE 8 BECAUSE ACTIVERECORD ASSOCIATIONS ARE AMAZING, BUT I DON'T WANT TO DELETE IT IN CASE RYAN IS USING THAT VARIABLE ON THE VIEW. CURRENTLY FIXING A MERGE CONFLICT.
     @plays = Play.all
     @award_categories = Award.all
@@ -11,19 +11,19 @@ class UsersController < ApplicationController
   
 
   #def set_password
-   # @user = User.find_by_voter_token(params[:voter_token])
+   # @user = User.find_by_secret_number(params[:secret_number])
   #end
 
   before_filter :authenticate_user!
   skip_before_filter :authenticate_user!, only: [:register, :set_password]
 
   def register
-    #@user = User.find_by_voter_token(params[:voter_token])
+    #@user = User.find_by_secret_number(params[:secret_number])
     #sign_in(@user)
   end
 
   def set_password
-    @user = User.find_by_voter_token(params[:voter_token])
+    @user = User.find_by_secret_number(params[:secret_number])
     sign_in(@user)
     @user = current_user
   end

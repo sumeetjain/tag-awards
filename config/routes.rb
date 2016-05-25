@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post "users/change_settings" => 'users#settings_changed'
   post "send/email/nominations" => 'users#nomination_email'
   post "send/email/ballots" => 'users#ballot_email'
-  get "users/register/:voter_token" => 'users#set_password'
+  get "users/register/:secret_number" => 'users#set_password'
   post "users/set_password" => 'users#set_password'
   put "users/set_password_via_token" => 'users#update'
   devise_for :users, skip: [:registrations]

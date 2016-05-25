@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
       it "generates a unique token" do
         user = User.create!(first_name: "Tom", last_name: "Hanks", password: "Password123", email: "tom@gmail.com")
         other_user = User.create!(first_name: "Fred", last_name: "Fred", password: "Password123", email: "fred@gmail.com")
-        expect(user.voter_token).to_not eq(other_user.voter_token)
+        expect(user.secret_number).to_not eq(other_user.secret_number)
       end
     end
   end
@@ -79,15 +79,15 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "#set_voter_token" do
+  describe "#set_secret_number" do
     it "assigns token to the current user" do
       @user1 = User.new
       @user1.id = 1
       @user1.save
-      @test_token = @user1.send(:set_voter_token)
+      @test_token = @user1.send(:set_secret_number)
       @user1.save
 
-      assert_equal(@test_token, @user1.voter_token)
+      assert_equal(@test_token, @user1.secret_number)
     end
   end
 
@@ -97,9 +97,9 @@ RSpec.describe User, type: :model do
       @user1.id = 1
       @user1.save
       @test_token = @user1.send(:generate_token)
-      @user1.voter_token = @test_token
+      @user1.secret_number = @test_token
       @user1.save
-      @token_length = @user1.voter_token.split('').length
+      @token_length = @user1.secret_number.split('').length
 
       assert_equal(@token_length, 6)
     end

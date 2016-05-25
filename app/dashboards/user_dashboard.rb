@@ -49,7 +49,7 @@ class UserDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(user)
-    #THIS WILL ULTIMATELY NEED TO DISPLAY voter_token, BUT I'M DOING NAME RIGHT NOW TO MAKE MY LIFE EASIER - AMY
+    #THIS WILL ULTIMATELY NEED TO DISPLAY secret_number, BUT I'M DOING NAME RIGHT NOW TO MAKE MY LIFE EASIER - AMY
     "#{user.first_name} #{user.last_name}"
   end
 end

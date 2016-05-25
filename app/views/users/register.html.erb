@@ -1,10 +1,10 @@
 <h3>Register</h3>
-<h4>You must register using your voter token and create a password in order to login, create nominations, and vote.</h4>
+<h4>You must register using your secret number and create a password in order to login, create nominations, and vote.</h4>
 <%= form_tag('/users/set_password') do %>
   <% if @user %>
-  <%= text_field_tag "voter_token", @user.voter_token %>
+  <%= text_field_tag "secret_number", @user.secret_number %>
   <% else %>
-  <%= text_field_tag "voter_token", "", placeholder: 'Enter Your Voter Token' %>
+  <%= text_field_tag "secret_number", "", placeholder: 'Enter Your Voter Token' %>
   <% end %>
   <%= submit_tag("Register Me")%>
 <% end %>
