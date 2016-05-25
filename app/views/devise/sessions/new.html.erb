@@ -13,8 +13,8 @@
     <div class="col-12 content-box">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, class: 'form-text-box' %>
+          <%= f.label :login, "Enter either your email address or secret number." %><br />
+          <%= f.text_field :login, autofocus: true, class: 'form-text-box' %>
         </div>
 
         <div class="field">
