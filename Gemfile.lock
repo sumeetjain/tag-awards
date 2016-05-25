@@ -284,7 +284,11 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.7.5)
+    rubyXL (3.3.18)
+      nokogiri (>= 1.4.4)
+      rubyzip (>= 1.1.6)
     rubysl-securerandom (2.0.0)
+    rubyzip (1.2.0)
     rugged (0.24.0)
     safe_yaml (1.0.4)
     sass (3.4.21)
@@ -392,6 +396,7 @@ DEPENDENCIES
   rails_stdout_logging
   recipient_interceptor
   rspec-rails (~> 3.4.0)
+  rubyXL
   rubysl-securerandom (~> 2.0)
   sass-rails (~> 5.0)
   shoulda-matchers
