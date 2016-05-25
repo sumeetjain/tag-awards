@@ -9,6 +9,9 @@ module Admin
     before_filter :authenticate_admin
 
     def authenticate_admin
+      if !current_user || !current_user.admin?
+        redirect_to :root, alert: "Not authorized"
+      end
       # TODO Add authentication logic here.
     end
 

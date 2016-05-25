@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     root to: "users#index"
   end
 
-  get "" => redirect("/users/home")
+  root to: "users#home"
   get "users/home" => 'users#home'
   get "users/register"
   get "users/settings_page" => 'users#settings_page'
