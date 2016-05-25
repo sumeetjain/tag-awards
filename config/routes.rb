@@ -1,7 +1,11 @@
 Rails.application.routes.draw do 
 
   namespace :admin do
-    resources :users
+    resources :users do
+      collection do
+        post "export/usernames_and_passwords" => 'users#export'
+      end
+    end
     resources :awards
     resources :ballot_items
     resources :nominations

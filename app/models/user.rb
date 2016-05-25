@@ -96,6 +96,16 @@ class User < ActiveRecord::Base
   def email_required?
     false
   end
+
+  def self.to_csv
+    attributes = %w[secret_number last_name first_name]
+
+    CSV.generate do |csv|
+      all.each do |user|
+        csv << user.attributes.values_at(*attributes)
+      end
+    end
+  end
   
   private
 

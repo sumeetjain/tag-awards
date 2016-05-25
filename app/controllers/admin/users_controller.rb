@@ -1,5 +1,14 @@
 module Admin
   class UsersController < Admin::ApplicationController
+    def export
+        @users = User.all
+
+        respond_to do |format|
+            format.html
+            format.csv { send_data @users.to_csv }
+        end
+    end
+
     # To customize the behavior of this controller,
     # simply overwrite any of the RESTful actions. For example:
     #
