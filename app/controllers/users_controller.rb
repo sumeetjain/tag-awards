@@ -23,9 +23,11 @@ class UsersController < ApplicationController
   end
 
   def set_password
-    @user = User.find_by_secret_number(params[:secret_number])
-    sign_in(@user)
-    @user = current_user
+    if @user = User.find_by_secret_number(params[:secret_number])
+      sign_in(@user)
+    else
+      redirect_to :root, alert: "No user found."
+    end
   end
 
   def update
