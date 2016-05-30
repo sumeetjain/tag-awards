@@ -38,8 +38,11 @@ class ViewingsController < ApplicationController
 
   def update
     @user = current_user
+    @user.viewings.destroy_all
 
-    @user.viewing_ids = params[:user] ? params[:user][:viewings] : []
+    if params[:user]
+      @user.viewings.create(params[:user][:viewings].map { |v| {play_id: v} })
+    end
 
     redirect_to :root, notice: "Viewings saved"
   end
