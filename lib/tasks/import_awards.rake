@@ -1,0 +1,32 @@
+task :import_awards => :environment do
+  Award.create([
+    {award_name: "Outstanding MUSICAL Production", relevant_fields: 2},
+    {award_name: "Outstanding Performance by an ACTOR in a LEADING ROLE – MUSICAL", relevant_fields: 4},
+    {award_name: "Outstanding Performance by an ACTOR in a SUPPORTING ROLE – MUSICAL", relevant_fields: 4},
+    {award_name: "Outstanding Performance by an ACTOR in a FEATURED ROLE – MUSICAL", relevant_fields: 4},
+    {award_name: "Outstanding Achievement in DIRECTING – MUSICAL", relevant_fields: 3},
+    {award_name: "Outstanding Performance by an ACTRESS in a LEADING ROLE – MUSICAL", relevant_fields: 4},
+    {award_name: "Outstanding Performance by an ACTRESS in a SUPPORTING ROLE – MUSICAL", relevant_fields: 4},
+    {award_name: "Outstanding Performance by an ACTRESS in a FEATURED ROLE – MUSICAL", relevant_fields: 4},
+    {award_name: "Outstanding DRAMA Production", relevant_fields: 2},
+    {award_name: "Outstanding Achievement in DIRECTING – COMEDY/DRAMA", relevant_fields: 3},
+    {award_name: "Outstanding Performance by an ACTOR in a LEADING ROLE – COMEDY/DRAMA", relevant_fields: 4},
+    {award_name: "Outstanding Performance by an ACTOR in a SUPPORTING ROLE – COMEDY/DRAMA", relevant_fields: 4},
+    {award_name: "Outstanding Performance by an ACTOR in a FEATURED ROLE – COMEDY/DRAMA", relevant_fields: 4},
+    {award_name: "Outstanding COMEDY Production", relevant_fields: 2},
+    {award_name: "Outstanding Performance by an ACTRESS in a LEADING ROLE – COMEDY/DRAMA", relevant_fields: 4},
+    {award_name: "Outstanding Performance by an ACTRESS in a SUPPORTING ROLE – COMEDY/DRAMA", relevant_fields: 4},
+    {award_name: "Outstanding Performance by an ACTRESS in a FEATURED ROLE – COMEDY/DRAMA", relevant_fields: 4},
+    {award_name: "Outstanding Achievement by a MUSICAL DIRECTOR", relevant_fields: 3},
+    {award_name: "Outstanding Achievement by a CHOREOGRAPHER", relevant_fields: 3},
+    {award_name: "Outstanding NEW SCRIPT", relevant_fields: 3},
+    {award_name: "Outstanding Performance by a YOUTH ACTOR", relevant_fields: 4},
+    {award_name: "Outstanding Performance by a YOUTH ACTRESS", relevant_fields: 4},
+    {award_name: "Outstanding Performance by an ENSEMBLE", relevant_fields: 4},
+    {award_name: "Outstanding Achievement in COSTUME DESIGN", relevant_fields: 3},
+    {award_name: "Outstanding Achievement in SET DESIGN", relevant_fields: 3},
+    {award_name: "Outstanding Achievement in LIGHTING DESIGN", relevant_fields: 3},
+    {award_name: "Outstanding Achievement in SOUND DESIGN", relevant_fields: 3},
+    {award_name: "Outstanding Achievement in PROPERTIES DESIGN", relevant_fields: 3}
+  ])
+end
