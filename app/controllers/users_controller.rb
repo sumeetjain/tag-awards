@@ -5,8 +5,7 @@ class UsersController < ApplicationController
   def home
     #@viewings = Viewing.where(params[:secret_number] => self.user.secret_number) #or something...ActiveRecord methods are currently escaping me.
     # WE WON'T NEED LINE 8 BECAUSE ACTIVERECORD ASSOCIATIONS ARE AMAZING, BUT I DON'T WANT TO DELETE IT IN CASE RYAN IS USING THAT VARIABLE ON THE VIEW. CURRENTLY FIXING A MERGE CONFLICT.
-    @plays = Play.all
-    @award_categories = Award.all
+    @plays = Play.includes(:theater).all
   end
   
 

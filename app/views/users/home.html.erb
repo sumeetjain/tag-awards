@@ -11,45 +11,25 @@
 
   <div class="clear content">
     <div class="col-12 content-box">
-      <div class="clear">
-        <div class="col-4">
-          <% if current_user.viewings != nil %>
-          <% current_user.viewings.each do |view|%>
-              <p><%= view.play.title%> </p>
-            <% end %>
-            <% else %>
-            No Viewings Recorded Yet.
-            <% end %>
-        </div>
 
-        <div class="col-4">
-          <% if current_user.viewings != nil %>
-          <% current_user.viewings.each do |view|%>
-              <p> <%= view.play.theater.name %> </p>
-            <% end %>
-            <% else %>
-            No Viewings Recorded Yet.
-            <% end %>
-        </div>
+      <%= form_for current_user, url: user_viewings_path do |f| %>
+        <% @plays.each do |p| %>
+          <p>
+            <label>
+              <%= f.check_box :viewings, {name: "user[viewings][]", id: nil, checked: current_user.has_viewed?(p)}, p.id, nil %>
+              <strong><%= p.title %></strong> (at <%= p.theater.name %>)
+            </label>
+          </p>
+        <% end %>
 
-        <div class="col-4">
-          <% if current_user.viewings != nil %>
-          <% current_user.viewings.each do |view|%>
-              <p> <%= view.date %> </p>
-            <% end %>
-            <% else %>
-            No Viewings Recorded Yet.
-            <% end %>
+        <div class="submit-button"> 
+          <p>
+            <%= f.submit "SUBMIT", class: "form-submit-button" %>
+          </p>
         </div>
+      <% end %>
 
-      </div>
     </div>
-  </div>
-
-
-  <div>
-    <a class="button" href="/viewings/new" target="_self">add show</a>
-    <a class="button" href="/viewings/index" target="_self">delete show</a>
   </div>
 
 </body>
