@@ -12,6 +12,7 @@ class NominationDashboard < Administrate::BaseDashboard
     award: Field::BelongsTo,
     show: Field::String,
     id: Field::Number,
+    theater: Field::String,
     nominee: Field::String,
     role: Field::String,
     open: Field::Boolean,
@@ -27,26 +28,26 @@ class NominationDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :id,
-    :nominee,
+    :user,
     :award,
+    :theater,
     :show,
-    :weight,
+    :nominee,
+    :role,
     :approved,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :id,
     :user,
     :award,
+    :theater,
     :show,
     :nominee,
     :role,
     :approved,
     :created_at,
-    :updated_at,
   ]
 
   # FORM_ATTRIBUTES
@@ -55,10 +56,10 @@ class NominationDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :user,
     :award,
+    :theater,
     :show,
     :nominee,
     :role,
-    :approved,
   ]
 
   # Overwrite this method to customize how nominations are displayed

@@ -13,6 +13,7 @@ class UserDashboard < Administrate::BaseDashboard
     last_name: Field::String,
     email: Field::String,
     password: Field::String,
+    secret_number: Field::String,
     admin: Field::Boolean,
   }
 
@@ -22,15 +23,14 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :id,
-    :email
+    :secret_number
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :id,
-    :email,
+    :secret_number,
     :admin,
   ]
 
@@ -38,9 +38,6 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :email,
-    :first_name,
-    :last_name,
     :password,
     :admin,
   ]
@@ -50,6 +47,6 @@ class UserDashboard < Administrate::BaseDashboard
   #
   def display_resource(user)
     #THIS WILL ULTIMATELY NEED TO DISPLAY secret_number, BUT I'M DOING NAME RIGHT NOW TO MAKE MY LIFE EASIER - AMY
-    "#{user.first_name} #{user.last_name}"
+    user.secret_number
   end
 end

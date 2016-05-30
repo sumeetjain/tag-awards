@@ -24,8 +24,6 @@ class ViewingDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :user,
     :play,
-    :id,
-    :date,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -45,7 +43,6 @@ class ViewingDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :user,
     :play,
-    :date,
   ]
 
   # Overwrite this method to customize how viewings are displayed

@@ -22,19 +22,15 @@ class PlayDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :theater,
-    :id,
     :title,
-    :created_at,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :theater,
-    :id,
     :title,
-    :created_at,
-    :updated_at,
+    :created_at
   ]
 
   # FORM_ATTRIBUTES
@@ -49,6 +45,6 @@ class PlayDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(play)
-    "#{play.title} -- #{play.theater.name}"
+    "#{play.title} (at #{play.theater.name})"
   end
 end
