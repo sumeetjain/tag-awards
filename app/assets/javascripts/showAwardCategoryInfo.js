@@ -1,4 +1,4 @@
-window.addEventListener("load", function(){
+$(document).ready(function(){
 
   var awardInfoModal = document.getElementById("showAwardCategoryInfo");
 
@@ -19,7 +19,7 @@ window.addEventListener("load", function(){
   });
 
   // If user clicks anywhere outside of the modal, close it
-  window.addEventListener("click", function(event) {
+  $("body").addEventListener("click", function(event) {
       if (event.target == awardInfoModal) {
           awardInfoModal.style.display = "none";
       }
@@ -44,7 +44,7 @@ window.addEventListener("load", function(){
   });
 
   // If user clicks anywhere outside of the modal, close it
-  window.addEventListener("click", function(event) {
+  $("body").addEventListener("click", function(event) {
       if (event.target == specialAwardModal) {
           awardInfoModal.style.display = "none";
       }

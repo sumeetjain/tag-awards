@@ -34,6 +34,8 @@ class UsersController < ApplicationController
     @user = current_user
     if params[:password] == params[:password_confirmation]
       @user.password = params[:password]
+      @user.save
+      sign_in(@user, :bypass => true)
       redirect_to "/users/home", :notice => "Your Password has been updated!"
     else 
       render :set_password, :notice => "Invalid Password Entry"
