@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   end
 
   def nomination_email
-    users = User.all
+    users = User.where('email IS NOT NULL')
     users.each do |user|
       NominationMailer.nomination_email(user).deliver_now
     end
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
   end
 
   def ballot_email
-    users = User.all
+    users = User.where('email IS NOT NULL')
     users.each do |user|
       BallotMailer.ballot_email(user).deliver_now
     end

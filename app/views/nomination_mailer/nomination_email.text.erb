@@ -1,8 +1,11 @@
-Hello, <%= @user.first_name %>
-  We are now accepting nominations for the 2016 TAG Awards!
-  NEW THIS YEAR! You choose which way you prefer to nominate! This email includes a link to register for online voting, or you can vote via the ballot that is being mailed to you. You may only vote ONE time. Submissions of both the online and mailed ballot will deem the nomination invalid.
-  Copy this link into your browser to set your password and begin the nomination process!
-  <%=@url%>/<%=@user.secret_number%>
+Hello <%= @user.first_name %>!,
 
+We are now accepting nominations for the 2016 TAG Awards!
+
+This email includes a link to register for online voting, or you can vote via the ballot that was sent to you via US Postal Service. Don't vote both ways! Pick whichever is most convenient for you, and do that.
+
+Copy this link into your browser to set your password and begin the nomination process!
+
+<%= secret_register_url(@user.secret_number) %>
 
 Thanks for your continued support of TAG and have a great day!
