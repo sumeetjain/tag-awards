@@ -15,26 +15,22 @@
       <div class="clear form">
         <!-- Performance Input Field -->
         <div class="col-6">
-          <%= form_tag('/viewings/create') do %>
-            <p>
-              <input type="text" class="form-textbox" name="play_id" size="20" value="" placeholder="Performance Name">
-            </p>
-        </div>
-        <!-- Date Input Field -->
-        <div class="col-6">
-          <p>
-            <input type="date" class="form-textbox" name="date">
-          </p>
-        </div>
-      </div>
-      <!-- Button child of content div-->
-      <div class="submit-button"> 
-        <p>
-          <button id="input_2" type="submit" class="form-submit-button">
-            SUBMIT
-          </button>
-        </p>
-        <% end %>
+          <%= form_for current_user, url: user_viewings_path do |f| %>
+            <% @plays.each do |p| %>
+              <p>
+                <label>
+                  <%= f.check_box :viewings, {name: "user[viewings][]", id: nil, checked: current_user.has_viewed?(p)}, p.id, nil %>
+                  <strong><%= p.title %></strong> (at <%= p.theater.name %>)
+                </label>
+              </p>
+            <% end %>
+
+            <div class="submit-button"> 
+              <p>
+                <%= f.submit "SUBMIT", class: "form-submit-button" %>
+              </p>
+            </div>
+          <% end %>
       </div>
     </div>
   </div>

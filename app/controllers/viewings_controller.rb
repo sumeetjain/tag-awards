@@ -6,19 +6,7 @@ class ViewingsController < ApplicationController
   end
 
   def new
-    #@plays will eventually be needed for auto-fill feature to help prevent User from being able to type in misspelled plays/theathers
-    #@plays = Play.all        
-    @plays = Play.all
-    @seen_plays = current_user.plays
-    # This is to get a collection of play objects that the current user has not seen. TODO: refactor or clean up with Association methods.
-    seen_plays_ids = []
-      @seen_plays.each do |p|
-        seen_plays_ids << p.id
-      end
-    @unseen_plays = Play.where.not(id: seen_plays_ids)
-    # The below is required because a new theater object must be passed to the view in order to make the form_for that gets rendered if a user wants to create a new play and/or theater.
-    @theater = Theater.new
-    @theaters = Theater.all
+    @plays = Play.includes(:theater).all
   end
 
 # Titled this action 'create_multiple' and left the 'create' that Ryan made so we have both options for adding new viewings and can decide which is preferred. 
@@ -49,10 +37,11 @@ class ViewingsController < ApplicationController
   end
 
   def update
-    @viewing = Viewing.find_by_id(params[:id])
-    @viewing.play_id = params["play_id"]
-    @viewing.date = params["date"]
-    @viewing.save    
+    @user = current_user
+
+    @user.viewing_ids = params[:user] ? params[:user][:viewings] : []
+
+    redirect_to :root, notice: "Viewings saved"
   end
 
   def delete

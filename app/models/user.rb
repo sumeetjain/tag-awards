@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
    has_many :nominations
    has_many :viewings
+   accepts_nested_attributes_for :viewings
+
    has_many :plays, through: :viewings
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -105,6 +107,10 @@ class User < ActiveRecord::Base
         csv << user.attributes.values_at(*attributes)
       end
     end
+  end
+
+  def has_viewed?(play)
+    viewings.pluck(:play_id).include?(play.id)
   end
   
   private

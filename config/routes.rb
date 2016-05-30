@@ -1,5 +1,7 @@
 Rails.application.routes.draw do 
 
+  patch "user/viewings" => 'viewings#update', as: :user_viewings
+
   namespace :admin do
     resources :users do
       collection do
