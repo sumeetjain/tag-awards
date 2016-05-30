@@ -89,13 +89,13 @@ task :import_theaters_and_shows_2016 => :environment do
       "Pete the Cat",
       "Ivy + Bean",
       "Palette of Possibility",
-      "Sherlock Holmes &amp; the 1st Baker Street Irregular",
+      "Sherlock Holmes & the 1st Baker Street Irregular",
       "Peter and the Star Catcher",
       "The Lightening Thief",
       "A Child's Garden of Verses",
       "Plastic Drastic",
       "Honk!",
-      "Elephant &amp; Piggie's We Are in Play",
+      "Elephant & Piggie's We Are in Play",
       "Disney's The Little Mermaid"
     ],
     "The Shelterbelt Theatre" => [
@@ -106,7 +106,7 @@ task :import_theaters_and_shows_2016 => :environment do
     ],
     "Southwest Iowa Theatre Group" => [
       "A Little Princess, the Musical",
-      "Dial "M" for Murder",
+      "Dial 'M' for Murder",
       "The Dixie Swim Club"
     ],
     "SNAP! Productions" => [
