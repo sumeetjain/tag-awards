@@ -27,11 +27,7 @@ class Nomination < ActiveRecord::Base
   #(triggered via the admin/users page)
   #"open" boolean in nom table switched to false
   def self.close_nominations
-    all_noms = self.all
-    all_noms.each do |nom|
-      nom.open = false
-      nom.save
-    end
+    self.update_all(open: false)
   end
   #for testing purposes, to undo close_nominations
   #(not triggered anywhere at this time)
