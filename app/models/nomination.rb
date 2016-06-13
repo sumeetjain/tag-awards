@@ -40,10 +40,7 @@ class Nomination < ActiveRecord::Base
     end
   end
   def self.nominations_closed
-    closed_noms = Nomination.where(open: false)
-    if closed_noms.length > 0
-      return true
-    end
+    Nomination.where(open: false).count > 0
   end
   # This method creates ballot items based on nominations ranked by weight, so table will automatically populate with ballot items.
 
