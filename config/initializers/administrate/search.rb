@@ -4,7 +4,11 @@ module Administrate
       if @term.blank?
         resource_class.all
       else
-        Nomination.full_search(term)
+        if resource_class.respond_to?(:full_search)
+          resource_class.full_search(term)
+        else
+          resource_class.where(query, *search_terms)
+        end
       end
     end
   end
