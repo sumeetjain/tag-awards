@@ -1,4 +1,7 @@
 class Nomination < ActiveRecord::Base
+  include PgSearch
+  multisearchable :against => [:nominee, :role, :theater, :show, :award, :user]
+
   belongs_to :user
   belongs_to :award
 

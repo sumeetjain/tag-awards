@@ -1,4 +1,7 @@
 class Award < ActiveRecord::Base
+  include PgSearch
+  multisearchable :against => [:award_name]
+
   has_many :nominations
   has_many :ballot_items
   #label converts award_name to Courtney's CSS label system

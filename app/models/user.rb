@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include PgSearch
+  multisearchable :against => [:first_name, :last_name]
 
    has_many :nominations
    has_many :viewings
