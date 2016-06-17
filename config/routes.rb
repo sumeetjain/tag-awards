@@ -10,7 +10,11 @@ Rails.application.routes.draw do
     end
     resources :awards
     resources :ballot_items
-    resources :nominations
+    resources :nominations do
+      member do
+        patch "toggle_approval" => 'nominations#toggle_approval'
+      end
+    end
     resources :plays
     resources :theaters
     resources :viewings

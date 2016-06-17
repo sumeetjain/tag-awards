@@ -34,7 +34,6 @@ class NominationDashboard < Administrate::BaseDashboard
     :show,
     :nominee,
     :role,
-    :approved,
   ]
 
   # SHOW_PAGE_ATTRIBUTES

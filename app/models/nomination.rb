@@ -9,6 +9,10 @@ class Nomination < ActiveRecord::Base
   belongs_to :user
   belongs_to :award
 
+  def toggle_approval!
+    self.approved = !self.approved
+    self.save
+  end
 
   def weight
      weight = self.user.viewings.count

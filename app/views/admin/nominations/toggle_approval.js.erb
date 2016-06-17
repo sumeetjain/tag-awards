@@ -1,0 +1,5 @@
+$("#toggle_approval_<%= @nomination.id %>")
+.toggleClass("nomination_row--approved");
+
+$("#toggle_approval_<%= @nomination.id %> .toggle_approval_link")
+.text("<%= @nomination.approved? ? 'Unapprove!' : 'Approve!' %>");

@@ -17,8 +17,14 @@ module Admin
     # See https://administrate-docs.herokuapp.com/customizing_controller_actions
     # for more information
 
-    def index
-      super
+    def toggle_approval
+      @nomination = Nomination.find(params[:id])
+
+      @nomination.toggle_approval!
+
+      respond_to do |format|
+        format.js
+      end
     end
 
     # def ballot_helper
