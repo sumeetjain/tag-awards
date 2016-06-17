@@ -71,3 +71,4 @@ end
 # These are the gems that include the Pronto tool in our application. Adding them to the Gemfile adds them to my application's list of dependencies. But I'll now need to run `bundle install` to actually install them.
 
 gem "rubyXL", require: false
+gem 'pg_search'
