@@ -48,6 +48,6 @@ class AwardDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   
   def display_resource(award)
-    "#{award.award_name}"
+    "#{award.short_name}"
   end
 end

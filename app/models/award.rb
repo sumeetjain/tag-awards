@@ -6,4 +6,10 @@ class Award < ActiveRecord::Base
   def label
     self.award_name.split.join.downcase
   end
+
+  def short_name
+    regex = /(Outstanding )(Achievement|Performance)?( by an )?( in )?( by a )?/
+
+    award_name.gsub(regex, "")
+  end
 end
