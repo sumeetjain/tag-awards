@@ -11,10 +11,13 @@
 
 <% @awards.each do |award| %>
   <header class="header">
-    <h2><%= award.award_name %></h2>
+    <h2>
+      <%= award.award_name %>
+      <%= link_to "(See all top nominations)", admin_award_path(award.id) %>    
+    </h2>
   </header>
-  
-  <%= render partial: "ranked", locals: {award: award} %>
+
+  <%= render partial: "ranked", locals: {award: award, limit: 10} %>
 
   <hr>
 <% end %>
