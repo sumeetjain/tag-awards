@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
   end
 
   def self.set_weights
+    User.update_all(weight: 0)
+
     shows_weighing_thresholds = Viewing.shows_weighing_thresholds
 
     Viewing.select("user_id, count(*) as viewings").group("1").each do |v|

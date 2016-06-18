@@ -22,8 +22,8 @@
         <th class="cell-label" scope="col">Show</th>
         <th class="cell-label" scope="col">Nominee</th>
         <th class="cell-label" scope="col">Role</th>
-        <th class="cell-label" scope="col">Raw Nominations</th>
-        <th class="cell-label" scope="col">Weighted Nominations</th>
+        <th class="cell-label" scope="col">Weighted</th>
+        <th class="cell-label" scope="col">Raw</th>
 
         <!-- <th colspan="2" scope="col"></th> -->
       </tr>
@@ -37,8 +37,8 @@
           <td><%= nomination.show %></td>
           <td><%= nomination.nominee %></td>
           <td><%= nomination.role %></td>
+          <td><%= nomination.weighted_count %></td>
           <td><%= nomination.raw_count %></td>
-          <td><%#= nomination.weighted_count %></td>
         </tr>
       <% end %>
     </tbody>

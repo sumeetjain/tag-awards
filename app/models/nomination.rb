@@ -13,11 +13,12 @@ class Nomination < ActiveRecord::Base
 
   # Returns AR Relation for top ten nominees for a given award.
   def self.top_ten(award_id)
-    select("award_id, theater, show, nominee, role, 
-      count(*) as raw_count")
+    joins(:user)
+    .select("theater, show, nominee, role, 
+      count(*) as raw_count, sum(users.weight) as weighted_count")
     .where(award_id: award_id)
-    .group("1, 2, 3, 4, 5")
-    .order("award_id asc, raw_count desc")
+    .group("1, 2, 3, 4")
+    .order("weighted_count desc, raw_count desc")
     .limit(10)
   end
 
