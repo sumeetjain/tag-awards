@@ -37,3 +37,9 @@ as well as a link to its edit page.
         ><%= render_field attribute %></dd>
   <% end %>
 </dl>
+
+<header class="header">
+  <h2 class="header__heading">Top Nominations</h2>
+</header>
+
+<%= render partial: "admin/nominations/ranked", locals: {award: page.resource} %>

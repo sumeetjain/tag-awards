@@ -10,6 +10,10 @@
 </header>
 
 <% @awards.each do |award| %>
+  <header class="header">
+    <h2><%= award.award_name %></h2>
+  </header>
+  
   <%= render partial: "ranked", locals: {award: award} %>
 
   <hr>
