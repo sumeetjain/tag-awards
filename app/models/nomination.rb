@@ -16,7 +16,7 @@ class Nomination < ActiveRecord::Base
     joins(:user)
     .select("theater, show, nominee, role, 
       count(*) as raw_count, sum(users.weight) as weighted_count")
-    .where(award_id: award_id)
+    .where(award_id: award_id, approved: true)
     .group("1, 2, 3, 4")
     .order("weighted_count desc, raw_count desc")
     .limit(10)
