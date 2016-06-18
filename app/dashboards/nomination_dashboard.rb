@@ -59,6 +59,7 @@ class NominationDashboard < Administrate::BaseDashboard
     :show,
     :nominee,
     :role,
+    :approved
   ]
 
   # Overwrite this method to customize how nominations are displayed
