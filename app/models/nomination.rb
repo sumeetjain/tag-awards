@@ -19,7 +19,7 @@ class Nomination < ActiveRecord::Base
     .where(award_id: award_id, approved: true)
     .group("1, 2, 3, 4")
     .order("weighted_count desc, raw_count desc")
-    .limit(10)
+    # .limit(10)
   end
 
   def toggle_approval!
