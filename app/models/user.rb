@@ -26,6 +26,37 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.set_weights
+    shows_weighing_thresholds = Viewing.shows_weighing_thresholds
+
+    Viewing.select("user_id, count(*) as viewings").group("1").each do |v|
+      # Start by setting weights just according to total viewings.
+      if v.viewings >  shows_weighing_thresholds[:top]
+        User.where(id: v.user_id).update_all(weight: 3)
+      elsif v.viewings >  shows_weighing_thresholds[:middle]
+        User.where(id: v.user_id).update_all(weight: 2)
+      else
+        User.where(id: v.user_id).update_all(weight: 1)
+      end
+    end
+
+    theaters_weighing_thresholds = Viewing.theaters_weighing_thresholds
+
+    User.find_by_sql("select user_id, weight, count(*) as theaters_count from (select user_id, plays.theater_id, users.weight from viewings join plays on viewings.play_id = plays.id join users on viewings.user_id = users.id group by 1, 2, 3) as user_theaters group by user_id, weight").each do |u|
+      # Now increase the weights by the weight amount just for theaters.
+      if u.theaters_count >  theaters_weighing_thresholds[:top]
+        User.where(id: u.user_id).update_all(weight: (3 + u.weight))
+      elsif u.theaters_count >  theaters_weighing_thresholds[:middle]
+        User.where(id: u.user_id).update_all(weight: (2 + u.weight))
+      else
+        User.where(id: u.user_id).update_all(weight: (1 + u.weight))
+      end
+    end
+
+    # No one's weight should be above 6 at this point, since you can only
+    # receive a max of 3 in each weighting.
+  end
+
 # The following lines were created using this as a resource: http://blog.bigbinary.com/2016/03/23/has-secure-  token-to-generate-unique-random-token-in-rails-5.html. I opted NOT to use the has_secure_token method/gem because it doesn't appear that you can make tokens less than 24 characters, which would be difficult to use since might still want to manually enter them on paper forms/ballots.
 
   before_create :set_secret_number

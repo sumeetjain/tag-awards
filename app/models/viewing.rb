@@ -14,18 +14,18 @@ class Viewing < ActiveRecord::Base
 
   # Returns Integer of the most theaters anyone has been to.
   def self.most_theaters
-    User.find_by_sql("select user_id, count(*) as theaters_count from (select user_id, plays.theater_id from viewings join plays on viewings.play_id = plays.id group by 1, 2) as user_theaters group by user_id order by theaters_count desc limit 1").theaters_count
+    User.find_by_sql("select user_id, count(*) as theaters_count from (select user_id, plays.theater_id from viewings join plays on viewings.play_id = plays.id group by 1, 2) as user_theaters group by user_id order by theaters_count desc").first.theaters_count
   end
 
   # Returns Integer of the least theaters anyone has been to.
   def self.least_theaters
-    User.find_by_sql("select user_id, count(*) as theaters_count from (select user_id, plays.theater_id from viewings join plays on viewings.play_id = plays.id group by 1, 2) as user_theaters group by user_id order by theaters_count asc limit 1").theaters_count
+    User.find_by_sql("select user_id, count(*) as theaters_count from (select user_id, plays.theater_id from viewings join plays on viewings.play_id = plays.id group by 1, 2) as user_theaters group by user_id order by theaters_count asc").first.theaters_count
   end
 
   # Returns a Hash with the amount of shows seen needed to enter the middle
   # tier (>25%-75%) and the top tier (>75%).
   def self.shows_weighing_thresholds
-    range = Viewing.most_viewings - Viewing.least_viewings
+    range = Viewing.most_shows - Viewing.least_shows
     quartile = range / 4
 
     {middle: quartile, top: quartile * 3}
