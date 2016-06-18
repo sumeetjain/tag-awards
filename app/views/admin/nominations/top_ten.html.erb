@@ -24,7 +24,7 @@
 
     <%= render partial: "final_ballot_section", locals: {award: award} %>
   <% else %>
-    <%= render partial: "ranked", locals: {award: award, limit: 10} %>
+    <%= render partial: "ranked", locals: {award: award, limit: 10, ballot_builder: true} %>
   <% end %>
 
   <hr>
