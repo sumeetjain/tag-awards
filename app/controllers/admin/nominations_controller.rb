@@ -14,7 +14,8 @@ module Admin
     # end
 
     def top_ten
-      @awards = Award.all
+      @theaters = Theater.includes(:plays).all
+      @awards = Award.includes(:ballot_items => {play: :theater}).all
     end
 
 

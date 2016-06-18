@@ -17,7 +17,15 @@
     </h2>
   </header>
 
-  <%= render partial: "ranked", locals: {award: award, limit: 10} %>
+  <% if award.ballot_set? %>
+    <div class="side-spacer">
+      <p>Final ballot has been set:</p>
+    </div>
+
+    <%= render partial: "final_ballot_section", locals: {award: award} %>
+  <% else %>
+    <%= render partial: "ranked", locals: {award: award, limit: 10} %>
+  <% end %>
 
   <hr>
 <% end %>

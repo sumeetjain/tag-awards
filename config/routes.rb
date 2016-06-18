@@ -8,7 +8,11 @@ Rails.application.routes.draw do
         post "export/usernames_and_passwords" => 'users#export'
       end
     end
-    resources :awards
+    resources :awards do
+      member do
+        post "build_ballot" => 'awards#build_ballot'
+      end
+    end
     resources :ballot_items
     resources :nominations do
       collection do

@@ -1,29 +1,57 @@
-<table class="collection-data" aria-labelledby="page-title">
-  <thead>
-    <tr>
-      <th class="cell-label" scope="col">Rank</th>
-      <th class="cell-label" scope="col">Theater</th>
-      <th class="cell-label" scope="col">Show</th>
-      <th class="cell-label" scope="col">Nominee</th>
-      <th class="cell-label" scope="col">Role</th>
-      <th class="cell-label" scope="col">Weighted</th>
-      <th class="cell-label" scope="col">Raw</th>
+<%= form_for :ballot, url: build_ballot_admin_award_path(award.id) do |f| %>
+  <table class="collection-data" aria-labelledby="page-title">
+    <thead>
+      <tr>
 
-      <!-- <th colspan="2" scope="col"></th> -->
-    </tr>
-  </thead>
+        <th class="cell-label">&nbsp;</th>
+        <th class="cell-label">Verify Theater/Play</th>
 
-  <tbody>
-    <% Nomination.top_ten(award.id, limit).each_with_index do |nomination, i| %>
-      <tr class="table__row" tabindex="0">
-        <td><%= i + 1 %></td>
-        <td><%= nomination.theater %></td>
-        <td><%= nomination.show %></td>
-        <td><%= nomination.nominee %></td>
-        <td><%= nomination.role %></td>
-        <td><%= nomination.weighted_count %></td>
-        <td><%= nomination.raw_count %></td>
+        <th class="cell-label" scope="col">Rank</th>
+        <th class="cell-label" scope="col">Theater</th>
+        <th class="cell-label" scope="col">Show</th>
+        <th class="cell-label" scope="col">Nominee</th>
+        <th class="cell-label" scope="col">Role</th>
+        <th class="cell-label" scope="col">Weighted</th>
+        <th class="cell-label" scope="col">Raw</th>
+
+        <!-- <th colspan="2" scope="col"></th> -->
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% Nomination.top_ten(award.id, limit).each_with_index do |nomination, i| %>
+        <tr class="table__row" tabindex="0">
+
+          <td>
+            <%= f.check_box :finalists, {name: "ballot[finalists][#{i}][info]"}, "#{nomination.nominee}||#{nomination.role}", nil %>
+          </td>
+
+          <td>
+            <%= f.grouped_collection_select(
+              :play_id,
+              @theaters,
+              :plays,
+              :name,
+              :id,
+              :title,
+              {prompt: "Verify Theater/Play"},
+              {name: "ballot[finalists][#{i}][play_id]"}) %>
+          </td>
+
+          <td><%= i + 1 %></td>
+          <td><%= nomination.theater %></td>
+          <td><%= nomination.show %></td>
+          <td><%= nomination.nominee %></td>
+          <td><%= nomination.role %></td>
+          <td><%= nomination.weighted_count %></td>
+          <td><%= nomination.raw_count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="form-actions--no_shift">
+    <%= f.submit "Set Final Ballot", data: {confirm: "Confirm final ballot items for this award?\n\nThis award's section in the final ballot cannot be changed once you submit, so please make sure you want to proceed."} %>
+  </div>
+
+<% end %>
