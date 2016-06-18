@@ -5,3 +5,8 @@
   max-width: 100em;
   min-height: 100vh;
 }
+
+.side-spacer {
+  padding-left: $base-spacing;
+  padding-right: $base-spacing;
+}
