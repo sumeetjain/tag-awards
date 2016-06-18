@@ -9,6 +9,18 @@ class Nomination < ActiveRecord::Base
   belongs_to :user
   belongs_to :award
 
+  scope :approved, -> {where(approved: true)}
+
+  # Returns AR Relation for top ten nominees for a given award.
+  def self.top_ten(award_id)
+    select("award_id, theater, show, nominee, role, 
+      count(*) as raw_count")
+    .where(award_id: award_id)
+    .group("1, 2, 3, 4, 5")
+    .order("award_id asc, raw_count desc")
+    .limit(10)
+  end
+
   def toggle_approval!
     self.approved = !self.approved
     self.save

@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     resources :awards
     resources :ballot_items
     resources :nominations do
+      collection do
+        get "top_ten" => 'nominations#top_ten'
+      end
+
       member do
         patch "toggle_approval" => 'nominations#toggle_approval'
       end

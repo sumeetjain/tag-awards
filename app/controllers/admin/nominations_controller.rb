@@ -13,6 +13,10 @@ module Admin
     #   Nomination.find_by!(slug: param)
     # end
 
+    def top_ten
+      @awards = Award.all
+    end
+
 
     # See https://administrate-docs.herokuapp.com/customizing_controller_actions
     # for more information
