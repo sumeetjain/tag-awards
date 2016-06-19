@@ -24,11 +24,6 @@ It renders the `_table` partial to display details about the resources.
 <% content_for(:title) do %>
   <%= display_resource_name(page.resource_name) %>
 <% end %>
-<br>
-<%= form_tag('/close_nominations') do %>
-  <input type="submit" value="CLOSE ONLINE NOMINATIONS">
-<% end %>
-<br>
 
 <% content_for(:search) do %>
   <form class="search">
@@ -52,9 +47,22 @@ It renders the `_table` partial to display details about the resources.
 <header class="header">
   <h1 class="header__heading" id="page-title"><%= content_for(:title) %></h1>
   <div class="header__actions">
+
+    <% if Nomination.nominations_closed %>
+      <span class="dim">(Nominations are closed.)</span>
+    <% else %>
+      <%= link_to("Close Nominations", "/close_nominations", method: :post, class: "button") %>
+    <% end %>
+
     <%= link_to(
       "New #{page.resource_name.titleize.downcase}",
       [:new, namespace, page.resource_name],
+      class: "button",
+    ) %>
+
+    <%= link_to(
+      "Ballot Builder",
+      :top_ten_admin_nominations,
       class: "button",
     ) %>
   </div>
