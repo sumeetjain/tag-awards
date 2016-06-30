@@ -25,14 +25,6 @@ It renders the `_table` partial to display details about the resources.
   <%= display_resource_name(page.resource_name) %>
 <% end %>
 <br>
-<%= form_tag('/send/email/nominations') do %>
-  <input type="submit" value="Send 'Nominations Open' Emails">
-<% end %>
-<br>
-<%= form_tag('/send/email/ballots') do %>
-  <input type="submit" value="Send 'Ballots Available' Emails">
-<% end %>
-<br>
 <%= form_tag(export_usernames_and_passwords_admin_users_path(format: :csv)) do %>
   <input type="submit" value="Export Users">
 <% end %>
