@@ -146,6 +146,21 @@ class User < ActiveRecord::Base
   def has_viewed?(play)
     viewings.pluck(:play_id).include?(play.id)
   end
+
+  # Saves votes for this user's final ballot.
+  # 
+  # ballot_item_votes - Hash of votes being cast, where award ID is the key
+  #                     and the ballot item ID is the value.
+  # 
+  # Returns True if successful.
+  def record_final_ballot(ballot_item_votes)
+    # Collect votes into an Array that can be passed directly into Vote.create.
+    votes_array = ballot_item_votes.map do |award_id, ballot_item_id|
+      {ballot_item_id: ballot_item_id}
+    end
+
+    votes.create(votes_array)
+  end
   
   private
 

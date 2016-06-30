@@ -1,4 +1,16 @@
+<%= form_for :ballot, url: ballots_path do |f| %>
+    <% @awards.each do |award| %>
+        <%#= f.fields_for award.id.to_s do |a| %>
+            <h2><%= award.award_name %></h2>
 
+            <% award.ballot_items.each do |ballot_item| %>
+                <%= f.radio_button award.id, ballot_item.id %>
+            <% end %>
+        <%# end %>
+    <% end %>
+
+    <%= f.submit %>
+<% end %>
 
 <p>Final Ballots are not yet available. Please check back after you've received notification that nominations have been tallied.</p>
 <!--   create_table "ballot_items", force: :cascade do |t|

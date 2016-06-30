@@ -5,8 +5,9 @@ class BallotsController < ApplicationController
   end
 
   def create
-    current_user.votes.create!(params[:votes])
-    redirect_to :root, notice: "Thanks for submitting your final ballot!"
+    if current_user.record_final_ballot(params[:ballot])
+      redirect_to :root, notice: "Thanks for submitting your final ballot!"
+    end
   end
 
 end
