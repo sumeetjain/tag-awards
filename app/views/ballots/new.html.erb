@@ -5,13 +5,11 @@
 
         <%= form_for :ballot, url: ballots_path do |f| %>
             <% @awards.each do |award| %>
-                <%#= f.fields_for award.id.to_s do |a| %>
-                    <h2><%= award.award_name %></h2>
+                <h2><%= award.award_name %></h2>
 
-                    <% award.ballot_items.each do |ballot_item| %>
-                        <%= f.radio_button award.id, ballot_item.id %>
-                    <% end %>
-                <%# end %>
+                <% award.ballot_items.each do |ballot_item| %>
+                    <%= f.radio_button award.id, ballot_item.id %>
+                <% end %>
             <% end %>
 
             <%= f.submit %>
