@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
    has_many :viewings
    accepts_nested_attributes_for :viewings
 
+   has_many :votes, dependent: :destroy
+
    has_many :plays, through: :viewings
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
