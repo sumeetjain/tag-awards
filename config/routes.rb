@@ -58,6 +58,6 @@ Rails.application.routes.draw do
   post "plays/create" => 'plays#create_play'
 
   # Final Ballot Routes
-  resources :votes, only: [:new, :create]
+  resources :ballots, only: [:new, :create]
 end
 

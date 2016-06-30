@@ -1,4 +1,4 @@
-class VotesController < ApplicationController
+class BallotsController < ApplicationController
 
   def new
     @awards = Award.includes(:ballot_items).all
