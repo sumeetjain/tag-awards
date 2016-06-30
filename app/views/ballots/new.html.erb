@@ -3,14 +3,24 @@
         <p>Your ballot has been submitted. Thanks again!</p>
     <% else %>
 
-        <%= form_for :ballot, url: ballots_path do |f| %>
-            <% @awards.each do |award| %>
-                <h2><%= award.award_name %></h2>
+        <%= form_for :ballot, {url: ballots_path, html: {}} do |f| %>
 
-                <% award.ballot_items.each do |ballot_item| %>
-                    <%= f.radio_button award.id, ballot_item.id %>
+            <div class="clear">
+                <% @awards.each do |award| %>
+                    <div class="finalBallotSection">
+                        <h2 class="finalBallotSection__award">
+                            <%= award.award_name %>
+                        </h2>
+
+                        <% award.ballot_items.each do |ballot_item| %>
+                            <label class="finalBallotSection__label">
+                                <%= f.radio_button award.id, ballot_item.id %>
+                                <%= ballot_item_info(ballot_item) %>
+                            </label>
+                        <% end %>
+                    </div>
                 <% end %>
-            <% end %>
+            </div>
 
             <%= f.submit %>
         <% end %>
