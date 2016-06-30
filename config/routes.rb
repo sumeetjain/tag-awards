@@ -56,6 +56,8 @@ Rails.application.routes.draw do
   post "close_nominations" => 'nominations#close_nominations'
   get "nominations/index"
   post "plays/create" => 'plays#create_play'
-  get "votes/ballots_page" => 'votes#ballots_page'
+
+  # Final Ballot Routes
+  resources :votes, only: [:new, :create]
 end
 
