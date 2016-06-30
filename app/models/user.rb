@@ -161,6 +161,10 @@ class User < ActiveRecord::Base
 
     votes.create(votes_array)
   end
+
+  def has_submitted_final_ballot?
+    votes.any?
+  end
   
   private
 

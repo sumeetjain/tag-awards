@@ -1,33 +1,23 @@
-<%= form_for :ballot, url: ballots_path do |f| %>
-    <% @awards.each do |award| %>
-        <%#= f.fields_for award.id.to_s do |a| %>
-            <h2><%= award.award_name %></h2>
+<% if @ballots_ready %>
+    <% if current_user.has_submitted_final_ballot? %>
+        <p>Your ballot has been submitted. Thanks again!</p>
+    <% else %>
 
-            <% award.ballot_items.each do |ballot_item| %>
-                <%= f.radio_button award.id, ballot_item.id %>
+        <%= form_for :ballot, url: ballots_path do |f| %>
+            <% @awards.each do |award| %>
+                <%#= f.fields_for award.id.to_s do |a| %>
+                    <h2><%= award.award_name %></h2>
+
+                    <% award.ballot_items.each do |ballot_item| %>
+                        <%= f.radio_button award.id, ballot_item.id %>
+                    <% end %>
+                <%# end %>
             <% end %>
-        <%# end %>
+
+            <%= f.submit %>
+        <% end %>
+
     <% end %>
-
-    <%= f.submit %>
+<% else %>
+    <p>Final Ballots are not yet available. Please check back after you've received notification that nominations have been tallied.</p>
 <% end %>
-
-<p>Final Ballots are not yet available. Please check back after you've received notification that nominations have been tallied.</p>
-<!--   create_table "ballot_items", force: :cascade do |t|
-    t.string   "nominee"
-    t.string   "role"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "award_id"
-    t.integer  "play_id"
-  end
- -->
-
-<!-- NOT TO BE USED. STILL WORKING ON FROM WHERE THIS INFORMATION IS TO BE DERIVED -->
-<%# @all_ballot_items.each do |ballot| %>
- <!-- <h2> <%#= ballot.award.award_name %> </h2> -->
-    <!-- Nominee: <%#= ballot.nominee %> <br>
-    Role: <%#= ballot.role %> <br> 
-    Play: <%#= Play.find_by_id(ballot.play_id).title %> <br>
-    Theater: <%#= Play.find_by_id(ballot.play_id).theater %> <br> -->
-<%# end %>
