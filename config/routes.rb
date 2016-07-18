@@ -26,7 +26,12 @@ Rails.application.routes.draw do
     resources :plays
     resources :theaters
     resources :viewings
-    resources :votes
+    resources :votes do
+      collection do
+        get "export"
+        get "export_viewings"
+      end
+    end
     
     root to: "users#index"
   end

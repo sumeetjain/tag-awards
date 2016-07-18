@@ -15,5 +15,23 @@ module Admin
 
     # See https://administrate-docs.herokuapp.com/customizing_controller_actions
     # for more information
+
+    def export
+      @votes = Vote.bulk_export
+
+      respond_to do |format|
+        format.html
+        format.csv { send_data @votes }
+      end
+    end
+
+    def export_viewings
+      @viewings = Vote.export_viewings
+
+      respond_to do |format|
+        format.html
+        format.csv { send_data @viewings }
+      end
+    end
   end
 end
