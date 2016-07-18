@@ -1,7 +1,7 @@
 class BallotsController < ApplicationController
 
   def new
-    @ballots_ready = true
+    @ballot_status = VotingPeriod.current.ballot_status
     @awards = Award.includes(:ballot_items).all
   end
 

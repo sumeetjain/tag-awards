@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :voting_period do
+    year 1
+    final_ballot_open false
+  end
   factory :ballot_item do
     nominee "MyString"
     role "MyString"

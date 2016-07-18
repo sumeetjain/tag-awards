@@ -16,6 +16,11 @@ module Admin
     # See https://administrate-docs.herokuapp.com/customizing_controller_actions
     # for more information
 
+    def close
+      VotingPeriod.current.update(ballot_status: "final_voting_closed")
+      redirect_to :admin_votes, notice: "Final voting closed! Go ahead and export now."
+    end
+
     def export
       @votes = Vote.bulk_export
 

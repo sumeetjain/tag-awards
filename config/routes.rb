@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       collection do
         get "export"
         get "export_viewings"
+        post "close"
       end
     end
     

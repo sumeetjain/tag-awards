@@ -64,6 +64,14 @@ It renders the `_table` partial to display details about the resources.
       export_viewings_admin_votes_path(format: :csv),
       class: "button",
     ) %>
+
+    <%= link_to(
+      "Close Voting",
+      close_admin_votes_path,
+      method: "post",
+      class: "button",
+      "data-confirm" => "Close voting immediately?"
+    ) %>
   </div>
 </header>
 

@@ -1,9 +1,9 @@
 <h1>Final Ballot</h1>
 
-<p>Check below for the final ballot. Once you submit the ballot, you cannot modify it.</p>
-<p>You can also vote for five new members for our 2016-2017 Theatre Arts Guild Board of Directors. This is a separate form that is not connected to this ballot.<br><a target="_blank" href="http://goo.gl/forms/Fb1FTVCmfo6KGciJ2 ">Click here to vote for Board of Directors (opens a new window).</a></p>
+<% if @ballot_status == "final_voting_started" %>
+    <p>Check below for the final ballot. Once you submit the ballot, you cannot modify it.</p>
+    <p>You can also vote for five new members for our 2016-2017 Theatre Arts Guild Board of Directors. This is a separate form that is not connected to this ballot.<br><a target="_blank" href="http://goo.gl/forms/Fb1FTVCmfo6KGciJ2 ">Click here to vote for Board of Directors (opens a new window).</a></p>
 
-<% if @ballots_ready %>
     <% if current_user.has_submitted_final_ballot? %>
         <hr>
         <p>Your ballot has been submitted. Thanks again!</p>
@@ -32,6 +32,8 @@
         <% end %>
 
     <% end %>
+<% elsif @ballot_status == "final_voting_closed" %>
+    <p>Voting is now closed. See you at the awards ceremony!</p>
 <% else %>
     <p>Final Ballots are not yet available. Please check back after you've received notification that nominations have been tallied.</p>
 <% end %>
