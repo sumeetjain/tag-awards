@@ -57,11 +57,7 @@ class Nomination < ActiveRecord::Base
   #(not triggered anywhere at this time)
   #"open" boolean in nom table switched to true
   def self.open_nominations
-    all_noms = self.all
-    all_noms.each do |nom|
-      nom.open = true
-      nom.save
-    end
+    self.update_all(open: true)
   end
   def self.nominations_closed
     Nomination.where(open: false).count > 0
