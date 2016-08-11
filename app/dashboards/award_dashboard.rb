@@ -15,6 +15,7 @@ class AwardDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime,
     inactive: Field::Boolean,
     nominations: Field::HasMany,
+    award_type: Field::String,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -25,6 +26,7 @@ class AwardDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :award_name,
     :relevant_fields,
+    :award_type,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -32,6 +34,7 @@ class AwardDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :award_name,
     :relevant_fields,
+    :award_type,
     # :nominations # Add this to see nominations for each award.
   ]
 
@@ -41,6 +44,7 @@ class AwardDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :award_name,
     :relevant_fields,
+    # :award_type,
     :inactive
   ]
 
