@@ -44,7 +44,7 @@ class AwardDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :award_name,
     :relevant_fields,
-    # :award_type,
+    :award_type,
     :inactive
   ]
 
