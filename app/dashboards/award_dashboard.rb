@@ -40,7 +40,6 @@ class AwardDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :award_name,
-    :award_type,
     :inactive
   ]
 
