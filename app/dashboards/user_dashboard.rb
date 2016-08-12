@@ -9,8 +9,7 @@ class UserDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    first_name: Field::String,
-    last_name: Field::String,
+    full_name: Field::String,
     email: Field::String,
     password: Field::String,
     secret_number: Field::String,
@@ -38,8 +37,7 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :first_name,
-    :last_name,
+    :full_name,
     :email,
     :password,
     :admin,

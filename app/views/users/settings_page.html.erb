@@ -2,10 +2,7 @@
 
 <%= form_tag("/users/change_settings", method: "post") do %>
 
-  First name: <input type="text" name="first_name" value="<%= current_user.first_name%>"><br>
-  <br>
-
-  Last name: <input type="text" name="last_name" value="<%= current_user.last_name%>"><br>
+  Full name: <input type="text" name="full_name" value="<%= current_user.full_name%>"><br>
   <br>
 
   Email: <input type="text" name="email" value="<%= current_user.email%>"><br>
