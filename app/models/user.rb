@@ -11,8 +11,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :full_name, presence: true
 
   # Virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'
@@ -134,7 +133,7 @@ class User < ActiveRecord::Base
   end
 
   def self.to_csv
-    attributes = %w[secret_number last_name first_name]
+    attributes = %w[secret_number full_name]
 
     CSV.generate do |csv|
       all.each do |user|
