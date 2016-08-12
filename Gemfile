@@ -46,7 +46,7 @@ group :development, :staging do
 end
 
 group :test do
-  gem "capybara-webkit"
+  # gem "capybara-webkit"
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"

@@ -11,8 +11,7 @@ task :import_users => :environment do
       user = User.new({
         email: row.cells[9].value.blank? ? nil : row.cells[9].value,
         password: "tagawards",
-        first_name: row.cells[1].value,
-        last_name: row.cells[2].value,
+        full_name: row.cells[1].value,
         admin: false
       })
 
