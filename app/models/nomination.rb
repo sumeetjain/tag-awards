@@ -3,7 +3,7 @@ class Nomination < ActiveRecord::Base
   pg_search_scope :full_search, against: [:nominee, :role, :theater, :show],
     associated_against: {
       award: [:award_name],
-      user: [:first_name, :last_name, :secret_number]
+      user: [:full_name, :secret_number]
     }
 
   belongs_to :user

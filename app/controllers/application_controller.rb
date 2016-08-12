@@ -8,8 +8,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :first_name
-    devise_parameter_sanitizer.for(:sign_up) << :last_name
+    devise_parameter_sanitizer.for(:sign_up) << :full_name
     devise_parameter_sanitizer.for(:sign_up) << :weight
     devise_parameter_sanitizer.for(:sign_up) << :admin
     devise_parameter_sanitizer.for(:sign_up) << :secret_number

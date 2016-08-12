@@ -7,8 +7,8 @@ RSpec.describe User, type: :model do
   describe "#generate_token" do
     context "when users get created" do
       it "generates a unique token" do
-        user = User.create!(first_name: "Tom", last_name: "Hanks", password: "Password123", email: "tom@gmail.com")
-        other_user = User.create!(first_name: "Fred", last_name: "Fred", password: "Password123", email: "fred@gmail.com")
+        user = User.create!(full_name: "Tom Hanks", password: "Password123", email: "tom@gmail.com")
+        other_user = User.create!(full_name: "Fred Fred", password: "Password123", email: "fred@gmail.com")
         expect(user.secret_number).to_not eq(other_user.secret_number)
       end
     end
