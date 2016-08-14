@@ -37,20 +37,17 @@
             <div class="award_nomination_row">
               <% nomination_count = 0 %>  
               <% while nomination_count <= 4 %>
-                <% if award.award_type == "production" || award.award_type == "ensemble" %>
+                <% if award.award_type != ""  %>
                   Theater:  <input class="theater_input" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(award.id, nomination_count, "theater")%>">
-                  Show:  <input type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][show]]" value="<%= current_user.nomination_value(award.id, nomination_count, "show") %>">
-                <%end%>
-                <% if award.award_type == "directing" || award.award_type == "technical" %>
-                  <br>
-                   Theater:  <input class="theater_input" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(award.id, nomination_count, "theater")%>">
                   Show:  <input type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][show]]" value="<%= current_user.nomination_value(award.id, nomination_count, "show") %>"><br>
+                <%end%>
+                
+                <% if award.award_type == "directing" || award.award_type == "technical" || award.award_type == "acting" %>
+                   
                    Nominee:  <input class="theater_input" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][nominee]]" value="<%= current_user.nomination_value(award.id, nomination_count, "nominee") %>">
                 <% end%>
-                <% if award.award_type == "acting" %>
-                  Theater:  <input class="theater_input" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(award.id, nomination_count, "theater")%>">
-                  Show:  <input type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][show]]" value="<%= current_user.nomination_value(award.id, nomination_count, "show") %>"><br>
-                   Nominee:  <input class="theater_input" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][nominee]]" value="<%= current_user.nomination_value(award.id, nomination_count, "nominee") %>">
+
+                <% if award.award_type == "acting" %>  
                   Role:  <input class="theater_input" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][role]]" value="<%= current_user.nomination_value(award.id, nomination_count, "role") %>">
                 <% end %>
                 <br><br>
