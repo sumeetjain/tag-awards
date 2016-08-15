@@ -17,7 +17,7 @@ module Admin
     # for more information
 
     def close
-      VotingPeriod.current.update(ballot_status: "final_voting_closed")
+      VotingPeriod.current.update(ballot_status: "closed")
       redirect_to :admin_votes, notice: "Final voting closed! Go ahead and export now."
     end
 
