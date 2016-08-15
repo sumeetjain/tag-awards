@@ -12,4 +12,13 @@ class Award < ActiveRecord::Base
 
     award_name.gsub(regex, "")
   end
+
+  def needs_nominee_input?
+    award_type == "directing" || award_type == "technical" || award_type == "acting"
+  end
+
+  def needs_role_input?
+    award_type == "acting" 
+  end
+
 end
