@@ -8,6 +8,19 @@ class DefaultValueForVotingPeriodBallotStatus < ActiveRecord::Migration
       period.ballot_status = "pending"
       period.save
     end
+
+    # Simplifying the status names, updating the only two that seem to be potentially in use.
+    VotingPeriod.where("ballot_status = 'final_voting_closed'").find_each do |period|
+      period.ballot_status = "closed"
+      period.save
+    end
+
+    VotingPeriod.where("ballot_status = 'final_voting_started'").find_each do |period|
+      period.ballot_status = "voting"
+      period.save
+    end
+
+
   end
 
   def down
