@@ -1,6 +1,8 @@
 window.addEventListener("load", function(){
 	var theater = document.getElementsByClassName("theater_input-theater");
 	var show = document.getElementsByClassName("theater_input-show");
+	var nominee = document.getElementsByClassName("theater_input-nominee");
+	var role = document.getElementsByClassName("theater_input-role");
 
 	var theater_options = document.getElementsByClassName("theater_options");
 	
@@ -14,9 +16,6 @@ window.addEventListener("load", function(){
     		if (theater_request.status === 200) {
 				var response = JSON.parse(theater_request.response);
 				var theater_arr = Object.keys(response.theaters);
-				for(i=0; i<theater_arr.length; i++){
-						theater_arr[i] = theater_arr[i].split("_").join(" ");
-					}
 				 
 
 				for(i=0; i<theater_options.length; i++){
@@ -52,16 +51,12 @@ window.addEventListener("load", function(){
 			var show_request = new XMLHttpRequest();
 
 			show_request.onreadystatechange = function(response) {
-				var t = document.getElementById("theater_input_" + list_id_num);
-				var theater_input = t.value.split(" ").join("_");
+				var theater_input = document.getElementById("theater_input_" + list_id_num).value;
 		  		if (show_request.readyState === 4) {
 		    		if (show_request.status === 200) {
 						var response = JSON.parse(show_request.response);
 						var show_arr = Object.keys(response.theaters[theater_input]);
 
-						for(i=0; i<show_arr.length; i++){
-							show_arr[i] = show_arr[i].split("_").join(" ");
-						}
 
 						// Loop over the JSON array.
 						show_arr.forEach(function(item) {
