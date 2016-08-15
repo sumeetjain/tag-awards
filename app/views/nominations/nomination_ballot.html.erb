@@ -42,8 +42,7 @@
                   Show:  <input type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][show]]" value="<%= current_user.nomination_value(award.id, nomination_count, "show") %>"><br>
                 <%end%>
                 
-                <% if award.award_type == "directing" || award.award_type == "technical" || award.award_type == "acting" %>
-                   
+                <% if award.needs_nominee_input? %>
                    Nominee:  <input class="theater_input" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][nominee]]" value="<%= current_user.nomination_value(award.id, nomination_count, "nominee") %>">
                 <% end%>
 
