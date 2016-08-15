@@ -12,27 +12,41 @@ RSpec.describe VotingPeriod, type: :model do
     expect(period.valid?).to be(false)
   end
   it "is invalid with a duplicate year" do
+    period = VotingPeriod.new
+    period.year = 2016
+    period.save
 
+    duplicate = VotingPeriod.new
+    duplicate.year = 2016
+    expect(duplicate.valid?).to be(false)
   end
   it "gets the most recent year as the current year" do
+    period1 = VotingPeriod.new
+    period1.year = 2016
+    period1.save
+
+    period2 = VotingPeriod.new
+    period2.year = 2015
+    period2.save
+
+    expect(VotingPeriod.current.year).to be(2016)
+  end
+  xit "defaults the ballot status to pending" do
+    
+  end
+  xit "is valid with a ballot status of pending" do
 
   end
-  it "defaults the ballot status to pending" do
+  xit "is valid with a ballot status of nominations" do
 
   end
-  it "is valid with a ballot status of pending" do
+  xit "is valid with a ballot status of voting" do
 
   end
-  it "is valid with a ballot status of nominations" do
+  xit "is valid with a ballot status of closed" do
 
   end
-  it "is valid with a ballot status of voting" do
-
-  end
-  it "is valid with a ballot status of closed" do
-
-  end
-  it "is invalid with a different ballot status" do
+  xit "is invalid with a different ballot status" do
 
   end
 end
