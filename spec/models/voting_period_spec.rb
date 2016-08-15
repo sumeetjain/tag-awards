@@ -29,10 +29,13 @@ RSpec.describe VotingPeriod, type: :model do
     period2.year = 2015
     period2.save
 
-    expect(VotingPeriod.current.year).to be(2016)
+    expect(VotingPeriod.current.year).to eq(2016)
   end
-  xit "defaults the ballot status to pending" do
+  it "defaults the ballot status to pending" do
+    period = VotingPeriod.new
+    period.year = 2016
     
+    expect(period.ballot_status).to eq("pending")  
   end
   xit "is valid with a ballot status of pending" do
 

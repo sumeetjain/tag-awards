@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160812144450) do
+ActiveRecord::Schema.define(version: 20160815073554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,9 +134,9 @@ ActiveRecord::Schema.define(version: 20160812144450) do
 
   create_table "voting_periods", force: :cascade do |t|
     t.integer  "year"
-    t.string   "ballot_status"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "ballot_status", default: "pending"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   add_foreign_key "ballot_items", "awards"
