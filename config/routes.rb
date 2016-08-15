@@ -33,6 +33,8 @@ Rails.application.routes.draw do
         post "close"
       end
     end
+
+    resources :voting_periods
     
     root to: "users#index"
   end
