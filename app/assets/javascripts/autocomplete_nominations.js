@@ -123,4 +123,47 @@ window.addEventListener("load", function(){
 
 
 
+	for(i=0; i<role.length; i++){
+		role[i].addEventListener("mouseenter", function(){
+			var list_id_num = this.getAttribute("list").split("_")[2];
+			var role_options = document.getElementById("role_options_" + list_id_num);
+
+		
+			while(role_options.children.length > 0){
+				role_options.removeChild(role_options.children[0]);
+			}
+
+			var role_request = new XMLHttpRequest();
+
+			role_request.onreadystatechange = function(response) {
+				var theater_input = document.getElementById("theater_input_" + list_id_num).value;
+				var show_input = document.getElementById("show_input_" + list_id_num).value;
+				var nominee_input = document.getElementById("nominee_input_" + list_id_num).value;
+
+		  		if (role_request.readyState === 4) {
+		    		if (role_request.status === 200) {
+						var response = JSON.parse(role_request.response);
+						var role_arr = response.theaters[theater_input][show_input][nominee_input];
+
+
+						// Loop over the JSON array.
+						role_arr.forEach(function(item) {
+					    // Create a new <option> element.
+					    	var option = document.createElement('option');
+					    // Set the value using the item in the JSON array.
+					    	option.value = item;
+					    // Add the <option> element to the <datalist>.
+					    	role_options.appendChild(option);
+						});
+					}
+				}	
+		};
+
+		role_request.open("get","/fake_data_for_autocomplete.txt");
+		role_request.send();
+
+		});
+	}
+
+
 });
