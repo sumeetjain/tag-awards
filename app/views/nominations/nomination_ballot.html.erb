@@ -37,7 +37,7 @@
             <div class="award_nomination_row">
               <% nomination_count = 0 %>  
               <% while nomination_count <= 4 %>
-                <% if award.award_type != ""  %>
+                <% if !award.award_type.blank? %>
                   Theater:  <input class="theater_input" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(award.id, nomination_count, "theater")%>">
                   Show:  <input type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][show]]" value="<%= current_user.nomination_value(award.id, nomination_count, "show") %>"><br>
                 <%end%>
