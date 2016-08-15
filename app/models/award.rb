@@ -22,8 +22,10 @@ class Award < ActiveRecord::Base
   end
 
   def pulldown_options
-    options_array = [['ACTING', 'acting'],['DIRECTING','directing'],['TECHNICAL','technical'],['PRODUCTION','production'],['ENSEMBLE','ensemble']]
-    return options_array
+    keys = %w[ACTING DIRECTING TECHNICAL PRODUCTION ENSEMBLE]
+    values = %w[acting directing technical production ensemble]
+    zipped = keys.zip(values)
+    return zipped
   end
 
 end
