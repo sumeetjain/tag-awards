@@ -21,4 +21,9 @@ class Award < ActiveRecord::Base
     award_type == "acting" 
   end
 
+  def pulldown_options
+    options_array = [['ACTING', 'acting'],['DIRECTING','directing'],['TECHNICAL','technical'],['PRODUCTION','production'],['ENSEMBLE','ensemble']]
+    return options_array
+  end
+
 end
