@@ -135,9 +135,9 @@ ActiveRecord::Schema.define(version: 20160816182937) do
 
   create_table "voting_periods", force: :cascade do |t|
     t.integer  "year"
-    t.string   "ballot_status"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "ballot_status", default: "pending"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   add_foreign_key "ballot_items", "awards"
