@@ -6,6 +6,11 @@ class VotingPeriod < ActiveRecord::Base
   # nominations - This period is currently accepting nominations.
   # voting - This period is currently accepting final votes.
   # closed - This period is not currently accepting nominations or final votes.
+
+  has_many :ballot_items
+  has_many :nominations
+  has_many :plays
+  
   def self.current
     order("year DESC").first
   end
