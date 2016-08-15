@@ -14,21 +14,11 @@ class Award < ActiveRecord::Base
   end
 
   def needs_nominee_input?
-    type = award_type
-    if type == "directing" || type == "technical" || type == "acting"
-      return true
-    else
-      return false
-    end
+    award_type == "directing" || award_type == "technical" || award_type == "acting"
   end
 
   def needs_role_input?
-    type = award_type
-    if type == "acting"
-      return true
-    else
-      return false
-    end
+    award_type == "acting" 
   end
 
 end
