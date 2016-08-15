@@ -39,42 +39,47 @@ window.addEventListener("load", function(){
 
 
 
+	for(i=0; i<show.length; i++){
+		show[i].addEventListener("mouseenter", function(){
+			var id_num = this.getAttribute("list").split("_")[2];
+		
+			while(show_data.children.length > 0){
+				show_data.removeChild(show_data.children[0]);
+			}
 
-	show.addEventListener("mouseenter", function(){
-		while(show_data.children.length > 0){
-			show_data.removeChild(show_data.children[0]);
-		}
+			var show_request = new XMLHttpRequest();
 
-		show_request = new XMLHttpRequest();
+			show_request.onreadystatechange = function(response) {
+				var theater = document.getElementById("theater").value.split(" ").join("_");
+		  		if (show_request.readyState === 4) {
+		    		if (show_request.status === 200) {
+						var response = JSON.parse(show_request.response);
+						var show_arr = Object.keys(response.theaters[theater]);
 
-		show_request.onreadystatechange = function(response) {
-			var theater = document.getElementById("theater").value.split(" ").join("_");
-	  		if (show_request.readyState === 4) {
-	    		if (show_request.status === 200) {
-					var response = JSON.parse(show_request.response);
-					var show_arr = Object.keys(response.theaters[theater]);
+						for(i=0; i<show_arr.length; i++){
+							show_arr[i] = show_arr[i].split("_").join(" ");
+						}
 
-					for(i=0; i<show_arr.length; i++){
-						show_arr[i] = show_arr[i].split("_").join(" ");
+						// Loop over the JSON array.
+						show_arr.forEach(function(item) {
+					    // Create a new <option> element.
+					    	var option = document.createElement('option');
+					    // Set the value using the item in the JSON array.
+					    	option.value = item;
+					    // Add the <option> element to the <datalist>.
+					    	show_data.appendChild(option);
+						});
 					}
+				}	
+		};
 
-					// Loop over the JSON array.
-					show_arr.forEach(function(item) {
-				    // Create a new <option> element.
-				    	var option = document.createElement('option');
-				    // Set the value using the item in the JSON array.
-				    	option.value = item;
-				    // Add the <option> element to the <datalist>.
-				    	show_data.appendChild(option);
-					});
-				}
-			}	
-	};
+		show_request.open("get","info.txt");
+		show_request.send();
 
-	show_request.open("get","info.txt");
-	show_request.send();
+		});
+	}
 
-	});
+
 
 
 });
