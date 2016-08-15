@@ -38,19 +38,19 @@
               <% nomination_count = 0 %>  
               <% while nomination_count <= 4 %>
                 <% if award.relevant_fields != 1 %>
-                  Theater:  <input class="theater_input-theater" list="theater_options_<%= nomination_count %>" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(award.id, nomination_count, "theater")%>">
-                  <datalist class="theater_options" id="theater_options_<%= nomination_count %>"></datalist>
-                  Show:  <input class="theater_input-show" list="show_options_<%= nomination_count %>" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][show]]" value="<%= current_user.nomination_value(award.id, nomination_count, "show") %>">
-                  <datalist class="show_options" id="show_options_<%= nomination_count %>"></datalist>
+                  Theater:  <input class="theater_input-theater" id="theater_input_<%= nomination_count %><%= award.id %>" list="theater_options_<%= nomination_count %><%= award.id %>" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(award.id, nomination_count, "theater")%>">
+                  <datalist class="theater_options" id="theater_options_<%= nomination_count %><%= award.id %>"></datalist>
+                  Show:  <input class="theater_input-show" list="show_options_<%= nomination_count %><%= award.id %>" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][show]]" value="<%= current_user.nomination_value(award.id, nomination_count, "show") %>">
+                  <datalist class="show_options" id="show_options_<%= nomination_count %><%= award.id %>"></datalist>
                 <%end%>
                 <% if award.relevant_fields >= 3 || award.relevant_fields == 1 %>
                   <br>
-                  Nominee:  <input class="theater_input-nominee" list="nominee_options_<%= nomination_count %>" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][nominee]]" value="<%= current_user.nomination_value(award.id, nomination_count, "nominee") %>">
-                  <datalist class="nominee_options" id="nominee_options_<%= nomination_count %>"></datalist>
+                  Nominee:  <input class="theater_input-nominee" list="nominee_options_<%= nomination_count %><%= award.id %>" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][nominee]]" value="<%= current_user.nomination_value(award.id, nomination_count, "nominee") %>">
+                  <datalist class="nominee_options" id="nominee_options_<%= nomination_count %><%= award.id %>"></datalist>
                 <% end%>
                 <% if award.relevant_fields >= 4 %>
-                  Role:  <input class="theater_input-role" list="role_options_<%= nomination_count %>" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][role]]" value="<%= current_user.nomination_value(award.id, nomination_count, "role") %>">
-                  <datalist class="role_options" id="role_options_<%= nomination_count %>"></datalist>
+                  Role:  <input class="theater_input-role" list="role_options_<%= nomination_count %><%= award.id %>" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][role]]" value="<%= current_user.nomination_value(award.id, nomination_count, "role") %>">
+                  <datalist class="role_options" id="role_options_<%= nomination_count %><%= award.id %>"></datalist>
                 <% end %>
                 <br><br>
                 <% nomination_count += 1 %>

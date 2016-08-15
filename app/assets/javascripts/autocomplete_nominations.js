@@ -3,7 +3,7 @@ window.addEventListener("load", function(){
 	var show = document.getElementsByClassName("theater_input-show");
 
 	var theater_options = document.getElementsByClassName("theater_options");
-	var show_options = document.getElementsByClassName("show_options");
+	
 
 
 	
@@ -41,20 +41,23 @@ window.addEventListener("load", function(){
 
 	for(i=0; i<show.length; i++){
 		show[i].addEventListener("mouseenter", function(){
-			var id_num = this.getAttribute("list").split("_")[2];
+			var list_id_num = this.getAttribute("list").split("_")[2];
+			var show_options = document.getElementById("show_options_" + list_id_num);
+
 		
-			while(show_data.children.length > 0){
-				show_data.removeChild(show_data.children[0]);
+			while(show_options.children.length > 0){
+				show_options.removeChild(show_options.children[0]);
 			}
 
 			var show_request = new XMLHttpRequest();
 
 			show_request.onreadystatechange = function(response) {
-				var theater = document.getElementById("theater").value.split(" ").join("_");
+				var t = document.getElementById("theater_input_" + list_id_num);
+				var theater_input = t.value.split(" ").join("_");
 		  		if (show_request.readyState === 4) {
 		    		if (show_request.status === 200) {
 						var response = JSON.parse(show_request.response);
-						var show_arr = Object.keys(response.theaters[theater]);
+						var show_arr = Object.keys(response.theaters[theater_input]);
 
 						for(i=0; i<show_arr.length; i++){
 							show_arr[i] = show_arr[i].split("_").join(" ");
@@ -67,13 +70,13 @@ window.addEventListener("load", function(){
 					    // Set the value using the item in the JSON array.
 					    	option.value = item;
 					    // Add the <option> element to the <datalist>.
-					    	show_data.appendChild(option);
+					    	show_options.appendChild(option);
 						});
 					}
 				}	
 		};
 
-		show_request.open("get","info.txt");
+		show_request.open("get","/fake_data_for_autocomplete.txt");
 		show_request.send();
 
 		});
