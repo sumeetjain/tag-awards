@@ -37,19 +37,33 @@ RSpec.describe VotingPeriod, type: :model do
     
     expect(period.ballot_status).to eq("pending")  
   end
-  xit "is valid with a ballot status of pending" do
-
+  it "is valid with a ballot status of pending" do
+    period = VotingPeriod.new
+    period.year = 2016
+    expect(period.valid?).to be(true)
   end
-  xit "is valid with a ballot status of nominations" do
-
+  it "is valid with a ballot status of nominations" do
+    period = VotingPeriod.new
+    period.year = 2016
+    period.ballot_status = "nominations"
+    expect(period.valid?).to be(true)
   end
-  xit "is valid with a ballot status of voting" do
-
+  it "is valid with a ballot status of voting" do
+    period = VotingPeriod.new
+    period.year = 2016
+    period.ballot_status = "voting"
+    expect(period.valid?).to be(true)
   end
-  xit "is valid with a ballot status of closed" do
-
+  it "is valid with a ballot status of closed" do
+    period = VotingPeriod.new
+    period.year = 2016
+    period.ballot_status = "closed"
+    expect(period.valid?).to be(true)
   end
-  xit "is invalid with a different ballot status" do
-
+  it "is invalid with a different ballot status" do
+    period = VotingPeriod.new
+    period.year = 2016
+    period.ballot_status = "final_voting_closed"
+    expect(period.valid?).to be(false)
   end
 end
