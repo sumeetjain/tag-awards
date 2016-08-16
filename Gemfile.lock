@@ -80,9 +80,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.8.0)
-      capybara (>= 2.3.0, < 2.7.0)
-      json
     code_analyzer (0.4.5)
       sexp_processor
     codeclimate-engine-rb (0.3.1)
@@ -371,7 +368,6 @@ DEPENDENCIES
   awesome_print
   bullet
   bundler-audit (>= 0.5.0)
-  capybara-webkit
   database_cleaner
   delayed_job_active_record
   devise
@@ -416,5 +412,8 @@ DEPENDENCIES
   web-console
   webmock
 
+RUBY VERSION
+   ruby 2.3.0p0
+
 BUNDLED WITH
-   1.11.2
+   1.12.5
