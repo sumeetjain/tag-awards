@@ -52,21 +52,23 @@ window.addEventListener("load", function(){
 
 			show_request.onreadystatechange = function(response) {
 				var theater_input = document.getElementById("theater_input_" + list_id_num).value;
-		  		if (show_request.readyState === 4) {
-		    		if (show_request.status === 200) {
-						var response = JSON.parse(show_request.response);
-						var show_arr = Object.keys(response.theaters[theater_input]);
+		  		if(theater_input !== ""){
+			  		if (show_request.readyState === 4) {
+			    		if (show_request.status === 200) {
+							var response = JSON.parse(show_request.response);
+							var show_arr = Object.keys(response.theaters[theater_input]);
 
 
-						// Loop over the JSON array.
-						show_arr.forEach(function(item) {
-					    // Create a new <option> element.
-					    	var option = document.createElement('option');
-					    // Set the value using the item in the JSON array.
-					    	option.value = item;
-					    // Add the <option> element to the <datalist>.
-					    	show_options.appendChild(option);
-						});
+							// Loop over the JSON array.
+							show_arr.forEach(function(item) {
+						    // Create a new <option> element.
+						    	var option = document.createElement('option');
+						    // Set the value using the item in the JSON array.
+						    	option.value = item;
+						    // Add the <option> element to the <datalist>.
+						    	show_options.appendChild(option);
+							});
+						}
 					}
 				}	
 		};
@@ -76,6 +78,7 @@ window.addEventListener("load", function(){
 
 		});
 	}
+	
 
 
 
@@ -96,21 +99,23 @@ window.addEventListener("load", function(){
 			nominee_request.onreadystatechange = function(response) {
 				var theater_input = document.getElementById("theater_input_" + list_id_num).value;
 				var show_input = document.getElementById("show_input_" + list_id_num).value;
-		  		if (nominee_request.readyState === 4) {
-		    		if (nominee_request.status === 200) {
-						var response = JSON.parse(nominee_request.response);
-						var nominee_arr = Object.keys(response.theaters[theater_input][show_input]);
+				if(theater_input !== "" && show_input !== ""){
+			  		if (nominee_request.readyState === 4) {
+			    		if (nominee_request.status === 200) {
+							var response = JSON.parse(nominee_request.response);
+							var nominee_arr = Object.keys(response.theaters[theater_input][show_input]);
 
 
-						// Loop over the JSON array.
-						nominee_arr.forEach(function(item) {
-					    // Create a new <option> element.
-					    	var option = document.createElement('option');
-					    // Set the value using the item in the JSON array.
-					    	option.value = item;
-					    // Add the <option> element to the <datalist>.
-					    	nominee_options.appendChild(option);
-						});
+							// Loop over the JSON array.
+							nominee_arr.forEach(function(item) {
+						    // Create a new <option> element.
+						    	var option = document.createElement('option');
+						    // Set the value using the item in the JSON array.
+						    	option.value = item;
+						    // Add the <option> element to the <datalist>.
+						    	nominee_options.appendChild(option);
+							});
+						}
 					}
 				}	
 		};
@@ -140,22 +145,24 @@ window.addEventListener("load", function(){
 				var show_input = document.getElementById("show_input_" + list_id_num).value;
 				var nominee_input = document.getElementById("nominee_input_" + list_id_num).value;
 
-		  		if (role_request.readyState === 4) {
-		    		if (role_request.status === 200) {
-						var response = JSON.parse(role_request.response);
-						var role_arr = response.theaters[theater_input][show_input][nominee_input];
+				if(theater_input !== "" && show_input !== "" && nominee_input !== ""){
+			  		if (role_request.readyState === 4) {
+			    		if (role_request.status === 200) {
+							var response = JSON.parse(role_request.response);
+							var role_arr = response.theaters[theater_input][show_input][nominee_input];
 
 
-						// Loop over the JSON array.
-						role_arr.forEach(function(item) {
-					    // Create a new <option> element.
-					    	var option = document.createElement('option');
-					    // Set the value using the item in the JSON array.
-					    	option.value = item;
-					    // Add the <option> element to the <datalist>.
-					    	role_options.appendChild(option);
-						});
-					}
+							// Loop over the JSON array.
+							role_arr.forEach(function(item) {
+						    // Create a new <option> element.
+						    	var option = document.createElement('option');
+						    // Set the value using the item in the JSON array.
+						    	option.value = item;
+						    // Add the <option> element to the <datalist>.
+						    	role_options.appendChild(option);
+							});
+						}
+					}	
 				}	
 		};
 
