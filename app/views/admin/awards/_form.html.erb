@@ -38,7 +38,7 @@ and renders all form fields for a resource's editable attributes.
 
     <div class="field-unit">
       <%= f.label :award_type %>
-      <%=f.select(:award_type, options_for_select(award.pulldown_options)) %>
+      <%=f.select(:award_type, options_for_select(Award.pulldown_options)) %>
     </div>
 
     <div class="form-actions">

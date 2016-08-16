@@ -21,7 +21,7 @@ class Award < ActiveRecord::Base
     award_type == "acting" 
   end
 
-  def pulldown_options
+  def self.pulldown_options
     keys = %w(ACTING DIRECTING TECHNICAL PRODUCTION ENSEMBLE)
     values = %w(acting directing technical production ensemble)
     zipped = keys.zip(values)
