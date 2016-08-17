@@ -11,16 +11,13 @@ class AddMultipleUsersController < ApplicationController
   end
 
   # GET /add_multiple_users/new
-  def new
+  def create
 
     @add_multiple_user = AddMultipleUser.new
-    
-
-    if @add_multiple_user.save != "false"
-      redirect_to "/add_multiple_users", notice: "Add #{@add_multiple_user.count} user was successfully created."
-    else
-      redirect_to "/add_multiple_users", notice: "Add users failed on row #{@add_multiple_user.count}  ."
-    end
+    @add_multiple_user.save 
+      redirect_to "/add_multiple_users", notice: "Add #{@add_multiple_user.count} users was 
+      successfully created. The following rows failed #{@add_multiple_user.failed}. If any 
+      rows failed please create new csv file and correct the issue."
   end
 
   # PATCH/PUT /add_multiple_users/1

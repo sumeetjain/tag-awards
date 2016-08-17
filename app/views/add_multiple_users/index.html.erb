@@ -23,3 +23,8 @@
 <br>
 
 <%= link_to 'New Add multiple user', new_add_multiple_user_path %>
+
+<%= form_tag new_add_multiple_user_path, :multipart => true do %>
+   <label for="file">Upload text File</label> <%= file_field_tag "file" %>
+   <%= submit_tag %>
+<% end %>
