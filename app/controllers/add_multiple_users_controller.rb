@@ -12,21 +12,14 @@ class AddMultipleUsersController < ApplicationController
 
   # GET /add_multiple_users/new
   def new
+
     @add_multiple_user = AddMultipleUser.new
-  end
+    
 
-  # GET /add_multiple_users/1/edit
-  def edit
-  end
-
-  # POST /add_multiple_users
-  def create
-    @add_multiple_user = AddMultipleUser.new(add_multiple_user_params)
-
-    if @add_multiple_user.save
-      redirect_to @add_multiple_user, notice: 'Add multiple user was successfully created.'
+    if @add_multiple_user.save != "false"
+      redirect_to "/add_multiple_users", notice: "Add #{@add_multiple_user.count} user was successfully created."
     else
-      render :new
+      redirect_to "/add_multiple_users", notice: "Add users failed on row #{@add_multiple_user.count}  ."
     end
   end
 

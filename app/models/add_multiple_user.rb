@@ -1,2 +1,38 @@
+# The AddMultipleUser Class is used to read csv file.
+#
+# Multiple new users are added the User table from the csv file. 
+
+require 'csv'
+
 class AddMultipleUser < ActiveRecord::Base
+
+	def initialize
+		
+		file = "add_multiple_users.csv"
+		@csv_array = []
+
+		CSV.foreach(file) do |record|
+			 @csv_array.push(record)
+		end
+
+	end
+
+	def save
+
+		@count = 0
+		@csv_array.each do |record|
+			user = User.new
+			user.secret_number 
+			user.full_name = record[0]
+			user.email = record[1]
+			user.password = "TagNumber1!"
+			user.save
+			@count += 1
+			@test = user.errors
+		end
+	end
+
+	def count
+		return @test
+	end
 end
