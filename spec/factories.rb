@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :add_multiple_user do
+    
+  end
   factory :voting_period do
     year 1
     final_ballot_open false

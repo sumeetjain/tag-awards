@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Add Multiple Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @add_multiple_users.each do |add_multiple_user| %>
+      <tr>
+        <td><%= link_to 'Show', add_multiple_user %></td>
+        <td><%= link_to 'Edit', edit_add_multiple_user_path(add_multiple_user) %></td>
+        <td><%= link_to 'Destroy', add_multiple_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Add multiple user', new_add_multiple_user_path %>
