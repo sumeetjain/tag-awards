@@ -10,7 +10,6 @@ class AwardDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     award_name: Field::String,
-    relevant_fields: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     inactive: Field::Boolean,
@@ -25,7 +24,6 @@ class AwardDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :award_name,
-    :relevant_fields,
     :award_type
   ]
 
@@ -33,7 +31,6 @@ class AwardDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :award_name,
-    :relevant_fields,
     :award_type
     # :nominations # Add this to see nominations for each award.
   ]
@@ -43,7 +40,6 @@ class AwardDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :award_name,
-    :relevant_fields,
     :inactive
   ]
 

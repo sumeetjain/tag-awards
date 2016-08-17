@@ -12,4 +12,19 @@ class Award < ActiveRecord::Base
 
     award_name.gsub(regex, "")
   end
+
+  def needs_nominee_input?
+    award_type == "directing" || award_type == "technical" || award_type == "acting"
+  end
+
+  def needs_role_input?
+    award_type == "acting" 
+  end
+
+  def self.pulldown_options
+    keys = %w(ACTING DIRECTING TECHNICAL PRODUCTION ENSEMBLE)
+    values = %w(acting directing technical production ensemble)
+    zipped = keys.zip(values)
+    return zipped
+  end
 end
