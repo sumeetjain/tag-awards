@@ -13,6 +13,23 @@ module Admin
     #   Nomination.find_by!(slug: param)
     # end
 
+    def index
+      search_term = params[:search].to_s.strip
+      resources = Administrate::Search.new(resource_resolver, search_term).run
+      resources = resources.scoping do 
+        Nomination.where(voting_period: VotingPeriod.current)
+      end
+      resources = order.apply(resources)
+      resources = resources.page(params[:page]).per(records_per_page)
+      page = Administrate::Page::Collection.new(dashboard, order: order)
+
+      render locals: {
+        resources: resources,
+        search_term: search_term,
+        page: page,
+      }
+    end
+
     def top_ten
       @theaters = Theater.includes(:plays).all
       @awards = Award.includes(:ballot_items => {play: :theater}).order("awards.award_name asc").all
