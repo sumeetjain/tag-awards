@@ -13,13 +13,22 @@
     <div class="col-12 content-box">
 
       <%= form_for current_user, url: user_viewings_path do |f| %>
-        <% @plays.each do |p| %>
-          <p>
-            <label>
-              <%= f.check_box :viewings, {name: "user[viewings][]", id: nil, checked: current_user.has_viewed?(p)}, p.id, nil %>
-              <strong><%= p.title %></strong> (at <%= p.theater.name %>)
-            </label>
-          </p>
+        <% @theaters.each_with_index do |t, count| %>
+          <br><button class="toggle-btn_<%= count %>">+</button><strong><%= t.name %></strong>
+          <div class="theater-shows" id="theater-shows_<%= count%>">
+            <%= @plays.each do |p| %>
+              <% if p.theater.name == t.name %>
+                <p>
+                  <label>
+                    <%= f.check_box :viewings, {name: "user[viewings][]", id: nil, checked: current_user.has_viewed?(p)}, p.id, nil %>
+                    <%= p.title %>
+                  </label>
+                </p>
+              <% end %>
+            <% end %>
+          </div>
+
+
         <% end %>
 
         <div class="submit-button"> 
