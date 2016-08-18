@@ -1,1 +1,18 @@
 <h1> Hello </h1>
+
+
+
+      
+        <% @plays.each do |p| %>
+          <p>
+            <label>
+              
+              <strong><%= p.title %></strong> (at <%= p.theater.name %>)
+            </label>
+          </p>
+        <% end %>
+
+        
+   
+
+  

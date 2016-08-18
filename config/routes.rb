@@ -1,5 +1,7 @@
 Rails.application.routes.draw do 
 
+  get 'api/index'
+
   patch "user/viewings" => 'viewings#update', as: :user_viewings
 
   namespace :admin do
@@ -65,5 +67,6 @@ Rails.application.routes.draw do
 
   # Final Ballot Routes
   resources :ballots, only: [:new, :create]
+
 end
 
