@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :admin_add_multiple, class: 'Admin::AddMultiple' do
+    
+  end
   factory :voting_period do
     year 1
     final_ballot_open false

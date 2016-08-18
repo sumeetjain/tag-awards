@@ -1,5 +1,9 @@
 Rails.application.routes.draw do 
 
+  namespace :admin do
+    resources :add_multiples
+    post 'post/csv' => 'add_multiples#create'
+  end
   patch "user/viewings" => 'viewings#update', as: :user_viewings
 
   namespace :admin do
