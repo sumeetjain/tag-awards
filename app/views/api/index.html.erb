@@ -1,18 +1,7 @@
-<h1> Hello </h1>
+<%= @plays.each.to_json do |p| %>
+    
+<% end %>
 
-
-
-      
-        <% @plays.each do |p| %>
-          <p>
-            <label>
-              
-              <strong><%= p.title %></strong> (at <%= p.theater.name %>)
-            </label>
-          </p>
-        <% end %>
-
-        
    
 
   
