@@ -1,14 +1,12 @@
 class ApiController < ApplicationController
-  
-  
-
-
-  def index
-  	@plays = Play.includes(:theater).all
-  	
+ 
+def index
+  	@noms = Nomination.all
+  	@prods = Play.all
+  	@venue = Theater.all
   end
 
-
-
-
 end
+
+
+
