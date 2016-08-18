@@ -16,7 +16,7 @@
         <% @theaters.each_with_index do |t, count| %>
           <br><button class="toggle_btn" id="toggle_btn_<%= count %>" type="button">+</button><strong><%= t.name %></strong>
           <div class="theater_shows" id="theater_shows_<%= count%>">
-            <%= @plays.each do |p| %>
+            <% @plays.each do |p| %>
               <% if p.theater.name == t.name %>
                 <p>
                   <label>
@@ -24,6 +24,7 @@
                     <%= p.title %>
                   </label>
                 </p>
+
               <% end %>
             <% end %>
           </div>
