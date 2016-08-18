@@ -9,8 +9,8 @@ as defined by the routes in the `admin/` namespace
 
 <ul class="sidebar__list">
   <% Administrate::Namespace.new(namespace).resources.each do |resource|
-    binding.pry
-    if resource != ":add_multiples" %>
+    
+    if resource.to_s != "add_multiples" %>
     <li>
       <%= link_to(
         display_resource_name(resource),
