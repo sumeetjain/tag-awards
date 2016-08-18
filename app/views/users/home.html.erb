@@ -14,8 +14,8 @@
 
       <%= form_for current_user, url: user_viewings_path do |f| %>
         <% @theaters.each_with_index do |t, count| %>
-          <br><button class="toggle-btn_<%= count %>">+</button><strong><%= t.name %></strong>
-          <div class="theater-shows" id="theater-shows_<%= count%>">
+          <br><button class="toggle_button" id="toggle_btn_<%= count %>" type="button">+</button><strong><%= t.name %></strong>
+          <div class="theater_shows" id="theater_shows_<%= count%>">
             <%= @plays.each do |p| %>
               <% if p.theater.name == t.name %>
                 <p>
