@@ -1,12 +1,13 @@
 window.addEventListener("load", function(){
-	var theaterBtn = document.getElementsByClassName("toggle_button");
-	var showDiv = document.getElementsByClassName("theater_shows");
+	var theaterBtn = document.getElementsByClassName("toggle_btn");
+	var plays_list = document.getElementsByClassName("theater_shows");
 
-	for(i=0; i < showDiv.length; i++){
-		showDiv[i].style.display = "none";
+	for(i=0; i < plays_list.length; i++){
+		plays_list[i].style.display = "none";
 	}
 
-	showDiv[0].style.display = "inline";
+	plays_list[0].style.display = "inline";
+	theaterBtn[0].innerHTML = "-";
 
 	
 
@@ -14,12 +15,16 @@ window.addEventListener("load", function(){
 		theaterBtn[i].addEventListener("click", function(){
 			
 			var id = this.getAttribute("id").split("_")[2];
-			var btn = document.getElementById("theater_shows_" + id);
+			var play_l = document.getElementById("theater_shows_" + id);
+			var btn = document.getElementById("toggle_btn_" + id);
 			
-			if(btn.style.display == "none"){
-				btn.style.display = "inline";
+			if(play_l.style.display == "none"){
+				play_l.style.display = "inline";
+				btn.innerHTML = "-";
 			} 
-			else {btn.style.display = "none";
+			else { 
+				play_l.style.display = "none";
+				btn.innerHTML = "+";
 			}
 
 			
