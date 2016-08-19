@@ -1,28 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Admin Add Multiples</h1>
+<h1>Add Multiple Users via CSV file</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<p>The following CSV file needs to be in the following format
+Full Name,Email Address,Admin Rights (true or false/blank)</p>
 
-  <tbody>
-    <% @admin_add_multiples.each do |admin_add_multiple| %>
-      <tr>
-        <td><%= link_to 'Show', admin_add_multiple %></td>
-        <td><%= link_to 'Edit', edit_admin_add_multiple_path(admin_add_multiple) %></td>
-        <td><%= link_to 'Destroy', admin_add_multiple, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<p>Format examples</p> 
+<p>John Smith,tester@tester.com,true</p>
+<p>Will Jacobs,tester@tester.com</p>
 
-<br>
-
-<%= link_to 'New Add multiple', new_admin_add_multiple_path %>
 
 <%= form_tag admin_post_csv_path, :multipart => true do %>
    <label for="file">Upload text File</label> <%= file_field_tag "file" %>

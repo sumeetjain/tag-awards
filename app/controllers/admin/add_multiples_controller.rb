@@ -1,4 +1,5 @@
 class Admin::AddMultiplesController < ApplicationController
+  layout 'admin/application.html.erb'
   before_action :set_admin_add_multiple, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/add_multiples
