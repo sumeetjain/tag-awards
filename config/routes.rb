@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   patch "user/viewings" => 'viewings#update', as: :user_viewings
 
   namespace :admin do
+    resources :add_multiples
     resources :users do
       collection do
         post "export/usernames_and_passwords" => 'users#export'

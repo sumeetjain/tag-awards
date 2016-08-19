@@ -1,4 +1,4 @@
-class Admin::AddMultiple < ActiveRecord::Base
+class AddMultiple 
 
 	def initialize(file)
 	
