@@ -1,9 +1,26 @@
 Rails.application.routes.draw do 
 
   patch "user/viewings" => 'viewings#update', as: :user_viewings
-  match '/admin/application' => 'admin/application#add_multiples', :as => :admin_application_add_multiples, via: [:get, :post]
+  
+  #  match '/admin/application' => 'admin/add_multiples#add', 
+  # :as => :add_multiple_admin, via: [:post]
+
+  # patch '/admin/application' => 'admin/add_multiple#show', 
+  # :as => :multiple_admin
+
+
 
   namespace :admin do
+
+    # match '/application/add_multiple' => 'add_multiples#display', 
+    # :as => :multiple, via: [:get, :post]
+
+    get "/application/add_multiple", :controller => 'add_multiples',  
+      :action => 'add_multiple'
+
+    post "/application/add_multiple", :controller => 'add_multiples',  
+      :action => 'create'
+
     resources :users do
       collection do
         post "export/usernames_and_passwords" => 'users#export'
