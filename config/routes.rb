@@ -1,7 +1,7 @@
 Rails.application.routes.draw do 
 
   patch "user/viewings" => 'viewings#update', as: :user_viewings
-  match '/admin/add_multiples' => 'admin/add_multiples#index', :as => :admin_add_multiples_index, via: [:get]
+  match '/admin/application' => 'admin/application#add_multiples', :as => :admin_application_add_multiples, via: [:get, :post]
 
   namespace :admin do
     resources :users do

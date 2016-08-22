@@ -24,7 +24,7 @@ Full Name,Email Address,Admin Rights (true or false/blank)</p>
 <p>Will Jacobs,tester@tester.com</p>
 
 
-<%= form_tag admin_add_multiples_index_path, :multipart => true do %>
+<%= form_tag admin_application_add_multiples_path, :multipart => true do %>
    <label for="file">Upload text File</label> <%= file_field_tag "file" %>
    <%= submit_tag %>
 <% end %>

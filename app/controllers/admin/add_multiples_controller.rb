@@ -2,7 +2,7 @@ class Admin::AddMultiplesController < ApplicationController
   layout 'admin/application.html.erb'
  
 
-  # POST /admin/add_multiples
+  # POST /admin/application/add_multiples
   def create
 
    @admin_add_multiple = Admin::AddMultiple.new(params[:file])
