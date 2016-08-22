@@ -1,6 +1,8 @@
 class ApiController < ApplicationController
   def index
-    render :json => {:theaters => Theater.api_all}
+    @api_response = Api.new
+
+    render :json => {:theaters => @api_response.all}
 
   	# @plays = Theater.all
   	# render :json => 
