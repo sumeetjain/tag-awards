@@ -2,18 +2,7 @@ Rails.application.routes.draw do
 
   patch "user/viewings" => 'viewings#update', as: :user_viewings
   
-  #  match '/admin/application' => 'admin/add_multiples#add', 
-  # :as => :add_multiple_admin, via: [:post]
-
-  # patch '/admin/application' => 'admin/add_multiple#show', 
-  # :as => :multiple_admin
-
-
-
   namespace :admin do
-
-    # match '/application/add_multiple' => 'add_multiples#display', 
-    # :as => :multiple, via: [:get, :post]
 
     get "/application/add_multiple", :controller => 'add_multiples',  
       :action => 'add_multiple'
