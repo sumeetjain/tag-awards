@@ -6,7 +6,7 @@ class ApiController < ApplicationController
   						:include => {
   						  :plays => {:only => [:title]}
   						  }
-  					)	
+  					)
 
   end
 end
