@@ -1,9 +1,9 @@
 Rails.application.routes.draw do 
 
   patch "user/viewings" => 'viewings#update', as: :user_viewings
+  match '/admin/add_multiples' => 'admin/add_multiples#index', :as => :admin_add_multiples_index, via: [:get]
 
   namespace :admin do
-    resources :add_multiples
     resources :users do
       collection do
         post "export/usernames_and_passwords" => 'users#export'
