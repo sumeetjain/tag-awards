@@ -14,10 +14,11 @@ class AddMultiple
 
 	def save
 
-		@count = 0
+		count = 0
 		@failed = ""
+		@success = 0
 		@csv_array.each do |record|
-			@count += 1
+			count += 1
 			user = User.new
 			user.secret_number 
 			user.full_name = record[0]
@@ -27,14 +28,20 @@ class AddMultiple
 			user.save
 			
 			if user.save == false
-				@failed += @count.to_s + " "
+				if @failed == ""
+					@failed += count.to_s
+				else
+					@failed += "," + count.to_s
+				end
+			else
+				@success += 1
 			end
 
 		end
 	end
 
-	def count
-		return @count
+	def success
+		return @success
 	end
 
 	def failed
