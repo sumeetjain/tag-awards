@@ -1,3 +1,7 @@
+# This class is used to add new users to the User table
+# The class read csv files to add multiple users at time
+# The record should be in the following order 
+# full name, email address, admin rights (true/false or blank)
 class AddMultiple 
 
 	def initialize(file)
@@ -11,6 +15,9 @@ class AddMultiple
 			 @csv_array.push(record)
 		end
 	end
+# This function is used to save new record to the User Database
+# 
+# This function will record the succesful record count the records that failed.
 
 	def save
 
@@ -39,11 +46,11 @@ class AddMultiple
 
 		end
 	end
-
+# returns the number of succesful records added. Success is set via the save function.
 	def success
 		return @success
 	end
-
+# returns the number of failed rows. Failed is set via the save function.
 	def failed
 		
 		if @failed == ""
