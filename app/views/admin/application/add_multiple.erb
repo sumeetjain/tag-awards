@@ -1,0 +1,26 @@
+<%- if user_signed_in? %>
+    <li>
+    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+    </li>
+  <% else %>
+    <li>
+    <%= link_to('Login', new_user_session_path)  %>  
+    </li>
+  <% end -%>
+
+<header class="header">
+  <h1 class="header__heading">Add Multiple Users via CSV file</h1>
+</header>
+
+<p>The following CSV file needs to be in the following format
+Full Name,Email Address,Admin Rights (true or false/blank)</p>
+
+<p>Format examples</p> 
+<p>John Smith,tester@tester.com,true</p>
+<p>Will Jacobs,tester@tester.com</p>
+
+
+<%= form_tag admin_application_add_multiple_path, :multipart => true do %>
+   <label for="file">Upload text File</label> <%= file_field_tag "file" %>
+   <%= submit_tag %>
+<% end %>

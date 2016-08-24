@@ -1,8 +1,15 @@
 Rails.application.routes.draw do 
 
   patch "user/viewings" => 'viewings#update', as: :user_viewings
-
+  
   namespace :admin do
+
+    get "/application/add_multiple", :controller => 'add_multiples',  
+      :action => 'add_multiple'
+
+    post "/application/add_multiple", :controller => 'add_multiples',  
+      :action => 'create'
+
     resources :users do
       collection do
         post "export/usernames_and_passwords" => 'users#export'
