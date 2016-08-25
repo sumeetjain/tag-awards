@@ -1,3 +1,4 @@
+
 class Api
 
   def initialize
@@ -5,15 +6,15 @@ class Api
   end
 
   def all
-    return ApiCheat.cheat
+    return ApiTheater.theaters
   end
 
   class ApiTheater
     def self.theaters
       theaters_hash = {}
-
+        # theater = Theater.find(1)
       Theater.all.each do |theater|
-        plays_hash = {}
+        plays_hash = ApiPlay.plays(theater)
         theaters_hash[theater.name] = plays_hash   
       end
       return theaters_hash
@@ -21,10 +22,11 @@ class Api
   end
 
   class ApiPlay
-    def self.plays
+    def self.plays(theater)
       plays_hash = {}
-      Play.all.each do |play|
-        noms_hash = {}
+      Play.where(theater_id: theater.id).each do |play| 
+       
+        noms_hash = ApiNominee.nominees(theater, play)
         plays_hash[play.title] = noms_hash   
       end
       return plays_hash
@@ -32,11 +34,11 @@ class Api
   end
 
   class ApiNominee
-    def self.nominees
+    def self.nominees(theater, play)
       noms_hash = {}
 
-      Nomination.all.each do |nom|
-        role_array = []
+      Nomination.where(theater: theater.name, show: play.title).each do |nom|
+        role_array = ApiRole.roles(theater, play, nom)
         noms_hash[nom.nominee] = role_array   
       end
       return noms_hash
@@ -44,12 +46,18 @@ class Api
   end
 
   class ApiRole
-    def self.roles
+    def self.roles(theater, play, nomination)
       role_array = []
+      Nomination.where(theater: theater.name, show: play.title, nominee: nomination.nominee).each do |nom|
+       
+        if nom.nominee.nil?
+          role_array = []
+        end
 
-      Nomination.all.each do |nom|
-          
-        role_array << nom.role    
+        if !nom.role.blank?
+          role_array << nom.role
+          role_array.uniq!
+        end
       end
       return role_array
     end
