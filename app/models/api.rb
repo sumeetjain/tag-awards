@@ -12,7 +12,6 @@ class Api
   class ApiTheater
     def self.theaters
       theaters_hash = {}
-        # theater = Theater.find(1)
       Theater.all.each do |theater|
         plays_hash = ApiPlay.plays(theater)
         theaters_hash[theater.name] = plays_hash   
@@ -61,39 +60,5 @@ class Api
       end
       return role_array
     end
-  end
-
-
-# This is desired API response
-  class ApiCheat
-    def self.cheat
-      theaters_hash = {}
-
-    Theater.all.each do |theater|
-      plays_hash = {}
-
-      theater.plays.each do |p|
-        noms = Nomination.where(theater: theater.name, show: p.title)
-
-        plays_hash[p.title] = {}
-
-        noms.each do |nom|
-          if plays_hash[p.title][nom.nominee].nil?
-            plays_hash[p.title][nom.nominee] = []
-          end
-
-          if !nom.role.blank?
-            plays_hash[p.title][nom.nominee] << nom.role
-            plays_hash[p.title][nom.nominee].uniq!
-          end
-        end
-      end
-
-      theaters_hash[theater.name] = plays_hash
-    end
-
-    return theaters_hash
-    end
-  end
-  
+  end  
 end
