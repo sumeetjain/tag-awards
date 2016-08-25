@@ -5,7 +5,7 @@ class Api
   end
 
   def all
-    return ApiNominee.nominees
+    return ApiRole.roles
   end
 
   class ApiTheater
@@ -51,7 +51,7 @@ class Api
           
         role_array << nom.role    
       end
-      eturn role_array
+      return role_array
     end
   end
 
