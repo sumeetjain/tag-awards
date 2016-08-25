@@ -5,7 +5,7 @@ class Api
   end
 
   def all
-    return ApiRole.roles
+    return ApiCheat.cheat
   end
 
   class ApiTheater
@@ -55,6 +55,8 @@ class Api
     end
   end
 
+
+# This is desired API response
   class ApiCheat
     def self.cheat
       theaters_hash = {}
