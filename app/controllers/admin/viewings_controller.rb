@@ -20,7 +20,7 @@ module Admin
       search_term = params[:search].to_s.strip
       resources = Administrate::Search.new(resource_resolver, search_term).run
       resources = resources.scoping do 
-        Viewing.joins(:play).where(plays: {voting_period_id: VotingPeriod.current.id})
+        Viewing.joins(:play).where(plays: {voting_period_id: @period.id})
       end
       resources = order.apply(resources)
       resources = resources.page(params[:page]).per(records_per_page)

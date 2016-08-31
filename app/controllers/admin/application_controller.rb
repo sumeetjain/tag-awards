@@ -7,6 +7,7 @@
 module Admin
   class ApplicationController < Administrate::ApplicationController
     before_filter :authenticate_admin
+    before_filter :set_year
 
     def authenticate_admin
       if !current_user || !current_user.admin?
@@ -15,10 +16,16 @@ module Admin
       # TODO Add authentication logic here.
     end
 
+    def set_year
+      year = params[:year] || VotingPeriod.current.year
+      @period = VotingPeriod.where(year: year)[0]
+    end
+
     # Override this value to specify the number of elements to display at a time
     # on index pages. Defaults to 20.
     # def records_per_page
     #   params[:per_page] || 20
     # end
+
   end
 end

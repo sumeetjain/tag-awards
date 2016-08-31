@@ -19,7 +19,7 @@ module Admin
       search_term = params[:search].to_s.strip
       resources = Administrate::Search.new(resource_resolver, search_term).run
       resources = resources.scoping do 
-        BallotItem.where(voting_period: VotingPeriod.current)
+        BallotItem.where(voting_period: @period)
       end
       resources = order.apply(resources)
       resources = resources.page(params[:page]).per(records_per_page)
