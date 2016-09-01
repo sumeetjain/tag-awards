@@ -7,6 +7,12 @@ for all resources in the admin dashboard,
 as defined by the routes in the `admin/` namespace
 %>
 
+<%= form_tag({},method: :get) do %>
+  <%= select_tag :year, 
+  options_from_collection_for_select(VotingPeriod.all, 'year', 'year', @period.year), 
+  {onChange: "this.form.submit();"} %>
+<% end %>
+
 <ul class="sidebar__list">
   <% Administrate::Namespace.new(namespace).resources.each do |resource| %>
     <li>

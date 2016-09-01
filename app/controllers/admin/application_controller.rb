@@ -16,8 +16,15 @@ module Admin
       # TODO Add authentication logic here.
     end
 
+    # Filter the content on the dashboard for one voting period at a time
     def set_year
-      year = params[:year] || VotingPeriod.current.year
+      # If the form explicitly sets the year, go with that year.  
+      # Otherwise, check the session.
+      year = params[:year] || session[:year]
+      # If neither is set, default to the current year.
+      year = year || VotingPeriod.current.year
+      # Save this to the session.
+      session[:year] = year
       @period = VotingPeriod.where(year: year)[0]
     end
 
