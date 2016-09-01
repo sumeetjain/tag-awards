@@ -7,7 +7,7 @@
 module Admin
   class ApplicationController < Administrate::ApplicationController
     before_filter :authenticate_admin
-    before_filter :set_year
+    before_action :get_period
 
     def authenticate_admin
       if !current_user || !current_user.admin?
@@ -17,15 +17,16 @@ module Admin
     end
 
     # Filter the content on the dashboard for one voting period at a time
-    def set_year
-      # If the form explicitly sets the year, go with that year.  
-      # Otherwise, check the session.
-      year = params[:year] || session[:year]
-      # If neither is set, default to the current year.
-      year = year || VotingPeriod.current.year
-      # Save this to the session.
-      session[:year] = year
+    def get_period
+      year = session[:year]
       @period = VotingPeriod.where(year: year)[0]
+
+      # If there wasn't data in the session or it was an invalid year, default
+      # to the current year.
+      unless @period
+        @period = VotingPeriod.current
+      end
+      session[:year] = @period.year
     end
 
     # Override this value to specify the number of elements to display at a time

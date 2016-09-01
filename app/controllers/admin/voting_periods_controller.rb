@@ -15,5 +15,11 @@ module Admin
 
     # See https://administrate-docs.herokuapp.com/customizing_controller_actions
     # for more information
+
+    def set_period
+      # Sets the year for the current voting period in the session.
+      session[:year] = params[:year]
+      redirect_to request.referrer
+    end
   end
 end

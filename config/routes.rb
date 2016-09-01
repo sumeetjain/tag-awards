@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     resources :voting_periods
     
     root to: "users#index"
+
+    post 'set_period' => 'voting_periods#set_period'
   end
 
   root to: "users#home"
