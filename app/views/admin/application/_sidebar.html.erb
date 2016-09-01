@@ -8,9 +8,7 @@ as defined by the routes in the `admin/` namespace
 %>
 
 <%= form_tag('/admin/set_period',method: :post) do %>
-  <%= select_tag :year, 
-  options_from_collection_for_select(VotingPeriod.all, 'year', 'year', @period.year), 
-  {onChange: "this.form.submit();"} %>
+  <%= select_tag :year, options_from_collection_for_select(VotingPeriod.all, 'year', 'year', @period.year), {onChange: "this.form.submit();"} %>
 <% end %>
 
 <ul class="sidebar__list">

@@ -55,7 +55,5 @@ module Admin
     #     page = Administrate::Page::Collection.new(dashboard, )
     # end
 
-
   end
-
 end
