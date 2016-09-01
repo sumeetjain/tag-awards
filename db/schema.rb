@@ -31,16 +31,18 @@ ActiveRecord::Schema.define(version: 20160816182937) do
   create_table "ballot_items", force: :cascade do |t|
     t.string   "nominee"
     t.string   "role"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "award_id"
     t.integer  "play_id"
     t.boolean  "approved"
     t.integer  "weight"
+    t.integer  "voting_period_id"
   end
 
   add_index "ballot_items", ["award_id"], name: "index_ballot_items_on_award_id", using: :btree
   add_index "ballot_items", ["play_id"], name: "index_ballot_items_on_play_id", using: :btree
+  add_index "ballot_items", ["voting_period_id"], name: "index_ballot_items_on_voting_period_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -62,26 +64,30 @@ ActiveRecord::Schema.define(version: 20160816182937) do
     t.string   "nominee"
     t.string   "role"
     t.boolean  "open"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "user_id"
     t.integer  "award_id"
     t.string   "theater"
     t.string   "show"
     t.boolean  "approved"
+    t.integer  "voting_period_id"
   end
 
   add_index "nominations", ["award_id"], name: "index_nominations_on_award_id", using: :btree
   add_index "nominations", ["user_id"], name: "index_nominations_on_user_id", using: :btree
+  add_index "nominations", ["voting_period_id"], name: "index_nominations_on_voting_period_id", using: :btree
 
   create_table "plays", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "theater_id"
+    t.integer  "voting_period_id"
   end
 
   add_index "plays", ["theater_id"], name: "index_plays_on_theater_id", using: :btree
+  add_index "plays", ["voting_period_id"], name: "index_plays_on_voting_period_id", using: :btree
 
   create_table "theaters", force: :cascade do |t|
     t.string   "name"
