@@ -12,6 +12,9 @@ class Nomination < ActiveRecord::Base
 
   scope :approved, -> {where(approved: true)}
 
+  scope :for_voting_period, -> (voting_period) { joins(:voting_period)
+    .where("voting_periods.year = ?", voting_period) }
+
   # Returns AR Relation for top ten nominees for a given award.
   def self.top_ten(award_id, limit=10)
     joins(:user)

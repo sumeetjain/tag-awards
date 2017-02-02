@@ -7,9 +7,11 @@ for all resources in the admin dashboard,
 as defined by the routes in the `admin/` namespace
 %>
 
-<%= form_tag('/admin/set_period',method: :post) do %>
-  <%= select_tag :year, options_from_collection_for_select(VotingPeriod.all, 'year', 'year', @period.year), {onChange: "this.form.submit();"} %>
-<% end %>
+<div class="sidebar__yearSelector">
+  <%= form_tag('/admin/set_period',method: :post) do %>
+    <%= select_tag :year, options_from_collection_for_select(VotingPeriod.all, 'year', 'year', @period.year), {onChange: "this.form.submit();"} %>
+  <% end %>
+</div>
 
 <ul class="sidebar__list">
   <% Administrate::Namespace.new(namespace).resources.each do |resource| %>

@@ -1,6 +1,10 @@
 class Viewing < ActiveRecord::Base
   belongs_to :user
   belongs_to :play
+  has_one :voting_period, through: :play
+  
+  scope :for_voting_period, -> (voting_period) { joins(:voting_period)
+    .where("voting_periods.year = ?", voting_period) }
 
   # Returns Integer of the most viewings anyone has.
   def self.most_shows
