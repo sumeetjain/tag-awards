@@ -9,10 +9,12 @@ class PlayDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     theater: Field::BelongsTo,
+    potential_nominees: Field::HasMany,
     id: Field::Number,
     title: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    voting_period: Field::BelongsTo,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -39,6 +41,8 @@ class PlayDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :theater,
     :title,
+    :potential_nominees,
+    :voting_period
   ]
 
   # Overwrite this method to customize how plays are displayed
