@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :potential_nominee do
+    person nil
+    award nil
+    play nil
+  end
   factory :person do
     name "MyString"
   end

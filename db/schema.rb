@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202030747) do
+ActiveRecord::Schema.define(version: 20170202030905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,18 @@ ActiveRecord::Schema.define(version: 20170202030747) do
   add_index "plays", ["theater_id"], name: "index_plays_on_theater_id", using: :btree
   add_index "plays", ["voting_period_id"], name: "index_plays_on_voting_period_id", using: :btree
 
+  create_table "potential_nominees", force: :cascade do |t|
+    t.integer  "person_id"
+    t.integer  "award_id"
+    t.integer  "play_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "potential_nominees", ["award_id"], name: "index_potential_nominees_on_award_id", using: :btree
+  add_index "potential_nominees", ["person_id"], name: "index_potential_nominees_on_person_id", using: :btree
+  add_index "potential_nominees", ["play_id"], name: "index_potential_nominees_on_play_id", using: :btree
+
   create_table "theaters", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -156,6 +168,9 @@ ActiveRecord::Schema.define(version: 20170202030747) do
 
   add_foreign_key "ballot_items", "awards"
   add_foreign_key "ballot_items", "plays"
+  add_foreign_key "potential_nominees", "awards"
+  add_foreign_key "potential_nominees", "people"
+  add_foreign_key "potential_nominees", "plays"
   add_foreign_key "viewings", "plays"
   add_foreign_key "viewings", "users"
   add_foreign_key "votes", "ballot_items"
