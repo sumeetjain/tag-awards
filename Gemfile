@@ -28,6 +28,7 @@ group :development do
   gem "spring"
   gem "spring-commands-rspec"
   gem "web-console"
+  gem 'rails-erd'
 end
 
 group :development, :test do
@@ -46,7 +47,7 @@ group :development, :staging do
 end
 
 group :test do
-  gem "capybara-webkit"
+#  gem "capybara-webkit"
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"

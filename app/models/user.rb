@@ -174,11 +174,11 @@ class User < ActiveRecord::Base
     self.secret_number = generate_token
   end
 
-  def nullify_duplicate_email
-    if User.where(email: self.email).count > 0
-      self.email = nil
-    end
-  end
+  # def nullify_duplicate_email
+  #   if User.where(email: self.email).count > 0
+  #     self.email = nil
+  #   end
+  # end
 
   #generates a random 6-digit alphanumeric key
   #
