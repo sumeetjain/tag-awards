@@ -3,19 +3,19 @@ Rails.application.routes.draw do
   patch "user/viewings" => 'viewings#update', as: :user_viewings
 
   namespace :admin do
-    resources :artists
-    resources :potential_nominations
-    resources :users do
-      collection do
-        post "export/usernames_and_passwords" => 'users#export'
-      end
-    end
     resources :awards do
       member do
         post "build_ballot" => 'awards#build_ballot'
       end
     end
-    resources :ballot_items
+    resources :theaters
+    resources :plays
+    resources :artists
+
+    resources :viewings
+
+    resources :potential_nominations
+
     resources :nominations do
       collection do
         get "top_ten" => 'nominations#top_ten'
@@ -25,14 +25,20 @@ Rails.application.routes.draw do
         patch "toggle_approval" => 'nominations#toggle_approval'
       end
     end
-    resources :plays
-    resources :theaters
-    resources :viewings
+
+    resources :ballot_items
+    
     resources :votes do
       collection do
         get "export"
         get "export_viewings"
         post "close"
+      end
+    end
+
+    resources :users do
+      collection do
+        post "export/usernames_and_passwords" => 'users#export'
       end
     end
 
