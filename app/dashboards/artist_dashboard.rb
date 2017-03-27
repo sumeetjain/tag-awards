@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class PersonDashboard < Administrate::BaseDashboard
+class ArtistDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,6 +8,7 @@ class PersonDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    plays: Field::HasMany,
     id: Field::Number,
     name: Field::String,
     created_at: Field::DateTime,
@@ -20,6 +21,7 @@ class PersonDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :plays,
     :id,
     :name,
     :created_at,
@@ -28,6 +30,7 @@ class PersonDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :plays,
     :id,
     :name,
     :created_at,
@@ -38,12 +41,14 @@ class PersonDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
+    :plays,
     :name,
   ]
 
-  # Overwrite this method to customize how people are displayed
+  # Overwrite this method to customize how artists are displayed
   # across all pages of the admin dashboard.
-  def display_resource(person)
-    person.name
+  #
+  def display_resource(artist)
+    "#{artist.name}"
   end
 end

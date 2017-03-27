@@ -64,7 +64,8 @@ class Nomination < ActiveRecord::Base
     self.update_all(open: true)
   end
   def self.nominations_closed
-    Nomination.where(open: false).count > 0
+    # Nomination.where(open: false).count > 0
+    false
   end
   # This method creates ballot items based on nominations ranked by weight, so table will automatically populate with ballot items.
 
