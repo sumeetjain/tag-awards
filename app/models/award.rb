@@ -3,7 +3,7 @@ class Award < ActiveRecord::Base
   has_many :ballot_items
 
   # This association feels wrong to me. Awards are not scoped by voting period, but potential nominees are (through Play).
-  has_many :potential_nominees
+  has_many :potential_nominations
   
   #label converts award_name to Courtney's CSS label system
   #example: "Best Musical" will become "bestmusical"

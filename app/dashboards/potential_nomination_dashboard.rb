@@ -43,9 +43,9 @@ class PotentialNominationDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :artist,
     :award,
     :play,
+    :artist,  
   ]
 
   # Overwrite this method to customize how potential nominations are displayed
@@ -55,3 +55,4 @@ class PotentialNominationDashboard < Administrate::BaseDashboard
   #   "PotentialNomination ##{potential_nomination.id}"
   # end
 end
+
