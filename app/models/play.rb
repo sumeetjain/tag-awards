@@ -1,4 +1,5 @@
 class Play < ActiveRecord::Base
+  has_and_belongs_to_many :artists
   belongs_to :theater
   belongs_to :voting_period
 

@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class PersonDashboard < Administrate::BaseDashboard
+class PotentialNominationDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -9,7 +9,9 @@ class PersonDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    name: Field::String,
+    artist: Field::BelongsTo,
+    award: Field::BelongsTo,
+    play: Field::BelongsTo,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }
@@ -21,15 +23,18 @@ class PersonDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :id,
-    :name,
-    :created_at,
+    :artist,
+    :award,
+    :play,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :id,
-    :name,
+    :artist,
+    :award,
+    :play,
     :created_at,
     :updated_at,
   ]
@@ -38,12 +43,15 @@ class PersonDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :name,
+    :artist,
+    :award,
+    :play,
   ]
 
-  # Overwrite this method to customize how people are displayed
+  # Overwrite this method to customize how potential nominations are displayed
   # across all pages of the admin dashboard.
-  def display_resource(person)
-    person.name
-  end
+  #
+  # def display_resource(potential_nomination)
+  #   "PotentialNomination ##{potential_nomination.id}"
+  # end
 end

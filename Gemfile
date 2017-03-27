@@ -17,7 +17,7 @@ gem "rack-canonical-host"
 gem "rails", "~> 4.2.0"
 gem "recipient_interceptor"
 gem "sass-rails", "~> 5.0"
-gem "sprockets", ">= 3.0.0"
+gem "sprockets", "~> 3.0.0"
 gem "sprockets-es6"
 gem "title"
 gem "uglifier"
@@ -35,7 +35,6 @@ group :development, :test do
   gem "bullet"
   gem "bundler-audit", ">= 0.5.0", require: false
   gem "dotenv-rails"
-  gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
   gem "rspec-rails", "~> 3.4.0"
@@ -46,7 +45,6 @@ group :development, :staging do
 end
 
 group :test do
-  gem "capybara-webkit"
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"

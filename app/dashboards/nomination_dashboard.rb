@@ -20,6 +20,7 @@ class NominationDashboard < Administrate::BaseDashboard
     weight: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    voting_period: Field::BelongsTo,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -34,6 +35,7 @@ class NominationDashboard < Administrate::BaseDashboard
     :show,
     :nominee,
     :role,
+    :voting_period,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -47,6 +49,7 @@ class NominationDashboard < Administrate::BaseDashboard
     :role,
     :approved,
     :created_at,
+    :voting_period,
   ]
 
   # FORM_ATTRIBUTES
@@ -59,7 +62,8 @@ class NominationDashboard < Administrate::BaseDashboard
     :show,
     :nominee,
     :role,
-    :approved
+    :approved,
+    :voting_period,
   ]
 
   # Overwrite this method to customize how nominations are displayed
