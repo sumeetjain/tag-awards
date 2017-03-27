@@ -9,7 +9,6 @@ class PlayDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     theater: Field::BelongsTo,
-    potential_nominations: Field::HasMany,
     id: Field::Number,
     title: Field::String,
     created_at: Field::DateTime,
@@ -41,7 +40,6 @@ class PlayDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :theater,
     :title,
-    :potential_nominations,
     :voting_period
   ]
 
