@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202030905) do
+ActiveRecord::Schema.define(version: 20170327163039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artists", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "artists_plays", id: false, force: :cascade do |t|
+    t.integer "artist_id", null: false
+    t.integer "play_id",   null: false
+  end
 
   create_table "awards", force: :cascade do |t|
     t.string   "award_name"
@@ -96,6 +107,14 @@ ActiveRecord::Schema.define(version: 20170202030905) do
 
   add_index "plays", ["theater_id"], name: "index_plays_on_theater_id", using: :btree
   add_index "plays", ["voting_period_id"], name: "index_plays_on_voting_period_id", using: :btree
+
+  create_table "potential_nominations", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.integer  "award_id"
+    t.integer  "play_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "potential_nominees", force: :cascade do |t|
     t.integer  "person_id"
