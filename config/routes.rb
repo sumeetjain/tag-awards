@@ -44,7 +44,11 @@ Rails.application.routes.draw do
 
     resources :voting_periods
 
-    resources :winners
+    resources :winners do
+      collection do
+        get "calculate_winners" => 'winners#calculate_winners'
+      end
+    end
     
     root to: "users#index"
 
