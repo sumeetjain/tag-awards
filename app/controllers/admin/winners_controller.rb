@@ -16,10 +16,14 @@ module Admin
     # See https://administrate-docs.herokuapp.com/customizing_controller_actions
     # for more information
 
-    def calculate_winners
-
+    def show_calculate_winners
     end
 
+    def calculate_winners
+        winners = Winner.new
+        winners.calculate_winners
+        redirect_to :admin_winners, notice: "Success!"
+    end
 
   end
 end

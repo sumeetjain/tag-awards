@@ -62,7 +62,7 @@ class BallotItemDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how ballot items are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(ballot_item)
-  #   "BallotItem ##{ballot_item.id}"
-  # end
+  def display_resource(ballot_item)
+    "#{ballot_item.nominee} (#{ballot_item.play.title})"
+  end
 end

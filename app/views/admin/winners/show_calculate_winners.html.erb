@@ -1,0 +1,37 @@
+<% content_for(:title) do %>
+  Calculate Winners
+<% end %>
+
+<header class="header">
+  <h1 class="header__heading" id="page-title"><%= content_for(:title) %></h1>
+  <div class="header__actions">
+    <!-- Header actions go here. -->
+  </div>
+</header>
+
+<div class="side-spacer">
+  <p>
+    Do not come to this page until all voting is complete. If you are sure that voting is complete and you are ready to calculate the winners for all categories, then proceed by clicking the button below.
+  </p>
+
+  <hr>
+
+  <div>
+	<%= button_to "Calculate!", calculate_admin_winners_path, form_class: "button" %>
+  </div>
+
+  <hr>
+  	<p>
+  		Here is how we weight the final ballot:
+		<ul>
+			<li>Each show gets a weight of 1 per category</li>
+			<li>If there are multiple shows in a category then only one is weighted</li>
+			<li>If the voter did not list a show as seen on the "Shows Seen" sheet then the value for that show is zero for all categories</li>
+			<li>All values are added up for a category to get a total weighted vote number</li>
+			<li>Whichever nominee the voter votes for receives a value equal to the total weighted vote</li>
+			<li>If the voter votes for a show they didn't see, the total weighted vote is zero</li>
+		</ul>
+  	</p>
+  <hr>
+
+</div>
