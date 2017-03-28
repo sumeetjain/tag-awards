@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class ArtistDashboard < Administrate::BaseDashboard
+class PlayForCurrentYearDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,9 +8,14 @@ class ArtistDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    play_for_current_years: Field::HasMany,
+    artists: Field::HasMany,
+    theater: Field::BelongsTo,
+    voting_period: Field::BelongsTo,
+    viewings: Field::HasMany,
+    ballot_items: Field::HasMany,
+    potential_nominations: Field::HasMany,
     id: Field::Number,
-    name: Field::String,
+    title: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }
@@ -21,18 +26,23 @@ class ArtistDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :play_for_current_years,
-    :id,
-    :name,
-    :created_at,
+    :artists,
+    :theater,
+    :voting_period,
+    :viewings,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :play_for_current_years,
+    :artists,
+    :theater,
+    :voting_period,
+    :viewings,
+    :ballot_items,
+    :potential_nominations,
     :id,
-    :name,
+    :title,
     :created_at,
     :updated_at,
   ]
@@ -41,14 +51,19 @@ class ArtistDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :play_for_current_years,
-    :name,
+    :artists,
+    :theater,
+    :voting_period,
+    :viewings,
+    :ballot_items,
+    :potential_nominations,
+    :title,
   ]
 
-  # Overwrite this method to customize how artists are displayed
+  # Overwrite this method to customize how play for current years are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(artist)
-    "#{artist.name}"
+  def display_resource(play_for_current_year)
+    "#{play_for_current_year.title}"
   end
 end
