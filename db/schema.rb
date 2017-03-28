@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327163039) do
+ActiveRecord::Schema.define(version: 20170328183833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -183,6 +183,12 @@ ActiveRecord::Schema.define(version: 20170327163039) do
     t.string   "ballot_status", default: "pending"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+  end
+
+  create_table "winners", force: :cascade do |t|
+    t.integer  "ballot_item_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_foreign_key "ballot_items", "awards"

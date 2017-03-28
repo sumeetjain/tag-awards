@@ -43,6 +43,8 @@ Rails.application.routes.draw do
     end
 
     resources :voting_periods
+
+    resources :winners
     
     root to: "users#index"
 
