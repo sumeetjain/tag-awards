@@ -21,8 +21,7 @@ module Admin
 
     def calculate_winners
         winners = Winner.new
-        winners.calculate_winners
-        redirect_to :admin_winners, notice: "Success!"
+        @allscores = winners.calculate_winners
     end
 
   end

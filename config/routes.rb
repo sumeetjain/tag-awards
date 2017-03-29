@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     resources :winners do
       collection do
         get "calculate_winners" => 'winners#show_calculate_winners'
-        post "calculate" => 'winners#calculate_winners'
+        get "calculate" => 'winners#calculate_winners'
       end
     end
     
