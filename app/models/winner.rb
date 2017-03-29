@@ -31,7 +31,6 @@ class Winner < ActiveRecord::Base
 	def getScoresForBallotItems(award,year)
 		ballot_item_scores = {}
 		ballot_items = award.ballot_items.for_voting_period(year)
-		# ballot_items = award.ballot_items
 		ballot_items.each do |ballot_item|
 			ballot_item_scores[ballot_item] = calculateBallotItemScore(ballot_item)
 		end
@@ -50,42 +49,49 @@ class Winner < ActiveRecord::Base
 
 	# returns an integer
 	def calculateVoteScore(vote)
-
-		award_plays_viewed = awardPlaysViewedByUser(vote)
-
-
+		year = vote.ballot_item.voting_period.year
+		award_plays_viewed = awardPlaysViewedByUser(vote,year)
 		maxscore = getMaxScore(vote.ballot_item.award,year)
-		if award_plays_viewed.length == maxscore
+		score = getVoteScore(award_plays_viewed.length,maxscore)
+		# score = checkForViewOfVote(score,vote,award_plays_viewed)
+		return score
+	end
+
+	# num_viewed - integer
+	# maxscore - integer
+	# returns integer
+	def getVoteScore(num_viewed,maxscore)
+		if num_viewed == maxscore
 			score = maxscore
-		elsif award_plays_viewed.length < maxscore
-			score = award_plays_viewed.length
+		elsif num_viewed < maxscore
+			score = num_viewed
 		end
+		return score
+	end
+
+	#returns integer
+	def checkForViewOfVote(score,vote,award_plays_viewed)
 		unless award_plays_viewed.include?(vote.ballot_item.play_id)
 			score = 0
 		end
-
 		return score
 	end
 
 	#returns array of play ids
-	def awardPlaysViewedByUser(vote)
-		year = vote.ballot_item.voting_period.year
-		
+	def awardPlaysViewedByUser(vote,year)
 		user_viewings = vote.user.viewings.for_voting_period(year)
 		ballot_items_for_award = vote.ballot_item.award.ballot_items.for_voting_period(year)
 
 		plays_user_viewed = user_viewings.pluck("play_id")
 		plays_for_award = ballot_items_for_award.pluck("play_id")
 
-		return user_viewings & plays_for_award
+		return plays_user_viewed & plays_for_award
 	end
-
-
 
 	# returns integer of number of unique plays
 	def getMaxScore(award,year)
-		# maxscore = award.ballot_items.for_voting_period(year).pluck("play_id").uniq.length
-		maxscore = award.ballot_items.pluck("play_id").uniq.length
+		ballot_items = award.ballot_items.for_voting_period(year)
+		maxscore = ballot_items.pluck("play_id").uniq.length
 	end
 
 	# returns ballot_item of winner
