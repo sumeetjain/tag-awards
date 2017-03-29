@@ -1,5 +1,5 @@
 module Admin
-  class ArtistsController < Admin::ApplicationController
+  class RolesController < Admin::ApplicationController
     def index
       search_term = params[:search].to_s.strip
       resources = Administrate::Search.new(resource_resolver, search_term).run

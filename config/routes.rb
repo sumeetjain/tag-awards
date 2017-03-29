@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :theaters
     resources :plays
     resources :artists
+    resources :roles
 
     resources :viewings
 
