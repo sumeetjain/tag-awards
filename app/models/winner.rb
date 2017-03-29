@@ -13,7 +13,8 @@ class Winner < ActiveRecord::Base
 		winnerslist = {}
 		Award.all.each do |award|
 			scores = getScoresForBallotItems(award)
-			winnerslist[award] = getWinner(scores)
+			winner = getWinner(scores)
+			saveWinner(winner)
 		end
 		return winnerslist
 	end
@@ -36,7 +37,6 @@ class Winner < ActiveRecord::Base
 	def calculateBallotItemScore(ballot_item,maxscore)
 		ballot_item_score = 0
 		ballot_item.votes.each do |vote|
-			debugger
 			ballot_item_score += calculateVoteScore(vote,maxscore)
 		end
 		return ballot_item_score
@@ -44,10 +44,7 @@ class Winner < ActiveRecord::Base
 
 	# returns an integer
 	def calculateVoteScore(vote,maxscore)
-		vote_user = vote.user
-		vote_ballot_item_id = vote.ballot_item.id
-
-		user_viewings = vote_user.viewings.pluck("play_id")
+		user_viewings = vote.user.viewings.pluck("play_id")
 		ballot_items_for_award = vote.ballot_item.award.ballot_items.pluck("play_id")
 		ballot_items_viewed = user_viewings & ballot_items_for_award
 
@@ -56,8 +53,7 @@ class Winner < ActiveRecord::Base
 		elsif ballot_items_viewed.length < maxscore
 			score = ballot_items_viewed.length
 		end
-		debugger
-		unless ballot_items_viewed.include?(vote_ballot_item_id)
+		unless ballot_items_viewed.include?(vote.ballot_item.id)
 			score = 0
 		end
 		return score
@@ -72,5 +68,10 @@ class Winner < ActiveRecord::Base
 	def getWinner(scores)
 		scores.key(scores.values.max)
 	end
+
+	def saveWinner(winner)
+		Winner.create(:ballot_item_id=> winner.id)
+	end
+
 
 end
