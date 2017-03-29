@@ -8,6 +8,8 @@ class Winner < ActiveRecord::Base
 
 
 
+	##### STill need to make sure we just use 1 year's info
+
 	# returns Hash of award -> ballot_item winner
 	def calculate_winners
 		winnerslist = {}
