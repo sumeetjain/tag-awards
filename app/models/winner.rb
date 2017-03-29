@@ -99,6 +99,7 @@ class Winner < ActiveRecord::Base
 		scores.key(scores.values.max)
 	end
 
+	# write to table in database
 	def saveWinner(winner)
 		Winner.create(:ballot_item_id=> winner.id)
 	end

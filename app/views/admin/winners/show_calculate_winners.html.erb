@@ -13,6 +13,7 @@
   <p>
     Do not come to this page until all voting is complete. If you are sure that voting is complete and you are ready to calculate the winners for all categories, then proceed by clicking the button below.
   </p>
+  <p> Please only click once, it will take some time to calculate. </p>
 
   <hr>
 
@@ -22,14 +23,15 @@
 
   <hr>
   	<p>
-  		Here is how we weight the final ballot:
-		<ul>
-			<li>Each show gets a weight of 1 per category</li>
-			<li>If there are multiple shows in a category then only one is weighted</li>
-			<li>If the voter did not list a show as seen on the "Shows Seen" sheet then the value for that show is zero for all categories</li>
-			<li>All values are added up for a category to get a total weighted vote number</li>
-			<li>Whichever nominee the voter votes for receives a value equal to the total weighted vote</li>
-			<li>If the voter votes for a show they didn't see, the total weighted vote is zero</li>
+  		Here is how we weight the final voting to determine winners:
+		<ul class="ul-final_calc">
+			<li>Each show gets a weight of 1 per award category</li>
+			<li>If the same show is nominated multiple times in the same award category, it is still only weighted as 1</li>
+      <li>This means the maximum score of a single vote is the number of unique shows in that award category.</li>
+			<li>If a user did not view a show, the weight is 0 for that show, for that vote.</li>
+      <li>This means a score for a vote is equal to the number of shows viewed in that award category</li>
+      <li>If a vote is made for a show the user has not viewed, the score for that vote is 0</li>
+			<li>A total score is calculated from the scores of all votes in that award category</li>
 		</ul>
   	</p>
   <hr>
