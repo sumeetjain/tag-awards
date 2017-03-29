@@ -52,7 +52,6 @@ class RoleDashboard < Administrate::BaseDashboard
     :artist,
     :play,
     :voting_period,
-    :potential_nomination,
     :job,
     :character,
   ]
