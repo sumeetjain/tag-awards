@@ -12,13 +12,14 @@ class Winner < ActiveRecord::Base
 
 	# returns Hash of award -> ballot_item winner
 	def calculate_winners
-		winnerslist = {}
+		allscores = {}
 		Award.all.each do |award|
 			scores = getScoresForBallotItems(award)
-			winner = getWinner(scores)
-			saveWinner(winner)
+			allscores[award] = scores
+
+			saveWinner(getWinner(scores))
 		end
-		return winnerslist
+		return allscores
 	end
 
 
