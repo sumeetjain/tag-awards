@@ -31,5 +31,15 @@ class Winner < ActiveRecord::Base
 
 		#add ballot_items to winners
 
+
+		Award.all.each do |award|
+			award.ballot_items.all.each do |ballot_item|
+
+
+				binding.pry
+			end
+
+		end
+
 	end
 end
