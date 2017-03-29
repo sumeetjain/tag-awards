@@ -63,6 +63,10 @@ class BallotItemDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(ballot_item)
-    "#{ballot_item.nominee} (#{ballot_item.play.title})"
+    if ballot_item.nominee
+      "#{ballot_item.nominee} (#{ballot_item.play.title})"
+    else
+      "#{ballot_item.play.title}"
+    end
   end
 end
