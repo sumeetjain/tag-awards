@@ -11,11 +11,16 @@ class Winner < ActiveRecord::Base
 
 
 
+	
+	def initialize(year=2017)
+		@year = year
+	end
+
 	# returns Hash of award -> {ballot_item_winner -> score }
-	def calculate_winners(year)
+	def calculate_winners
 		allscores = {}
 		Award.all.each do |award|
-			scores = getScoresForBallotItems(award,year)
+			scores = getScoresForBallotItems(award)
 			allscores[award] = scores
 
 			# saveWinner(getWinner(scores))
@@ -28,9 +33,9 @@ class Winner < ActiveRecord::Base
 	private
 
 	# returns hash of ballot_item AR-> score integer
-	def getScoresForBallotItems(award,year)
+	def getScoresForBallotItems(award)
 		ballot_item_scores = {}
-		ballot_items = award.ballot_items.for_voting_period(year)
+		ballot_items = award.ballot_items.for_voting_period(@year)
 		ballot_items.each do |ballot_item|
 			ballot_item_scores[ballot_item] = calculateBallotItemScore(ballot_item)
 		end
@@ -49,11 +54,10 @@ class Winner < ActiveRecord::Base
 
 	# returns an integer
 	def calculateVoteScore(vote)
-		year = vote.ballot_item.voting_period.year
-		award_plays_viewed = awardPlaysViewedByUser(vote,year)
-		maxscore = getMaxScore(vote.ballot_item.award,year)
+		award_plays_viewed = awardPlaysViewedByUser(vote)
+		maxscore = getMaxScore(vote.ballot_item.award)
 		score = getVoteScore(award_plays_viewed.length,maxscore)
-		# score = checkForViewOfVote(score,vote,award_plays_viewed)
+		score = checkForViewOfVote(score,vote,award_plays_viewed)
 		return score
 	end
 
@@ -78,9 +82,9 @@ class Winner < ActiveRecord::Base
 	end
 
 	#returns array of play ids
-	def awardPlaysViewedByUser(vote,year)
-		user_viewings = vote.user.viewings.for_voting_period(year)
-		ballot_items_for_award = vote.ballot_item.award.ballot_items.for_voting_period(year)
+	def awardPlaysViewedByUser(vote)
+		user_viewings = vote.user.viewings.for_voting_period(@year)
+		ballot_items_for_award = vote.ballot_item.award.ballot_items.for_voting_period(@year)
 
 		plays_user_viewed = user_viewings.pluck("play_id")
 		plays_for_award = ballot_items_for_award.pluck("play_id")
@@ -89,8 +93,8 @@ class Winner < ActiveRecord::Base
 	end
 
 	# returns integer of number of unique plays
-	def getMaxScore(award,year)
-		ballot_items = award.ballot_items.for_voting_period(year)
+	def getMaxScore(award)
+		ballot_items = award.ballot_items.for_voting_period(@year)
 		maxscore = ballot_items.pluck("play_id").uniq.length
 	end
 

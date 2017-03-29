@@ -38,8 +38,8 @@ module Admin
     end
 
     def calculate_winners
-        winners = Winner.new
-        @allscores = winners.calculate_winners(session[:year])
+        winners = Winner.new(session[:year])
+        @allscores = winners.calculate_winners
     end
 
   end
