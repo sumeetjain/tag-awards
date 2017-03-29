@@ -9,7 +9,7 @@ class RoleDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     artist: Field::BelongsTo,
-    play: Field::BelongsTo,
+    play: Field::PlayForYearField,
     voting_period: Field::BelongsTo,
     potential_nomination: Field::BelongsTo,
     id: Field::Number,
