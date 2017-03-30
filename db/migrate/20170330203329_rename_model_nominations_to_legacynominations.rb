@@ -1,4 +1,4 @@
-class RenameNominationsTable < ActiveRecord::Migration
+class RenameModelNominationsToLegacynominations < ActiveRecord::Migration
   def self.up
     rename_table :nominations, :legacy_nominations
   end
