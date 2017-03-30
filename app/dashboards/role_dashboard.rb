@@ -9,7 +9,7 @@ class RoleDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     artist: Field::BelongsTo,
-    play: Field::BelongsTo,
+    play: Field::PlayForYearField,
     voting_period: Field::BelongsTo,
     potential_nomination: Field::BelongsTo,
     id: Field::Number,
@@ -29,6 +29,7 @@ class RoleDashboard < Administrate::BaseDashboard
     :play,
     :voting_period,
     :potential_nomination,
+    :job,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -43,6 +44,7 @@ class RoleDashboard < Administrate::BaseDashboard
     :character,
     :created_at,
     :updated_at,
+    :job,
   ]
 
   # FORM_ATTRIBUTES
@@ -52,15 +54,14 @@ class RoleDashboard < Administrate::BaseDashboard
     :artist,
     :play,
     :voting_period,
-    :potential_nomination,
-    :job,
     :character,
+    :job,
   ]
 
   # Overwrite this method to customize how roles are displayed
   # across all pages of the admin dashboard.
   #
   def display_resource(role)
-    "#{role.artist.name} as #{role.job} in #{role.play.title}"
+    "#{role.artist.name} as " + (role.character.blank? ? role.job : role.character) + " in #{role.play.title}"
   end
 end
