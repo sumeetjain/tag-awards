@@ -10,6 +10,7 @@ class VotingPeriod < ActiveRecord::Base
   has_many :ballot_items
   has_many :nominations
   has_many :plays
+  has_many :roles
   
   def self.current
     order("year DESC").first

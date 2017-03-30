@@ -1,9 +1,8 @@
-class Play < ActiveRecord::Base
-  has_many :roles
-  belongs_to :theater
+class Role < ActiveRecord::Base
+  belongs_to :artist
+  belongs_to :play
   belongs_to :voting_period
-  has_many :viewings
-  has_many :ballot_items
+  belongs_to :potential_nomination
 
   scope :for_voting_period, -> (voting_period) { joins(:voting_period)
     .where("voting_periods.year = ?", voting_period) }

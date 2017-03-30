@@ -1,9 +1,8 @@
 class PotentialNomination < ActiveRecord::Base
+  has_many :roles
   belongs_to :award
-  belongs_to :play
-  belongs_to :artist
+  accepts_nested_attributes_for :roles
 
-  accepts_nested_attributes_for :play
-  scope :play_for_voting_period, -> (voting_period) { joins(:voting_period)
+  scope :for_voting_period, -> (voting_period) { joins(:voting_period)
     .where("voting_periods.year = ?", voting_period) }
 end

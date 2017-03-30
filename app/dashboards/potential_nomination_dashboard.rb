@@ -9,9 +9,8 @@ class PotentialNominationDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    artist: Field::BelongsTo,
+    roles: Field::HasMany,
     award: Field::BelongsTo,
-    play: Field::BelongsTo,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }
@@ -23,20 +22,18 @@ class PotentialNominationDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :id,
-    :artist,
     :award,
-    :play,
+    :roles,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :id,
-    :artist,
     :award,
-    :play,
     :created_at,
     :updated_at,
+    :roles,
   ]
 
   # FORM_ATTRIBUTES
@@ -44,15 +41,14 @@ class PotentialNominationDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :award,
-    :play,
-    :artist,  
+    :roles,
   ]
 
   # Overwrite this method to customize how potential nominations are displayed
   # across all pages of the admin dashboard.
-  #
-  # def display_resource(potential_nomination)
-  #   "PotentialNomination ##{potential_nomination.id}"
-  # end
+  
+  def display_resource(potential_nomination)
+    "#{potential_nomination.roles.first.play.title} for #{potential_nomination.award.award_name}"
+  end
 end
 
