@@ -29,6 +29,7 @@ class RoleDashboard < Administrate::BaseDashboard
     :play,
     :voting_period,
     :potential_nomination,
+    :job,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -43,6 +44,7 @@ class RoleDashboard < Administrate::BaseDashboard
     :character,
     :created_at,
     :updated_at,
+    :job,
   ]
 
   # FORM_ATTRIBUTES
@@ -53,6 +55,7 @@ class RoleDashboard < Administrate::BaseDashboard
     :play,
     :voting_period,
     :character,
+    :job,
   ]
 
   # Overwrite this method to customize how roles are displayed
