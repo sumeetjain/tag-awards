@@ -28,15 +28,16 @@ group :development do
   gem "spring"
   gem "spring-commands-rspec"
   gem "web-console"
+  gem 'rails-erd'
 end
 
 group :development, :test do
-  gem "awesome_print"
-  gem "bullet"
-  gem "bundler-audit", ">= 0.5.0", require: false
-  gem "dotenv-rails"
-  gem "pry-byebug"
-  gem "pry-rails"
+  # gem "awesome_print"
+  # gem "bullet"
+  # gem "bundler-audit", ">= 0.5.0", require: false
+  # gem "dotenv-rails"
+  # gem "pry-byebug"
+  # gem "pry-rails"
   gem "rspec-rails", "~> 3.4.0"
 end
 
@@ -45,12 +46,12 @@ group :development, :staging do
 end
 
 group :test do
-  gem "database_cleaner"
-  gem "formulaic"
-  gem "launchy"
-  gem "shoulda-matchers"
-  gem "simplecov", require: false
-  gem "timecop"
+  # gem "database_cleaner"
+  # gem "formulaic"
+  # gem "launchy"
+  # gem "shoulda-matchers"
+  # gem "simplecov", require: false
+  # gem "timecop"
   gem "webmock"
 end
 
@@ -60,10 +61,10 @@ group :staging, :production do
 end
 
 group :test, :development do
-  gem 'pronto'
-  gem 'pronto-rubocop'
-  gem 'pronto-reek'
-  gem 'pronto-rails_best_practices'
+  # gem 'pronto'
+  # gem 'pronto-rubocop'
+  # gem 'pronto-reek'
+  # gem 'pronto-rails_best_practices'
 end
 
 # These are the gems that include the Pronto tool in our application. Adding them to the Gemfile adds them to my application's list of dependencies. But I'll now need to run `bundle install` to actually install them.
