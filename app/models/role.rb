@@ -6,4 +6,10 @@ class Role < ActiveRecord::Base
 
   scope :for_voting_period, -> (voting_period) { joins(:voting_period)
     .where("voting_periods.year = ?", voting_period) }
+
+  def job_pulldown_options
+    keys = ["director", "actor", "actress", "music director", "choreographer", "sound designer", "props designer", "set designer", "costume designer", "lighting designer", "ensemble", "writer", "other"]
+    values = ["director", "actor", "actress", "music director", "choreographer", "sound designer", "props designer", "set designer", "costume designer", "lighting designer", "ensemble", "writer", "other"]
+    return keys.zip(values)
+  end
 end
