@@ -9,6 +9,7 @@ class Nomination < ActiveRecord::Base
   belongs_to :user
   belongs_to :award
   belongs_to :voting_period
+  belongs_to :potential_nomination
 
   scope :approved, -> {where(approved: true)}
 
