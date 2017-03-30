@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20170329193118) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -168,6 +169,12 @@ ActiveRecord::Schema.define(version: 20170329193118) do
     t.string   "ballot_status", default: "pending"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+  end
+
+  create_table "winners", force: :cascade do |t|
+    t.integer  "ballot_item_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_foreign_key "ballot_items", "awards"
