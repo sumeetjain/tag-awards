@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class BallotItemDashboard < Administrate::BaseDashboard
+class WinnerDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,15 +8,12 @@ class BallotItemDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    award: Field::BelongsTo,
-    play: Field::BelongsTo,
+    ballot_item: Field::BelongsTo,
+    voting_period: Field::HasOne,
+    award: Field::HasOne,
     id: Field::Number,
-    nominee: Field::String,
-    role: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    weight: Field::Number,
-    approved: Field::Boolean,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -25,48 +22,36 @@ class BallotItemDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :ballot_item,
+    :voting_period,
     :award,
-    :play,
     :id,
-    :nominee,
-    :weight,
-    :approved,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :ballot_item,
+    :voting_period,
     :award,
-    :play,
     :id,
-    :nominee,
-    :role,
     :created_at,
     :updated_at,
-    :weight,
-    :approved,
   ]
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
+    :ballot_item,
+    :voting_period,
     :award,
-    :play,
-    :nominee,
-    :role,
-    :weight,
-    :approved,
   ]
 
-  # Overwrite this method to customize how ballot items are displayed
+  # Overwrite this method to customize how winners are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(ballot_item)
-    if ballot_item.nominee
-      "#{ballot_item.nominee} (#{ballot_item.play.title})"
-    else
-      "#{ballot_item.play.title}"
-    end
-  end
+  # def display_resource(winner)
+  #   "Winner ##{winner.id}"
+  # end
 end
