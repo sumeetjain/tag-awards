@@ -32,16 +32,20 @@ and renders all form fields for a resource's editable attributes.
 
   <% page.attributes.each do |attribute| -%>
     <div class="field-unit field-unit--<%= attribute.html_class %>">
-      <%= render_field attribute, f: f %>
+      <% if attribute.attribute == :award_type %>
+        <div class="field-unit__label">
+          <%= f.label :award_type %>
+        </div>
+        <div class="field-unit__field">
+          <%= f.select(:award_type, options_for_select(Award.pulldown_options), {prompt: 'Please Select Award Type'}) %>
+        </div>
+      <% else %>
+        <%= render_field attribute, f: f %>
+      <% end %>
     </div>
-  <% end -%>
+  <% end %>
 
-    <div class="field-unit">
-      <%= f.label :award_type %>
-      <%=f.select(:award_type, options_for_select(Award.pulldown_options), {prompt: 'Please Select Award Type'}) %>
-    </div>
-
-    <div class="form-actions">
-      <%= f.submit %>
-    </div>
+  <div class="form-actions">
+    <%= f.submit %>
+  </div>
 <% end %>
