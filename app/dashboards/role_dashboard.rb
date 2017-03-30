@@ -62,6 +62,6 @@ class RoleDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(role)
-    "#{role.artist.name} as #{role.job} in #{role.play.title}"
+    "#{role.artist.name} as " + (role.character.blank? ? role.job : role.character) + " in #{role.play.title}"
   end
 end
