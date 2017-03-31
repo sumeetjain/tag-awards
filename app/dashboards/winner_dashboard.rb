@@ -36,7 +36,7 @@ class WinnerDashboard < Administrate::BaseDashboard
     :award,
     :id,
     :created_at,
-    :updated_at,
+    # :updated_at,
   ]
 
   # FORM_ATTRIBUTES
@@ -44,8 +44,8 @@ class WinnerDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :ballot_item,
-    :voting_period,
-    :award,
+    # :voting_period,
+    # :award,
   ]
 
   # Overwrite this method to customize how winners are displayed
