@@ -22,7 +22,7 @@ gem "sprockets-es6"
 gem "title"
 gem "uglifier"
 gem 'rubysl-securerandom', '~> 2.0'
-gem 'erd'
+# gem 'erd'
 gem 'simple_form'
 
 group :development do

@@ -11,13 +11,10 @@ class Winner < ActiveRecord::Base
 
 
 
-	
-	def initialize(year=2017)
-		@year = year
-	end
 
 	# returns Hash of award -> {ballot_item_winner -> score }
-	def calculate_winners
+	def calculate_winners(year)
+		@year = year
 		allscores = {}
 		Award.all.each do |award|
 			scores = getScoresForBallotItems(award)
