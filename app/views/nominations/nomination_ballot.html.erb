@@ -1,18 +1,20 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
 
 <div class="nominations--ballot_box">
-<% @awards.each do |award| %>
-  <span class="nominations--award_title"><strong><%= award.award_name %></strong></span><br>
-  <% nomination_counter = 0 %>
-  <% while nomination_counter <= 4 %>
-    <select>
-      <option>Doing big things</option>
-      <option>Doing bigger things</option>
-      <option>Doing even bigger things</option>
-      <option>Stuff</option>
-    </select>
-    <br>
-  <% nomination_counter += 1 %>
+<%= form_for :nomination, url: {controller: "nominations", action: "save_nominee"} do |n| %>   
+  <% @awards.each do |award| %>
+    <span class="nominations--award_title"><%= award.award_name %></span><br>
+    <% nomination_counter = 0 %>
+    <% while nomination_counter <= 4 %>
+      <select name="<% award.id %>[nominations]">
+        <% @nominations[award.id].each do |key, value| %>
+          <option value="<%= key %>"><%= value %></option>
+        <% end %>
+      </select>
+      <br>
+      <% nomination_counter += 1 %>
+    <% end %>
   <% end %>
+<%= submit_tag("Save Nomination Ballot") %>
 <% end %>
 </div>
