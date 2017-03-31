@@ -10,4 +10,14 @@ class Role < ActiveRecord::Base
   enum job: ["director", "actor", "actress", "music director", "choreographer",
     "sound designer", "props designer", "set designer", "costume designer", 
     "lighting designer", "ensemble", "writer", "other"]
+
+  def display_name
+    formatted = ""
+    if artist
+      formatted += "#{artist.name}"
+      formatted += (character.blank? ? ", " + job : " as " + character) 
+      formatted += " - "
+    end
+    formatted += "#{play.title}, #{play.theater.name}"
+  end
 end
