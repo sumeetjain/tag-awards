@@ -48,7 +48,7 @@ class PotentialNominationDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   
   def display_resource(potential_nomination)
-    "#{potential_nomination.roles.first.play.title} for #{potential_nomination.award.award_name}"
+    "#{potential_nomination.roles.first.play.title} for #{potential_nomination.award.short_name}"
   end
 end
 
