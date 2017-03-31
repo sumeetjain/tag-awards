@@ -1,9 +1,11 @@
 class ChangeRoleJobToInteger < ActiveRecord::Migration
   def up
-    change_column :roles, :job, :integer
+    remove_column :roles, :job
+    add_column :roles, :job, :integer
   end
 
   def down
-    change_column :roles, :job, :string
+    remove_column :roles, :job
+    add_column :roles, :job, :string
   end
 end

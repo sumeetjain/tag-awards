@@ -37,7 +37,7 @@ and renders all form fields for a resource's editable attributes.
           <%= f.label :job %>
         </div>
         <div class="field-unit__field">
-          <%= f.select(:job, options_for_select(Role.job_pulldown_options), {prompt: 'Please Select A Job'}) %>
+          <%= f.select(:job, options_for_select(Role.jobs.keys), {prompt: 'Please Select A Job'}) %>
         </div>
       <% else %>
         <%= render_field attribute, f: f %>
