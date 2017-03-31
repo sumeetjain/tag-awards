@@ -24,6 +24,7 @@ class PlayDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :theater,
     :title,
+    :voting_period,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -31,6 +32,7 @@ class PlayDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :theater,
     :title,
+    :voting_period,
     :created_at
   ]
 
