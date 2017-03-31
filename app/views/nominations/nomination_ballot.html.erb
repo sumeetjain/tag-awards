@@ -4,9 +4,9 @@
 <%= form_for :nomination, url: {controller: "nominations", action: "save_nominee"} do |n| %>   
   <% @awards.each do |award| %>
     <span class="nominations--award_title"><%= award.award_name %></span><br>
-    <% nomination_counter = 0 %>
-    <% while nomination_counter <= 4 %>
-      <select name="<% award.id %>[nominations]">
+    <% nomination_counter = 1 %>
+    <% while nomination_counter <= 5 %>
+      <select name="noms[[<%= award.id %>][<%= nomination_counter %>]]">
         <% @nominations[award.id].each do |key, value| %>
           <option value="<%= key %>"><%= value %></option>
         <% end %>

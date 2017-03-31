@@ -73,21 +73,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  #determines whether a specific nomination object has been saved previously
-  #
-  #takes in Integer of award_id, Integer of nom_count, and String of value_needed
-  #
-  #returns String of existing nomination or empty String if no previous nomination
-  def nomination_value(award_id, nom_count, value_needed)
-    nominations = Nomination.where("award_id" => award_id, 
-      "user_id" => self.id)
-    if nominations[nom_count]
-      @nomination = nominations[nom_count]
-      return @nomination.send(value_needed)
-    else
-      return ""
-    end     
-  end  
+  def get_previous_noms(user_id)
+  end
 
   #saves nominations entered by user
   #
@@ -97,15 +84,8 @@ class User < ActiveRecord::Base
   def record_nominations(user_id, nominations_hash)
     delete_previous_noms(user_id)
     nominations_hash.each do |key, value|
-      @current_award = key
       value.each do |key2, value2|
-        value2.each do |key3, value3|
-          if value3["theater"] == "" || value3["nominee"] == ""
-            next
-          elsif
-            save_nomination_object(user_id, @current_award, value3)
-          end
-        end
+        save_nomination_object(user_id, value2)
       end
     end
   end
@@ -115,17 +95,10 @@ class User < ActiveRecord::Base
   #takes in Integer of user_id, Integer of award id, and Collection of Hashes from nested nominations_hash
   #
   #returns True (because objects are automatically set to True: open)
-  def save_nomination_object(user_id, current_award, value3)
+  def save_nomination_object(user_id, value3)
     @new_nom = Nomination.new
     @new_nom.user_id = user_id
-    @new_nom.award_id = current_award
-    @new_nom.open = true
-    # Chris added below 'approved' line for Admin to change to 'true' when it passes their check. If 'true', the nomination will appear in the ballot_box for user vote
-    @new_nom.approved = false
-    @new_nom.theater = value3["theater"]
-    @new_nom.nominee = value3["nominee"]
-    @new_nom.role = value3["role"]
-    @new_nom.show = value3["show"]
+    @new_nom.potential_nomination_id = value3
     @new_nom.save
   end
 

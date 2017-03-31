@@ -28,8 +28,7 @@ class NominationsController < ApplicationController
   end
 
   def save_nominee
-    binding.pry
-    current_user.record_nominations(current_user.id, params[:awards]) 
+    current_user.record_nominations(current_user.id, params[:noms]) 
     redirect_to "/users/home"
   end
 end
