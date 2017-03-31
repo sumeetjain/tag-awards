@@ -11,6 +11,10 @@ class PotentialNomination < ActiveRecord::Base
     if needs_artist_name? then formatted_name += build_names end
     needs_character_name? ? formatted_name += character_name : formatted_name += " -"
     formatted_name += play_info
+  end
+
+  def display_name_with_award
+    formatted_name = display_name
     formatted_name += award_name
   end
 
