@@ -16,7 +16,7 @@
   	<h3><%= award.award_name %></h3>
   	<table class="table--voting-results">
   		<tr>
-  			<% if ballot_scores[0][0].nominee%>
+  			<% if ballot_scores.first[0].nominee%>
   				<th>Nominee</th>
   			<% end %>
 	  		<th>Play</th>

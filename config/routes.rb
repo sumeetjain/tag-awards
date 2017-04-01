@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       collection do
         get "calculate_winners" => 'winners#show_calculate_winners'
         get "calculate" => 'winners#calculate_winners'
+        get "scores" => 'winners#scores'
       end
     end
     

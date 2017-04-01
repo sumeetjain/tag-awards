@@ -18,7 +18,7 @@ class Winner < ActiveRecord::Base
 			scores = getScoresForBallotItems(award)
 			allscores[award] = scores
 
-			# saveWinner(getWinner(scores))
+			saveWinner(getWinner(scores))
 		end
 		return allscores
 	end
@@ -34,7 +34,8 @@ class Winner < ActiveRecord::Base
 		ballot_items.each do |ballot_item|
 			ballot_item_scores[ballot_item] = calculateBallotItemScore(ballot_item)
 		end
-		return ballot_item_scores.sort_by {|key, value| -value}
+		sorted_scores = ballot_item_scores.sort_by {|key, value| -value}
+		return sorted_scores.to_h
 	end
 
 	#returns integer

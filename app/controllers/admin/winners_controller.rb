@@ -42,5 +42,10 @@ module Admin
         @allscores = winners.calculate_winners(session[:year])
     end
 
+    def scores
+        winners = Winner.new
+        @allscores = winners.getAllScores(session[:year])
+    end
+
   end
 end
