@@ -7,15 +7,17 @@ class PotentialNomination < ActiveRecord::Base
     .where("voting_periods.year = ?", voting_period) }
 
   def display_name
+    roles.length > 1 ? display_multi_role : roles.first.display_name
+  end
+
+  def display_multi_role
     formatted_name = ""
-    if needs_artist_name? then formatted_name += build_names end
-    needs_character_name? ? formatted_name += character_name : formatted_name += " -"
+    formatted_name += build_names if needs_artist_name?
     formatted_name += play_info
   end
 
   def display_name_with_award
-    formatted_name = display_name
-    formatted_name += award_name
+    display_name += award_name
   end
 
   def needs_artist_name?
@@ -29,17 +31,18 @@ class PotentialNomination < ActiveRecord::Base
   def build_names
     names = []
     roles.each do |role|
-      names.push(role.artist.name)
+      names.push(role.artist.name) 
     end
-    names.join(", ")
+    formatted = names.join(", ")
+    formatted += " - " + roles.first.job.pluralize
   end
 
-  def character_name
-    " as #{roles.first.character} in"
-  end
+  # def character_name
+  #   " as #{roles.first.character} in"
+  # end
 
   def play_info
-    " #{roles.first.play.title}, #{roles.first.play.theater.name}"
+    " - #{roles.first.play.title}, #{roles.first.play.theater.name}"
   end
 
   def award_name

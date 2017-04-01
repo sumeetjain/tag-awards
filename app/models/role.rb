@@ -17,11 +17,11 @@ class Role < ActiveRecord::Base
     formatted += play_info
   end
 
-  private 
+  private
   
   def character_or_job
     formatted = "#{artist.name}"
-    formatted += (character.blank? ? ", " + job : " as " + character) 
+    formatted += (character.blank? ? " - " + job : " as " + character) 
     formatted += " - "
   end
 
