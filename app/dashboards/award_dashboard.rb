@@ -9,7 +9,7 @@ class AwardDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    award_name: Field::String,
+    award_name: Field::String.with_options(truncate: 1000),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     inactive: Field::Boolean,
