@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330204403) do
+ActiveRecord::Schema.define(version: 20170331204835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170330204403) do
     t.boolean  "approved"
     t.integer  "weight"
     t.integer  "voting_period_id"
+    t.integer  "score"
   end
 
   add_index "ballot_items", ["award_id"], name: "index_ballot_items_on_award_id", using: :btree

@@ -10,8 +10,6 @@ class Winner < ActiveRecord::Base
     .where("voting_periods.year = ?", voting_period) }
 
 
-
-
 	# returns Hash of award -> {ballot_item_winner -> score }
 	def calculate_winners(year)
 		@year = year
@@ -46,6 +44,7 @@ class Winner < ActiveRecord::Base
 			score = calculateVoteScore(vote)
 			ballot_item_score += score
 		end
+		saveScore(ballot_item,ballot_item_score)
 		return ballot_item_score
 	end
 
@@ -103,6 +102,10 @@ class Winner < ActiveRecord::Base
 	# write to table in database
 	def saveWinner(winner)
 		Winner.create(:ballot_item_id=> winner.id)
+	end
+
+	def saveScore(ballot_item,score)
+		BallotItem.update(ballot_item.id, :score => score)
 	end
 
 
