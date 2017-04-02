@@ -61,8 +61,6 @@ class User < ActiveRecord::Base
     # receive a max of 3 in each weighting.
   end
 
-# The following lines were created using this as a resource: http://blog.bigbinary.com/2016/03/23/has-secure-  token-to-generate-unique-random-token-in-rails-5.html. I opted NOT to use the has_secure_token method/gem because it doesn't appear that you can make tokens less than 24 characters, which would be difficult to use since might still want to manually enter them on paper forms/ballots.
-
   before_create :set_secret_number
   # before_validation :nullify_duplicate_email
 
@@ -73,7 +71,21 @@ class User < ActiveRecord::Base
     end
   end
 
-  def get_previous_noms(user_id)
+  def get_previous_noms(user_id, key)
+    @users_prev_noms = Nomination.where("user_id" => user_id)
+    test = ""
+    if @users_prev_noms == nil
+      test = ""
+    elsif @users_prev_noms != nil
+      @users_prev_noms.each do |nom|
+        if nom.potential_nomination_id == key
+          test = "selected"
+        end
+      end
+    else
+      test = ""
+    end
+    return test
   end
 
   #saves nominations entered by user

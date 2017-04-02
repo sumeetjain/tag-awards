@@ -8,7 +8,7 @@
     <% while nomination_counter <= 5 %>
       <select name="noms[[<%= award.id %>][<%= nomination_counter %>]]">
         <% @nominations[award.id].each do |key, value| %>
-          <option value="<%= key %>"><%= value %></option>
+          <option value="<%= key %>" <%= current_user.get_previous_noms(current_user.id, key) %>><%= value %></option>
         <% end %>
       </select>
       <br>
