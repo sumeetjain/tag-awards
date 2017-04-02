@@ -1,4 +1,4 @@
-class ChangeRoleJobToInteger < ActiveRecord::Migration
+class ChangeAwardAwardTypeToInteger < ActiveRecord::Migration
   def up
     remove_column :awards, :award_type
     add_column :awards, :award_type, :integer
