@@ -23,19 +23,17 @@
     </ul>
     <div class="nominations_form">
       <a href="/files/AwardExplanations.pdf" id="" style="display: block" target="_blank">    Click Here for an Explanation of Award Categories</a>
-
       <a href="/files/SpecialAwards.pdf" id="" style="display: block" target="_blank">Click Here for Info about TAG Special Awards</a>
-
       <a href="/files/VotingResource.xlsx" id="" style="display: block" target="_blank">Click Here for a helpful voting resource</a><br>
       
-      <%= form_for :nomination, url: {controller: "nominations", action: "save_nominees"} do |n| %>   
+      <%= form_for :nomination, url: {controller: "nominations", action: "save_nominees"} do |n| %>
       <% @awards.each do |award| %>
         <span class="nominations--award_title" id=<%= award.label %>><%= award.award_name %></span><br>
         <% nomination_counter = 1 %>
         <% while nomination_counter <= 5 %>
           <select name="noms[[<%= award.id %>][<%= nomination_counter %>]]">
           <% @nominations[award.id].each do |key, value| %>
-            <option value="<%= key %>" <%= current_user.get_previous_noms(current_user.id, key) %>><%= value %></option>
+            <option value="<%= key %>" <%=  %>><%= value %></option>
           <% end %>
           </select>
           <br>

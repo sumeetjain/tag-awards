@@ -2,6 +2,7 @@ class NominationsController < ApplicationController
   def nomination_ballot
     @awards = Award.all
     @nominations = build_potential_nominations
+    @users_prev_noms = Nomination.where(user_id: current_user)
 
     if Nomination.nominations_closed == true
       session[:nominations_closed] = true
