@@ -10,7 +10,7 @@ class Winner < ActiveRecord::Base
     .where("voting_periods.year = ?", voting_period) }
 
 
-	# returns Hash of award -> {ballot_item_winner -> score }
+	# returns Hash of award AR-> {ballot_item_winner AR-> score integer}
 	def calculate_winners(year)
 		@year = year
 		allscores = {}
@@ -18,11 +18,21 @@ class Winner < ActiveRecord::Base
 			scores = getScoresForBallotItems(award)
 			allscores[award] = scores
 
-			saveWinner(getWinner(scores))
+			# saveWinner(getWinner(scores))
 		end
 		return allscores
 	end
 
+	def getAllScores(year)
+		allscores = {}
+		BallotItem.for_voting_period(year).each do |ballot_item|
+			(allscores[ballot_item.award] ||= {})[ballot_item] = ballot_item.score
+		end
+		allscores.each do |key,value|
+			allscores[key] = sortByScore(value)
+		end
+		return allscores
+	end
 
 
 	private
@@ -34,6 +44,10 @@ class Winner < ActiveRecord::Base
 		ballot_items.each do |ballot_item|
 			ballot_item_scores[ballot_item] = calculateBallotItemScore(ballot_item)
 		end
+		return sortByScore(ballot_item_scores)
+	end
+
+	def sortByScore(ballot_item_scores)
 		sorted_scores = ballot_item_scores.sort_by {|key, value| -value}
 		return sorted_scores.to_h
 	end
