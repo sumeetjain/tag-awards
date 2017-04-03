@@ -22,14 +22,6 @@ ActiveRecord::Schema.define(version: 20170402021529) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
-=======
-  create_table "artists_plays", id: false, force: :cascade do |t|
-    t.integer "artist_id", null: false
-    t.integer "play_id",   null: false
-  end
-
->>>>>>> 244a18325afaaf1fe64fe073668d54ee47db62c4
   create_table "awards", force: :cascade do |t|
     t.string   "award_name"
     t.datetime "created_at",                      null: false
@@ -97,10 +89,7 @@ ActiveRecord::Schema.define(version: 20170402021529) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "potential_nomination_id"
-<<<<<<< HEAD
     t.integer  "user_id"
-=======
->>>>>>> 244a18325afaaf1fe64fe073668d54ee47db62c4
   end
 
   create_table "plays", force: :cascade do |t|
