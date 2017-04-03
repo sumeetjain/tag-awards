@@ -88,11 +88,6 @@ class User < ActiveRecord::Base
     return test
   end
 
-  #saves nominations entered by user
-  #
-  #takes in Integer of user_id and Hash of awards params from nominations ballot
-  #
-  #returns nil
   def record_nominations(user_id, nominations_hash)
     delete_previous_noms(user_id)
     nominations_hash.each do |key, value|
@@ -102,15 +97,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  #saves object of nomination entered by user
-  #
-  #takes in Integer of user_id, Integer of award id, and Collection of Hashes from nested nominations_hash
-  #
-  #returns True (because objects are automatically set to True: open)
-  def save_nomination_object(user_id, value3)
+  def save_nomination_object(user_id, potential_nom)
     @new_nom = Nomination.new
     @new_nom.user_id = user_id
-    @new_nom.potential_nomination_id = value3
+    @new_nom.potential_nomination_id = potential_nom
     @new_nom.save
   end
 

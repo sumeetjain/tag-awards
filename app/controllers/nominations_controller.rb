@@ -27,8 +27,8 @@ class NominationsController < ApplicationController
     return formatted_noms
   end
 
-  def save_nominee
+  def save_nominees
     current_user.record_nominations(current_user.id, params[:noms]) 
-    redirect_to "/users/home"
+    redirect_to "/nomination_ballot"
   end
 end

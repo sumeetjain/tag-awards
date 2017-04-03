@@ -1,7 +1,7 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
 
 <div class="nominations--ballot_box">
-<%= form_for :nomination, url: {controller: "nominations", action: "save_nominee"} do |n| %>   
+<%= form_for :nomination, url: {controller: "nominations", action: "save_nominees"} do |n| %>   
   <% @awards.each do |award| %>
     <span class="nominations--award_title"><%= award.award_name %></span><br>
     <% nomination_counter = 1 %>
