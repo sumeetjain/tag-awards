@@ -9,12 +9,7 @@ class Winner < ActiveRecord::Base
 	scope :for_voting_period, -> (voting_period) { joins(:voting_period)
     .where("voting_periods.year = ?", voting_period) }
 
-    # All awards 
-    # All ballot_items for this year
-    # All votes for this year
-    # All viewings for this year
-    # 
-    @current_award
+
 
 	# returns Hash of award AR-> {ballot_item_winner AR-> score integer}
 	def calculate_winners(year)
