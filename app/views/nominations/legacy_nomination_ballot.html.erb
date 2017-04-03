@@ -1,0 +1,66 @@
+<%if session[:nominations_closed] == false%>
+<div class="nomination_ballot_container">
+  <header> 
+    <div class="clear">
+      <div class="col-12">
+        <div class="headline">
+          <h1>TAG Award Nominations 2016</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+        <a href="#" id="hide_award_category_text" style="display: none">Hide Award    Category Information</a>
+    <br>
+    <ul class="award_links" id="sticky_award_links">
+      <div class="award_links_heading">
+        Award Categories
+      </div>
+      <div class="award_links_instructions">
+        Click on any Award Category on this list to get the nomination ballot for that category. No searching needed. Let the right section come to you. 
+      </div>
+      <% @awards.each do |award| %>
+        <li><a class="award_link" href="#<%= award.label%>"><%= award.award_name%></a></li>
+      <% end %>
+    </ul>
+    <div class="nominations_form">
+      <a href="/files/AwardExplanations.pdf" id="" style="display: block">    Click Here for an Explanation of Award Categories</a>
+
+      <a href="/files/SpecialAwards.pdf" id="" style="display: block">Click Here for Info about TAG Special Awards</a>
+
+      <a href="/files/VotingResource.xlsx" id="" style="display: block">Click Here for a helpful voting resource</a>
+
+      <%= form_for :nomination, url: {controller: "nominations", action: "save_nominee"} do |n| %>   
+        <div class="award_nomination_category">
+          <% @awards.each do |award|%>
+            <h3 id="<%= award.label%>"><%= award.award_name %></h3>
+            <div class="award_nomination_row">
+              <% nomination_count = 0 %>  
+              <% while nomination_count <= 4 %>
+                <% if !award.award_type.blank? %>
+                  Theater:  <input class="theater_input" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][theater]]" value="<%= current_user.nomination_value(award.id, nomination_count, "theater")%>">
+                  Show:  <input type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][show]]" value="<%= current_user.nomination_value(award.id, nomination_count, "show") %>"><br>
+                <%end%>
+                
+                <% if award.needs_nominee_input? %>
+                   Nominee:  <input class="theater_input" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][nominee]]" value="<%= current_user.nomination_value(award.id, nomination_count, "nominee") %>">
+                <% end%>
+
+                <% if award.needs_role_input? %>  
+                  Role:  <input class="theater_input" type="text" name="awards[<%= award.id %>][nominations[<%= nomination_count %>][role]]" value="<%= current_user.nomination_value(award.id, nomination_count, "role") %>">
+                <% end %>
+                <br><br>
+                <% nomination_count += 1 %>
+              <% end %> <!-- ends nom count loop  -->        
+            </div> <!-- closes award nom row div -->
+          <% end%> <!-- closes award each loop -->
+        </div> <!-- closes award nomination category -->
+        <%= submit_tag("Save Nomination Ballot") %>
+      <% end %><!--  ends nom form loop -->
+    </div> <!-- closes nom_form div -->
+  </div> <!-- closes 'container' div -->
+</div> <!-- closes nom ballot container -->
+<% else %>
+  <H1>We're sorry! Nominations are now closed for the 2016 TAG Awards!</H1>
+  <h2>Thank you to everyone who voted. Ballots for final voting will be available soon!</h2>
+<% end %>

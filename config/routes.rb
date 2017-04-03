@@ -77,7 +77,7 @@ Rails.application.routes.draw do
   post "viewings/create/multiple" => 'viewings#create_multiple'
   get "nomination_ballot" => 'nominations#nomination_ballot'
   get "ballot_helper" => 'nominations#index'
-  post "save_nominee" => 'nominations#save_nominee'
+  post "save_nominee" => 'nominations#save_nominees'
   post "close_nominations" => 'nominations#close_nominations'
   get "nominations/index"
   post "plays/create" => 'plays#create_play'
