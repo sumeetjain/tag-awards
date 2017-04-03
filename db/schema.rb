@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(version: 20170402021529) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "artists_plays", id: false, force: :cascade do |t|
+    t.integer "artist_id", null: false
+    t.integer "play_id",   null: false
+  end
+
   create_table "awards", force: :cascade do |t|
     t.string   "award_name"
     t.datetime "created_at",                      null: false
