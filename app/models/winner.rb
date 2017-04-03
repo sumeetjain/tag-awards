@@ -9,13 +9,20 @@ class Winner < ActiveRecord::Base
 	scope :for_voting_period, -> (voting_period) { joins(:voting_period)
     .where("voting_periods.year = ?", voting_period) }
 
+    # All awards 
+    # All ballot_items for this year
+    # All votes for this year
+    # All viewings for this year
+    # 
+    @current_award
 
 	# returns Hash of award AR-> {ballot_item_winner AR-> score integer}
 	def calculate_winners(year)
 		@year = year
 		allscores = {}
 		Award.all.each do |award|
-			scores = getScoresForBallotItems(award)
+			@current_award = award
+			scores = getScoresForBallotItems
 			allscores[award] = scores
 
 			# saveWinner(getWinner(scores))
@@ -38,11 +45,12 @@ class Winner < ActiveRecord::Base
 	private
 
 	# returns hash of ballot_item AR-> score integer
-	def getScoresForBallotItems(award)
+	def getScoresForBallotItems
 		ballot_item_scores = {}
-		ballot_items = award.ballot_items.for_voting_period(@year)
-		ballot_items.each do |ballot_item|
-			ballot_item_scores[ballot_item] = calculateBallotItemScore(ballot_item)
+		@current_ballot_items = @current_award.ballot_items.for_voting_period(@year)
+		@current_ballot_items.each do |ballot_item|
+			@current_ballot_item = ballot_item
+			ballot_item_scores[ballot_item] = calculateBallotItemScore
 		end
 		return sortByScore(ballot_item_scores)
 	end
@@ -53,22 +61,23 @@ class Winner < ActiveRecord::Base
 	end
 
 	#returns integer
-	def calculateBallotItemScore(ballot_item)
+	def calculateBallotItemScore
 		ballot_item_score = 0
-		ballot_item.votes.each do |vote|
-			score = calculateVoteScore(vote)
+		@current_ballot_item.votes.each do |vote|
+			@current_vote = vote
+			score = calculateVoteScore
 			ballot_item_score += score
 		end
-		saveScore(ballot_item,ballot_item_score)
+		saveScore(@current_ballot_item,ballot_item_score)
 		return ballot_item_score
 	end
 
 	# returns an integer
-	def calculateVoteScore(vote)
-		award_plays_viewed = awardPlaysViewedByUser(vote)
-		maxscore = getMaxScore(vote.ballot_item.award)
+	def calculateVoteScore
+		award_plays_viewed = awardPlaysViewedByUser
+		maxscore = getMaxScore
 		score = getVoteScore(award_plays_viewed.length,maxscore)
-		score = checkForViewOfVote(score,vote,award_plays_viewed)
+		score = checkForViewOfVote(score,award_plays_viewed)
 		return score
 	end
 
@@ -85,28 +94,26 @@ class Winner < ActiveRecord::Base
 	end
 
 	#returns integer
-	def checkForViewOfVote(score,vote,award_plays_viewed)
-		unless award_plays_viewed.include?(vote.ballot_item.play_id)
+	def checkForViewOfVote(score,award_plays_viewed)
+		unless award_plays_viewed.include?(@current_vote.ballot_item.play_id)
 			score = 0
 		end
 		return score
 	end
 
 	#returns array of play ids
-	def awardPlaysViewedByUser(vote)
-		user_viewings = vote.user.viewings.for_voting_period(@year)
-		ballot_items_for_award = vote.ballot_item.award.ballot_items.for_voting_period(@year)
+	def awardPlaysViewedByUser
+		user_viewings = @current_vote.user.viewings.for_voting_period(@year)
 
 		plays_user_viewed = user_viewings.pluck("play_id")
-		plays_for_award = ballot_items_for_award.pluck("play_id")
+		plays_for_award = @current_ballot_items.pluck("play_id")
 
 		return plays_user_viewed & plays_for_award
 	end
 
 	# returns integer of number of unique plays
-	def getMaxScore(award)
-		ballot_items = award.ballot_items.for_voting_period(@year)
-		maxscore = ballot_items.pluck("play_id").uniq.length
+	def getMaxScore
+		maxscore = @current_ballot_items.pluck("play_id").uniq.length
 	end
 
 	# returns ballot_item of winner
