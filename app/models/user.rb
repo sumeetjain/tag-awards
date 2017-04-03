@@ -73,19 +73,19 @@ class User < ActiveRecord::Base
 
   def get_previous_noms(user_id, key)
     @users_prev_noms = Nomination.where("user_id" => user_id)
-    test = ""
+    html = ""
     if @users_prev_noms == nil
-      test = ""
+      html = ""
     elsif @users_prev_noms != nil
       @users_prev_noms.each do |nom|
         if nom.potential_nomination_id == key
-          test = "selected"
+          html = "selected"
         end
       end
     else
-      test = ""
+      html = ""
     end
-    return test
+    return html
   end
 
   def record_nominations(user_id, nominations_hash)

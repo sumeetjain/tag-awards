@@ -1,20 +1,53 @@
-<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+<% if session[:nominations_closed] == false %>
+<div class="nomination_ballot_container">
+  <header> 
+    <div class="clear">
+      <div class="col-12">
+        <div class="headline">
+          <h1>TAG Award Nominations <%= Time.now.strftime("%Y") %></h1>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <ul class="award_links" id="sticky_award_links">
+      <div class="award_links_heading">
+        Award Categories
+      </div>
+      <div class="award_links_instructions">
+        Click on any Award Category on this list to get the nomination ballot for that category. No searching needed. Let the right section come to you. 
+      </div>
+      <% @awards.each do |award| %>
+        <li><a class="award_link" href="#<%= award.label%>"><%= award.award_name%></a></li>
+      <% end %>
+    </ul>
+    <div class="nominations_form">
+      <a href="/files/AwardExplanations.pdf" id="" style="display: block" target="_blank">    Click Here for an Explanation of Award Categories</a>
 
-<div class="nominations--ballot_box">
-<%= form_for :nomination, url: {controller: "nominations", action: "save_nominees"} do |n| %>   
-  <% @awards.each do |award| %>
-    <span class="nominations--award_title"><%= award.award_name %></span><br>
-    <% nomination_counter = 1 %>
-    <% while nomination_counter <= 5 %>
-      <select name="noms[[<%= award.id %>][<%= nomination_counter %>]]">
-        <% @nominations[award.id].each do |key, value| %>
-          <option value="<%= key %>" <%= current_user.get_previous_noms(current_user.id, key) %>><%= value %></option>
+      <a href="/files/SpecialAwards.pdf" id="" style="display: block" target="_blank">Click Here for Info about TAG Special Awards</a>
+
+      <a href="/files/VotingResource.xlsx" id="" style="display: block" target="_blank">Click Here for a helpful voting resource</a><br>
+      
+      <%= form_for :nomination, url: {controller: "nominations", action: "save_nominees"} do |n| %>   
+      <% @awards.each do |award| %>
+        <span class="nominations--award_title" id=<%= award.label %>><%= award.award_name %></span><br>
+        <% nomination_counter = 1 %>
+        <% while nomination_counter <= 5 %>
+          <select name="noms[[<%= award.id %>][<%= nomination_counter %>]]">
+          <% @nominations[award.id].each do |key, value| %>
+            <option value="<%= key %>" <%= current_user.get_previous_noms(current_user.id, key) %>><%= value %></option>
+          <% end %>
+          </select>
+          <br>
+          <% nomination_counter += 1 %>
         <% end %>
-      </select>
-      <br>
-      <% nomination_counter += 1 %>
-    <% end %>
-  <% end %>
-<%= submit_tag("Save Nomination Ballot") %>
-<% end %>
+      <% end %>
+      <%= submit_tag("Save Nomination Ballot") %>
+      <% end %>
+    </div>
+  </div>
 </div>
+<% else %>
+  <H1>We're sorry! Nominations are now closed for the <%= Time.now.strftime("%Y") %> TAG Awards!</H1>
+  <h2>Thank you to everyone who voted. Ballots for final voting will be available soon!</h2>
+<% end %>

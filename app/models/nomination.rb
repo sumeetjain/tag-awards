@@ -4,4 +4,9 @@ class Nomination < ActiveRecord::Base
   belongs_to :user
 
   # validates :potential_nomination, uniqueness: { scope: :user, message: "You may only nominate something once!"}
+
+  def self.nominations_closed
+    # Nomination.where(open: false).count > 0
+    false
+  end
 end
