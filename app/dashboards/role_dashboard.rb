@@ -10,7 +10,7 @@ class RoleDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     artist: Field::BelongsTo,
     play: Field::PlayForYearField,
-    voting_period: Field::BelongsTo,
+    voting_period: Field::String,
     potential_nomination: Field::BelongsTo,
     id: Field::Number,
     job: Field::String,
@@ -51,7 +51,6 @@ class RoleDashboard < Administrate::BaseDashboard
     :job,
     :character,
     :play,
-    :voting_period,
   ]
 
   # Overwrite this method to customize how roles are displayed
