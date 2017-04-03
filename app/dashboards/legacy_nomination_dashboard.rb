@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class TheaterDashboard < Administrate::BaseDashboard
+class NominationDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,11 +8,19 @@ class TheaterDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    user: Field::BelongsTo,
+    award: Field::BelongsTo,
+    show: Field::String,
     id: Field::Number,
-    name: Field::String,
+    theater: Field::String,
+    nominee: Field::String,
+    role: Field::String,
+    open: Field::Boolean,
+    approved: Field::Boolean,
+    weight: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    plays: Field::HasMany,
+    voting_period: Field::BelongsTo,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -21,29 +29,47 @@ class TheaterDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :name,
-    :plays,
+    :user,
+    :award,
+    :theater,
+    :show,
+    :nominee,
+    :role,
+    :voting_period,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :name,
-    :plays,
+    :user,
+    :award,
+    :theater,
+    :show,
+    :nominee,
+    :role,
+    :approved,
     :created_at,
+    :voting_period,
   ]
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :name,
+    :user,
+    :award,
+    :theater,
+    :show,
+    :nominee,
+    :role,
+    :approved,
+    :voting_period,
   ]
 
-  # Overwrite this method to customize how theaters are displayed
+  # Overwrite this method to customize how nominations are displayed
   # across all pages of the admin dashboard.
-  #
-  def display_resource(theater)
-    "#{theater.name}"
-  end
+  # #
+  # def display_resource(nomination)
+  #   "Nomination ##{nomination.id}"
+  # end
 end

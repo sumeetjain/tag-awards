@@ -7,9 +7,25 @@ class Role < ActiveRecord::Base
   scope :for_voting_period, -> (voting_period) { joins(:voting_period)
     .where("voting_periods.year = ?", voting_period) }
 
-  def self.job_pulldown_options
-    keys = ["director", "actor", "actress", "music director", "choreographer", "sound designer", "props designer", "set designer", "costume designer", "lighting designer", "ensemble", "writer", "other"]
-    values = ["director", "actor", "actress", "music director", "choreographer", "sound designer", "props designer", "set designer", "costume designer", "lighting designer", "ensemble", "writer", "other"]
-    return keys.zip(values)
+  enum job: ["Director", "Actor", "Actress", "Music Director", "Choreographer",
+    "Sound Designer", "Props Designer", "Set Designer", "Costume Designer", 
+    "Lighting Designer", "Ensemble", "Writer", "Other"]
+
+  def display_name
+    formatted = ""
+    formatted += character_or_job if artist
+    formatted += play_info
+  end
+
+  private
+  
+  def character_or_job
+    formatted = "#{artist.name}"
+    formatted += (character.blank? ? " - " + job : " as " + character) 
+    formatted += " - "
+  end
+
+  def play_info
+    "#{play.title}, #{play.theater.name}"
   end
 end

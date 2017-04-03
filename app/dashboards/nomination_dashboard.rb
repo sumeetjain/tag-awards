@@ -8,19 +8,11 @@ class NominationDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    potential_nomination: Field::BelongsTo,
     user: Field::BelongsTo,
-    award: Field::BelongsTo,
-    show: Field::String,
     id: Field::Number,
-    theater: Field::String,
-    nominee: Field::String,
-    role: Field::String,
-    open: Field::Boolean,
-    approved: Field::Boolean,
-    weight: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    voting_period: Field::BelongsTo,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -29,46 +21,28 @@ class NominationDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :potential_nomination,
     :user,
-    :award,
-    :theater,
-    :show,
-    :nominee,
-    :role,
-    :voting_period,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :potential_nomination,
     :user,
-    :award,
-    :theater,
-    :show,
-    :nominee,
-    :role,
-    :approved,
-    :created_at,
-    :voting_period,
   ]
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
+    :potential_nomination,
     :user,
-    :award,
-    :theater,
-    :show,
-    :nominee,
-    :role,
-    :approved,
-    :voting_period,
   ]
 
   # Overwrite this method to customize how nominations are displayed
   # across all pages of the admin dashboard.
-  # #
+  #
   # def display_resource(nomination)
   #   "Nomination ##{nomination.id}"
   # end

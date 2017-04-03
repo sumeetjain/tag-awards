@@ -13,6 +13,7 @@ class PotentialNominationDashboard < Administrate::BaseDashboard
     award: Field::BelongsTo,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    display_name: Field::String.with_options(truncate: 1000),
   }
 
   # COLLECTION_ATTRIBUTES
@@ -21,18 +22,14 @@ class PotentialNominationDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :id,
-    :award,
-    :roles,
+    :display_name,
+    :award
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :id,
     :award,
-    :created_at,
-    :updated_at,
     :roles,
   ]
 
@@ -48,7 +45,8 @@ class PotentialNominationDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   
   def display_resource(potential_nomination)
-    "#{potential_nomination.roles.first.play.title} for #{potential_nomination.award.award_name}"
+    "#{potential_nomination.display_name}"
   end
+
 end
 

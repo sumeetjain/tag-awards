@@ -32,21 +32,11 @@ and renders all form fields for a resource's editable attributes.
 
   <% page.attributes.each do |attribute| -%>
     <div class="field-unit field-unit--<%= attribute.html_class %>">
-      <% if attribute.attribute == :job %>
-        <div class="field-unit__label">
-          <%= f.label :job %>
-        </div>
-        <div class="field-unit__field">
-          <%= f.select(:job, options_for_select(Role.jobs.keys), {prompt: 'Please Select A Job'}) %>
-        </div>
-      <% else %>
-        <%= render_field attribute, f: f %>
-      <% end %>
+      <%= render_field attribute, f: f %>
     </div>
-  <% end %>
+  <% end -%>
 
   <div class="form-actions">
     <%= f.submit %>
   </div>
-
 <% end %>
