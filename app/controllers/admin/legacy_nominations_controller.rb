@@ -28,10 +28,7 @@ module Admin
       }
     end
 
-    def top_ten
-      @theaters = Theater.includes(:plays).all
-      @awards = Award.includes(:ballot_items => {play: :theater}).order("awards.award_name asc").all
-    end
+    
 
 
     # See https://administrate-docs.herokuapp.com/customizing_controller_actions
