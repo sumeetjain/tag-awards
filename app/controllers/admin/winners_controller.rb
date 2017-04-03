@@ -38,6 +38,7 @@ module Admin
     end
 
     def calculate_winners
+        @year = session[:year]
         winners = Winner.new
         @allscores = winners.calculate_winners(session[:year])
     end

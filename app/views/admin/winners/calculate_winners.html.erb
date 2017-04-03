@@ -6,11 +6,13 @@
   <h1 class="header__heading" id="page-title"><%= content_for(:title) %></h1>
   <div class="header__actions">
     <!-- Header actions go here. -->
-    <%= link_to( "Continue", :admin_winners, class: "button",) %>
+    <%= link_to( "Continue to Winners", :admin_winners, class: "button",) %>
   </div>
 </header>
 
 <div class="side-spacer">
+
+  <h2>Scoring Results for <%= @year %> </h2>
 
   <% @allscores.each do |award,ballot_scores| %>
   	<h3><%= award.award_name %></h3>
