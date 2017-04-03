@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170331151843) do
+ActiveRecord::Schema.define(version: 20170402021529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170331151843) do
     t.integer  "relevant_fields"
     t.boolean  "inactive"
     t.boolean  "ballot_set",      default: false
-    t.string   "award_type"
+    t.integer  "award_type"
   end
 
   add_index "awards", ["ballot_set"], name: "index_awards_on_ballot_set", using: :btree
@@ -124,12 +124,12 @@ ActiveRecord::Schema.define(version: 20170331151843) do
   create_table "roles", force: :cascade do |t|
     t.integer  "artist_id"
     t.integer  "play_id"
-    t.string   "job"
     t.string   "character"
     t.integer  "voting_period_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "potential_nomination_id"
+    t.integer  "job"
   end
 
   create_table "theaters", force: :cascade do |t|

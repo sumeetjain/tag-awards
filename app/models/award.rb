@@ -2,6 +2,8 @@ class Award < ActiveRecord::Base
   has_many :nominations
   has_many :ballot_items
   has_many :potential_nominations
+
+  enum award_type: %w(acting directing technical production ensemble)
   
   #label converts award_name to Courtney's CSS label system
   #example: "Best Musical" will become "bestmusical"
@@ -23,10 +25,4 @@ class Award < ActiveRecord::Base
     award_type == "acting" 
   end
 
-  def self.pulldown_options
-    keys = %w(ACTING DIRECTING TECHNICAL PRODUCTION ENSEMBLE)
-    values = %w(acting directing technical production ensemble)
-    zipped = keys.zip(values)
-    return zipped
-  end
 end
