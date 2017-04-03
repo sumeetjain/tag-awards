@@ -3,19 +3,19 @@ Rails.application.routes.draw do
   patch "user/viewings" => 'viewings#update', as: :user_viewings
 
   namespace :admin do
+    resources :plays
+    resources :artists
+    resources :roles
+    resources :potential_nominations
+
     resources :awards do
       member do
         post "build_ballot" => 'awards#build_ballot'
       end
     end
+
     resources :theaters
-    resources :plays
-    resources :artists
-    resources :roles
-
     resources :viewings
-
-    resources :potential_nominations
 
     resources :nominations do
       collection do
@@ -37,12 +37,6 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :users do
-      collection do
-        post "export/usernames_and_passwords" => 'users#export'
-      end
-    end
-
     resources :voting_periods
 
     resources :winners do
@@ -52,9 +46,14 @@ Rails.application.routes.draw do
         get "scores" => 'winners#scores'
       end
     end
-    
-    root to: "users#index"
 
+    resources :users do
+      collection do
+        post "export/usernames_and_passwords" => 'users#export'
+      end
+    end
+
+    root to: "users#index"
     post 'set_period' => 'voting_periods#set_period'
   end
 
@@ -79,7 +78,7 @@ Rails.application.routes.draw do
   post "viewings/create/multiple" => 'viewings#create_multiple'
   get "nomination_ballot" => 'nominations#nomination_ballot'
   get "ballot_helper" => 'nominations#index'
-  post "save_nominee" => 'nominations#save_nominee'
+  post "save_nominee" => 'nominations#save_nominees'
   post "close_nominations" => 'nominations#close_nominations'
   get "nominations/index"
   post "plays/create" => 'plays#create_play'

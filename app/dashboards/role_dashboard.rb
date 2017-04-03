@@ -26,25 +26,21 @@ class RoleDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :artist,
+    :job,
+    :character,
     :play,
     :voting_period,
-    :potential_nomination,
-    :job,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :artist,
+    :job,
+    :character,
     :play,
     :voting_period,
     :potential_nomination,
-    :id,
-    :job,
-    :character,
-    :created_at,
-    :updated_at,
-    :job,
   ]
 
   # FORM_ATTRIBUTES
@@ -52,16 +48,16 @@ class RoleDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :artist,
+    :job,
+    :character,
     :play,
     :voting_period,
-    :character,
-    :job,
   ]
 
   # Overwrite this method to customize how roles are displayed
   # across all pages of the admin dashboard.
   #
   def display_resource(role)
-    "#{role.artist.name} as " + (role.character.blank? ? role.job : role.character) + " in #{role.play.title}"
+    role.display_name
   end
 end

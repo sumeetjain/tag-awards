@@ -2,20 +2,27 @@
   position: relative;
 }
 
+.nominations--ballot_box {
+  text-align: left;
+  color: red;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 1.25em;
+}
+
+.nominations--award_title {
+  font-weight: bold;
+}
+
 .award_links{
   position: absolute;
   top: 0;
   left: 0;
-
   height: 100%;
   width: 280px;
   overflow-y: auto;
-
   margin: 0;
   padding: 0;
-
   text-decoration: none;
-
 }
 
 .award_links_heading {
@@ -48,8 +55,6 @@
   border-bottom-width: 2px;
   border-color: #666;
   border-radius: 5px;
-
-
 }
 
 
@@ -79,9 +84,9 @@
 }
 
 .award_link:active {
-    text-decoration: underline;
-    background-color: #666;
-    color: white;
+  text-decoration: underline;
+  background-color: #666;
+  color: white;
 }
 
 .nominations_form{
@@ -90,23 +95,18 @@
 }
 
 .award_nomination_category {
-
 background-color: #F5F5F5;
 border-radius: 20px;
 padding-bottom: 20px;
 padding-top: 5px;
 margin-bottom: 20px;
-
-
 }
 
 .nomination_ballot_container {
-
-background-color: #B1BEE6;
+  background-color: #B1BEE6;
 }
 
 .headline {
-
   margin-left: 280px;
 }
 
@@ -117,42 +117,3 @@ background-color: #B1BEE6;
 .theater_input {
   margin-right: 15px;
 }
-
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-// .show_input {
-//   padding: 3px;
-// }

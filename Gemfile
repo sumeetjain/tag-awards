@@ -24,6 +24,7 @@ gem "uglifier"
 gem 'rubysl-securerandom', '~> 2.0'
 # gem 'erd'
 gem 'simple_form'
+gem 'coffee-rails', '~> 4.1.0'
 
 group :development do
   gem "quiet_assets"
