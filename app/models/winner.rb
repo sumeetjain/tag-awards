@@ -13,15 +13,19 @@ class Winner < ActiveRecord::Base
 
 	# returns Hash of award AR-> {ballot_item_winner AR-> score integer}
 	def calculate_winners(year)
+		@saved_scores = {}
 		allscores = {}
+		winners = []
 		@helper = WinnerHelper.new(year)
 		Award.all.each do |award|
 			# @helper = WinnerHelper.new(year,award)
 			scores = getScoresForBallotItems(award)
 			allscores[award] = scores
 
-			# saveWinner(getWinner(scores))
+			winners << getWinner(scores)
 		end
+		saveScores
+		saveWinners(winners)
 		return allscores
 	end
 
@@ -39,11 +43,11 @@ class Winner < ActiveRecord::Base
 
 	private
 
-	# returns hash of ballot_item AR-> score integer
+	# returns hash of ballot_item id-> score integer
 	def getScoresForBallotItems(award)
 		ballot_item_scores = {}
 		@helper.ballotItemsForAward(award).each do |ballot_item_id|
-			ballot_item_scores[ballot_item] = calculateBallotItemScore(ballot_item_id)
+			ballot_item_scores[ballot_item_id] = calculateBallotItemScore(ballot_item_id)
 		end
 		return sortByScore(ballot_item_scores)
 	end
@@ -61,7 +65,7 @@ class Winner < ActiveRecord::Base
 			score = calculateVoteScore(vote_id)
 			ballot_item_score += score
 		end
-		saveScore(ballot_item_id,ballot_item_score)
+		@saved_scores[ballot_item_id] = {:score => ballot_item_score}
 		return ballot_item_score
 	end
 
@@ -109,19 +113,20 @@ class Winner < ActiveRecord::Base
 		maxscore = @helper.playsForAward.uniq.length
 	end
 
-	# returns ballot_item of winner
+	# returns ballot_item id of winner
 	def getWinner(scores)
 		scores.key(scores.values.max)
 	end
 
 	# write to table in database
-	def saveWinner(winner)
-		Winner.create(:ballot_item_id=> winner.id)
+	def saveWinners(winners)
+		winners.each do |ballot_item_id|
+			Winner.find_or_create_by(:ballot_item_id => ballot_item_id)
+		end
 	end
 
-	def saveScore(ballot_item_id,score)
-		BallotItem.update(ballot_item_id, :score => score)
-		debugger
+	def saveScores
+		BallotItem.update(@saved_scores.keys,@saved_scores.values)
 	end
 
 
