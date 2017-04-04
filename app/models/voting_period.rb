@@ -15,4 +15,8 @@ class VotingPeriod < ActiveRecord::Base
   def self.current
     order("year DESC").first
   end
+
+  def to_s
+    self.year.to_s
+  end
 end
