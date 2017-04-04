@@ -72,6 +72,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def selected
+    binding.pry
+  end
+
   ###
   def get_previous_noms(user_id)
     prev_noms = Nomination.where(user_id: user_id)
@@ -90,15 +94,6 @@ class User < ActiveRecord::Base
       end
     end
   end
-
-  # def record_nominations(user_id, nominations_hash)
-  #   delete_previous_noms(user_id)
-  #   nominations_hash.each do |key, value|
-  #     value.each do |key2, value2|
-  #       save_nomination_object(user_id, value2)
-  #     end
-  #   end
-  # end
 
   def save_nomination_object(user_id, potential_nom)
     @new_nom = Nomination.new
@@ -168,7 +163,4 @@ class User < ActiveRecord::Base
       break token unless User.where(secret_number: token).exists?
     end
   end
-
-
-
 end

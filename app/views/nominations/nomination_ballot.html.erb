@@ -1,10 +1,12 @@
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
 <% if session[:nominations_closed] == false %>
 <div class="nomination_ballot_container">
   <header> 
     <div class="clear">
       <div class="col-12">
         <div class="headline">
-          <h1>TAG Award Nominations <%= Time.now.strftime("%Y") %></h1>
+          <h1 class="nominations_title">TAG Award Nominations <%= Time.now.strftime("%Y") %></h1>
         </div>
       </div>
     </div>
@@ -22,22 +24,25 @@
       <% end %>
     </ul>
     <div class="nominations_form">
-      <a href="/files/AwardExplanations.pdf" id="" style="display: block" target="_blank">    Click Here for an Explanation of Award Categories</a>
-      <a href="/files/SpecialAwards.pdf" id="" style="display: block" target="_blank">Click Here for Info about TAG Special Awards</a>
-      <a href="/files/VotingResource.xlsx" id="" style="display: block" target="_blank">Click Here for a helpful voting resource</a><br>
+      <div id="award_explanations">
+        <a href="/files/AwardExplanations.pdf" target="_blank">Click Here for an Explanation of Award Categories</a><br>
+        <a href="/files/SpecialAwards.pdf" target="_blank">Click Here for Info about TAG Special Awards</a><br>
+        <a href="/files/VotingResource.xlsx" target="_blank">Click Here for a helpful voting resource</a><br>
+      </div>
 
         <%= form_for :user, url: {action: "save_nominees"} do |u| %>
           <% @awards.each do |award| %>
-            <%= award.award_name %><br>
+            <div class="award_category_title"><%= award.award_name %></div>
             <% nomination_counter = 1 %>
             <% while nomination_counter <= 5 %>
+              <% is_selected = false %>
               <%= u.fields_for award.award_name do |n| %>
-                <%= n.collection_select(nomination_counter, PotentialNomination.where(award_id: award.id), :id, :display_name, {:selected => Nomination.where(user_id: current_user), :include_blank => true}) %><br>
+                <%= n.collection_select(nomination_counter, PotentialNomination.where(award_id: award.id), :id, :display_name, {:selected => false, :include_blank => true}, {:class => 'nom_box'}) %><br>
               <% end %>
               <% nomination_counter += 1 %>
             <% end %>
           <% end %>
-          <%= u.submit %>
+          <%= u.submit "Submit Your Nominations" %>
         <% end %>
       
 <% else %>

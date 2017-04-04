@@ -1,12 +1,6 @@
 .nomination_ballot_container{
   position: relative;
-}
-
-.nominations--ballot_box {
-  text-align: left;
-  color: red;
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 1.25em;
+  font-family: 'Raleway', sans-serif;
 }
 
 .nominations--award_title {
@@ -23,6 +17,7 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
+  text-align: center;
 }
 
 .award_links_heading {
@@ -57,7 +52,6 @@
   border-radius: 5px;
 }
 
-
 .award_links.award_links--sticky{
   position: fixed;
 }
@@ -74,8 +68,7 @@
   text-align: left;
   padding-left: 20px;
   border-radius: 5px;
-
-
+  text-align: center;
 }
 .award_link:hover{
   color: #666;
@@ -102,10 +95,6 @@ padding-top: 5px;
 margin-bottom: 20px;
 }
 
-.nomination_ballot_container {
-  background-color: #B1BEE6;
-}
-
 .headline {
   margin-left: 280px;
 }
@@ -116,4 +105,23 @@ margin-bottom: 20px;
 
 .theater_input {
   margin-right: 15px;
+}
+
+.nom_box {
+  width: 600px;
+  margin-bottom: 10px;
+}
+
+.nominations_title {
+  font-family: 'Raleway', sans-serif;
+}
+
+.award_category_title {
+  font-weight: bold;
+  color: red;
+}
+
+#award_explanations {
+  line-height: 20px;
+  padding-bottom: 15px;
 }
