@@ -14,9 +14,10 @@ class Winner < ActiveRecord::Base
 	# returns Hash of award AR-> {ballot_item_winner AR-> score integer}
 	def calculate_winners(year)
 		allscores = {}
+		@helper = WinnerHelper.new(year)
 		Award.all.each do |award|
-			@helper = WinnerHelper.new(year,award)
-			scores = getScoresForBallotItems
+			# @helper = WinnerHelper.new(year,award)
+			scores = getScoresForBallotItems(award)
 			allscores[award] = scores
 
 			# saveWinner(getWinner(scores))
@@ -39,9 +40,9 @@ class Winner < ActiveRecord::Base
 	private
 
 	# returns hash of ballot_item AR-> score integer
-	def getScoresForBallotItems
+	def getScoresForBallotItems(award)
 		ballot_item_scores = {}
-		@helper.ballotItemsForAward.each do |ballot_item_id|
+		@helper.ballotItemsForAward(award).each do |ballot_item_id|
 			ballot_item_scores[ballot_item] = calculateBallotItemScore(ballot_item_id)
 		end
 		return sortByScore(ballot_item_scores)
@@ -120,6 +121,7 @@ class Winner < ActiveRecord::Base
 
 	def saveScore(ballot_item_id,score)
 		BallotItem.update(ballot_item_id, :score => score)
+		debugger
 	end
 
 

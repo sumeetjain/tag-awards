@@ -1,11 +1,8 @@
 class WinnerHelper
 
-	def initialize(year,award)
-		@year_id = determineYearId(year)
-		@award_id = award.id
+	def initialize(year)
+		@year_id = year - 2015
 		@awardPlayVotes = awardPlayVotes
-
-
 		@viewedPlays = userViewedPlays
 		@userVotes = userVotes
 	end
@@ -18,7 +15,24 @@ class WinnerHelper
 		return ActiveRecord::Base.connection.execute(sql).to_a
 	end
 
-	def ballotItemsForAward
+	# user_id and play_id for all viewings
+	def userViewedPlays
+		sql = "SELECT users.id, viewings.play_id FROM users 
+				JOIN viewings ON users.id=viewings.user_id"
+		return ActiveRecord::Base.connection.execute(sql).to_a
+	end
+
+	#table with vote id, user id, and play id
+	def userVotes
+		sql = "SELECT votes.id, votes.user_id, ballot_items.play_id FROM votes 
+				JOIN ballot_items ON votes.ballot_item_id = ballot_items.id 
+				WHERE ballot_items.voting_period_id = #{@year_id}"
+		return ActiveRecord::Base.connection.execute(sql).to_a
+	end
+
+
+	def ballotItemsForAward(award)
+		@award_id = award.id
 		array = []
 		@awardPlayVotes.each do |vote|
 			if vote['award_id'].to_i == @award_id 
@@ -48,20 +62,6 @@ class WinnerHelper
 		return array.uniq
 	end
 
-
-	#assume that every year will get an id and no years will be skipped
-	def determineYearId(year)
-		year - 2015
-	end
-
-
-	# user_id and play_id for all viewings
-	def userViewedPlays
-		sql = "SELECT users.id, viewings.play_id FROM users 
-				JOIN viewings ON users.id=viewings.user_id"
-		return ActiveRecord::Base.connection.execute(sql).to_a
-	end
-
 	def playsForUser(user_id)
 		array = []
 		@viewedPlays.each do |viewing|
@@ -70,14 +70,6 @@ class WinnerHelper
 			end
 		end
 		return array
-	end
-
-
-	#table with vote id, user id, and play id
-	def userVotes
-		sql = "SELECT votes.id, votes.user_id, ballot_items.play_id FROM votes 
-				JOIN ballot_items ON votes.ballot_item_id = ballot_items.id"
-		return ActiveRecord::Base.connection.execute(sql).to_a
 	end
 
 	#returns integer
