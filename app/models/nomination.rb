@@ -11,6 +11,6 @@ class Nomination < ActiveRecord::Base
   end
 
   def check_if_exists
-    
+
   end
 end
