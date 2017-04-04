@@ -33,6 +33,7 @@
         <%= form_for :user, url: {action: "save_nominees"} do |u| %>
           <% @awards.each do |award| %>
             <div class="award_category_title"><%= award.award_name %></div>
+            <%= award.description %><br>
             <% nomination_counter = 1 %>
             <% while nomination_counter <= 5 %>
               <% is_selected = false %>
@@ -44,6 +45,8 @@
           <% end %>
           <%= u.submit "Submit Your Nominations" %>
         <% end %>
+
+      <p>If you feel a potential nomination is missing from any of the awards, please contact us!</p>
       
 <% else %>
   <H1>We're sorry! Nominations are now closed for the <%= Time.now.strftime("%Y") %> TAG Awards!</H1>
