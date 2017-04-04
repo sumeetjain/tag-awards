@@ -29,14 +29,16 @@
         <%= form_for :user, url: {action: "save_nominees"} do |u| %>
           <% @awards.each do |award| %>
             <%= award.award_name %><br>
-            <% 5.times do %>
-              <%= fields_for :nomination do |n| %>
-                <%= n.collection_select(:potential_nomination, PotentialNomination.where(award_id: award.id), :id, :display_name, {:include_blank => true}) %><br>
+            <% nomination_counter = 1 %>
+            <% while nomination_counter <= 5 %>
+              <%= u.fields_for award.award_name do |n| %>
+                <%= n.collection_select(nomination_counter, PotentialNomination.where(award_id: award.id), :id, :display_name, {:selected => Nomination.where(user_id: current_user), :include_blank => true}) %><br>
               <% end %>
+              <% nomination_counter += 1 %>
             <% end %>
           <% end %>
-        <%= u.submit %>
-      <% end %>
+          <%= u.submit %>
+        <% end %>
       
 <% else %>
   <H1>We're sorry! Nominations are now closed for the <%= Time.now.strftime("%Y") %> TAG Awards!</H1>

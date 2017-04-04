@@ -35,8 +35,7 @@ class NominationsController < ApplicationController
   end
 
   def save_nominees
-    binding.pry
-    current_user.record_nominations(current_user.id, params[:noms]) 
+    current_user.record_nominations(current_user.id, params[:user]) 
     redirect_to "/nomination_ballot"
   end
 end
