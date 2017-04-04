@@ -87,7 +87,8 @@ class Winner < ActiveRecord::Base
 
 	#returns integer
 	def checkForViewOfVote(score,vote,award_plays_viewed)
-		unless award_plays_viewed.include?(vote.ballot_item.play_id)
+		votePlay = @helper.playForVote(vote.id)
+		unless award_plays_viewed.include?(votePlay)
 			score = 0
 		end
 		return score
@@ -95,9 +96,7 @@ class Winner < ActiveRecord::Base
 
 	#returns array of play ids
 	def awardPlaysViewedByUser(vote)
-		# user_viewings = vote.user.viewings.for_voting_period(@helper.year)
-		user_id = vote.user.id
-		# plays_user_viewed = user_viewings.pluck("play_id")
+		user_id = @helper.userForVote(vote.id)
 		plays_user_viewed = @helper.playsForUser(user_id)
 		plays_for_award = @helper.ballot_items.pluck("play_id")
 
