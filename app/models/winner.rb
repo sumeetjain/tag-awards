@@ -41,9 +41,8 @@ class Winner < ActiveRecord::Base
 	# returns hash of ballot_item AR-> score integer
 	def getScoresForBallotItems
 		ballot_item_scores = {}
-		@helper.ballot_items.each do |ballot_item|
-			@helper.currentBallotItem(ballot_item)
-			ballot_item_scores[ballot_item] = calculateBallotItemScore
+		@helper.ballotItemsForAward.each do |ballot_item_id|
+			ballot_item_scores[ballot_item] = calculateBallotItemScore(ballot_item_id)
 		end
 		return sortByScore(ballot_item_scores)
 	end
@@ -54,13 +53,14 @@ class Winner < ActiveRecord::Base
 	end
 
 	#returns integer
-	def calculateBallotItemScore
+	def calculateBallotItemScore(ballot_item_id)
 		ballot_item_score = 0
-		@helper.votes.each do |vote|
-			score = calculateVoteScore(vote.id)
+		vote_ids = @helper.votesForBallotItem(ballot_item_id)
+		vote_ids.each do |vote_id|
+			score = calculateVoteScore(vote_id)
 			ballot_item_score += score
 		end
-		saveScore(@helper.ballot_item,ballot_item_score)
+		saveScore(ballot_item_id,ballot_item_score)
 		return ballot_item_score
 	end
 
@@ -98,14 +98,14 @@ class Winner < ActiveRecord::Base
 	def awardPlaysViewedByUser(vote_id)
 		user_id = @helper.userForVote(vote_id)
 		plays_user_viewed = @helper.playsForUser(user_id)
-		plays_for_award = @helper.ballot_items.pluck("play_id")
+		plays_for_award = @helper.playsForAward
 
 		return plays_user_viewed & plays_for_award
 	end
 
 	# returns integer of number of unique plays
 	def getMaxScore
-		maxscore = @helper.ballot_items.pluck("play_id").uniq.length
+		maxscore = @helper.playsForAward.uniq.length
 	end
 
 	# returns ballot_item of winner
@@ -118,8 +118,8 @@ class Winner < ActiveRecord::Base
 		Winner.create(:ballot_item_id=> winner.id)
 	end
 
-	def saveScore(ballot_item,score)
-		BallotItem.update(ballot_item.id, :score => score)
+	def saveScore(ballot_item_id,score)
+		BallotItem.update(ballot_item_id, :score => score)
 	end
 
 
