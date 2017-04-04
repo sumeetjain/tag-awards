@@ -22,11 +22,6 @@ ActiveRecord::Schema.define(version: 20170403185947) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "artists_plays", id: false, force: :cascade do |t|
-    t.integer "artist_id", null: false
-    t.integer "play_id",   null: false
-  end
-
   create_table "awards", force: :cascade do |t|
     t.string   "award_name"
     t.datetime "created_at",                      null: false
@@ -98,14 +93,6 @@ ActiveRecord::Schema.define(version: 20170403185947) do
     t.integer  "user_id"
   end
 
-  create_table "people", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "people", ["name"], name: "index_people_on_name", using: :btree
-
   create_table "plays", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at",       null: false
@@ -122,18 +109,6 @@ ActiveRecord::Schema.define(version: 20170403185947) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "potential_nominees", force: :cascade do |t|
-    t.integer  "person_id"
-    t.integer  "award_id"
-    t.integer  "play_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "potential_nominees", ["award_id"], name: "index_potential_nominees_on_award_id", using: :btree
-  add_index "potential_nominees", ["person_id"], name: "index_potential_nominees_on_person_id", using: :btree
-  add_index "potential_nominees", ["play_id"], name: "index_potential_nominees_on_play_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.integer  "artist_id"
@@ -210,9 +185,6 @@ ActiveRecord::Schema.define(version: 20170403185947) do
 
   add_foreign_key "ballot_items", "awards"
   add_foreign_key "ballot_items", "plays"
-  add_foreign_key "potential_nominees", "awards"
-  add_foreign_key "potential_nominees", "people"
-  add_foreign_key "potential_nominees", "plays"
   add_foreign_key "viewings", "plays"
   add_foreign_key "viewings", "users"
   add_foreign_key "votes", "ballot_items"

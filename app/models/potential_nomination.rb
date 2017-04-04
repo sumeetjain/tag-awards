@@ -1,5 +1,5 @@
 class PotentialNomination < ActiveRecord::Base
-  has_many :roles
+  belongs_to :nominatable, polymorphic: true 
   belongs_to :award
   has_many :nominations
 
