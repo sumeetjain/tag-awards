@@ -95,9 +95,10 @@ class Winner < ActiveRecord::Base
 
 	#returns array of play ids
 	def awardPlaysViewedByUser(vote)
-		user_viewings = vote.user.viewings.for_voting_period(@helper.year)
-
-		plays_user_viewed = user_viewings.pluck("play_id")
+		# user_viewings = vote.user.viewings.for_voting_period(@helper.year)
+		user_id = vote.user.id
+		# plays_user_viewed = user_viewings.pluck("play_id")
+		plays_user_viewed = @helper.playsForUser(user_id)
 		plays_for_award = @helper.ballot_items.pluck("play_id")
 
 		return plays_user_viewed & plays_for_award
