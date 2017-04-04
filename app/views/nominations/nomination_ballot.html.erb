@@ -33,7 +33,7 @@
         <%= form_for :user, url: {action: "save_nominees"} do |u| %>
           <% @awards.each do |award| %>
             <div class="award_category_title"><%= award.award_name %></div>
-            <%= award.description %><br>
+            <div class="award_description"><%= award.description %></div>
             <% nomination_counter = 1 %>
             <% while nomination_counter <= 5 %>
               <% is_selected = false %>
