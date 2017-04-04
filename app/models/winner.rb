@@ -57,7 +57,7 @@ class Winner < ActiveRecord::Base
 	def calculateBallotItemScore
 		ballot_item_score = 0
 		@helper.votes.each do |vote|
-			score = calculateVoteScore(vote)
+			score = calculateVoteScore(vote.id)
 			ballot_item_score += score
 		end
 		saveScore(@helper.ballot_item,ballot_item_score)
@@ -65,11 +65,11 @@ class Winner < ActiveRecord::Base
 	end
 
 	# returns an integer
-	def calculateVoteScore(vote)
-		award_plays_viewed = awardPlaysViewedByUser(vote)
+	def calculateVoteScore(vote_id)
+		award_plays_viewed = awardPlaysViewedByUser(vote_id)
 		maxscore = getMaxScore
 		score = getVoteScore(award_plays_viewed.length,maxscore)
-		score = checkForViewOfVote(score,vote,award_plays_viewed)
+		score = checkForViewOfVote(score,vote_id,award_plays_viewed)
 		return score
 	end
 
@@ -86,8 +86,8 @@ class Winner < ActiveRecord::Base
 	end
 
 	#returns integer
-	def checkForViewOfVote(score,vote,award_plays_viewed)
-		votePlay = @helper.playForVote(vote.id)
+	def checkForViewOfVote(score,vote_id,award_plays_viewed)
+		votePlay = @helper.playForVote(vote_id)
 		unless award_plays_viewed.include?(votePlay)
 			score = 0
 		end
@@ -95,8 +95,8 @@ class Winner < ActiveRecord::Base
 	end
 
 	#returns array of play ids
-	def awardPlaysViewedByUser(vote)
-		user_id = @helper.userForVote(vote.id)
+	def awardPlaysViewedByUser(vote_id)
+		user_id = @helper.userForVote(vote_id)
 		plays_user_viewed = @helper.playsForUser(user_id)
 		plays_for_award = @helper.ballot_items.pluck("play_id")
 

@@ -9,39 +9,45 @@ class WinnerHelper
 	end
 
 	# user_id and play_id for all viewings
-	# def userViewedPlays
-	# 	sql = "SELECT users.id, viewings.play_id FROM users 
-	# 			JOIN viewings ON users.id=viewings.user_id"
-	# 	# return ActiveRecord::Base.connection.execute(sql)
-	# 	return User.find_by_sql(sql)
-	# end
-
-	# user_id and play_id for all viewings
 	def userViewedPlays
-		return User.joins(:viewings).select('users.id,viewings.play_id')
+		sql = "SELECT users.id, viewings.play_id FROM users 
+				JOIN viewings ON users.id=viewings.user_id"
+		return ActiveRecord::Base.connection.execute(sql).to_a
 	end
 
 	def playsForUser(user_id)
-		return @viewedPlays.where("users.id=#{user_id}").pluck("play_id")
+		array = []
+		@viewedPlays.each do |viewing|
+			if viewing['id'].to_i == user_id 
+				array << viewing['play_id'].to_i 
+			end
+		end
+		return array
 	end
 
-	# vote_id and user_id table
+	#table with vote id, user id, and play id
 	def userVotes
-		userVotesPlays = Vote.joins("JOIN ballot_items ON votes.ballot_item_id = ballot_items.id")
-							.select('votes.id,votes.user_id,ballot_items.play_id')
-		return userVotesPlays
+		sql = "SELECT votes.id, votes.user_id, ballot_items.play_id FROM votes 
+				JOIN ballot_items ON votes.ballot_item_id = ballot_items.id"
+		return ActiveRecord::Base.connection.execute(sql).to_a
 	end
 
 	#returns integer
 	def userForVote(vote_id)
-		user_id = @userVotes.where("votes.id=#{vote_id}").pluck("user_id")
-		return user_id[0]
+		@userVotes.each do |vote|
+			if vote['id'].to_i == vote_id 
+				return vote['user_id'].to_i 
+			end
+		end
 	end
 
 	#returns integer
 	def playForVote(vote_id)
-		play_id = @userVotes.where("votes.id=#{vote_id}").pluck("play_id")
-		return play_id[0]
+		@userVotes.each do |vote|
+			if vote['id'].to_i == vote_id 
+				return vote['play_id'].to_i 
+			end
+		end
 	end
 
 	def year
