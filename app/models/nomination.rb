@@ -9,4 +9,8 @@ class Nomination < ActiveRecord::Base
     # Nomination.where(open: false).count > 0
     false
   end
+
+  def check_if_exists
+    
+  end
 end
