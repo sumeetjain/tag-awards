@@ -28,19 +28,21 @@ class User < ActiveRecord::Base
     end
   end
 
-  # returns integer
-  def viewings_weight
-    weight = self.viewings.count
-    if weight <= 10
-      return 1
-    elsif weight >= 11 && weight <= 20
-      return 2
-    elsif weight >= 21 && weight <= 30
-      return 3
-    elsif weight >= 31 && weight <= 40
-      return 4
-    elsif weight >= 41
-      return 5
+
+  def self.viewings_weight
+    self.find(:all).each do |user|
+      count = user.viewings.count
+      if count <= 10
+        weight = 1
+      elsif count >= 11 && count <= 20
+        weight = 2
+      elsif count >= 21 && count <= 30
+        weight = 3
+      elsif count >= 31 && count <= 40
+        weight = 4
+      elsif count >= 41
+        weight = 5
+      user.update(weight: weight)
     end
   end
 

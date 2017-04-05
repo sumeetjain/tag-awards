@@ -21,8 +21,9 @@ class Nomination < ActiveRecord::Base
   # end
 
   def self.top_ten(award_id, limit=10)
+    User.viewings_weight
     joins(:user)
-    .select("potential_nomination_id, count(*) as raw_count, sum(users.viewings_weight) as weighted_count")
+    .select("potential_nomination_id, count(*) as raw_count, sum(users.weight) as weighted_count")
     # .where(nomination.potential_nomination.award_id => award_id)
     # .where(nomination: {potention_nomination: {award_id: award_id}})
     # .where(created_at: (Time.now.midnight - 40.day)..Time.now.midnight)
