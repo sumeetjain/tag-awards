@@ -22,33 +22,33 @@ class Nomination < ActiveRecord::Base
 
   def self.top_ten(award_id, limit=10)
     joins(:user)
-    .select("potential_nomination_id, 
-      count(*) as raw_count, sum(users.viewings_weight) as weighted_count")
-    .where(potential_nomination.award_id: award_id)
-    .group("1")
-    .order("weighted_count desc, raw_count desc")
-    .limit(limit)
+    .select("potential_nomination_id, count(*) as raw_count, sum(users.viewings_weight) as weighted_count")
+    # .where(nomination.potential_nomination.award_id => award_id)
+    # .where(nomination: {potention_nomination: {award_id: award_id}})
+    # .where(created_at: (Time.now.midnight - 40.day)..Time.now.midnight)
+    # .group("1, 2")
+    # .order("weighted_count desc, raw_count desc")
+    # .limit(limit)
   end
 
   def saveBallotItems(params)
-      award = Award.find(params[:id])
-      finalists = []
+    award = Award.find(params[:id])
+    finalists = []
 
-      params[:ballot][:finalists].values.each do |finalist|
-        if !finalist["info"].nil?
-          potential_nomination_id = finalist["info"]
-          finalist_hash = {
-              potential_nomination_id: potential_nomination_id,
-              award_id: params[:id],
-              #hard coded -- need to figure out how to integrate this.
-              voting_period: 2
-            }
-            finalists << finalist_hash
-          end
-        end
+    params[:ballot][:finalists].values.each do |finalist|
+      if !finalist["info"].nil?
+        potential_nomination_id = finalist["info"]
+        finalist_hash = {
+            potential_nomination_id: potential_nomination_id,
+            award_id: params[:id],
+            #hard coded -- need to figure out how to integrate this.
+            voting_period: 2
+        }
+        finalists << finalist_hash
       end
-      BallotItem.create(finalists)
-      award.update(ballot_set: true)
     end
+    BallotItem.create(finalists)
+    award.update(ballot_set: true)
+  end
 
 end
