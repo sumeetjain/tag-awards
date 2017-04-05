@@ -2,7 +2,7 @@ class NominationsController < ApplicationController
   def nomination_ballot
     @awards = Award.all
     @nominations = build_potential_nominations
-    @prev_noms = already_nominated
+    @prev_noms = already_nominated?
 
     if Nomination.nominations_closed == true
       session[:nominations_closed] = true
@@ -34,7 +34,7 @@ class NominationsController < ApplicationController
     return formatted_noms
   end
 
-  def already_nominated
+  def already_nominated?
     users_prev_noms = Nomination.where(user_id: current_user.id)
     if users_prev_noms == []
       return new_user_noms
@@ -54,7 +54,7 @@ class NominationsController < ApplicationController
     28.times do
       empty_awards_array = []
       5.times do
-        empty_awards_array << "0"
+        empty_awards_array << 0
       end
       empty_noms_array << empty_awards_array
     end

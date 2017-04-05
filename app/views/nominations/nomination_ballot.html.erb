@@ -39,9 +39,9 @@
         <% nomination_counter = 0 %>
         <% while nomination_counter <= 4 %>
           <select name="noms[[<%= award.id %>][<%= nomination_counter %>]]">
-          <option value="0" <%= prev_award_noms[nomination_counter] = "0" ? "selected" : "" %>>-- Select a nominee --</option>
+          <option value="0" <%= prev_award_noms[nomination_counter] == 0 ? "selected" : "" %>>-- Select a nominee --</option>
           <% @nominations[award.id].each do |key, value| %>
-            <option value="<%= key %>" <%= prev_award_noms[nomination_counter] = key ? "selected" : "" %>><%= value %></option>
+            <option value=<%= key %> <%= prev_award_noms[nomination_counter] == key ? "selected" : "" %>><%= value %></option>
           <% end %>
           </select>
           <br>
