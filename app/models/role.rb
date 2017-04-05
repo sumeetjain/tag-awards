@@ -17,6 +17,10 @@ class Role < ActiveRecord::Base
     formatted += play_info
   end
 
+  def name
+    display_name
+  end
+
   private
   
   def character_or_job

@@ -14,6 +14,7 @@ class PlayDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     voting_period: Field::BelongsTo,
+    potential_nominations: Field::HasMany,
   }
 
   # COLLECTION_ATTRIBUTES
