@@ -38,8 +38,15 @@ module Admin
     end
 
     def calculate_winners
-        winners = Winner.new(session[:year])
-        @allscores = winners.calculate_winners
+        winners = Winner.new
+        winners.calculate_winners(session[:year])
+        redirect_to :action => 'scores'
+    end
+
+    def scores
+        @year = session[:year]
+        winners = Winner.new
+        @allscores = winners.getAllScores(session[:year])
     end
 
   end

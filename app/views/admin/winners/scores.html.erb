@@ -1,12 +1,12 @@
 <% content_for(:title) do %>
-  Voting Results
+  Voting Results for <%= @year %>
 <% end %>
 
 <header class="header">
   <h1 class="header__heading" id="page-title"><%= content_for(:title) %></h1>
   <div class="header__actions">
     <!-- Header actions go here. -->
-    <%= link_to( "Continue", :admin_winners, class: "button",) %>
+    <%= link_to( "Continue to Winners", :admin_winners, class: "button",) %>
   </div>
 </header>
 
@@ -16,7 +16,7 @@
   	<h3><%= award.award_name %></h3>
   	<table class="table--voting-results">
   		<tr>
-  			<% if ballot_scores[0][0].nominee%>
+  			<% if ballot_scores.first[0].nominee%>
   				<th>Nominee</th>
   			<% end %>
 	  		<th>Play</th>

@@ -17,6 +17,7 @@ class BallotItemDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime,
     weight: Field::Number,
     approved: Field::Boolean,
+    score: Field::Number,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -27,10 +28,8 @@ class BallotItemDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :award,
     :play,
-    :id,
     :nominee,
-    :weight,
-    :approved,
+    :score,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -41,6 +40,7 @@ class BallotItemDashboard < Administrate::BaseDashboard
     :id,
     :nominee,
     :role,
+    :score,
     :created_at,
     :updated_at,
     :weight,
@@ -57,6 +57,7 @@ class BallotItemDashboard < Administrate::BaseDashboard
     :role,
     :weight,
     :approved,
+    :score,
   ]
 
   # Overwrite this method to customize how ballot items are displayed
