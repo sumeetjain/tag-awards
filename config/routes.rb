@@ -8,12 +8,7 @@ Rails.application.routes.draw do
     resources :roles
     resources :potential_nominations
 
-    resources :awards do
-      member do
-        post "build_ballot" => 'awards#build_ballot'
-      end
-    end
-
+    resources :awards
     resources :theaters
     resources :viewings
 
@@ -24,6 +19,7 @@ Rails.application.routes.draw do
 
       member do
         patch "toggle_approval" => 'nominations#toggle_approval'
+        post "build_ballot" => 'nominations#build_ballot'
       end
     end
 

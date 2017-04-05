@@ -51,7 +51,7 @@ class Nomination < ActiveRecord::Base
           end
         end
       end
-      award.ballot_items.create(finalists)
+      BallotItem.create(finalists)
       award.update(ballot_set: true)
     end
 

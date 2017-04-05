@@ -17,11 +17,11 @@ class Nomination < ActiveRecord::Base
     .where("voting_periods.year = ?", voting_period) }
 
 
-
-  def toggle_approval!
-    self.approved = !self.approved
-    self.save
-  end
+    # Not Needed anymore
+  # def toggle_approval!
+  #   self.approved = !self.approved
+  #   self.save
+  # end
 
   def user_weight
     return self.user.viewings_weight
@@ -32,18 +32,24 @@ class Nomination < ActiveRecord::Base
     sorted_noms = all_noms.sort_by {|nom| nom.user_weight}
     return sorted_noms
   end
+
+  # NOT NEEDED ANYMORE
   #a class method to CLOSE nominations
   #(triggered via the admin/users page)
   #"open" boolean in nom table switched to false
-  def self.close_nominations
-    self.update_all(open: false)
-  end
+  # def self.close_nominations
+  #   self.update_all(open: false)
+  # end
+
+
   #for testing purposes, to undo close_nominations
   #(not triggered anywhere at this time)
   #"open" boolean in nom table switched to true
-  def self.open_nominations
-    self.update_all(open: true)
-  end
+  # def self.open_nominations
+  #   self.update_all(open: true)
+  # end
+
+  
   def self.nominations_closed
     # Nomination.where(open: false).count > 0
     false
