@@ -37,7 +37,7 @@
         <div class="award_description"><%= award.description %></div>
         <% nomination_counter = 0 %>
         <% while nomination_counter <= 4 %>
-          <select name="noms[[<%= award.id %>][<%= nomination_counter %>]]">
+          <select name="noms[[<%= award.id %>][<%= nomination_counter %>]]" class="nom_box">
           <option value="0" <%= prev_award_noms[nomination_counter] == 0 ? "selected" : "" %>>-- Select a nominee --</option>
           <% @nominations[award.id].each do |key, value| %>
             <option value=<%= key %> <%= prev_award_noms[nomination_counter] == key ? "selected" : "" %>><%= value %></option>
@@ -50,9 +50,9 @@
       <% end %>
       <%= submit_tag("Save Nomination Ballot") %>
     <% end %>
+    <p>If you feel a potential nomination is missing from any of the awards, please contact us!</p>
     </div>
   </div>
-  <p>If you feel a potential nomination is missing from any of the awards, please contact us!</p>
 </div>
 <% else %>
   <h1>We're sorry! Nominations are now closed for the <%= Time.now.strftime("%Y") %> TAG Awards!</h1>
