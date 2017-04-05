@@ -16,6 +16,10 @@ class Nomination < ActiveRecord::Base
   scope :for_voting_period, -> (voting_period) { joins(:voting_period)
     .where("voting_periods.year = ?", voting_period) }
 
+
+  # User weights are never set - should grab weights from user?
+  # Nomination now has a potential nomination instead of listing theater, show, etc
+
   # Returns AR Relation for top ten nominees for a given award.
   def self.top_ten(award_id, limit=10)
     joins(:user)
