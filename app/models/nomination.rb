@@ -5,10 +5,6 @@ class Nomination < ActiveRecord::Base
 
   # validates :potential_nomination, uniqueness: { scope: :user, message: "You may only nominate something once!"}
 
-  def self.nominations_closed
-    # Nomination.where(open: false).count > 0
-    false
-  end
 
   # User weights are never set - should grab weights from user?
   # Nomination now has a potential nomination instead of listing theater, show, etc

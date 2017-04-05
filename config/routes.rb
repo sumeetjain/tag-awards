@@ -74,8 +74,6 @@ Rails.application.routes.draw do
   get "nomination_ballot" => 'nominations#nomination_ballot'
   get "ballot_helper" => 'nominations#index'
   post "save_nominee" => 'nominations#save_nominees'
-  post "close_nominations" => 'nominations#close_nominations'
-  get "nominations/index"
   post "plays/create" => 'plays#create_play'
 
   # Final Ballot Routes
