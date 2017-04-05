@@ -9,4 +9,31 @@ class Nomination < ActiveRecord::Base
     # Nomination.where(open: false).count > 0
     false
   end
+
+  # User weights are never set - should grab weights from user?
+  # Nomination now has a potential nomination instead of listing theater, show, etc
+
+  # Returns AR Relation for top ten nominees for a given award.
+  # def self.top_ten(award_id, limit=10)
+  #   joins(:user)
+  #   .select("theater, show, nominee, role, 
+  #     count(*) as raw_count, sum(users.weight) as weighted_count")
+  #   .where(award_id: award_id, approved: true)
+  #   .group("1, 2, 3, 4")
+  #   .order("weighted_count desc, raw_count desc")
+  #   .limit(limit)
+  # end
+
+  def self.top_ten(award_id, limit=10)
+    joins(:user)
+    .select("potential_nomination_id, 
+      count(*) as raw_count, sum(users.viewings_weight) as weighted_count")
+    .where(potential_nomination.award_id: award_id)
+    .group("1")
+    .order("weighted_count desc, raw_count desc")
+    .limit(limit)
+  end
+
+
+
 end

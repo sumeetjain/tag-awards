@@ -28,6 +28,21 @@ class User < ActiveRecord::Base
     end
   end
 
+  # returns integer
+  def viewings_weight
+    weight = self.viewings.count
+    if weight <= 10
+      return 1
+    elsif weight >= 11 && weight <= 20
+      return 2
+    elsif weight >= 21 && weight <= 30
+      return 3
+    elsif weight >= 31 && weight <= 40
+      return 4
+    elsif weight >= 41
+      return 5
+    end
+  end
 
   #NOT CALLED ANYWHERE -- CAN DELETE?
   # def self.set_weights

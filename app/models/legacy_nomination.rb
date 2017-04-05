@@ -17,43 +17,19 @@ class Nomination < ActiveRecord::Base
     .where("voting_periods.year = ?", voting_period) }
 
 
-  # User weights are never set - should grab weights from user?
-  # Nomination now has a potential nomination instead of listing theater, show, etc
-
-  # Returns AR Relation for top ten nominees for a given award.
-  def self.top_ten(award_id, limit=10)
-    joins(:user)
-    .select("theater, show, nominee, role, 
-      count(*) as raw_count, sum(users.weight) as weighted_count")
-    .where(award_id: award_id, approved: true)
-    .group("1, 2, 3, 4")
-    .order("weighted_count desc, raw_count desc")
-    .limit(limit)
-  end
 
   def toggle_approval!
     self.approved = !self.approved
     self.save
   end
 
-  def weight
-     weight = self.user.viewings.count
-    if weight <= 10
-      return 1
-    elsif weight >= 11 && weight <= 20
-      return 2
-    elsif weight >= 21 && weight <= 30
-      return 3
-    elsif weight >= 31 && weight <= 40
-      return 4
-    elsif weight >= 41
-      return 5
-    end
+  def user_weight
+    return self.user.viewings_weight
   end
 
   def self.rank_by_voter_weight
     all_noms = self.all
-    sorted_noms = all_noms.sort_by {|nom| nom.weight}
+    sorted_noms = all_noms.sort_by {|nom| nom.user_weight}
     return sorted_noms
   end
   #a class method to CLOSE nominations

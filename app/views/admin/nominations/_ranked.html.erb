@@ -1,29 +1,23 @@
-<%= form_for :ballot, url: build_ballot_admin_award_path(award.id) do |f| %>
+<%= form_for :ballot, url: build_ballot_admin_award_path(award_id) do |f| %>
   <table class="collection-data" aria-labelledby="page-title">
     <thead>
       <tr>
         <th class="cell-label">&nbsp;</th>
         <th class="cell-label" scope="col">Rank</th>
-        <th class="cell-label" scope="col">Theater</th>
-        <th class="cell-label" scope="col">Show</th>
         <th class="cell-label" scope="col">Nominee</th>
-        <th class="cell-label" scope="col">Role</th>
         <th class="cell-label" scope="col">Weighted</th>
         <th class="cell-label" scope="col">Raw</th>
       </tr>
     </thead>
 
     <tbody>
-      <% Nomination.top_ten(award.id, limit).each_with_index do |nomination, i| %>
+      <% Nomination.top_ten(award_id, limit).each_with_index do |nomination, i| %>
         <tr class="table__row" tabindex="0">
           <td>
             <%= f.check_box :finalists, {name: "ballot[finalists][#{i}][info]"}, "#{nomination.nominee}||#{nomination.role}", nil %>
           </td>
           <td><%= i + 1 %></td>
-          <td><%= nomination.theater %></td>
-          <td><%= nomination.show %></td>
-          <td><%= nomination.nominee %></td>
-          <td><%= nomination.role %></td>
+          <td><%= PotentialNomination.find(nomination.potential_nomination_id).display_name %>
           <td><%= nomination.weighted_count %></td>
           <td><%= nomination.raw_count %></td>
         </tr>
