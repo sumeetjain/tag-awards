@@ -29,7 +29,6 @@
         <a href="/files/SpecialAwards.pdf" target="_blank">Click Here for Info about TAG Special Awards</a><br>
         <a href="/files/VotingResource.xlsx" target="_blank">Click Here for a helpful voting resource</a><br>
       </div>
-
     <%= form_for :nomination, url: {controller: "nominations", action: "save_nominees"} do |n| %>  
       <% award_counter = 0 %> 
       <% @awards.each do |award| %>
@@ -53,9 +52,10 @@
     <% end %>
     </div>
   </div>
+  <p>If you feel a potential nomination is missing from any of the awards, please contact us!</p>
 </div>
-<p class="center">If you feel a potential nomination is missing from any of the awards, please contact us!</p>
 <% else %>
   <h1>We're sorry! Nominations are now closed for the <%= Time.now.strftime("%Y") %> TAG Awards!</h1>
   <h2>Thank you to everyone who voted. Ballots for final voting will be available soon!</h2>
 <% end %>
+</div>
