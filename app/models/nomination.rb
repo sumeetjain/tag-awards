@@ -34,6 +34,30 @@ class Nomination < ActiveRecord::Base
     .limit(limit)
   end
 
+  def saveBallotItems(params)
+      award = Award.find(params[:id])
 
+      finalists = []
+
+      params[:ballot][:finalists].values.each do |finalist|
+        if !finalist["info"].nil?
+          nominee = finalist["info"].split("||")[0]
+          role = finalist["info"].split("||")[1]
+          play_id = finalist["play_id"]
+
+          if !play_id.blank?
+            finalist_hash = {
+              play_id: play_id,
+              nominee: nominee,
+              role: role
+            }
+
+            finalists << finalist_hash
+          end
+        end
+      end
+      award.ballot_items.create(finalists)
+      award.update(ballot_set: true)
+    end
 
 end
