@@ -72,25 +72,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  def selected
-    binding.pry
-  end
-
-  ###
-  def get_previous_noms(user_id)
-    prev_noms = Nomination.where(user_id: user_id)
-    @users_existing_noms = []
-    @users_selected_noms = []
-    prev_noms.each do |nom|
-      @users_existing_noms << nom.potential_nomination_id
-    end
-  end
-
   def record_nominations(user_id, nominations_hash)
     delete_previous_noms(user_id)
-    nominations_hash.each do |k, v|
-      v.each do |k2, v2|
-        save_nomination_object(user_id, v2)
+    nominations_hash.each do |key, value|
+      value.each do |key2, value2|
+        save_nomination_object(user_id, value2)
       end
     end
   end

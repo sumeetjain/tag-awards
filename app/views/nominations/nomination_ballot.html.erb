@@ -30,25 +30,32 @@
         <a href="/files/VotingResource.xlsx" target="_blank">Click Here for a helpful voting resource</a><br>
       </div>
 
-        <%= form_for :user, url: {action: "save_nominees"} do |u| %>
-          <% @awards.each do |award| %>
-            <div class="award_category_title"><%= award.award_name %></div>
-            <div class="award_description"><%= award.description %></div>
-            <% nomination_counter = 1 %>
-            <% while nomination_counter <= 5 %>
-              <% is_selected = false %>
-              <%= u.fields_for award.award_name do |n| %>
-                <%= n.collection_select(nomination_counter, PotentialNomination.where(award_id: award.id), :id, :display_name, {:selected => false, :include_blank => true}, {:class => 'nom_box'}) %><br>
-              <% end %>
-              <% nomination_counter += 1 %>
-            <% end %>
+    <%= form_for :nomination, url: {controller: "nominations", action: "save_nominees"} do |n| %>  
+      <% award_counter = 0 %> 
+      <% @awards.each do |award| %>
+        <% prev_award_noms = @prev_noms[award_counter] %>
+        <div class="award_category_title" id=<%= award.label %>><%= award.award_name %></div>
+        <div class="award_description"><%= award.description %></div>
+        <% nomination_counter = 0 %>
+        <% while nomination_counter <= 4 %>
+          <select name="noms[[<%= award.id %>][<%= nomination_counter %>]]">
+          <option value="0" <%= prev_award_noms[nomination_counter] = "0" ? "selected" : "" %>>-- Select a nominee --</option>
+          <% @nominations[award.id].each do |key, value| %>
+            <option value="<%= key %>" <%= prev_award_noms[nomination_counter] = key ? "selected" : "" %>><%= value %></option>
           <% end %>
-          <%= u.submit "Submit Your Nominations" %>
+          </select>
+          <br>
+          <% nomination_counter += 1 %>
         <% end %>
-
-      <p>If you feel a potential nomination is missing from any of the awards, please contact us!</p>
-      
+        <% award_counter += 1 %>
+      <% end %>
+      <%= submit_tag("Save Nomination Ballot") %>
+    <% end %>
+    </div>
+  </div>
+</div>
+<p class="center">If you feel a potential nomination is missing from any of the awards, please contact us!</p>
 <% else %>
-  <H1>We're sorry! Nominations are now closed for the <%= Time.now.strftime("%Y") %> TAG Awards!</H1>
+  <h1>We're sorry! Nominations are now closed for the <%= Time.now.strftime("%Y") %> TAG Awards!</h1>
   <h2>Thank you to everyone who voted. Ballots for final voting will be available soon!</h2>
 <% end %>
