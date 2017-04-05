@@ -36,22 +36,17 @@ class Nomination < ActiveRecord::Base
 
   def saveBallotItems(params)
       award = Award.find(params[:id])
-
       finalists = []
 
       params[:ballot][:finalists].values.each do |finalist|
         if !finalist["info"].nil?
-          nominee = finalist["info"].split("||")[0]
-          role = finalist["info"].split("||")[1]
-          play_id = finalist["play_id"]
-
-          if !play_id.blank?
-            finalist_hash = {
-              play_id: play_id,
-              nominee: nominee,
-              role: role
+          potential_nomination_id = finalist["info"]
+          finalist_hash = {
+              potential_nomination_id: potential_nomination_id,
+              award_id: params[:id],
+              #hard coded -- need to figure out how to integrate this.
+              voting_period: 2
             }
-
             finalists << finalist_hash
           end
         end
