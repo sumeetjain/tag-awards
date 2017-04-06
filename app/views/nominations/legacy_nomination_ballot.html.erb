@@ -28,6 +28,7 @@
 
       <a href="/files/VotingResource.xlsx" id="" style="display: block" target="_blank">Click Here for a helpful voting resource</a>
       
+
 <%= form_for :nomination, url: {controller: "nominations", action: "save_nominees"} do |n| %>   
   <% @awards.each do |award| %>
     <span class="nominations--award_title" id=<%= award.label %>><%= award.award_name %></span><br>
