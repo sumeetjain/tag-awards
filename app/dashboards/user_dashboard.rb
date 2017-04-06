@@ -38,6 +38,7 @@ class UserDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :full_name,
+    :username,
     :email,
     :password,
     :admin,
