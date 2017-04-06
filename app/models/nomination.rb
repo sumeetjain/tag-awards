@@ -31,7 +31,7 @@ class Nomination < ActiveRecord::Base
             potential_nomination_id: potential_nomination_id,
             award_id: params[:id],
             #hard coded -- need to figure out how to integrate this.
-            voting_period: 2
+            voting_period_id: 2
         }
         finalists << finalist_hash
       end

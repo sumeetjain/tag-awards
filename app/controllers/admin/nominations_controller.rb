@@ -31,12 +31,12 @@ module Admin
     #Ballot Builder
   	def top_ten
       @theaters = Theater.includes(:plays).all
-      @awards = Award.includes(:ballot_items => {play: :theater}).order("awards.award_name asc").all
+      @awards = Award.order("awards.award_name asc").all
     end
 
     def build_ballot
       Nomination.saveBallotItems(params)
-      redirect_to :top_ten_admin_nominations, notice: "Ballot for #{@award.award_name} set!"
+      redirect_to :top_ten_admin_nominations#, notice: "Ballot for #{@award.award_name} set!"
     end
     
   end
