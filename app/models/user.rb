@@ -15,14 +15,6 @@ class User < ActiveRecord::Base
 
   validates :full_name, presence: true
   validates :username, presence: true
-  validate :validate_username
-
-  def validate_username
-    if User.where(email: username).exists?
-      errors.add(:username, :invalid)
-    end
-  end
-
 
   def self.viewings_weight
     self.all.each do |user|
@@ -76,9 +68,6 @@ class User < ActiveRecord::Base
   #   # receive a max of 3 in each weighting.
   # end
 
-  before_create :set_secret_number
-  # before_validation :nullify_duplicate_email
-
   def delete_previous_noms(user_id)
     @users_prev_noms = Nomination.where(user_id: user_id)
     if @users_prev_noms != nil
@@ -100,10 +89,6 @@ class User < ActiveRecord::Base
     @new_nom.user_id = user_id
     @new_nom.potential_nomination_id = potential_nom
     @new_nom.save
-  end
-
-  def email_required?
-    false
   end
 
   def self.to_csv
@@ -138,29 +123,5 @@ class User < ActiveRecord::Base
   def has_submitted_final_ballot?
     votes.any?
   end
-  
-  private
 
-  #assigns random key to a user
-  #
-  #uses SecureRandom gem
-  def set_secret_number
-    self.secret_number = generate_token
-  end
-
-  def nullify_duplicate_email
-    if User.where(email: self.email).count > 0
-      self.email = nil
-    end
-  end
-
-  #generates a random 6-digit alphanumeric key
-  #
-  #uses SecureRandom gem
-  def generate_token
-    loop do
-      token = SecureRandom.hex(3)
-      break token unless User.where(secret_number: token).exists?
-    end
-  end
 end
