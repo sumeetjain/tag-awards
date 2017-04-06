@@ -13,7 +13,6 @@ class Nomination < ActiveRecord::Base
   # Nomination now has a potential nomination instead of listing theater, show, etc
 
   def self.top_ten(award_id, limit=10)
-    User.viewings_weight
     self.joins(:user, :potential_nomination)
     .select("potential_nomination_id, count(*) as raw_count, sum(users.weight) as weighted_count")
     .group("potential_nomination_id")

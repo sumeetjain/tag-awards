@@ -31,21 +31,21 @@ class User < ActiveRecord::Base
 
 
   def self.viewings_weight
-  #   self.find(:all).each do |user|
-  #     count = user.viewings.count
-  #     if count <= 10
+    self.all.each do |user|
+      count = user.viewings.for_voting_period("2017").count
+      if count <= 10
         weight = 1
-  #     elsif count >= 11 && count <= 20
-  #       weight = 2
-  #     elsif count >= 21 && count <= 30
-  #       weight = 3
-  #     elsif count >= 31 && count <= 40
-  #       weight = 4
-  #     elsif count >= 41
-  #       weight = 5
-      # user.update(weight: weight)
-      self.update_all(weight: weight)
-  #   end
+      elsif count >= 11 && count <= 20
+        weight = 2
+      elsif count >= 21 && count <= 30
+        weight = 3
+      elsif count >= 31 && count <= 40
+        weight = 4
+      elsif count >= 41
+        weight = 5
+      end
+      user.update(weight: weight)
+    end
   end
 
   #NOT CALLED ANYWHERE -- CAN DELETE?

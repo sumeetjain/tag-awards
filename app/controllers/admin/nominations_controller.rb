@@ -30,6 +30,7 @@ module Admin
 
     #Ballot Builder
   	def top_ten
+      User.viewings_weight
       @theaters = Theater.includes(:plays).all
       @awards = Award.order("awards.award_name asc").all
     end
