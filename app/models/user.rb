@@ -14,18 +14,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :full_name, presence: true
+  validates :username, presence: true
+  validate :validate_username
 
-  # Virtual attribute for authenticating by either username or email
-  # This is in addition to a real persisted field like 'username'
-  attr_accessor :login
-
-  # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address#overwrite-devises-find_for_database_authentication-method-in-user-model
-  def self.find_for_database_authentication(warden_conditions)
-    conditions = warden_conditions.dup
-    if login = conditions.delete(:login)
-      where(conditions.to_hash).where(["lower(secret_number) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-    elsif conditions.has_key?(:secret_number) || conditions.has_key?(:email)
-      where(conditions.to_hash).first
+  def validate_username
+    if User.where(email: username).exists?
+      errors.add(:username, :invalid)
     end
   end
 
