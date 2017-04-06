@@ -9,15 +9,11 @@ class BallotItemDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     award: Field::BelongsTo,
-    play: Field::BelongsTo,
     id: Field::Number,
-    nominee: Field::String,
-    role: Field::String,
+    potential_nomination: Field::BelongsTo,
+    score: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    weight: Field::Number,
-    approved: Field::Boolean,
-    score: Field::Number,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -27,8 +23,7 @@ class BallotItemDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :award,
-    :play,
-    :nominee,
+    :potential_nomination,
     :score,
   ]
 
@@ -36,15 +31,11 @@ class BallotItemDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :award,
-    :play,
+    :potential_nomination,
     :id,
-    :nominee,
-    :role,
     :score,
     :created_at,
     :updated_at,
-    :weight,
-    :approved,
   ]
 
   # FORM_ATTRIBUTES
@@ -52,11 +43,7 @@ class BallotItemDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :award,
-    :play,
-    :nominee,
-    :role,
-    :weight,
-    :approved,
+    :potential_nomination,
     :score,
   ]
 
@@ -64,10 +51,6 @@ class BallotItemDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(ballot_item)
-    if ballot_item.nominee
-      "#{ballot_item.nominee} (#{ballot_item.play.title})"
-    else
-      "#{ballot_item.play.title}"
-    end
+    ballot_item.potential_nomination.display_name
   end
 end
