@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:register, :set_password]
 
   def register
+    ## How is this working!?!? Or, what should we doing now for registration validation??
     #@user = User.find_by_secret_number(params[:secret_number])
     #sign_in(@user)
   end
@@ -48,6 +49,7 @@ class UsersController < ApplicationController
     @user = current_user
     @user.full_name = params[:full_name]
     @user.email = params[:email]
+    @user.username = params[:username]
     @user.save
     redirect_to "/users/home", :notice => "Your settings have been changed!"
   end

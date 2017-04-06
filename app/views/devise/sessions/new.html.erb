@@ -5,6 +5,7 @@
 <body class="login-body">
   <div class="clear title">
     <div class="col-12 title-box">
+      <h2>Theater Arts Guild Omaha</h2>
       <h1>Log in</h1>
     </div>
   </div>
@@ -13,8 +14,8 @@
     <div class="col-12 content-box">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
-          <%= f.label :login, "Your Secret Number" %><br />
-          <%= f.text_field :login, autofocus: true, class: 'form-text-box' %>
+          <%= f.label :username, "Your Username" %><br />
+          <%= f.text_field :username, autofocus: true, class: 'form-text-box' %>
         </div>
 
         <div class="field">
