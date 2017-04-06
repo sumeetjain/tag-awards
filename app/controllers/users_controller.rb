@@ -47,12 +47,17 @@ class UsersController < ApplicationController
   end
 
   def settings_changed
-    @user = current_user
-    @user.full_name = params[:full_name]
-    @user.email = params[:email]
-    @user.username = params[:username]
-    @user.save
-    redirect_to "/users/home", :notice => "Your settings have been changed!"
+    if params[:password] == params[:password_confirmation]
+      @user.password = params[:password]
+      @user = current_user
+      @user.full_name = params[:full_name]
+      @user.email = params[:email]
+      @user.username = params[:username]
+      @user.save
+      redirect_to "/users/home", :notice => "Your settings have been changed!"
+    else
+      render :settings_page, :notice => "Invalid Password Entry"
+    end
   end
 
   def nomination_email
