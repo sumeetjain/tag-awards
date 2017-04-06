@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
    has_many :nominations
    has_many :viewings
    accepts_nested_attributes_for :viewings
+   accepts_nested_attributes_for :nominations
 
    # deletes all votes for the user if the user is deleted
    has_many :votes, dependent: :destroy
@@ -65,27 +66,10 @@ class User < ActiveRecord::Base
   # before_validation :nullify_duplicate_email
 
   def delete_previous_noms(user_id)
-    @users_prev_noms = Nomination.where("user_id" => user_id)
+    @users_prev_noms = Nomination.where(user_id: user_id)
     if @users_prev_noms != nil
       @users_prev_noms.delete_all
     end
-  end
-
-  def get_previous_noms(user_id, key)
-    @users_prev_noms = Nomination.where("user_id" => user_id)
-    html = ""
-    if @users_prev_noms == nil
-      html = ""
-    elsif @users_prev_noms != nil
-      @users_prev_noms.each do |nom|
-        if nom.potential_nomination_id == key
-          html = "selected"
-        end
-      end
-    else
-      html = ""
-    end
-    return html
   end
 
   def record_nominations(user_id, nominations_hash)
@@ -165,7 +149,4 @@ class User < ActiveRecord::Base
       break token unless User.where(secret_number: token).exists?
     end
   end
-
-
-
 end

@@ -13,15 +13,13 @@ class Winner < ActiveRecord::Base
 
 	# returns Hash of award AR-> {ballot_item_winner AR-> score integer}
 	def calculate_winners(year)
-		@year = year
 		allscores = {}
+		@helper = WinnerHelper.new(year)
 		Award.all.each do |award|
-			@current_award = award
-			scores = getScoresForBallotItems
+			scores = getScoresForBallotItems(award)
 			allscores[award] = scores
-
-			# saveWinner(getWinner(scores))
 		end
+		saveScoresAndWinners(allscores)
 		return allscores
 	end
 
@@ -39,13 +37,11 @@ class Winner < ActiveRecord::Base
 
 	private
 
-	# returns hash of ballot_item AR-> score integer
-	def getScoresForBallotItems
+	# returns hash of ballot_item id-> score integer
+	def getScoresForBallotItems(award)
 		ballot_item_scores = {}
-		@current_ballot_items = @current_award.ballot_items.for_voting_period(@year)
-		@current_ballot_items.each do |ballot_item|
-			@current_ballot_item = ballot_item
-			ballot_item_scores[ballot_item] = calculateBallotItemScore
+		@helper.ballotItemsForAward(award).each do |ballot_item_id|
+			ballot_item_scores[ballot_item_id] = calculateBallotItemScore(ballot_item_id)
 		end
 		return sortByScore(ballot_item_scores)
 	end
@@ -56,23 +52,22 @@ class Winner < ActiveRecord::Base
 	end
 
 	#returns integer
-	def calculateBallotItemScore
+	def calculateBallotItemScore(ballot_item_id)
 		ballot_item_score = 0
-		@current_ballot_item.votes.each do |vote|
-			@current_vote = vote
-			score = calculateVoteScore
+		vote_ids = @helper.votesForBallotItem(ballot_item_id)
+		vote_ids.each do |vote_id|
+			score = calculateVoteScore(vote_id)
 			ballot_item_score += score
 		end
-		saveScore(@current_ballot_item,ballot_item_score)
 		return ballot_item_score
 	end
 
 	# returns an integer
-	def calculateVoteScore
-		award_plays_viewed = awardPlaysViewedByUser
+	def calculateVoteScore(vote_id)
+		award_plays_viewed = awardPlaysViewedByUser(vote_id)
 		maxscore = getMaxScore
 		score = getVoteScore(award_plays_viewed.length,maxscore)
-		score = checkForViewOfVote(score,award_plays_viewed)
+		score = checkForViewOfVote(score,vote_id,award_plays_viewed)
 		return score
 	end
 
@@ -89,40 +84,55 @@ class Winner < ActiveRecord::Base
 	end
 
 	#returns integer
-	def checkForViewOfVote(score,award_plays_viewed)
-		unless award_plays_viewed.include?(@current_vote.ballot_item.play_id)
+	def checkForViewOfVote(score,vote_id,award_plays_viewed)
+		votePlay = @helper.playForVote(vote_id)
+		unless award_plays_viewed.include?(votePlay)
 			score = 0
 		end
 		return score
 	end
 
 	#returns array of play ids
-	def awardPlaysViewedByUser
-		user_viewings = @current_vote.user.viewings.for_voting_period(@year)
-
-		plays_user_viewed = user_viewings.pluck("play_id")
-		plays_for_award = @current_ballot_items.pluck("play_id")
+	def awardPlaysViewedByUser(vote_id)
+		user_id = @helper.userForVote(vote_id)
+		plays_user_viewed = @helper.playsForUser(user_id)
+		plays_for_award = @helper.playsForAward
 
 		return plays_user_viewed & plays_for_award
 	end
 
 	# returns integer of number of unique plays
 	def getMaxScore
-		maxscore = @current_ballot_items.pluck("play_id").uniq.length
+		maxscore = @helper.playsForAward.uniq.length
 	end
 
-	# returns ballot_item of winner
+	def saveScoresAndWinners(allscores)
+		winners = []
+		scores = {}
+		allscores.each_value do |ballot_item_scores|
+			winners << getWinner(ballot_item_scores)
+			ballot_item_scores.each do |ballot_item_id,score|
+				scores[ballot_item_id] = {:score => score}
+			end
+		end
+		saveWinners(winners)
+		saveScores(scores)
+	end
+
+	# returns ballot_item id of winner
 	def getWinner(scores)
 		scores.key(scores.values.max)
 	end
 
 	# write to table in database
-	def saveWinner(winner)
-		Winner.create(:ballot_item_id=> winner.id)
+	def saveWinners(winners)
+		winners.each do |ballot_item_id|
+			Winner.find_or_create_by(:ballot_item_id => ballot_item_id)
+		end
 	end
 
-	def saveScore(ballot_item,score)
-		BallotItem.update(ballot_item.id, :score => score)
+	def saveScores(saved_scores)
+		BallotItem.update(saved_scores.keys,saved_scores.values)
 	end
 
 
