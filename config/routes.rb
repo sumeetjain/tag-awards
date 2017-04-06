@@ -56,7 +56,7 @@ Rails.application.routes.draw do
 
   root to: "users#home"
   get "users/home" => 'users#home'
-  get "users/register"
+  #get "users/register"
   get "users/settings_page" => 'users#settings_page'
   post "users/change_settings" => 'users#settings_changed'
   post "send/email/nominations" => 'users#nomination_email'
@@ -64,7 +64,7 @@ Rails.application.routes.draw do
   get "users/register/:secret_number" => 'users#set_password', as: "secret_register"
   post "users/set_password" => 'users#set_password'
   put "users/set_password_via_token" => 'users#update'
-  devise_for :users, skip: [:registrations]
+  devise_for :users
   #resources :passwords
   get "viewings/new" => 'viewings#new'
   post "viewings/create" => 'viewings#create'

@@ -14,21 +14,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :full_name, presence: true
-
-  # Virtual attribute for authenticating by either username or email
-  # This is in addition to a real persisted field like 'username'
-  attr_accessor :login
-
-  # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address#overwrite-devises-find_for_database_authentication-method-in-user-model
-  def self.find_for_database_authentication(warden_conditions)
-    conditions = warden_conditions.dup
-    if login = conditions.delete(:login)
-      where(conditions.to_hash).where(["lower(secret_number) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-    elsif conditions.has_key?(:secret_number) || conditions.has_key?(:email)
-      where(conditions.to_hash).first
-    end
-  end
-
+  validates :username, presence: true
 
   def self.viewings_weight(year)
     self.all.each do |user|
@@ -82,9 +68,6 @@ class User < ActiveRecord::Base
   #   # receive a max of 3 in each weighting.
   # end
 
-  before_create :set_secret_number
-  # before_validation :nullify_duplicate_email
-
   def delete_previous_noms(user_id)
     @users_prev_noms = Nomination.where(user_id: user_id)
     if @users_prev_noms != nil
@@ -106,10 +89,6 @@ class User < ActiveRecord::Base
     @new_nom.user_id = user_id
     @new_nom.potential_nomination_id = potential_nom
     @new_nom.save
-  end
-
-  def email_required?
-    false
   end
 
   def self.to_csv
@@ -144,29 +123,5 @@ class User < ActiveRecord::Base
   def has_submitted_final_ballot?
     votes.any?
   end
-  
-  private
 
-  #assigns random key to a user
-  #
-  #uses SecureRandom gem
-  def set_secret_number
-    self.secret_number = generate_token
-  end
-
-  def nullify_duplicate_email
-    if User.where(email: self.email).count > 0
-      self.email = nil
-    end
-  end
-
-  #generates a random 6-digit alphanumeric key
-  #
-  #uses SecureRandom gem
-  def generate_token
-    loop do
-      token = SecureRandom.hex(3)
-      break token unless User.where(secret_number: token).exists?
-    end
-  end
 end
