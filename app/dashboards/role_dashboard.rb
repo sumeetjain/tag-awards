@@ -11,7 +11,7 @@ class RoleDashboard < Administrate::BaseDashboard
     artist: Field::BelongsTo,
     play: Field::PlayForYearField,
     voting_period: Field::String,
-    potential_nomination: Field::BelongsTo,
+    potential_nominations: Field::HasMany,
     id: Field::Number,
     job: Field::String,
     character: Field::String,
@@ -40,7 +40,7 @@ class RoleDashboard < Administrate::BaseDashboard
     :character,
     :play,
     :voting_period,
-    :potential_nomination,
+    :potential_nominations,
   ]
 
   # FORM_ATTRIBUTES
