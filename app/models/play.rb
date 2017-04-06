@@ -9,7 +9,11 @@ class Play < ActiveRecord::Base
   scope :for_voting_period, -> (voting_period) { joins(:voting_period)
     .where("voting_periods.year = ?", voting_period) }
 
+  scope :for_current_voting_period, ->  { joins(:voting_period)
+    .where("voting_periods.year = ?", Time.now.strftime("%Y")).order(title: :asc)}
+
   def display_name
-    "#{title}, #{theater.name}"
+
+    "#{title}, #{theater.try(:name)}"
   end
 end

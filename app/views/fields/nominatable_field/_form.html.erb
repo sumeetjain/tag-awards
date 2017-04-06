@@ -1,29 +1,7 @@
-<%#
-# BelongsTo Form Partial
-
-This partial renders an input element for belongs_to relationships.
-By default, the input is a collection select box
-that displays all possible records to associate with.
-
-## Local variables:
-
-- `f`:
-  A Rails form generator, used to help create the appropriate input fields.
-- `field`:
-  An instance of [Administrate::Field::BelongsTo][1].
-  Contains helper methods for displaying a collection select box.
-
-[1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/BelongsTo
-%>
 
 <div class="field-unit__label">
   <%= f.label "Play/Role" %>
 </div>
 <div class="field-unit__field">
-  <select name="potential_nomination[nominatable_id]" id="potential_nomination_nominatable">
-    <option value=""></option>
-    <% for nom in nominatables do %>
-      <option value="<%= nom.id %>" data-type=<%= nom.class %>><%= nom.display_name %></option>
-    <% end %>
-  </select>
+  <%= grouped_collection_select(:potential_nomination, :nominatable_id, PotentialNomination::NOMINATABLES, :for_current_voting_period, :name, :id, :display_name ) %>
 </div>

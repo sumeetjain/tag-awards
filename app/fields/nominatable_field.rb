@@ -5,7 +5,4 @@ class NominatableField < Administrate::Field::BelongsTo
     data
   end
 
-  # def display_associated_resource
-  #   PotentialNominationsDashboard
-  # end
 end

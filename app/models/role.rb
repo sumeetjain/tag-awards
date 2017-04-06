@@ -7,6 +7,9 @@ class Role < ActiveRecord::Base
   scope :for_voting_period, -> (voting_period) { joins(:voting_period)
     .where("voting_periods.year = ?", voting_period) }
 
+  scope :for_current_voting_period, ->  { joins(:voting_period)
+    .where("voting_periods.year = ?", Time.now.strftime("%Y")).joins(:artist).order('name ASC')}
+
   enum job: ["Director", "Actor", "Actress", "Music Director", "Choreographer",
     "Sound Designer", "Props Designer", "Set Designer", "Costume Designer", 
     "Lighting Designer", "Ensemble", "Writer", "Other"]
