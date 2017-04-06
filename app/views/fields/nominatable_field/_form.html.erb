@@ -1,0 +1,7 @@
+
+<div class="field-unit__label">
+  <%= f.label "Play/Role" %>
+</div>
+<div class="field-unit__field">
+  <%= grouped_collection_select(:potential_nomination, :nominatable_id, PotentialNomination::NOMINATABLES, :for_current_voting_period, :name, :id, :display_name ) %>
+</div>

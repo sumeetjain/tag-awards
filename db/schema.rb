@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170406014247) do
     t.boolean  "inactive"
     t.boolean  "ballot_set",      default: false
     t.integer  "award_type"
+    t.text     "description"
   end
 
   add_index "awards", ["ballot_set"], name: "index_awards_on_ballot_set", using: :btree
@@ -114,8 +115,10 @@ ActiveRecord::Schema.define(version: 20170406014247) do
 
   create_table "potential_nominations", force: :cascade do |t|
     t.integer  "award_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "nominatable_id"
+    t.string   "nominatable_type"
   end
 
   create_table "potential_nominees", force: :cascade do |t|
@@ -134,9 +137,8 @@ ActiveRecord::Schema.define(version: 20170406014247) do
     t.integer  "artist_id"
     t.integer  "play_id"
     t.string   "character"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "potential_nomination_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "job"
   end
 

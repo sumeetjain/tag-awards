@@ -30,6 +30,8 @@ and renders all form fields for a resource's editable attributes.
     </div>
   <% end %>
 
+  <input type="hidden" name="potential_nomination[nominatable_type]" id="nominatable_type" value="">
+
   <% page.attributes.each do |attribute| -%>
     <div class="field-unit field-unit--<%= attribute.html_class %>">
       <%= render_field attribute, f: f %>
