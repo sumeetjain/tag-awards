@@ -2,13 +2,8 @@ class NominationsController < ApplicationController
   def nomination_ballot
     @awards = Award.all
     @nominations = build_potential_nominations
+    @ballot_status = VotingPeriod.current.ballot_status
     @prev_noms = is_already_nominated
-
-    if Nomination.nominations_closed == true
-      session[:nominations_closed] = true
-    else
-      session[:nominations_closed] = false
-    end
   end
 
   def build_potential_nominations

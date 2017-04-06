@@ -34,19 +34,14 @@
 <% @awards.each do |award| %>
   <header class="header">
     <h2>
-      <%= award.award_name %>
-      <%= link_to "(See all top nominations)", admin_award_path(award.id) %>    
+      <%= award.award_name %>  
     </h2>
   </header>
 
   <% if award.ballot_set? %>
-    <div class="side-spacer">
-      <p>Final ballot has been set:</p>
-    </div>
-
     <%= render partial: "final_ballot_section", locals: {award: award} %>
   <% else %>
-    <%= render partial: "ranked", locals: {award: award, limit: 10, ballot_builder: true} %>
+    <%= render partial: "ranked", locals: {award_id: award.id, limit: 10} %>
   <% end %>
 
   <hr>

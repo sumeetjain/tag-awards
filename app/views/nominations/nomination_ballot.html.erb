@@ -1,6 +1,7 @@
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-<% if session[:nominations_closed] == false %>
+<% if @ballot_status == "nominations"%>
+
 <div class="nomination_ballot_container">
   <header> 
     <div class="clear">

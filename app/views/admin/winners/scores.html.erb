@@ -16,20 +16,14 @@
   	<h3><%= award.award_name %></h3>
   	<table class="table--voting-results">
   		<tr>
-  			<% if ballot_scores.first[0].nominee%>
-  				<th>Nominee</th>
-  			<% end %>
-	  		<th>Play</th>
+  			<th>Nominee</th>
 	  		<th>Score</th>
   		</tr>
-		<% ballot_scores.each do |ballot_item,score| %>
-			<tr>
-				<% if ballot_item.nominee%>
-  					<td><%= ballot_item.nominee %></td>
-  				<% end %>
-	  			<td><%= ballot_item.play.title %></td>
+		  <% ballot_scores.each do |ballot_item,score| %>
+			  <tr>
+	  			<td><%= ballot_item.display_name %></td>
 	  			<td><%= score %></td>
-  			</tr>
+  		  </tr>
   		<% end %>
   	</table>
   	<br>

@@ -1,0 +1,8 @@
+<div class="side-spacer">
+    <p>Final ballot has been set:</p>
+	<ul>
+	<% BallotItem.for_voting_period("2017").where(award_id: award.id).each do |ballot_item| %>
+		<li><%= ballot_item.display_name %></li>
+	<% end %>
+	</ul>
+</div>
