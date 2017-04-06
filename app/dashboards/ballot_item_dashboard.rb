@@ -14,6 +14,7 @@ class BallotItemDashboard < Administrate::BaseDashboard
     score: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    voting_period: Field::BelongsTo,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -45,6 +46,7 @@ class BallotItemDashboard < Administrate::BaseDashboard
     :award,
     :potential_nomination,
     :score,
+    :voting_period,
   ]
 
   # Overwrite this method to customize how ballot items are displayed
