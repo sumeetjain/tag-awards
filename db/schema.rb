@@ -107,17 +107,18 @@ ActiveRecord::Schema.define(version: 20170405165739) do
 
   create_table "potential_nominations", force: :cascade do |t|
     t.integer  "award_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "nominatable_id"
+    t.string   "nominatable_type"
   end
 
   create_table "roles", force: :cascade do |t|
     t.integer  "artist_id"
     t.integer  "play_id"
     t.string   "character"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "potential_nomination_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "job"
   end
 
