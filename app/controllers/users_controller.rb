@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     #@viewings = Viewing.where(params[:secret_number] => self.user.secret_number) #or something...ActiveRecord methods are currently escaping me.
     # WE WON'T NEED LINE 8 BECAUSE ACTIVERECORD ASSOCIATIONS ARE AMAZING, BUT I DON'T WANT TO DELETE IT IN CASE RYAN IS USING THAT VARIABLE ON THE VIEW. CURRENTLY FIXING A MERGE CONFLICT.
     @plays = Play.includes(:theater).for_voting_period(Time.now.strftime("%Y"))
+    ### add sign in check here...
   end
   
 
