@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405165739) do
+ActiveRecord::Schema.define(version: 20170406195905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,20 +36,15 @@ ActiveRecord::Schema.define(version: 20170405165739) do
   add_index "awards", ["ballot_set"], name: "index_awards_on_ballot_set", using: :btree
 
   create_table "ballot_items", force: :cascade do |t|
-    t.string   "nominee"
-    t.string   "role"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "award_id"
-    t.integer  "play_id"
-    t.boolean  "approved"
-    t.integer  "weight"
     t.integer  "voting_period_id"
     t.integer  "score"
+    t.integer  "potential_nomination_id"
   end
 
   add_index "ballot_items", ["award_id"], name: "index_ballot_items_on_award_id", using: :btree
-  add_index "ballot_items", ["play_id"], name: "index_ballot_items_on_play_id", using: :btree
   add_index "ballot_items", ["voting_period_id"], name: "index_ballot_items_on_voting_period_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -143,14 +138,13 @@ ActiveRecord::Schema.define(version: 20170405165739) do
     t.datetime "updated_at",                          null: false
     t.integer  "weight"
     t.boolean  "admin"
-    t.string   "secret_number"
-    t.string   "full_name"
     t.string   "username"
+    t.string   "full_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["secret_number"], name: "index_users_on_secret_number", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "viewings", force: :cascade do |t|
     t.date     "date"
@@ -187,7 +181,6 @@ ActiveRecord::Schema.define(version: 20170405165739) do
   end
 
   add_foreign_key "ballot_items", "awards"
-  add_foreign_key "ballot_items", "plays"
   add_foreign_key "viewings", "plays"
   add_foreign_key "viewings", "users"
   add_foreign_key "votes", "ballot_items"
