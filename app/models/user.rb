@@ -30,9 +30,9 @@ class User < ActiveRecord::Base
   end
 
 
-  def self.viewings_weight
+  def self.viewings_weight(year)
     self.all.each do |user|
-      count = user.viewings.for_voting_period("2017").count
+      count = user.viewings.for_voting_period(year).count
       if count <= 10
         weight = 1
       elsif count >= 11 && count <= 20

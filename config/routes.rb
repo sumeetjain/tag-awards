@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :nominations do
       collection do
         get "top_ten" => 'nominations#top_ten'
+        post "reset" => 'nominations#reset_ballot'
       end
 
       member do
