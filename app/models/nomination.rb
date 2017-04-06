@@ -9,30 +9,18 @@ class Nomination < ActiveRecord::Base
   # User weights are never set - should grab weights from user?
   # Nomination now has a potential nomination instead of listing theater, show, etc
 
-  # Returns AR Relation for top ten nominees for a given award.
-  # def self.top_ten(award_id, limit=10)
-  #   joins(:user)
-  #   .select("theater, show, nominee, role, 
-  #     count(*) as raw_count, sum(users.weight) as weighted_count")
-  #   .where(award_id: award_id, approved: true)
-  #   .group("1, 2, 3, 4")
-  #   .order("weighted_count desc, raw_count desc")
-  #   .limit(limit)
-  # end
-
   def self.top_ten(award_id, limit=10)
     User.viewings_weight
-    joins(:user)
+    self.joins(:user, :potential_nomination)
     .select("potential_nomination_id, count(*) as raw_count, sum(users.weight) as weighted_count")
-    # .where(nomination.potential_nomination.award_id => award_id)
-    # .where(nomination: {potention_nomination: {award_id: award_id}})
-    # .where(created_at: (Time.now.midnight - 40.day)..Time.now.midnight)
-    # .group("1, 2")
-    # .order("weighted_count desc, raw_count desc")
-    # .limit(limit)
+    .group("potential_nomination_id")
+    .order("weighted_count desc, raw_count desc")
+    .limit(limit)
+    .where(created_at: 40.days.ago..Time.current)
+    .where(potential_nominations: {award_id: award_id})
   end
 
-  def saveBallotItems(params)
+  def self.saveBallotItems(params)
     award = Award.find(params[:id])
     finalists = []
 

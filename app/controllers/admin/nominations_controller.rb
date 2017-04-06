@@ -35,7 +35,7 @@ module Admin
     end
 
     def build_ballot
-      saveBallotItems(params)
+      Nomination.saveBallotItems(params)
       redirect_to :top_ten_admin_nominations, notice: "Ballot for #{@award.award_name} set!"
     end
     
