@@ -1,5 +1,6 @@
 <h1>Update Your Settings</h1>
 
+<strong>Update your information:</strong><br><br>
 <%= form_tag("/users/change_settings", method: "post") do %>
 
   Full name: <input type="text" name="full_name" value="<%= current_user.full_name%>"><br>
@@ -16,6 +17,7 @@
 
 <br>
 
+<strong>Change your password:</strong><br><br>
 <%= form_tag("/users/change_password", method: "post") do %>
 
   New Password: <input type="password" name="password"><br>

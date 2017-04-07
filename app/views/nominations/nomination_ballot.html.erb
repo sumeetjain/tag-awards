@@ -30,8 +30,8 @@
         <a href="/files/SpecialAwards.pdf" target="_blank">Click Here for Info about TAG Special Awards</a><br>
         <a href="/files/VotingResource.xlsx" target="_blank">Click Here for a helpful voting resource</a><br>
       </div>
-    <%= form_for :nomination, url: {controller: "nominations", action: "save_nominees"} do |n| %>  
-      <% award_counter = 0 %> 
+    <%= form_for :nomination, url: {controller: "nominations", action: "save_nominees"} do |n| %>
+      <% award_counter = 0 %>
       <% @awards.each do |award| %>
         <% prev_award_noms = @prev_noms[award_counter] %>
         <div class="award_category_title" id=<%= award.label %>><%= award.award_name %></div>
