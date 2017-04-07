@@ -35,6 +35,12 @@
   background: #008ED6;
   box-shadow: none;
   text-shadow: none;
+  margin-bottom: 50px
+}
+
+.form-submit-button:hover{
+  cursor: pointer;
+  background-color: navy;
 }
 
 .form-textbox{
