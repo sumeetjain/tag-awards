@@ -10,6 +10,13 @@ class Role < ActiveRecord::Base
   scope :for_current_voting_period, ->  { joins(:voting_period)
     .where("voting_periods.year = ?", Time.now.strftime("%Y")).joins(:artist).order('name ASC')}
 
+  include PgSearch
+  pg_search_scope :full_search, :against => :character, 
+    :associated_against => {
+      artist: [:name],
+      play: [:title]
+    }
+    
   enum job: ["Director", "Actor", "Actress", "Music Director", "Choreographer",
     "Sound Designer", "Props Designer", "Set Designer", "Costume Designer", 
     "Lighting Designer", "Ensemble", "Writer", "Other"]
