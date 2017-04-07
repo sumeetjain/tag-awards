@@ -11,6 +11,13 @@
   Email: <input type="text" name="email" value="<%= current_user.email %>"><br>
   <br>
 
+  <%= submit_tag("Save") %>
+<% end %>
+
+<br>
+
+<%= form_tag("/users/change_password", method: "post") do %>
+
   New Password: <input type="password" name="password"><br>
   <br>
 
