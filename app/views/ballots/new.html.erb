@@ -19,7 +19,9 @@
                         </h2>
                         <p><%= award.description %> </p>
 
-                        <% award.ballot_items.for_voting_period("2017").each do |ballot_item| %>
+                        <% noms = award.ballot_items.for_voting_period("2017") %>
+                        <% noms = noms.sort_by &:display_name %>
+                        <% noms.each do |ballot_item| %>
                             <label class="finalBallotSection__label">
                                 <%= f.radio_button award.id, ballot_item.id %>
                                 <%= ballot_item.display_name %>
