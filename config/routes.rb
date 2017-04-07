@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   get "users/home" => 'users#home'
   get "users/settings_page" => 'users#settings_page'
   post "users/change_settings" => 'users#settings_changed'
+  post "users/change_password" => 'users#change_password'
   post "send/email/nominations" => 'users#nomination_email'
   post "send/email/ballots" => 'users#ballot_email'
   get "users/register/:secret_number" => 'users#set_password', as: "secret_register"
