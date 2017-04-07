@@ -10,9 +10,7 @@ class VoteDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     user: Field::BelongsTo,
     id: Field::Number,
-    title: Field::String,
-    voter_id: Field::Number,
-    nomination_item_id: Field::Number,
+    ballot_item: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }
@@ -24,28 +22,22 @@ class VoteDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :user,
-    :title,
-    :nomination_item_id,
+    :ballot_item,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :id,
-    :title,
-    :voter_id,
-    :nomination_item_id,
-    :created_at,
-    :updated_at,
+    :ballot_item,
   ]
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :title,
-    :voter_id,
-    :nomination_item_id,
+    :id,
+    :ballot_item,
   ]
 
   # Overwrite this method to customize how votes are displayed
