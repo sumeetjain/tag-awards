@@ -120,6 +120,7 @@ class User < ActiveRecord::Base
     votes.create(votes_array)
   end
 
+  #Used to decide whether to display ballot for voting or not. Can only vote once.
   def has_submitted_final_ballot?
     votes.any?
   end

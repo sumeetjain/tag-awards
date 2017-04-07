@@ -18,10 +18,10 @@
                             <%= award.award_name %>
                         </h2>
 
-                        <% award.ballot_items.each do |ballot_item| %>
+                        <% award.ballot_items.for_voting_period("2017").each do |ballot_item| %>
                             <label class="finalBallotSection__label">
                                 <%= f.radio_button award.id, ballot_item.id %>
-                                <%= ballot_item_info(ballot_item) %>
+                                <%= ballot_item.display_name %>
                             </label>
                         <% end %>
                     </div>
