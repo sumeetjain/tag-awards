@@ -24,4 +24,8 @@ class BallotItem < ActiveRecord::Base
     potential_nomination.display_name
   end
 
+  def self.removeAllBallotItems(year)
+    self.all.for_voting_period(year).destroy_all
+  end
+
 end

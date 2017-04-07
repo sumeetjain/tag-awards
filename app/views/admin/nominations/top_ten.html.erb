@@ -29,6 +29,10 @@
   </p>
 
   <hr>
+
+  <p>Click here to reset Ballot Builder and clear ballot items for the current year</p>
+  <%= link_to( "Reset for #{@year}!", reset_admin_nominations_path, class: "button",method: :post) %>
+
 </div>
 
 <% @awards.each do |award| %>

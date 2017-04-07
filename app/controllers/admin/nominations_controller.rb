@@ -30,14 +30,21 @@ module Admin
 
     #Ballot Builder
   	def top_ten
-      User.viewings_weight
+      User.viewings_weight(session[:year])
       @theaters = Theater.includes(:plays).all
       @awards = Award.order("awards.award_name asc").all
+      @year = session[:year]
     end
 
     def build_ballot
       Nomination.saveBallotItems(params)
-      redirect_to :top_ten_admin_nominations#, notice: "Ballot for #{@award.award_name} set!"
+      redirect_to :top_ten_admin_nominations
+    end
+
+    def reset_ballot
+      Award.ballot_set_false
+      BallotItem.removeAllBallotItems(session[:year])
+      redirect_to :top_ten_admin_nominations
     end
     
   end

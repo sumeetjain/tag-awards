@@ -25,4 +25,8 @@ class Award < ActiveRecord::Base
     award_type == "acting" 
   end
 
+  def self.ballot_set_false
+    self.update_all(ballot_set: false)
+  end
+
 end

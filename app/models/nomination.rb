@@ -42,4 +42,8 @@ class Nomination < ActiveRecord::Base
     award.update(ballot_set: true)
   end
 
+  def voting_period
+    potential_nomination.nominatable.voting_period.year
+  end
+
 end
