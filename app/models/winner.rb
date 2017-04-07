@@ -10,8 +10,11 @@ class Winner < ActiveRecord::Base
     .where("voting_periods.year = ?", voting_period) }
 
 
-
-	# returns Hash of award AR-> {ballot_item_winner AR-> score integer}
+    # Calculates winners from votes and ballot items for the year given
+    #
+    # year - String of number year "2017"
+    #
+	# returns Hash of award AR-> {ballot_item_winner id integer-> score integer}
 	def calculate_winners(year)
 		allscores = {}
 		@helper = WinnerHelper.new(year)
@@ -23,6 +26,12 @@ class Winner < ActiveRecord::Base
 		return allscores
 	end
 
+
+	# Gets scores saved to ballot items for the year given
+    #
+    # year - String of number year "2017"
+    #
+	# returns Hash of award AR-> {ballot_item_winner id integer -> score integer}
 	def getAllScores(year)
 		allscores = {}
 		BallotItem.for_voting_period(year).each do |ballot_item|
@@ -37,7 +46,11 @@ class Winner < ActiveRecord::Base
 
 	private
 
-	# returns hash of ballot_item id-> score integer
+	# Calculates the scores for the ballot items for a given award
+	#
+	# award - AR object of an award
+	#
+	# returns hash of ballot_item id integer-> score integer
 	def getScoresForBallotItems(award)
 		ballot_item_scores = {}
 		@helper.ballotItemsForAward(award).each do |ballot_item_id|
@@ -46,12 +59,21 @@ class Winner < ActiveRecord::Base
 		return sortByScore(ballot_item_scores)
 	end
 
+	# Sorts highest scores first
+	#
+	# ballot_item_scores - hash of ballot_item id integer> score integer
+	#
+	# returns sorted hash of ballot_item id-> score integer
 	def sortByScore(ballot_item_scores)
 		sorted_scores = ballot_item_scores.sort_by {|key, value| -value}
 		return sorted_scores.to_h
 	end
 
-	#returns integer
+	# Calculates the score of a single ballot item
+	#
+	# ballot_item_id - integer
+	#
+	# returns integer for score
 	def calculateBallotItemScore(ballot_item_id)
 		ballot_item_score = 0
 		vote_ids = @helper.votesForBallotItem(ballot_item_id)
@@ -62,7 +84,11 @@ class Winner < ActiveRecord::Base
 		return ballot_item_score
 	end
 
-	# returns an integer
+	# Calculates a score (or weight) of a single vote based on the vote's user's viewings
+	#
+	# vote_id - integer
+	#
+	# returns an integer as the score of the vote
 	def calculateVoteScore(vote_id)
 		award_plays_viewed = awardPlaysViewedByUser(vote_id)
 		maxscore = getMaxScore
@@ -71,8 +97,10 @@ class Winner < ActiveRecord::Base
 		return score
 	end
 
-	# num_viewed - integer
-	# maxscore - integer
+	# Gets a vote's score based on number of user's viewings
+	#
+	# num_viewed - integer, maxscore - integer
+	#
 	# returns integer
 	def getVoteScore(num_viewed,maxscore)
 		if num_viewed == maxscore
@@ -83,7 +111,11 @@ class Winner < ActiveRecord::Base
 		return score
 	end
 
-	#returns integer
+	# Checks to make sure the user viewed what they are voting for, returns zero if they didn't
+	# 
+	# score - integer, vote_id - integer, 
+	# 
+	# returns integer
 	def checkForViewOfVote(score,vote_id,award_plays_viewed)
 		votePlay = @helper.playForVote(vote_id)
 		unless award_plays_viewed.include?(votePlay)
@@ -92,7 +124,12 @@ class Winner < ActiveRecord::Base
 		return score
 	end
 
-	#returns array of play ids
+
+	# Checks for which plays in the award category the vote's user has viewed
+	# 
+	# vote_id - integer
+	# 
+	# returns array of play ids
 	def awardPlaysViewedByUser(vote_id)
 		user_id = @helper.userForVote(vote_id)
 		plays_user_viewed = @helper.playsForUser(user_id)
@@ -101,11 +138,18 @@ class Winner < ActiveRecord::Base
 		return plays_user_viewed & plays_for_award
 	end
 
+	# gets the maximum score for an award for a single vote
+	# 
 	# returns integer of number of unique plays
 	def getMaxScore
 		maxscore = @helper.playsForAward.uniq.length
 	end
 
+	# Reformats data to be passed into saveWinner and waveScores functions
+	# Saves winners to winner table, saves scores to ballot_items
+	#
+	# allscores - Hash of award AR-> {ballot_item_winner id-> score integer}
+	# 
 	def saveScoresAndWinners(allscores)
 		winners = []
 		scores = {}
@@ -119,18 +163,29 @@ class Winner < ActiveRecord::Base
 		saveScores(scores)
 	end
 
+	# Gets highest scoring ballot_item
+	#
+	# ballot_item_scores - ballot_item_winner id-> score integer
+	#
 	# returns ballot_item id of winner
-	def getWinner(scores)
-		scores.key(scores.values.max)
+	def getWinner(ballot_item_scores)
+		ballot_item_scores.key(ballot_item_scores.values.max)
 	end
 
-	# write to table in database
+	# save winners for all awards, if winner already in winner table then doesn't add it again
+	# 
+	# winners - array of ballot_item_ids
+	# 
+	# Creates new row in winner table for each ballot_item winner
 	def saveWinners(winners)
 		winners.each do |ballot_item_id|
 			Winner.find_or_create_by(:ballot_item_id => ballot_item_id)
 		end
 	end
 
+	# saved_scores - hash of ballot_item_id integer => {:score => score integer}
+	#
+	# Updates ballot_items with scores
 	def saveScores(saved_scores)
 		BallotItem.update(saved_scores.keys,saved_scores.values)
 	end
