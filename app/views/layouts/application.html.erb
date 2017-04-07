@@ -49,5 +49,9 @@
   <%= yield %>
   <%= render "javascript" %>
   <%= render "css_overrides" %>
+
+  <% if current_user != nil %>
+    <div class="current_user" style="position: absolute; top: 0; right: 0; padding-right: 10px;">Logged in as <strong><%= current_user.username %></strong></div>
+  <% end %>
 </body>
 </html>

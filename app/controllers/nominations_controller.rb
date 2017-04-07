@@ -6,6 +6,7 @@ class NominationsController < ApplicationController
     @prev_noms = is_already_nominated
   end
 
+  # Builds a Hash of all potential nominations for output on the nominations ballot.
   def build_potential_nominations
     potential_nominations = {}
     @awards.each do |award|
@@ -21,6 +22,7 @@ class NominationsController < ApplicationController
     return potential_nominations
   end
 
+  # Formats each potential nomination in the above Hash as it's display_name.
   def nomination_ballot_format(potential_nominations)
     formatted_noms = []
     potential_nominations.each do |potential_nomination|
@@ -29,6 +31,7 @@ class NominationsController < ApplicationController
     return formatted_noms
   end
 
+  # Builds a Hash containing a user's potential_nomination_id's to build the select form with their previous selections already selected (should they choose to go back and change their nominations). If it is a user's first time a has containing blanks is returned to tell the select form to select nothing.
   def is_already_nominated
     users_prev_noms = Nomination.where(user_id: current_user.id)
     if users_prev_noms == []
@@ -43,6 +46,7 @@ class NominationsController < ApplicationController
     end
   end
 
+  # Builds the 'new user' Hash described above.
   def new_user_noms
     empty_noms_array = []
     28.times do
@@ -55,6 +59,7 @@ class NominationsController < ApplicationController
     return empty_noms_array
   end
 
+  # Saves a user's nominations.
   def save_nominees
     current_user.record_nominations(current_user.id, params[:noms]) 
     redirect_to "/nomination_ballot"
