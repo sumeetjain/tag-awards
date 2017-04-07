@@ -17,7 +17,7 @@
                         <h2 class="finalBallotSection__award">
                             <%= award.award_name %>
                         </h2>
-                        <p class="">
+                        <p><%= award.description %> </p>
 
                         <% award.ballot_items.for_voting_period("2017").each do |ballot_item| %>
                             <label class="finalBallotSection__label">
@@ -28,11 +28,7 @@
                     </div>
                 <% end %>
             </div>
-            <div class="submit-button"> 
-              <p>
-                <%= f.submit "SUBMIT", class: "form-submit-button" %>
-              </p>
-            </div>
+            <%= f.submit "SUBMIT", class: "form-submit-button" %>
 
         <% end %>
 
