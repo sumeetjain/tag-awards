@@ -30,19 +30,23 @@
         <a href="/files/SpecialAwards.pdf" target="_blank">Click Here for Info about TAG Special Awards</a><br>
         <a href="/files/VotingResource.xlsx" target="_blank">Click Here for a helpful voting resource</a><br>
       </div>
-    <%= form_for current_user, url: {controller: "nominations", action: "save_nominees"} do |n| %>
-      <%= form_for current_user, url: user_viewings_path do |f| %>
-        <% @plays.each do |p| %>
-          <p>
-            <label>
-              <%= f.check_box :viewings, {name: "user[viewings][]", id: nil, checked: current_user.has_viewed?(p)}, p.id, nil %>
-              <strong><%= p.title %></strong> (at <%= p.theater.name %>)
-            </label>
-          </p>
+      <% nom_counter = 0 %>
+      <%= form_for current_user, url: user_nominations_path do |f| %>
+        <% @awards.each do |award| %>
+          <div class="award_category_title" id=<%= award.label %>><%= award.award_name %></div>
+          <div class="award_description"><%= award.description %></div>
+          <% noms_array = PotentialNomination.where(award_id: award.id) %>
+          <% noms_array = noms_array.sort_by &:display_name %>
+          <% noms_array = noms_array.map { |nom| [nom.display_name, nom.id] } %>
+          <% 5.times do %>
+            <%= fields_for :nomination do |n| %>
+              <%= n.select(:nomination, options_for_select(noms_array), {prompt: 'Select a nomination'}, { name: 'nominations[]', :class => 'nom_box' }) %>
+              <% nom_counter += 1 %>
+            <% end %>
+          <% end %>
         <% end %>
-      <%= submit_tag "Save Nomination Ballot", class: "form-submit-button" %>
-
-    <% end %>
+        <%= f.submit "SUBMIT", class: "form-submit-button" %>
+      <% end %>
     <p>If you feel a potential nomination is missing from any of the awards, please <a href="mailto:someone@nowhere.com">contact us!</a></p>
     </div>
   </div>

@@ -1,3 +1,1 @@
-$('.nom_box').selectize({
-  sortField: 'text'
-});
+$('.nom_box').selectize({});
