@@ -30,26 +30,16 @@
         <a href="/files/SpecialAwards.pdf" target="_blank">Click Here for Info about TAG Special Awards</a><br>
         <a href="/files/VotingResource.xlsx" target="_blank">Click Here for a helpful voting resource</a><br>
       </div>
-    <%= form_for :nomination, url: {controller: "nominations", action: "save_nominees"} do |n| %>
-      <% award_counter = 0 %>
-      <% @awards.each do |award| %>
-        <% prev_award_noms = @prev_noms[award_counter] %>
-        <div class="award_category_title" id=<%= award.label %>><%= award.award_name %></div>
-        <div class="award_description"><%= award.description %></div>
-        <% nomination_counter = 0 %>
-        <% while nomination_counter <= 4 %>
-          <select name="noms[[<%= award.id %>][<%= nomination_counter %>]]" class="nom_box">
-          <option value="0" <%= prev_award_noms[nomination_counter] == 0 ? "selected" : "" %>>-- Select a nominee --</option>
-          <% @nominations[award.id].each do |key, value| %>
-            <option value=<%= key %> <%= prev_award_noms[nomination_counter] == key ? "selected" : "" %>><%= value %></option>
-          <% end %>
-          </select>
-          <br>
-          <% nomination_counter += 1 %>
+    <%= form_for current_user, url: {controller: "nominations", action: "save_nominees"} do |n| %>
+      <%= form_for current_user, url: user_viewings_path do |f| %>
+        <% @plays.each do |p| %>
+          <p>
+            <label>
+              <%= f.check_box :viewings, {name: "user[viewings][]", id: nil, checked: current_user.has_viewed?(p)}, p.id, nil %>
+              <strong><%= p.title %></strong> (at <%= p.theater.name %>)
+            </label>
+          </p>
         <% end %>
-        <% award_counter += 1 %>
-      <% end %>
-
       <%= submit_tag "Save Nomination Ballot", class: "form-submit-button" %>
 
     <% end %>

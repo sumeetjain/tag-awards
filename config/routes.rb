@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     resources :artists
     resources :roles
     resources :potential_nominations
-
     resources :awards
     resources :theaters
     resources :viewings
