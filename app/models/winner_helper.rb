@@ -50,7 +50,8 @@ class WinnerHelper
 
 
 	def ballotItemPlays
-		sql = "SELECT ballot_item.id as ballot_item_id, ballot_item.potential_nomination_id, potenital_nomination.nominatable_id, potenital_nomination.nominatable_type FROM ballot_item 
+		sql = "SELECT ballot_items.id as ballot_item_id, ballot_items.potential_nomination_id, potential_nominations.nominatable_id, potential_nominations.nominatable_type 
+				FROM ballot_items 
 				JOIN potential_nominations ON ballot_items.potential_nomination_id = potential_nominations.id 
 				WHERE ballot_items.voting_period_id = #{@year_id}"
 		ballotItemNominatable = ActiveRecord::Base.connection.execute(sql).to_a
