@@ -33,7 +33,7 @@ class WinnerHelper
 	#
 	# returns table as array 
 	def userViewedPlays
-		sql = "SELECT users.id, viewings.play_id FROM users 
+		sql = "SELECT users.id as user_id, viewings.play_id as play_id FROM users 
 				JOIN viewings ON users.id=viewings.user_id"
 		return ActiveRecord::Base.connection.execute(sql).to_a
 	end
@@ -42,7 +42,7 @@ class WinnerHelper
 	#
 	# returns table as array 
 	def userVotes
-		sql = "SELECT id, user_id, ballot_item_id FROM votes 
+		sql = "SELECT id as vote_id, user_id, ballot_item_id FROM votes 
 				WHERE ballot_items.voting_period_id = #{@year_id}"
 		return ActiveRecord::Base.connection.execute(sql).to_a
 	end
@@ -104,7 +104,7 @@ class WinnerHelper
 	# returns array of integers (play ids)
 	def playsForAward
 		array = []
-		@awardVotes.each do |ballot_item|
+		@awardBallotItems.each do |ballot_item|
 			if ballot_item['award_id'].to_i == @award_id 
 				array << playForBallotItem(ballot_item['ballot_item_id'])
 			end
@@ -113,6 +113,11 @@ class WinnerHelper
 	end
 
 
+	# gets play id for a ballot item
+	#
+	# id - ballot_item id integer
+	# 
+	# returns integer (play id)
 	def playForBallotItem(id)
 		@ballotItemPlays.each do |ballot_item|
 			if ballot_item['ballot_item_id'] == id
@@ -120,7 +125,6 @@ class WinnerHelper
 			end
 		end
 	end
-
 
 
 	# gets all plays a user has viewed
@@ -131,7 +135,7 @@ class WinnerHelper
 	def playsForUser(user_id)
 		array = []
 		@viewedPlays.each do |viewing|
-			if viewing['id'].to_i == user_id 
+			if viewing['user_id'].to_i == user_id 
 				array << viewing['play_id'].to_i 
 			end
 		end
@@ -146,7 +150,7 @@ class WinnerHelper
 	# returns integer for user id
 	def userForVote(vote_id)
 		@userVotes.each do |vote|
-			if vote['id'].to_i == vote_id 
+			if vote['vote_id'].to_i == vote_id 
 				return vote['user_id'].to_i 
 			end
 		end
@@ -160,7 +164,7 @@ class WinnerHelper
 	def playForVote(vote_id)
 		@userVotes.each do |vote|
 			if vote['id'].to_i == vote_id 
-				return vote['play_id'].to_i 
+				return playForBallotItem(vote['ballot_item_id'])
 			end
 		end
 	end
