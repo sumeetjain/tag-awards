@@ -35,7 +35,7 @@
         <% @awards.each do |award| %>
           <% nom_counter = 0 %>
           <div class="award_category_title" id=<%= award.label %>><%= award.award_name %></div>
-          <div class="award_description"><%= award.description %></div>
+          <div class="award_description"><%= award.description %></div><br>
           <% noms_array = PotentialNomination.where(award_id: award.id) %>
           <% noms_array = noms_array.sort_by &:display_name %>
           <% noms_array = noms_array.map { |nom| [nom.display_name, nom.id] } %>
@@ -47,7 +47,9 @@
             <% nom_counter += 1 %>
           <% end %>
           <% award_counter += 1 %>
+          <br>
         <% end %>
+        <br>
         <%= f.submit "SUBMIT", class: "form-submit-button" %>
       <% end %>
     <p>If you feel a potential nomination is missing from any of the awards, please <a href="mailto:someone@nowhere.com">contact us!</a></p>
