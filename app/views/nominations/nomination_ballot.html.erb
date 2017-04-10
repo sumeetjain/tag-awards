@@ -30,10 +30,10 @@
         <a href="/files/SpecialAwards.pdf" target="_blank">Click Here for Info about TAG Special Awards</a><br>
         <a href="/files/VotingResource.xlsx" target="_blank">Click Here for a helpful voting resource</a><br>
       </div>
-      <% #award_counter = 0 %>
+      <% award_counter = 0 %>
       <%= form_for current_user, url: user_nominations_path do |f| %>
         <% @awards.each do |award| %>
-          <% #nom_counter = 0 %>
+          <% nom_counter = 0 %>
           <div class="award_category_title" id=<%= award.label %>><%= award.award_name %></div>
           <div class="award_description"><%= award.description %></div>
           <% noms_array = PotentialNomination.where(award_id: award.id) %>
@@ -41,10 +41,10 @@
           <% noms_array = noms_array.map { |nom| [nom.display_name, nom.id] } %>
           <% 5.times do %>
             <%= fields_for :nomination do |n| %>
-              <%= n.select(:nomination, options_for_select(noms_array), {prompt: 'Select a nomination'}, { name: 'nominations[]', :class => 'nom_box' }) %>
-              <% #nom_counter += 1 %>
+              <%= n.select(:nomination, options_for_select(noms_array), {prompt: 'Select a nomination'}, { name: 'nominations[]', :class => 'nom_box', selected: @current_noms[award_counter][nom_counter] }) %>
+              <% nom_counter += 1 %>
             <% end %>
-            <% #award_counter += 1 %>
+            <% award_counter += 1 %>
           <% end %>
         <% end %>
         <%= f.submit "SUBMIT", class: "form-submit-button" %>
