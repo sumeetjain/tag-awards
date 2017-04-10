@@ -3,11 +3,7 @@ class Nomination < ActiveRecord::Base
   accepts_nested_attributes_for :potential_nomination
   belongs_to :user
 
-  # validates :potential_nomination, uniqueness: { scope: :user,
-  #   message: ->(potential_nomination, potential_nomination_id) do
-  #     'You may only nominate something once! You attempeted to nominate #{potential_nomination.display_name} more than once!' 
-  #     end
-  #   }
+  validates :potential_nomination, uniqueness: { scope: :user, message: 'You may only nominate something once!' }
 
   scope :for_voting_period, -> (voting_period) { joins(:voting_period)
     .where("voting_periods.year = ?", voting_period) }

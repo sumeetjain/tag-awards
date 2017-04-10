@@ -18,7 +18,7 @@ class NominationsController < ApplicationController
         nom_counter += 1
       end
     end 
-    redirect_to :root, notice: "Nominations saved!"
+    redirect_to :nomination_ballot, notice: "Nominations saved!"
   end
 
   ##
