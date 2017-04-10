@@ -3,16 +3,27 @@ class WinnerHelper
 	# year is integer year such as 2017
 	def initialize(year)
 		@year_id = year - 2015
-		@awardPlayVotes = awardPlayVotes
+		@awardBallotItems = awardBallotItems
+		@awardVotes = awardVotes
 		@viewedPlays = userViewedPlays
 		@userVotes = userVotes
+		@ballotItemPlays = ballotItemPlays
 	end
 
-	# query database to return ballot_item id, award id, play id, and vote id for each vote
+	# query database to return ballot_item id and award id for each award
 	#
 	# returns table as array 
-	def awardPlayVotes
-		sql = "SELECT ballot_items.id as ballot_item_id, ballot_items.award_id, ballot_items.play_id, votes.id as vote_id FROM votes 
+	def awardBallotItems
+		sql = "SELECT id, award_id FROM ballot_items 
+				WHERE ballot_items.voting_period_id = #{@year_id}"
+		return ActiveRecord::Base.connection.execute(sql).to_a
+	end
+
+	# query database to return ballot_item id, award id and vote id for each vote
+	#
+	# returns table as array 
+	def awardVotes
+		sql = "SELECT ballot_items.id as ballot_item_id, ballot_items.award_id, votes.id as vote_id FROM votes 
 				JOIN ballot_items ON ballot_items.id=votes.ballot_item_id
 				WHERE ballot_items.voting_period_id = #{@year_id}"
 		return ActiveRecord::Base.connection.execute(sql).to_a
@@ -27,14 +38,33 @@ class WinnerHelper
 		return ActiveRecord::Base.connection.execute(sql).to_a
 	end
 
-	# query database to return vote id, user id and play id for each vote
+	# query database to return vote id, user id and ballot_item id for each vote
 	#
 	# returns table as array 
 	def userVotes
-		sql = "SELECT votes.id, votes.user_id, ballot_items.play_id FROM votes 
-				JOIN ballot_items ON votes.ballot_item_id = ballot_items.id 
+		sql = "SELECT id, user_id, ballot_item_id FROM votes 
 				WHERE ballot_items.voting_period_id = #{@year_id}"
 		return ActiveRecord::Base.connection.execute(sql).to_a
+	end
+
+
+	def ballotItemPlays
+		sql = "SELECT ballot_item.id as ballot_item_id, ballot_item.potential_nomination_id, potenital_nomination.nominatable_id, potenital_nomination.nominatable_type FROM ballot_item 
+				JOIN potential_nominations ON ballot_items.potential_nomination_id = potential_nominations.id 
+				WHERE ballot_items.voting_period_id = #{@year_id}"
+		ballotItemNominatable = ActiveRecord::Base.connection.execute(sql).to_a
+
+		ballotItemNominatable.each do |ballot_item|
+			if ballot_item['nominatable_type'] == "Role"
+				role_id = ballot_item['nominatable_id']
+				play_id = Role.find(role_id).play_id
+			else
+				play_id = ballot_item['nominatable_id']
+			end
+			ballot_item['play_id'] = play_id
+		end
+
+		return ballotItemNominatable
 	end
 
 	# gets all ballot items for an award
@@ -46,14 +76,13 @@ class WinnerHelper
 	def ballotItemsForAward(award)
 		@award_id = award.id
 		array = []
-		@awardPlayVotes.each do |vote|
-			if vote['award_id'].to_i == @award_id 
-				array << vote['ballot_item_id'].to_i 
+		@awardBallotItems.each do |ballot_item|
+			if ballot_item['award_id'].to_i == @award_id 
+				array << ballot_item['ballot_item_id'].to_i 
 			end
 		end
-		return array.uniq
+		return array
 	end
-
 
 	# gets all votes for a ballot_item
 	#
@@ -62,7 +91,7 @@ class WinnerHelper
 	# returns array of integers
 	def votesForBallotItem(ballot_item_id)
 		array = []
-		@awardPlayVotes.each do |vote|
+		@awardVotes.each do |vote|
 			if vote['ballot_item_id'].to_i == ballot_item_id
 				array << vote['vote_id'].to_i 
 			end
@@ -75,13 +104,24 @@ class WinnerHelper
 	# returns array of integers (play ids)
 	def playsForAward
 		array = []
-		@awardPlayVotes.each do |ballot_item|
+		@awardVotes.each do |ballot_item|
 			if ballot_item['award_id'].to_i == @award_id 
-				array << ballot_item['play_id'].to_i 
+				array << playForBallotItem(ballot_item['ballot_item_id'])
 			end
 		end
 		return array.uniq
 	end
+
+
+	def playForBallotItem(id)
+		@ballotItemPlays.each do |ballot_item|
+			if ballot_item['ballot_item_id'] == id
+				return ballot_item['play_id'].to_i 
+			end
+		end
+	end
+
+
 
 	# gets all plays a user has viewed
 	#
