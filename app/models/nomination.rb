@@ -3,11 +3,14 @@ class Nomination < ActiveRecord::Base
   accepts_nested_attributes_for :potential_nomination
   belongs_to :user
 
-  # validates :potential_nomination, uniqueness: { scope: :user }
+  # validates :potential_nomination, uniqueness: { scope: :user,
+  #   message: ->(potential_nomination, potential_nomination_id) do
+  #     'You may only nominate something once! You attempeted to nominate #{potential_nomination.display_name} more than once!' 
+  #     end
+  #   }
 
   scope :for_voting_period, -> (voting_period) { joins(:voting_period)
     .where("voting_periods.year = ?", voting_period) }
-
 
   # User weights are never set - should grab weights from user?
   # Nomination now has a potential nomination instead of listing theater, show, etc
