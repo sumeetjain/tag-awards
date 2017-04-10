@@ -13,7 +13,6 @@ class Play < ActiveRecord::Base
     .where("voting_periods.year = ?", Time.now.strftime("%Y")).order(title: :asc)}
 
   def display_name
-
     "#{title}, #{theater.try(:name)}"
   end
 end

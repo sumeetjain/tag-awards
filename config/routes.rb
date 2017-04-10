@@ -1,13 +1,13 @@
 Rails.application.routes.draw do 
 
   patch "user/viewings" => 'viewings#update', as: :user_viewings
+  patch "user/nominations" => 'nominations#update', as: :user_nominations
 
   namespace :admin do
     resources :plays
     resources :artists
     resources :roles
     resources :potential_nominations
-
     resources :awards
     resources :theaters
     resources :viewings

@@ -1,67 +1,60 @@
 class NominationsController < ApplicationController
   def nomination_ballot
     @awards = Award.all
-    @nominations = build_potential_nominations
     @ballot_status = VotingPeriod.current.ballot_status
-    @prev_noms = is_already_nominated
+    @current_noms = user_current_nominations
   end
 
-  # Builds a Hash of all potential nominations for output on the nominations ballot.
-  def build_potential_nominations
-    potential_nominations = {}
-    @awards.each do |award|
-      nom_category = PotentialNomination.where(award_id: award.id)
-      formatted_noms = nomination_ballot_format(nom_category)
-      potential_nominations[award.id] = {}
-      counter = 0
-      nom_category.each do |nom|
-        potential_nominations[award.id][nom.id] = formatted_noms[counter]
-        counter += 1
-      end
-    end
-    return potential_nominations
+  def update
+    @user = current_user
+    prev_noms = Nomination.where(user_id: @user)
+    new_noms = params[:nominations]
+    nom_counter = 0
+    prev_noms.each do |nom|
+      nom.update(potential_nomination_id: new_noms[nom_counter])
+      nom_counter += 1
+    end 
+    redirect_to :nomination_ballot, notice: "Nominations saved!"
   end
 
-  # Formats each potential nomination in the above Hash as it's display_name.
-  def nomination_ballot_format(potential_nominations)
-    formatted_noms = []
-    potential_nominations.each do |potential_nomination|
-      formatted_noms << potential_nomination.display_name
-    end
-    return formatted_noms
-  end
-
-  # Builds a Hash containing a user's potential_nomination_id's to build the select form with their previous selections already selected (should they choose to go back and change their nominations). If it is a user's first time a has containing blanks is returned to tell the select form to select nothing.
-  def is_already_nominated
-    users_prev_noms = Nomination.where(user_id: current_user.id)
-    if users_prev_noms == []
+  ##
+  def user_current_nominations
+    user_prev_noms = []
+    noms_by_award = Nomination.where(user_id: current_user.id)
+    if noms_by_award == []
       return new_user_noms
     else
-      prev_noms_array = []
-      users_prev_noms.each do |nom|
-        prev_noms_array << nom.potential_nomination_id
+      @awards.each do |award|
+        award_array = []
+        noms_by_award.each do |nom|
+          if nom.potential_nomination != nil
+            if nom.potential_nomination.award_id == award.id
+              award_array << nom.potential_nomination_id
+            end
+          end
+        end
+        while award_array.length < 5
+          award_array << nil
+        end
+        user_prev_noms << award_array
       end
-      prev_noms_array = prev_noms_array.each_slice(5).to_a
-      return prev_noms_array
     end
+    return user_prev_noms
   end
 
-  # Builds the 'new user' Hash described above.
+  ##
   def new_user_noms
-    empty_noms_array = []
-    28.times do
-      empty_awards_array = []
-      5.times do
-        empty_awards_array << 0
-      end
-      empty_noms_array << empty_awards_array
+    140.times do
+      Nomination.create({ :potential_nomination_id => nil, :user_id => current_user.id })
     end
-    return empty_noms_array
-  end
-
-  # Saves a user's nominations.
-  def save_nominees
-    current_user.record_nominations(current_user.id, params[:noms]) 
-    redirect_to "/nomination_ballot"
+    new_user_array = []
+    28.times do
+      award_array = []
+      5.times do
+        award_array << nil
+      end
+      new_user_array << award_array
+    end
+    return new_user_array
   end
 end
