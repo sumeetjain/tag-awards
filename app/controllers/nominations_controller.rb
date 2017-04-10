@@ -7,17 +7,13 @@ class NominationsController < ApplicationController
 
   def update
     @user = current_user
-    # if @user.nominations == []
-    #   @user.nominations.create(params[:nominations].map { |v| {potential_nomination_id: v } })
-    # else
-      prev_noms = Nomination.where(user_id: @user)
-      new_noms = params[:nominations]
-      nom_counter = 0
-      prev_noms.each do |nom|
-        nom.update(potential_nomination_id: new_noms[nom_counter])
-        nom_counter += 1
-      end
-    # end 
+    prev_noms = Nomination.where(user_id: @user)
+    new_noms = params[:nominations]
+    nom_counter = 0
+    prev_noms.each do |nom|
+      nom.update(potential_nomination_id: new_noms[nom_counter])
+      nom_counter += 1
+    end 
     redirect_to :nomination_ballot, notice: "Nominations saved!"
   end
 
