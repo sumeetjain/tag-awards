@@ -42,7 +42,8 @@ class WinnerHelper
 	#
 	# returns table as array 
 	def userVotes
-		sql = "SELECT id as vote_id, user_id, ballot_item_id FROM votes 
+		sql = "SELECT id as vote_id, user_id, ballot_item_id FROM votes
+				JOIN ballot_items ON ballot_items.id=votes.ballot_item_id
 				WHERE ballot_items.voting_period_id = #{@year_id}"
 		return ActiveRecord::Base.connection.execute(sql).to_a
 	end
