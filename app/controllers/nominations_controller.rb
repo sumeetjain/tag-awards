@@ -31,8 +31,10 @@ class NominationsController < ApplicationController
       @awards.each do |award|
         award_array = []
         noms_by_award.each do |nom|
-          if nom.potential_nomination.award_id == award.id
-            award_array << nom.potential_nomination_id
+          if nom.potential_nomination != nil
+            if nom.potential_nomination.award_id == award.id
+              award_array << nom.potential_nomination_id
+            end
           end
         end
         while award_array.length < 5
@@ -46,7 +48,6 @@ class NominationsController < ApplicationController
 
   ##
   def new_user_noms
-    binding.pry
     new_user_array = []
     28.times do
       award_array = []
