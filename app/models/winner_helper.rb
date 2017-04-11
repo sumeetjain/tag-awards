@@ -49,6 +49,11 @@ class WinnerHelper
 	end
 
 
+
+	# query database to return ballot_item id, potential nomination id, nominatable id and nominatable type for each ballot item
+	# adds column for play_id based on nominatable type
+	#
+	# returns table as array 
 	def ballotItemPlays
 		sql = "SELECT ballot_items.id as ballot_item_id, ballot_items.potential_nomination_id, potential_nominations.nominatable_id, potential_nominations.nominatable_type 
 				FROM ballot_items 
