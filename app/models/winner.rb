@@ -77,6 +77,7 @@ class Winner < ActiveRecord::Base
 	def calculateBallotItemScore(ballot_item_id)
 		ballot_item_score = 0
 		vote_ids = @helper.votesForBallotItem(ballot_item_id)
+		if vote_ids == [] then return 0 end
 		vote_ids.each do |vote_id|
 			score = calculateVoteScore(vote_id)
 			ballot_item_score += score
@@ -134,7 +135,6 @@ class Winner < ActiveRecord::Base
 		user_id = @helper.userForVote(vote_id)
 		plays_user_viewed = @helper.playsForUser(user_id)
 		plays_for_award = @helper.playsForAward
-
 		return plays_user_viewed & plays_for_award
 	end
 

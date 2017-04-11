@@ -23,7 +23,7 @@ class WinnerHelper
 	#
 	# returns table as array 
 	def awardVotes
-		sql = "SELECT ballot_items.id as ballot_item_id, ballot_items.award_id, votes.id as vote_id FROM votes 
+		sql = "SELECT ballot_items.id as ballot_item_id, ballot_items.award_id, votes.id as vote_id, ballot_items.voting_period_id FROM votes 
 				JOIN ballot_items ON ballot_items.id=votes.ballot_item_id
 				WHERE ballot_items.voting_period_id = #{@year_id}"
 		return ActiveRecord::Base.connection.execute(sql).to_a
@@ -42,7 +42,7 @@ class WinnerHelper
 	#
 	# returns table as array 
 	def userVotes
-		sql = "SELECT votes.id as vote_id, votes.user_id as user_id, ballot_items.id as ballot_item_id FROM votes
+		sql = "SELECT votes.id as vote_id, votes.user_id as user_id, ballot_items.id as ballot_item_id, ballot_items.voting_period_id FROM votes
 				JOIN ballot_items ON ballot_items.id=votes.ballot_item_id
 				WHERE ballot_items.voting_period_id = #{@year_id}"
 		return ActiveRecord::Base.connection.execute(sql).to_a
@@ -80,7 +80,7 @@ class WinnerHelper
 		array = []
 		@awardBallotItems.each do |ballot_item|
 			if ballot_item['award_id'].to_i == @award_id 
-				array << ballot_item['ballot_item_id'].to_i 
+				array << ballot_item['id'].to_i 
 			end
 		end
 		return array
@@ -92,13 +92,13 @@ class WinnerHelper
 	# 
 	# returns array of integers
 	def votesForBallotItem(ballot_item_id)
-		array = []
+		voteIds = []
 		@awardVotes.each do |vote|
 			if vote['ballot_item_id'].to_i == ballot_item_id
-				array << vote['vote_id'].to_i 
+				voteIds << vote['vote_id'].to_i 
 			end
 		end
-		return array
+		return voteIds
 	end
 
 	# gets plays for all ballot items for an award
@@ -108,7 +108,7 @@ class WinnerHelper
 		array = []
 		@awardBallotItems.each do |ballot_item|
 			if ballot_item['award_id'].to_i == @award_id 
-				array << playForBallotItem(ballot_item['ballot_item_id'])
+				array << playForBallotItem(ballot_item['id'])
 			end
 		end
 		return array.uniq
@@ -165,7 +165,7 @@ class WinnerHelper
 	# returns integer for play id
 	def playForVote(vote_id)
 		@userVotes.each do |vote|
-			if vote['id'].to_i == vote_id 
+			if vote['vote_id'].to_i == vote_id 
 				return playForBallotItem(vote['ballot_item_id'])
 			end
 		end
