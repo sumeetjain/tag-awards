@@ -1,7 +1,23 @@
 # Tag-awards
 
-![screenshot1](/screenshots/screenshot_example.png)
-![screenshot1](https://raw.githubusercontent.com/omahacodeschool/tag-awards/master/screenshots/screenshot_example.png)
+<table>
+	<tr>
+		<td>
+			<img src="/screenshots/screenshot_example.png">
+		</td>
+		<td>
+			<img src="/screenshots/screenshot_example.png">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="/screenshots/screenshot_example.png">
+		</td>
+		<td>
+			<img src="/screenshots/screenshot_example.png">
+		</td>
+	</tr>
+</table>
 
 
 ## Getting Started
