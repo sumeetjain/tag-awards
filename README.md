@@ -16,6 +16,8 @@
 <td>
 ![screenshot1](/screenshots/screenshot_example.png)
 </td>
+</tr>
+</table>
 
 
 ## Getting Started
