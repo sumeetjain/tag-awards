@@ -3,18 +3,18 @@
 <table>
 <tr>
 <td>
-![screenshot1](/screenshots/screenshot_example.png)
+<img src="/screenshots/screenshot_example.png">
 </td>
 <td>
-![screenshot1](/screenshots/screenshot_example.png)
+<img src="/screenshots/screenshot_example.png">
 </td>
 </tr>
 <tr>
 <td>
-![screenshot1](https://raw.githubusercontent.com/omahacodeschool/tag-awards/master/screenshots/screenshot_example.png)
+<img src="/screenshots/screenshot_example.png">
 </td>
 <td>
-![screenshot1](/screenshots/screenshot_example.png)
+<img src="/screenshots/screenshot_example.png">
 </td>
 </tr>
 </table>
