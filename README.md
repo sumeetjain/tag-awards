@@ -1,22 +1,22 @@
 # Tag-awards
 
 <table>
-<tr>
-<td>
-<img src="/screenshots/screenshot_example.png">
-</td>
-<td>
-<img src="/screenshots/screenshot_example.png">
-</td>
-</tr>
-<tr>
-<td>
-<img src="/screenshots/screenshot_example.png">
-</td>
-<td>
-<img src="/screenshots/screenshot_example.png">
-</td>
-</tr>
+	<tr>
+		<td>
+			<img src="/screenshots/screenshot_example.png">
+		</td>
+		<td>
+			<img src="/screenshots/screenshot_example.png">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="/screenshots/screenshot_example.png">
+		</td>
+		<td>
+			<img src="/screenshots/screenshot_example.png">
+		</td>
+	</tr>
 </table>
 
 
