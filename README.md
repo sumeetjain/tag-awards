@@ -1,8 +1,8 @@
 # Tag-awards
 
-![screenshot1](screenshots/screeshot_example.png =300px)
-![screenshot1](screenshots/screeshot_example.png =300px)
-![screenshot1](screenshots/screeshot_example.png =300px)
+![screenshot1](/screenshots/screenshot_example.png =300px)
+![screenshot1](./screenshots/screenshot_example.png =300px)
+![screenshot1](screenshots/screenshot_example.png =300px)
 
 
 ## Getting Started
