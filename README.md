@@ -1,5 +1,10 @@
 # Tag-awards
 
+![screenshot1](screenshots/screeshot_example.png =300px)
+![screenshot1](screenshots/screeshot_example.png =300px)
+![screenshot1](screenshots/screeshot_example.png =300px)
+
+
 ## Getting Started
 
 After you have cloned this repo, run this setup script to set up your machine
