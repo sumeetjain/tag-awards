@@ -3,22 +3,32 @@
 <table>
 	<tr>
 		<td>
-			<img src="/screenshots/screenshot_example.png">
+			<img src="/screenshots/login.png">
 		</td>
 		<td>
-			<img src="/screenshots/screenshot_example.png">
+			<img src="/screenshots/user_dashboard.png">
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<img src="/screenshots/screenshot_example.png">
+			<img src="/screenshots/nominations_ballot.png">
 		</td>
 		<td>
-			<img src="/screenshots/screenshot_example.png">
+			<img src="/screenshots/final_ballot.png">
 		</td>
 	</tr>
 </table>
 
+<table>
+  <tr>
+    <td>
+      <img src="/screenshots/admin_example1.png">
+    </td>
+    <td>
+      <img src="/screenshots/admin_example2.png">
+    </td>
+  </tr>
+</table>
 
 ## Getting Started
 
