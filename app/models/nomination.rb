@@ -1,4 +1,6 @@
 class Nomination < ActiveRecord::Base
+  attr_accessor :voting_period
+
   belongs_to :potential_nomination
   accepts_nested_attributes_for :potential_nomination
   belongs_to :user
