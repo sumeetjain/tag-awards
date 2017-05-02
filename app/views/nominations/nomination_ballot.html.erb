@@ -27,8 +27,11 @@
     <div class="nominations_form">
       <div id="award_explanations">
         <a href="/files/AwardExplanations.pdf" target="_blank">Click Here for an Explanation of Award Categories</a><br>
+
+        <!-- Make this go to a separate page for submitting special awards. (Emily will be sending a Google Form link.) -->
         <a href="/files/SpecialAwards.pdf" target="_blank">Click Here for Info about TAG Special Awards</a><br>
-        <a href="/files/VotingResource.xlsx" target="_blank">Click Here for a helpful voting resource</a><br>
+
+        If you feel a potential nomination is missing from any of the awards, please <a href="mailto:awards@theatreartsguild.com">contact us!</a><br>
       </div>
       <% award_counter = 0 %>
       <%= form_for current_user, url: user_nominations_path do |f| %>
@@ -50,9 +53,10 @@
           <br>
         <% end %>
         <br>
-        <%= f.submit "SUBMIT", class: "form-submit-button" %>
+        <p>You can save your ballot now <strong>and come back later to add/remove/change nominations.</strong> You can save it multiple times, so don't worry about remembering everyone that you want to nominate right now. You can come back later and revise your nominations.</p>
+        <%= f.submit "SAVE", class: "form-submit-button" %>
       <% end %>
-    <p>If you feel a potential nomination is missing from any of the awards, please <a href="mailto:someone@nowhere.com">contact us!</a></p>
+    
     </div>
   </div>
 </div>

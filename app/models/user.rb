@@ -16,15 +16,6 @@ class User < ActiveRecord::Base
   validates :full_name, presence: true
   validates :username, presence: true
 
-  def username
-    begin
-      super
-    rescue
-      self.secret_number
-    end
-  end
-
-
   # determines weight of nominations based on a user's viewing and updates the user's weight
   # used for determining nominations weighted score
   #

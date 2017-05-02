@@ -8,6 +8,9 @@
 window.addEventListener("load", function () {
 
   document.getElementById("potential_nomination_nominatable_id").addEventListener("change", nominatable_selected);
+
+  var event = new Event('change');
+  document.getElementById("potential_nomination_nominatable_id").dispatchEvent(event);
   
 });
 
@@ -16,3 +19,4 @@ function nominatable_selected(e) {
   var nom_type_input = document.getElementById("nominatable_type");
   nom_type_input.value = selected_type;
 }
+
