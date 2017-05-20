@@ -35,7 +35,7 @@ class Role < ActiveRecord::Base
   
   def character_or_job
     formatted = "#{artist.name}"
-    formatted += (character.blank? ? " - " + job : " as " + character) 
+    formatted += (character.blank? ? " - #{job}" : " as #{character}") 
     formatted += " - "
   end
 
