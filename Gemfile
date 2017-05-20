@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.3.1"
 
+gem "selectize-rails", "~> 0.12.4"
 gem "administrate", "~> 0.1.4"
 gem "autoprefixer-rails"
 gem "delayed_job_active_record"
