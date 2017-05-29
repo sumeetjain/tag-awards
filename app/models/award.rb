@@ -13,7 +13,8 @@ class Award < ActiveRecord::Base
 
   def options_for_select
     self.potential_nominations
-    .sort_by(&:display_name)
+    .order("display_name ASC")
+    .select(:display_name, :id)
     .map { |nom| [nom.display_name, nom.id] }
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406203602) do
+ActiveRecord::Schema.define(version: 20170529190557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,11 @@ ActiveRecord::Schema.define(version: 20170406203602) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "artists_plays", id: false, force: :cascade do |t|
+    t.integer "artist_id", null: false
+    t.integer "play_id",   null: false
   end
 
   create_table "awards", force: :cascade do |t|
@@ -106,6 +111,7 @@ ActiveRecord::Schema.define(version: 20170406203602) do
     t.datetime "updated_at",       null: false
     t.integer  "nominatable_id"
     t.string   "nominatable_type"
+    t.string   "display_name"
   end
 
   create_table "roles", force: :cascade do |t|

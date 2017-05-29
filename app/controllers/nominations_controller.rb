@@ -1,6 +1,6 @@
 class NominationsController < ApplicationController
   def nomination_ballot
-    @awards = Award.includes(:potential_nominations).all
+    @awards = Award.all
     @ballot_status = VotingPeriod.current.ballot_status
     @current_noms = user_current_nominations
   end

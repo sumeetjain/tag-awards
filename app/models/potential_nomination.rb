@@ -1,14 +1,17 @@
 class PotentialNomination < ActiveRecord::Base
   NOMINATABLES = [Play,Role]
-  belongs_to :nominatable, polymorphic: true 
+  belongs_to :nominatable, polymorphic: true
+
   belongs_to :award
   has_many :nominations
 
   scope :for_voting_period, -> (voting_period) { joins(:voting_period)
     .where("voting_periods.year = ?", voting_period) }
 
-  def display_name
-    nominatable.display_name
+  before_save :set_display_name
+
+  def set_display_name
+    self.display_name = nominatable.display_name
   end
 
   # def display_name
