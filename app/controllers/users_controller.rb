@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   #
   # Returns an Array of ActiveRecord objects.
   def home
-    @theaters = Theater.all
+    @theaters = Theater.order("name ASC")
   end
 
   before_filter :authenticate_user!

@@ -51,7 +51,11 @@ class User < ActiveRecord::Base
   end
 
   def has_viewed?(play)
-    viewings.pluck(:play_id).include?(play.id)
+    cached_viewings.include?(play.id)
+  end
+
+  def cached_viewings
+    @cached_viewings ||= viewings.pluck(:play_id)
   end
 
   # Saves votes for this user's final ballot.
