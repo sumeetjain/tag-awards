@@ -1,6 +1,5 @@
 task :members_2017 => :environment do
   require "csv"
-  require "pry"
 
   list = Rails.root.join('lib', 'members.csv')
 
