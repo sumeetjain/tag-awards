@@ -20,7 +20,7 @@ class NominationsController < ApplicationController
   ##
   def user_current_nominations
     user_prev_noms = []
-    noms_by_award = Nomination.where(user_id: current_user.id)
+    noms_by_award = Nomination.includes(:potential_nomination).where(user_id: current_user.id)
     if noms_by_award == []
       return new_user_noms
     else

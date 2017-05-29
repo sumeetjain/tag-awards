@@ -18,7 +18,7 @@
         Award Categories
       </div>
       <div class="award_links_instructions">
-        Click on any Award Category on this list to get the nomination ballot for that category. No searching needed. Let the right section come to you. 
+        Click on any Award Category on this list to get the nomination ballot for that category.
       </div>
       <% @awards.each do |award| %>
         <li><a class="award_link" href="#<%= award.label%>"><%= award.award_name%></a></li>
@@ -26,10 +26,11 @@
     </ul>
     <div class="nominations_form">
       <div id="award_explanations">
-        <a href="/files/AwardExplanations.pdf" target="_blank">Click Here for an Explanation of Award Categories</a><br>
-
-        <!-- Make this go to a separate page for submitting special awards. (Emily will be sending a Google Form link.) -->
-        <a href="/files/SpecialAwards.pdf" target="_blank">Click Here for Info about TAG Special Awards</a><br>
+        <a href="https://goo.gl/forms/e2lvUyNaGZmYfipu2" target="_blank">Click Here to Nominate for the following Awards:</a><br>
+        Outstanding Performance By An Ensemble<br>
+        Theatre Educator Award<br>
+        Backstage Award<br>
+        Youth Tech<br><br>
 
         If you feel a potential nomination is missing from any of the awards, please <a href="mailto:awards@theatreartsguild.com">contact us!</a><br>
       </div>
