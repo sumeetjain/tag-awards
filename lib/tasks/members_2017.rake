@@ -19,6 +19,8 @@ task :members_2017 => :environment do
       password_confirmation: pw
     }
 
-    User.create(to_database)
+    to_database << user_info
   end
+
+  User.create(to_database)
 end
