@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-   has_many :nominations
-   has_many :viewings
+   has_many :nominations, dependent: :destroy
+   has_many :viewings, dependent: :destroy
    accepts_nested_attributes_for :viewings
    accepts_nested_attributes_for :nominations
 
