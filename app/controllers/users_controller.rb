@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   #
   # Returns an Array of ActiveRecord objects.
   def home
-    @plays = Play.includes(:theater).for_voting_period(Time.now.strftime("%Y"))
+    @theaters = Theater.all
   end
 
   before_filter :authenticate_user!
