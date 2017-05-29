@@ -8,7 +8,7 @@ class PotentialNomination < ActiveRecord::Base
     .where("voting_periods.year = ?", voting_period) }
 
   def display_name
-    nominatable.try(:display_name)
+    nominatable.display_name
   end
 
   # def display_name

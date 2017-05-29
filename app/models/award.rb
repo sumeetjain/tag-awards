@@ -11,6 +11,12 @@ class Award < ActiveRecord::Base
     self.award_name.split.join.downcase
   end
 
+  def options_for_select
+    self.potential_nominations
+    .sort_by(&:display_name)
+    .map { |nom| [nom.display_name, nom.id] }
+  end
+
   def short_name
     regex = /(Outstanding )(Achievement|Performance)?( by an )?( in )?( by a )?/
 

@@ -34,19 +34,19 @@
 
         If you feel a potential nomination is missing from any of the awards, please <a href="mailto:awards@theatreartsguild.com">contact us!</a><br>
       </div>
+
       <% award_counter = 0 %>
       <%= form_for current_user, url: user_nominations_path do |f| %>
         <% @awards.each do |award| %>
           <% nom_counter = 0 %>
-          <div class="award_category_title" id=<%= award.label %>><%= award.award_name %></div>
+          <div class="award_category_title" id="<%= award.label %>"><%= award.award_name %></div>
           <div class="award_description"><%= award.description %></div><br>
-          <% noms_array = PotentialNomination.where(award_id: award.id) %>
-          <% noms_array = noms_array.sort_by &:display_name %>
-          <% noms_array = noms_array.map { |nom| [nom.display_name, nom.id] } %>
+
           <% select_array = @current_noms[award_counter] %>
+          
           <% 5.times do %>
             <%= fields_for :nomination do |n| %>
-              <%= n.select(:nomination, options_for_select(noms_array, select_array[nom_counter]), {prompt: 'Select a nomination'}, { name: 'nominations[]', :class => 'nom_box' }) %>
+              <%= n.select(:nomination, options_for_select(award.options_for_select, select_array[nom_counter]), {prompt: 'Select a nomination'}, { name: 'nominations[]', :class => 'nom_box' }) %>
             <% end %>
             <% nom_counter += 1 %>
           <% end %>
