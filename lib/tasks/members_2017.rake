@@ -1,7 +1,7 @@
 task :members_2017 => :environment do
   require "csv"
 
-  list = Rails.root.join('lib', 'members.csv')
+  list = Rails.root.join('lib', 'members-dupe.csv')
 
   to_database = []
 
