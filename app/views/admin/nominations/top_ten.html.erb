@@ -25,13 +25,14 @@
   <hr>
 
   <p>
-    To set the final ballot for an award, check the box next to a nomination and also verify the theater/award by selecting the correct theater/award from the dropdown. This strange extra step is, at least for this year, necessary. Do this for each line you want on the final ballot for an award, and then click the button to submit. <strong>You cannot set the final ballot for more than one award at a time.</strong>
+    To set the final ballot for an award, check the box next to a nomination. Do this for each line you want on the final ballot for an award, and then click the button to submit. <strong>You cannot set the final ballot for more than one award at a time.</strong>
   </p>
 
   <hr>
 
-  <p>Click here to reset Ballot Builder and clear ballot items for the current year</p>
-  <%= link_to( "Reset for #{@year}!", reset_admin_nominations_path, class: "button",method: :post) %>
+  <!-- This works, but I don't want them using it. -->
+  <!-- <p>Click here to reset Ballot Builder and clear ballot items for the current year</p> -->
+  <%# link_to( "Reset for #{@year}!", reset_admin_nominations_path, class: "button",method: :post) %>
 
 </div>
 

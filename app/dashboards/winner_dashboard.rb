@@ -25,7 +25,6 @@ class WinnerDashboard < Administrate::BaseDashboard
     :ballot_item,
     :voting_period,
     :award,
-    :id,
   ]
 
   # SHOW_PAGE_ATTRIBUTES

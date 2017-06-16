@@ -10,7 +10,7 @@ class VoteDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     user: Field::BelongsTo,
     id: Field::Number,
-    ballot_item: Field::Number,
+    ballot_item: Field::BelongsTo,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }
