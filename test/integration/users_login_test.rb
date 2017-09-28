@@ -4,6 +4,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:josh)
+    @not_active = users(:user2)
   end
 
   test "login with invalid information" do
@@ -16,7 +17,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert flash.empty?
   end
 
-  test "login with valid information followed by logout" do
+  test "login with valid information and active membership followed by logout" do
     get login_path
     post login_path, params: { session: { username: @user.username,
                                           password: 'password' } }
@@ -30,6 +31,14 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
     # Simulate a user clicking logout in a second window.
     delete logout_path
+  end
+
+  test "login with valid information and inactive membership" do
+    get login_path
+    post login_path, params: { session: { username: @not_active.username,
+                                          password: 'password' } }
+    assert_template 'sessions/new'
+    assert_not flash.empty?
   end
 
   test "authenticated? should return false for a user with nil digest" do
