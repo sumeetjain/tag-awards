@@ -12,7 +12,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'sessions/new'
     post login_path, params: { session: { username: "", password: "" } }
     assert_template 'sessions/new'
-    assert_not flash.empty?
+    assert flash[:danger] == 'Invalid username/password combination'
     get root_path
     assert flash.empty?
   end
@@ -38,7 +38,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     post login_path, params: { session: { username: @not_active.username,
                                           password: 'password' } }
     assert_template 'sessions/new'
-    assert_not flash.empty?
+    assert flash[:danger] == 'TAG membership not active.'
   end
 
   test "authenticated? should return false for a user with nil digest" do
