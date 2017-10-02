@@ -9,6 +9,6 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   test 'should redirect new if logged in' do
     log_in_as(@user)
     get login_path
-    assert_redirected_to plays_path
+    assert_redirected_to user_plays_path(@user)
   end
 end

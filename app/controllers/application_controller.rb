@@ -6,6 +6,13 @@ class ApplicationController < ActionController::Base
   private
 
     def not_logged_in?
-      redirect_to root_path if !logged_in?
+      redirect_to login_path if !logged_in?
+    end
+
+    def correct_user?
+      @user = User.find(params[:id])
+      unless @user == current_user
+        redirect_to root_url
+      end
     end
 end

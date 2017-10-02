@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
    if session.valid?
      log_in(session.user)
      params[:session][:remember_me] == '1' ? remember(session.user) : forget(session.user)
-     redirect_to(plays_path)
+     redirect_to user_plays_path(session.user)
    else
      flash.now[:danger] = session.error_summary
      render 'new'
@@ -26,6 +26,6 @@ class SessionsController < ApplicationController
   private
 
     def redirect_if_logged_in
-      redirect_to plays_path if logged_in?
+      redirect_to user_plays_path(current_user) if logged_in?
     end
 end
