@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
     def correct_user?
       @user = User.find(params[:id])
       unless @user == current_user
+        flash[:danger] = "You don't have access to that page."
         redirect_to root_url
       end
     end

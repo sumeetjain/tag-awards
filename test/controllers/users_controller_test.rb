@@ -40,18 +40,21 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should redirect plays when logged in as wrong user" do
     log_in_as(@user)
     get user_plays_path(@user2)
+    assert_equal flash[:danger], "You don't have access to that page."
     assert_redirected_to root_path
   end
 
   test "should redirect edit when logged in as wrong user" do
     log_in_as(@user)
     get edit_user_path(@user2)
+    assert_equal flash[:danger], "You don't have access to that page."
     assert_redirected_to root_path
   end
 
   test "should redirect email update when logged in as wrong user" do
     log_in_as(@user)
     patch update_user_email_path(@user2), params: { user: { email: 'foo@valid.com' } }
+    assert_equal flash[:danger], "You don't have access to that page."
     assert_redirected_to root_path
   end
 
@@ -59,6 +62,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     patch update_user_password_path(@user2), params: { user: { password: 'foobar',
                                                               password_confirmation: 'foobar' } }
+    assert_equal flash[:danger], "You don't have access to that page."                                                          
     assert_redirected_to root_path
   end
 end
