@@ -4,9 +4,11 @@
 <%= form_for(:session, url: login_path) do |f| %>
 
   <%= f.label :username %>
+  <%= link_to "(forgot username)", new_username_recovery_path %>
   <%= f.text_field :username %>
 
   <%= f.label :password %>
+  <%= link_to "(forgot password)", new_password_reset_path %>
   <%= f.password_field :password %>
 
   <%= f.label :remember_me do %>
@@ -16,5 +18,3 @@
 
   <%= f.submit "Log in", class: "btn btn-primary" %>
 <% end %>
-
-<%= link_to("Click here if you forgot your username", new_username_recovery_path) %>
