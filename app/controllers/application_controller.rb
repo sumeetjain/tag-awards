@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
       redirect_to login_path if !logged_in?
     end
 
+    def redirect_if_logged_in
+      redirect_to user_plays_path(current_user) if logged_in?
+    end
+
     def correct_user?
       @user = User.find(params[:id])
       unless @user == current_user
