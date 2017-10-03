@@ -1,0 +1,14 @@
+<%= link_to("Login", root_path) %>
+
+<h1>Username recovery</h1>
+
+<p>Please enter your email to receive a list of its associated usernames.</p>
+
+<%= form_tag({action: :create}) do %>
+
+  <%= label_tag(:email, "Email:") %>
+  <%= email_field_tag(:email) %>
+
+  <%= submit_tag("Send email") %>
+
+<% end %>

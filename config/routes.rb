@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   post '/login',         to: 'sessions#create'
   delete '/logout',      to: 'sessions#destroy'
 
-  get 'users/:id/plays', to: 'users#plays', as: 'user_plays'
+  get '/users/:id/plays', to: 'users#plays', as: 'user_plays'
   resources :users, only: [:edit]
-  patch 'users/:id/email', to: 'users#update_email', as: 'update_user_email'
-  patch 'users/:id/password', to: 'users#update_password', as: 'update_user_password'   
+  patch '/users/:id/email', to: 'users#update_email', as: 'update_user_email'
+  patch '/users/:id/password', to: 'users#update_password', as: 'update_user_password'
+
+  resources :username_recovery, only: [:new, :create]
 
   root 'sessions#new'
 end

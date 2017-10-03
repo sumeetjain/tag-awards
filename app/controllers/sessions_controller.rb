@@ -25,7 +25,4 @@ class SessionsController < ApplicationController
 
   private
 
-    def redirect_if_logged_in
-      redirect_to user_plays_path(current_user) if logged_in?
-    end
 end
