@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   patch '/users/:id/password', to: 'users#update_password', as: 'update_user_password'
 
   resources :username_recovery, only: [:new, :create]
+  resources :password_resets,   only: [:new, :create, :edit, :update]
 
   root 'sessions#new'
 end

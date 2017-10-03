@@ -1,0 +1,14 @@
+<%= link_to("Login", root_path) %>
+
+<h1>Password reset</h1>
+
+<p>Please enter your username to receive a password reset link.</p>
+
+<%= form_tag({action: :create}) do %>
+
+  <%= label_tag(:username, "Username:") %>
+  <%= text_field_tag(:username) %>
+
+  <%= submit_tag("Submit") %>
+
+<% end %>
