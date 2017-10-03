@@ -1,0 +1,30 @@
+<%= link_to "Log out", logout_path, method: :delete %>
+
+<% if @user.errors.any? %>
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h1>Update your email</h1>
+
+<%= form_for(@user, url: update_user_email_path(@user)) do |f| %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.submit "Update email" %>
+<% end %>
+
+<h1>Update your password</h1>
+
+<%= form_for(@user, url: update_user_password_path(@user)) do |f| %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.submit "Update password" %>
+<% end %>
