@@ -25,4 +25,12 @@ class VotingPeriodTest < ActiveSupport::TestCase
     @voting_period.active = nil
     assert_not @voting_period.valid?
   end
+
+  test "associated plays should be destroyed" do
+    @voting_period.save
+    @voting_period.plays.create!(title: "FakeTitle", theater_id: Theater.first.id)
+    assert_difference 'VotingPeriod.count', -1 do
+      @voting_period.destroy
+    end
+  end
 end

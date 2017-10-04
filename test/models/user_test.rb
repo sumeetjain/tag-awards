@@ -27,6 +27,16 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test "admin should be present" do
+    @user.admin = nil
+    assert_not @user.valid?
+  end
+
+  test "membership_active should be present" do
+    @user.membership_active = nil
+    assert_not @user.valid?
+  end
+
   test "username should not be too long" do
     @user.username = "a" * 51
     assert_not @user.valid?
@@ -81,5 +91,13 @@ class UserTest < ActiveSupport::TestCase
   test "password should have a minimum length" do
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
+  end
+
+  test "associated viewings should be destroyed" do
+    @user.save
+    @user.viewings.create!(play_id: Play.first.id)
+    assert_difference 'Viewing.count', -1 do
+      @user.destroy
+    end
   end
 end
