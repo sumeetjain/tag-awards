@@ -45,6 +45,14 @@ class PlayTest < ActiveSupport::TestCase
   test "duplicates should not be valid" do
     new_play = @play.dup
     @play.save
-    assert_not new_play.valid?  
+    assert_not new_play.valid?
+  end
+
+  test "associated viewings should be destroyed" do
+    @play.save
+    @play.viewings.create!(user_id: User.first.id)
+    assert_difference 'Viewing.count', -1 do
+      @play.destroy
+    end
   end
 end

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   extend Auth
+  has_many :viewings, dependent: :destroy
   attr_accessor :remember_token, :reset_token
 
   before_save { email.downcase! }

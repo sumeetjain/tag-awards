@@ -82,4 +82,12 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
+
+  test "associated viewings should be destroyed" do
+    @user.save
+    @user.viewings.create!(play_id: Play.first.id)
+    assert_difference 'Viewing.count', -1 do
+      @user.destroy
+    end
+  end
 end

@@ -25,4 +25,12 @@ class TheaterTest < ActiveSupport::TestCase
     @theater.name = 'a' * 256
     assert_not @theater.valid?
   end
+
+  test "dependent plays should be destroyed" do
+    @theater.save
+    @theater.plays.create!(title: 'FakeTitle', voting_period_id: VotingPeriod.first.id)
+    assert_difference 'Play.count', -1 do
+      @theater.destroy
+    end
+  end
 end
