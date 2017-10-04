@@ -12,6 +12,8 @@ class User < ApplicationRecord
   validates :full_name, presence: true, length: { maximum: 50 }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, :if => :password
+  validates :admin, inclusion: { in: [true, false] }
+  validates :membership_active, inclusion: { in: [true, false] }
 
   # Remembers a user in the database for use in persistent sessions.
   def remember

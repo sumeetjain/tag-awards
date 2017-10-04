@@ -27,6 +27,16 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test "admin should be present" do
+    @user.admin = nil
+    assert_not @user.valid?
+  end
+
+  test "membership_active should be present" do
+    @user.membership_active = nil
+    assert_not @user.valid?
+  end
+
   test "username should not be too long" do
     @user.username = "a" * 51
     assert_not @user.valid?
