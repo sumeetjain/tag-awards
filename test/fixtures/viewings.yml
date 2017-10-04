@@ -1,0 +1,17 @@
+<% (1..20).each do |i| %>
+  viewing_<%= i %>:
+    user: josh
+    play: play_<%= 3 * i % 60 %>
+<% end %>
+
+<% (21..40).each do |i| %>
+  viewing_<%= i %>:
+    user: josh2
+    play: play_<%= 3 * i % 60 + 1 %>
+<% end %>
+
+<% (41..60).each do |i| %>
+  viewing_<%= i %>:
+    user: user2
+    play: play_<%= 3 * i % 60 + 2 %>
+<% end %>

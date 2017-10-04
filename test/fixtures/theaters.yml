@@ -1,0 +1,4 @@
+<% (1..10).each do |i| %>
+theater_<%= i %>:
+  name: <%= "Theater #{i}" %>
+<% end %>

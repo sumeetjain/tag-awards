@@ -10,17 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003184048) do
+ActiveRecord::Schema.define(version: 20171004165516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "plays", force: :cascade do |t|
+    t.string "title", null: false
+    t.bigint "voting_period_id", null: false
+    t.bigint "theater_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["theater_id"], name: "index_plays_on_theater_id"
+    t.index ["title", "voting_period_id", "theater_id"], name: "index_plays_on_title_and_voting_period_id_and_theater_id", unique: true
+    t.index ["voting_period_id"], name: "index_plays_on_voting_period_id"
+  end
+
+  create_table "theaters", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_theaters_on_name", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "email", null: false
     t.string "full_name", null: false
-    t.boolean "membership_active", default: true
-    t.boolean "admin", default: false
+    t.boolean "membership_active", default: true, null: false
+    t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest", null: false
@@ -30,4 +48,26 @@ ActiveRecord::Schema.define(version: 20171003184048) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  create_table "viewings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "play_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["play_id"], name: "index_viewings_on_play_id"
+    t.index ["user_id", "play_id"], name: "index_viewings_on_user_id_and_play_id", unique: true
+    t.index ["user_id"], name: "index_viewings_on_user_id"
+  end
+
+  create_table "voting_periods", force: :cascade do |t|
+    t.integer "year", null: false
+    t.boolean "active", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["year"], name: "index_voting_periods_on_year", unique: true
+  end
+
+  add_foreign_key "plays", "theaters"
+  add_foreign_key "plays", "voting_periods"
+  add_foreign_key "viewings", "plays"
+  add_foreign_key "viewings", "users"
 end
