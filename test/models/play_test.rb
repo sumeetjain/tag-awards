@@ -55,4 +55,10 @@ class PlayTest < ActiveSupport::TestCase
       @play.destroy
     end
   end
+
+  test "for_current_voting_period should return plays for the active voting period" do
+    plays = Play.for_current_voting_period
+    assert_equal plays.count, 30
+    assert_not plays.any? { |play| !play.voting_period.active }
+  end
 end

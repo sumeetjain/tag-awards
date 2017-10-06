@@ -33,4 +33,10 @@ class TheaterTest < ActiveSupport::TestCase
       @theater.destroy
     end
   end
+
+  test "should return a list of plays for the current voting period" do
+    theater = Theater.find_by(name: "Theater 1")
+    plays = theater.current_voting_period_plays
+    assert_equal plays.length, 3
+  end
 end

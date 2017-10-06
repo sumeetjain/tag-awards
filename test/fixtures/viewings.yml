@@ -1,7 +1,7 @@
 <% (1..20).each do |i| %>
   viewing_<%= i %>:
     user: josh
-    play: play_<%= 3 * i % 60 %>
+    play: play_<%= 3 * i %>
 <% end %>
 
 <% (21..40).each do |i| %>

@@ -1,5 +1,7 @@
 period1:
   year: 2017
+  active: true
 
 period2:
   year: 2018
+  active: false
