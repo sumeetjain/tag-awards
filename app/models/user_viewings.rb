@@ -2,7 +2,7 @@
 module UserViewings
   # Returns a list of the user's viewings for the active voting period
   def current_voting_period_viewings
-    viewings.where( play: Play.where( voting_period: VotingPeriod.where(active: true) ) )
+    viewings.joins(play: :voting_period).where('active = true')
   end
 
   # Returns true if the user has viewed the play and false otherwise

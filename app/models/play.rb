@@ -7,6 +7,6 @@ class Play < ApplicationRecord
 
   # Returns a list of plays for the current voting period
   def self.for_current_voting_period
-    self.where(voting_period: VotingPeriod.where(active: true))
+    self.joins(:voting_period).where('active = true')
   end
 end
