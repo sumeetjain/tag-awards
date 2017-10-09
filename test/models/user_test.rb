@@ -100,4 +100,27 @@ class UserTest < ActiveSupport::TestCase
       @user.destroy
     end
   end
+
+  test "should return a list of viewings for the current voting period" do
+    user = users(:josh)
+    viewings = user.current_voting_period_viewings
+    assert_equal viewings.length, 10
+    viewings.each { |viewing| assert_equal viewing.play.voting_period.active, true }
+  end
+
+  test "has_viewed should return true if the user has viewed the play and false otherwise" do
+    user = users(:josh)
+    play = Play.find_by(title: "Play 3")
+    assert user.has_viewed? play
+    play = Play.find_by(title: "Play 4")
+    assert_not user.has_viewed? play
+  end
+
+  test "insert_viewings should add viewings to the database for the given play ids" do
+    user = users(:josh)
+    play_ids = [Play.find_by(title: "Play 1").id, Play.find_by(title: "Play 2").id]
+    assert_difference "Viewing.count", 2 do
+      user.insert_viewings play_ids
+    end
+  end
 end

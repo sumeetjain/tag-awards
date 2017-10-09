@@ -22,8 +22,8 @@ end
 
 (1..60).each do |i|
   Play.create(title: "Play #{i}",
-              voting_period_id: i % 2 + 1,
-              theater_id: i % 10 + 1)
+              voting_period_id: [1,2].sample,
+              theater_id: (1..10).to_a.sample )
 end
 
 (1..30).each do |i|

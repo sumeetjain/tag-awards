@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :correct_user?
 
   def plays
-
+    @user = User.find(params[:id])
   end
 
   def edit

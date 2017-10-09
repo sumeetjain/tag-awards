@@ -1,3 +1,23 @@
-<%= link_to "Log out", logout_path, method: :delete %>
+<h1>Dashboard</h1>
 
-This page is where a user will land after logging in.
+<%= form_tag update_user_viewings_path(@user), action: :post do %>
+  <% Theater.all.each do |theater| %>
+    <h2><%= theater.name %></h2>
+    <% theater.current_voting_period_plays.each do |play| %>
+      <ul>
+        <% if @user.has_viewed? play %>
+          <li>
+            <%= check_box_tag 'play_ids[]', play.id, true %>
+            <%= play.title %>
+          </li>
+        <% else %>
+        <li>
+          <%= check_box_tag 'play_ids[]', play.id %>
+          <%= play.title %>
+        </li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+  <%= submit_tag("Submit") %>
+<% end %>
