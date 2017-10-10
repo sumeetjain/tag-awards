@@ -29,3 +29,7 @@ end
 (1..30).each do |i|
   Viewing.create!(user_id: 1, play_id: i * 2)
 end
+
+(1..10).each do |i|
+  Artist.create(name: "Artist #{i}")
+end
