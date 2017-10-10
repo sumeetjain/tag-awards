@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010173736) do
+ActiveRecord::Schema.define(version: 20171010184629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,18 @@ ActiveRecord::Schema.define(version: 20171010173736) do
     t.index ["theater_id"], name: "index_plays_on_theater_id"
     t.index ["title", "voting_period_id", "theater_id"], name: "index_plays_on_title_and_voting_period_id_and_theater_id", unique: true
     t.index ["voting_period_id"], name: "index_plays_on_voting_period_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.bigint "artist_id", null: false
+    t.bigint "play_id", null: false
+    t.integer "job_type", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id", "play_id", "name"], name: "index_roles_on_artist_id_and_play_id_and_name", unique: true
+    t.index ["artist_id"], name: "index_roles_on_artist_id"
+    t.index ["play_id"], name: "index_roles_on_play_id"
   end
 
   create_table "theaters", force: :cascade do |t|
@@ -77,6 +89,8 @@ ActiveRecord::Schema.define(version: 20171010173736) do
 
   add_foreign_key "plays", "theaters"
   add_foreign_key "plays", "voting_periods"
+  add_foreign_key "roles", "artists"
+  add_foreign_key "roles", "plays"
   add_foreign_key "viewings", "plays"
   add_foreign_key "viewings", "users"
 end

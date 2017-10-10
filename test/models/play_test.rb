@@ -56,6 +56,14 @@ class PlayTest < ActiveSupport::TestCase
     end
   end
 
+  test "associated roles should be destroyed" do
+    @play.save
+    @play.roles.create!(artist: Artist.first, name: 'Test', job_type: 'Actor')
+    assert_difference 'Role.count', -1 do
+      @play.destroy
+    end
+  end
+
   test "for_current_voting_period should return plays for the active voting period" do
     plays = Play.for_current_voting_period
     assert_equal plays.count, 30

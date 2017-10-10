@@ -30,6 +30,18 @@ end
   Viewing.create!(user_id: 1, play_id: i * 2)
 end
 
-(1..10).each do |i|
+(1..180).each do |i|
   Artist.create(name: "Artist #{i}")
+end
+
+(1..60).each do |i|
+  Role.create(play_id: i, artist_id: i, name: "Role #{i}", job_type: :Actor)
+end
+
+(61..120).each do |i|
+  Role.create(play_id: i - 60, artist_id: i, name: "Role #{i}", job_type: :Actress)
+end
+
+(121..180).each do |i|
+  Role.create(play_id: i - 120, artist_id: i, name: "Role #{i}", job_type: :Director)
 end
