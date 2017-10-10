@@ -13,7 +13,7 @@ User.create!(username: 'joshmireles',
              admin: true,
              membership_active: true)
 
-VotingPeriod.create!(year: 2017, active: true)
+VotingPeriod.create!(year: 2017, active: true, nominations_active: true)
 VotingPeriod.create!(year: 2018, active: false)
 
 (1..10).each do |i|

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171004165516) do
+ActiveRecord::Schema.define(version: 20171010172436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 20171004165516) do
     t.boolean "active", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "nominations_active", default: false, null: false
+    t.boolean "voting_active", default: false, null: false
     t.index ["year"], name: "index_voting_periods_on_year", unique: true
   end
 

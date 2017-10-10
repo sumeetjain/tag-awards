@@ -1,6 +1,7 @@
 period1:
   year: 2017
   active: true
+  nominations_active: true
 
 period2:
   year: 2018
