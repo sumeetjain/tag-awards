@@ -45,3 +45,9 @@ end
 (121..180).each do |i|
   Role.create(play_id: i - 120, artist_id: i, name: "Role #{i}", job_type: :Director)
 end
+
+award_types = [:acting, :directing, :technical, :production, :ensemble]
+(1..10).each do |i|
+  Award.create(name: "Award #{i}", description: "This is an award.",
+               award_type: award_types[i % 5])
+end
