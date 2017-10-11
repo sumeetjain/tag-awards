@@ -101,6 +101,14 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "associated nominations should be destroyed" do
+    @user.save
+    @user.nominations.create!(nominatable: Nominatable.first)
+    assert_difference "Nomination.count", -1 do
+      @user.destroy
+    end
+  end
+
   test "should return a list of viewings for the current voting period" do
     user = users(:josh)
     viewings = user.current_voting_period_viewings

@@ -9,5 +9,6 @@ class CreateNominatables < ActiveRecord::Migration[5.1]
       t.timestamps
     end
     add_index :nominatables, [:nominee_type, :nominee_id]
+    add_index :nominatables, [:nominee_id, :award_id], unique: true
   end
 end

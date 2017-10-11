@@ -1,1 +1,5 @@
-
+nominatable_1:
+  nominee_type: Play
+  nominee_id: <%= Play.first.id %>
+  award: award_1
+  display_name: nominatable_1

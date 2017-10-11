@@ -3,8 +3,7 @@ require 'test_helper'
 class NominatableTest < ActiveSupport::TestCase
 
   def setup
-    @nominatable = Nominatable.new(nominee: Role.first, award: Award.first,
-                                   display_name: "Nominate me!")
+    @nominatable = Nominatable.new(nominee: Role.first, award: Award.first)
   end
 
   test "should be valid" do
@@ -21,13 +20,17 @@ class NominatableTest < ActiveSupport::TestCase
     assert_not @nominatable.valid?
   end
 
-  test "display_name should be valid" do
-    @nominatable.display_name = nil
-    assert_not @nominatable.valid?
+  test "nominee and award combination should be unique" do
+    @nominatable.save
+    new_nominatable = @nominatable.dup
+    assert_not new_nominatable.valid?
   end
 
-  test "display_name should not be too long" do
-    @nominatable.display_name = 'a' * 101
-    assert_not @nominatable.valid?
+  test "associated nominations should be destroyed" do
+    @nominatable.save
+    @nominatable.nominations.create!(user: User.first)
+    assert_difference 'Nomination.count', -1 do
+      @nominatable.destroy
+    end
   end
 end

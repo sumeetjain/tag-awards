@@ -1,9 +1,9 @@
 class User < ApplicationRecord
+  attr_accessor :remember_token, :reset_token
   extend Auth
   include UserSession, PasswordReset, UserViewings
   has_many :viewings, dependent: :destroy
-  attr_accessor :remember_token, :reset_token
-
+  has_many :nominations, dependent: :destroy
   before_save { email.downcase! }
   validates :username,  presence: true, length: { maximum: 50 },
                         uniqueness: true

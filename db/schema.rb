@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010203248) do
+ActiveRecord::Schema.define(version: 20171011181238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,18 @@ ActiveRecord::Schema.define(version: 20171010203248) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["award_id"], name: "index_nominatables_on_award_id"
+    t.index ["nominee_id", "award_id"], name: "index_nominatables_on_nominee_id_and_award_id", unique: true
     t.index ["nominee_type", "nominee_id"], name: "index_nominatables_on_nominee_type_and_nominee_id"
+  end
+
+  create_table "nominations", force: :cascade do |t|
+    t.bigint "nominatable_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nominatable_id"], name: "index_nominations_on_nominatable_id"
+    t.index ["user_id", "nominatable_id"], name: "index_nominations_on_user_id_and_nominatable_id", unique: true
+    t.index ["user_id"], name: "index_nominations_on_user_id"
   end
 
   create_table "plays", force: :cascade do |t|
@@ -108,6 +119,8 @@ ActiveRecord::Schema.define(version: 20171010203248) do
   end
 
   add_foreign_key "nominatables", "awards"
+  add_foreign_key "nominations", "nominatables"
+  add_foreign_key "nominations", "users"
   add_foreign_key "plays", "theaters"
   add_foreign_key "plays", "voting_periods"
   add_foreign_key "roles", "artists"
