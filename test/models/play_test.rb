@@ -58,8 +58,16 @@ class PlayTest < ActiveSupport::TestCase
 
   test "associated roles should be destroyed" do
     @play.save
-    @play.roles.create!(artist: Artist.first, name: 'Test', job_type: 'Actor')
+    @play.roles.create!(artist: Artist.first, character: 'Test', job_type: 'Actor')
     assert_difference 'Role.count', -1 do
+      @play.destroy
+    end
+  end
+
+  test "associated nominatables should be destroyed" do
+    @play.save
+    @play.nominatables.create!(award: Award.first, display_name: "Test")
+    assert_difference 'Nominatable.count', -1 do
       @play.destroy
     end
   end
@@ -68,5 +76,10 @@ class PlayTest < ActiveSupport::TestCase
     plays = Play.for_current_voting_period
     assert_equal plays.count, 30
     assert_not plays.any? { |play| !play.voting_period.active }
+  end
+
+  test "display_name" do
+    @play.theater = theaters(:theater_1)
+    assert_equal @play.display_name, "Who's Afraid of the Big Bad Woolf?, Theater 1"
   end
 end

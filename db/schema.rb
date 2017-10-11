@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010195319) do
+ActiveRecord::Schema.define(version: 20171010203248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 20171010195319) do
     t.index ["name"], name: "index_awards_on_name", unique: true
   end
 
+  create_table "nominatables", force: :cascade do |t|
+    t.bigint "award_id", null: false
+    t.integer "nominee_id", null: false
+    t.string "nominee_type", null: false
+    t.string "display_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["award_id"], name: "index_nominatables_on_award_id"
+    t.index ["nominee_type", "nominee_id"], name: "index_nominatables_on_nominee_type_and_nominee_id"
+  end
+
   create_table "plays", force: :cascade do |t|
     t.string "title", null: false
     t.bigint "voting_period_id", null: false
@@ -46,10 +57,10 @@ ActiveRecord::Schema.define(version: 20171010195319) do
     t.bigint "artist_id", null: false
     t.bigint "play_id", null: false
     t.integer "job_type", null: false
-    t.string "name", null: false
+    t.string "character"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["artist_id", "play_id", "name"], name: "index_roles_on_artist_id_and_play_id_and_name", unique: true
+    t.index ["artist_id", "play_id", "character", "job_type"], name: "index_roles_on_artist_id_and_play_id_and_character_and_job_type", unique: true
     t.index ["artist_id"], name: "index_roles_on_artist_id"
     t.index ["play_id"], name: "index_roles_on_play_id"
   end
@@ -96,6 +107,7 @@ ActiveRecord::Schema.define(version: 20171010195319) do
     t.index ["year"], name: "index_voting_periods_on_year", unique: true
   end
 
+  add_foreign_key "nominatables", "awards"
   add_foreign_key "plays", "theaters"
   add_foreign_key "plays", "voting_periods"
   add_foreign_key "roles", "artists"

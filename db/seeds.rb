@@ -21,7 +21,7 @@ VotingPeriod.create!(year: 2018, active: false)
 end
 
 (1..60).each do |i|
-  Play.create(title: "Play #{i}",
+  Play.create!(title: "Play #{i}",
               voting_period_id: [1,2].sample,
               theater_id: (1..10).to_a.sample )
 end
@@ -31,23 +31,35 @@ end
 end
 
 (1..180).each do |i|
-  Artist.create(name: "Artist #{i}")
+  Artist.create!(name: "Artist #{i}")
 end
 
 (1..60).each do |i|
-  Role.create(play_id: i, artist_id: i, name: "Role #{i}", job_type: :Actor)
+  Role.create!(play_id: i, artist_id: i, character: "Role #{i}", job_type: :Actor)
 end
 
 (61..120).each do |i|
-  Role.create(play_id: i - 60, artist_id: i, name: "Role #{i}", job_type: :Actress)
+  Role.create!(play_id: i - 60, artist_id: i, character: "Role #{i}", job_type: :Actress)
 end
 
 (121..180).each do |i|
-  Role.create(play_id: i - 120, artist_id: i, name: "Role #{i}", job_type: :Director)
+  Role.create!(play_id: i - 120, artist_id: i, job_type: :Director)
 end
 
 award_types = [:acting, :directing, :technical, :production, :ensemble]
 (1..10).each do |i|
-  Award.create(name: "Award #{i}", description: "This is an award.",
+  Award.create!(name: "Award #{i}", description: "This is an award.",
                award_type: award_types[i % 5])
+end
+
+(1..20).each do |i|
+  Nominatable.create!(nominee: Role.find(i), award_id: i % 4 + 1)
+end
+
+(121..140).each do |i|
+  Nominatable.create!(nominee: Role.find(i), award_id: i % 4 + 5)
+end
+
+(1..20).each do |i|
+  Nominatable.create!(nominee: Play.find(i), award_id: i % 2 + 9)
 end

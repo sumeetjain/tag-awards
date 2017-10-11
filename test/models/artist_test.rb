@@ -22,7 +22,7 @@ class ArtistTest < ActiveSupport::TestCase
 
   test "associated roles should be destroyed" do
     @artist.save
-    @artist.roles.create!(play: Play.first, name: 'Test', job_type: 'Director')
+    @artist.roles.create!(play: Play.first, character: 'Test', job_type: 'Director')
     assert_difference 'Role.count', -1 do
       @artist.destroy
     end

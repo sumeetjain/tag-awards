@@ -3,7 +3,7 @@ require 'test_helper'
 class RoleTest < ActiveSupport::TestCase
 
   def setup
-    @role = Role.new(artist: Artist.first, play: Play.first, name: 'Test',
+    @role = Role.new(artist: Artist.first, play: Play.first, character: 'Test',
                      job_type: 'Actor')
   end
 
@@ -26,20 +26,34 @@ class RoleTest < ActiveSupport::TestCase
     assert_not @role.valid?
   end
 
-  test "name should be present" do
-    @role.name = "   "
+  test "character should not be too long" do
+    @role.character = 'a' * 51
     assert_not @role.valid?
   end
 
-  test "name should not be too long" do
-    @role.name = 'a' * 51
-    assert_not @role.valid?
-  end
-
-  test "name, artist_id, and play_id combination should be unique" do
+  test "character, artist_id, play_id, and job_type combination should be unique" do
     @role.save
-    new_role = Role.new(name: "Test", artist: Artist.first,
-                        play: Play.first, job_type: 'Actress')
+    new_role = @role.dup
     assert_not new_role.valid?
+  end
+
+  test "associated nominatables should be destroyed" do
+    @role.save
+    @role.nominatables.create!(award: Award.first, display_name: "Test")
+    assert_difference 'Nominatable.count', -1 do
+      @role.destroy
+    end
+  end
+
+  test "display_name if character present" do
+    @role.artist = artists(:artist_1)
+    @role.play = plays(:play_1)
+    assert_equal @role.display_name, "Artist 1 as Test, Play 1, Theater 2"
+  end
+
+  test "display_name without character" do
+    @role.character = nil
+    @role.play = plays(:play_1)
+    assert_equal @role.display_name, "Artist 1 - Actor, Play 1, Theater 2"
   end
 end
