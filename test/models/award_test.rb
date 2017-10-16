@@ -4,7 +4,7 @@ class AwardTest < ActiveSupport::TestCase
 
   def setup
     @award = Award.new(name: 'Worst Performance', description: 'This artist is just really, really terrible.',
-                       award_type: :acting)
+                       award_kind: :acting)
   end
 
   test "should be valid" do
@@ -21,15 +21,15 @@ class AwardTest < ActiveSupport::TestCase
     assert_not @award.valid?
   end
 
-  test "award_type should be present" do
-    @award.award_type = nil
+  test "award_kind should be present" do
+    @award.award_kind = nil
     assert_not @award.valid?
   end
 
   test "name should be unique" do
     @award.save
     new_award = Award.new(name: 'Worst Performance', description: 'This artist gave it their all but failed
-                          miserably.', award_type: :production)
+                          miserably.', award_kind: :production)
     assert_not new_award.valid?
   end
 

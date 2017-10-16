@@ -4,7 +4,7 @@ class RoleTest < ActiveSupport::TestCase
 
   def setup
     @role = Role.new(artist: Artist.first, play: Play.first, character: 'Test',
-                     job_type: 'Actor')
+                     job_kind: 'Actor')
   end
 
   test "should be valid" do
@@ -22,7 +22,7 @@ class RoleTest < ActiveSupport::TestCase
   end
 
   test "job should be present" do
-    @role.job_type = nil
+    @role.job_kind = nil
     assert_not @role.valid?
   end
 
@@ -31,7 +31,7 @@ class RoleTest < ActiveSupport::TestCase
     assert_not @role.valid?
   end
 
-  test "character, artist_id, play_id, and job_type combination should be unique" do
+  test "character, artist_id, play_id, and job_kind combination should be unique" do
     @role.save
     new_role = @role.dup
     assert_not new_role.valid?

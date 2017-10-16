@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171011181238) do
+ActiveRecord::Schema.define(version: 20171016143018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20171011181238) do
   create_table "awards", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
-    t.integer "award_type", null: false
+    t.integer "award_kind", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_awards_on_name", unique: true
@@ -67,11 +67,11 @@ ActiveRecord::Schema.define(version: 20171011181238) do
   create_table "roles", force: :cascade do |t|
     t.bigint "artist_id", null: false
     t.bigint "play_id", null: false
-    t.integer "job_type", null: false
+    t.integer "job_kind", null: false
     t.string "character"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["artist_id", "play_id", "character", "job_type"], name: "index_roles_on_artist_id_and_play_id_and_character_and_job_type", unique: true
+    t.index ["artist_id", "play_id", "character", "job_kind"], name: "index_roles_on_artist_id_and_play_id_and_character_and_job_kind", unique: true
     t.index ["artist_id"], name: "index_roles_on_artist_id"
     t.index ["play_id"], name: "index_roles_on_play_id"
   end

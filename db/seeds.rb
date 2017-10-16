@@ -35,21 +35,21 @@ end
 end
 
 (1..60).each do |i|
-  Role.create!(play_id: i, artist_id: i, character: "Role #{i}", job_type: :Actor)
+  Role.create!(play_id: i, artist_id: i, character: "Role #{i}", job_kind: :Actor)
 end
 
 (61..120).each do |i|
-  Role.create!(play_id: i - 60, artist_id: i, character: "Role #{i}", job_type: :Actress)
+  Role.create!(play_id: i - 60, artist_id: i, character: "Role #{i}", job_kind: :Actress)
 end
 
 (121..180).each do |i|
-  Role.create!(play_id: i - 120, artist_id: i, job_type: :Director)
+  Role.create!(play_id: i - 120, artist_id: i, job_kind: :Director)
 end
 
-award_types = [:acting, :directing, :technical, :production, :ensemble]
+award_kinds = [:acting, :directing, :technical, :production, :ensemble]
 (1..10).each do |i|
   Award.create!(name: "Award #{i}", description: "This is an award.",
-               award_type: award_types[i % 5])
+               award_kind: award_kinds[i % 5])
 end
 
 (1..20).each do |i|
