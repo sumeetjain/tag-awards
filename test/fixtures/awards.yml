@@ -1,0 +1,9 @@
+award_1:
+  name: "Award 1"
+  description: "An award."
+  award_kind: :acting
+
+award_2:
+  name: "Award 2"
+  description: "Another award."
+  award_kind: :directing

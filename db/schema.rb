@@ -10,10 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171004165516) do
+ActiveRecord::Schema.define(version: 20171016143018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_artists_on_name", unique: true
+  end
+
+  create_table "awards", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.integer "award_kind", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_awards_on_name", unique: true
+  end
+
+  create_table "nominatables", force: :cascade do |t|
+    t.bigint "award_id", null: false
+    t.integer "nominee_id", null: false
+    t.string "nominee_type", null: false
+    t.string "display_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["award_id"], name: "index_nominatables_on_award_id"
+    t.index ["nominee_id", "award_id"], name: "index_nominatables_on_nominee_id_and_award_id", unique: true
+    t.index ["nominee_type", "nominee_id"], name: "index_nominatables_on_nominee_type_and_nominee_id"
+  end
+
+  create_table "nominations", force: :cascade do |t|
+    t.bigint "nominatable_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nominatable_id"], name: "index_nominations_on_nominatable_id"
+    t.index ["user_id", "nominatable_id"], name: "index_nominations_on_user_id_and_nominatable_id", unique: true
+    t.index ["user_id"], name: "index_nominations_on_user_id"
+  end
 
   create_table "plays", force: :cascade do |t|
     t.string "title", null: false
@@ -24,6 +62,18 @@ ActiveRecord::Schema.define(version: 20171004165516) do
     t.index ["theater_id"], name: "index_plays_on_theater_id"
     t.index ["title", "voting_period_id", "theater_id"], name: "index_plays_on_title_and_voting_period_id_and_theater_id", unique: true
     t.index ["voting_period_id"], name: "index_plays_on_voting_period_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.bigint "artist_id", null: false
+    t.bigint "play_id", null: false
+    t.integer "job_kind", null: false
+    t.string "character"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id", "play_id", "character", "job_kind"], name: "index_roles_on_artist_id_and_play_id_and_character_and_job_kind", unique: true
+    t.index ["artist_id"], name: "index_roles_on_artist_id"
+    t.index ["play_id"], name: "index_roles_on_play_id"
   end
 
   create_table "theaters", force: :cascade do |t|
@@ -63,11 +113,18 @@ ActiveRecord::Schema.define(version: 20171004165516) do
     t.boolean "active", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "nominations_active", default: false, null: false
+    t.boolean "voting_active", default: false, null: false
     t.index ["year"], name: "index_voting_periods_on_year", unique: true
   end
 
+  add_foreign_key "nominatables", "awards"
+  add_foreign_key "nominations", "nominatables"
+  add_foreign_key "nominations", "users"
   add_foreign_key "plays", "theaters"
   add_foreign_key "plays", "voting_periods"
+  add_foreign_key "roles", "artists"
+  add_foreign_key "roles", "plays"
   add_foreign_key "viewings", "plays"
   add_foreign_key "viewings", "users"
 end

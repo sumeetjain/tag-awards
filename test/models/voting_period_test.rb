@@ -26,6 +26,16 @@ class VotingPeriodTest < ActiveSupport::TestCase
     assert_not @voting_period.valid?
   end
 
+  test "nominations_active should be present" do
+    @voting_period.nominations_active = nil
+    assert_not @voting_period.valid?
+  end
+
+  test "voting_active should be present" do
+    @voting_period.voting_active = nil
+    assert_not @voting_period.valid?
+  end
+
   test "associated plays should be destroyed" do
     @voting_period.save
     @voting_period.plays.create!(title: "FakeTitle", theater_id: Theater.first.id)
